@@ -6,10 +6,10 @@ const Button = props => {
 
     return (
 
-        <div className={classes.container}>
+        <div className={classes.container} onClick={props.onClick}>
 
             <span className={classes.text}>{props.text}</span>
-            
+
         </div>
 
     )
