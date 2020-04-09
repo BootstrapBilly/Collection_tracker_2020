@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="512px" height="512px" class=""><g><g>
+	<rect x="176.552" y="313.379" style="fill:#ACACFF" width="132.414" height="97.103" data-original="#3D324C" class="active-path" data-old_color="#3D324C"/>
+	<path style="fill:#ACACFF" d="M88.276,313.379V92.69c0-19.501,15.809-35.31,35.31-35.31h264.828   c19.501,0,35.31,15.809,35.31,35.31v220.69H88.276z" data-original="#2FA8CC" class="" data-old_color="#2FA8CC"/>
+	<g>
+		<path style="fill:#7575C9" d="M176.552,295.724h247.172v42.99c-3.693,0.792-7.461,1.177-11.238,1.148H176.552V295.724z" data-original="#7D6599" class="" data-old_color="#7D6599"/>
+		<path style="fill:#7575C9" d="M176.199,428.138h185.732v-17.655c-0.029-9.739-7.917-17.626-17.655-17.655H176.552    L176.199,428.138z" data-original="#7D6599" class="" data-old_color="#7D6599"/>
+	</g>
+	<rect x="397.241" y="278.069" style="fill:#ACACFF" width="114.759" height="150.069" data-original="#67B9CC" class="" data-old_color="#67B9CC"/>
+	<g>
+		<path style="fill:#7575C9" d="M512,278.952v16.772H397.241v-16.772c0-10.238,8.3-18.538,18.538-18.538h77.683    C503.7,260.414,512,268.714,512,278.952z" data-original="#894B9D" class="" data-old_color="#894B9D"/>
+		<path style="fill:#7575C9" d="M512,419.31v16.772c0,4.917-1.953,9.632-5.43,13.108c-3.477,3.477-8.192,5.43-13.108,5.43h-77.683    c-10.238,0-18.538-8.3-18.538-18.538V419.31H512z" data-original="#894B9D" class="" data-old_color="#894B9D"/>
+	</g>
+	<rect x="0" y="189.793" style="fill:#ACACFF" width="203.034" height="229.517" data-original="#67B9CC" class="" data-old_color="#67B9CC"/>
+	<g>
+		<path style="fill:#7575C9" d="M203.034,410.483v13.153c0.005,8.219-3.258,16.103-9.07,21.915    c-5.812,5.812-13.696,9.075-21.915,9.07H30.985c-8.219,0.005-16.103-3.258-21.915-9.07c-5.812-5.812-9.075-13.696-9.07-21.915    l0-13.153H203.034z" data-original="#894B9D" class="" data-old_color="#894B9D"/>
+		<path style="fill:#7575C9" d="M203.034,185.468v13.153H0l0-13.153c-0.005-8.219,3.258-16.103,9.07-21.915    s13.696-9.075,21.915-9.07H172.05c8.219-0.005,16.103,3.258,21.915,9.07S203.039,177.248,203.034,185.468z" data-original="#894B9D" class="" data-old_color="#894B9D"/>
+	</g>
+</g></g> </svg>

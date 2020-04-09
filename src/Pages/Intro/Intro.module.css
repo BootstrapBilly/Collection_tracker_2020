@@ -1,0 +1,57 @@
+.container{
+
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.graphics_container{
+
+    position: absolute;
+    top: 10%;
+
+}
+
+.graphics{
+
+    height: 30vh;
+    width: 30vh;
+
+}
+
+.paragraph_container{
+
+    width: 75%;
+    position: absolute;
+    top: 50%;
+    text-align: center;
+
+}
+
+.paragraph{
+
+    color: #7575c9;
+    font-size: 3.2vh;
+    font-weight: bold;
+
+}
+
+.button_container{
+
+    position: absolute;
+    bottom: 23%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.circle_container {
+    position: absolute;
+    bottom: 10%;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
