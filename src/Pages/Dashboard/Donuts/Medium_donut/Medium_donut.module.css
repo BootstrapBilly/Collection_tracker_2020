@@ -1,0 +1,67 @@
+.donutContainer {
+    position: relative;
+    float: left;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    top: 4%;
+}
+
+.donutContainer h2 {
+    text-align:center;
+    position: absolute;
+    width: 100%;
+    z-index: 999;
+    margin-top: 16vh;
+    font-size: 1.2rem;
+    color: #9191E4;
+}
+
+svg {
+    transform: rotate(-90deg);
+}
+
+.donut {
+  stroke-dasharray: 628;
+  -webkit-animation: donut 2s ease-out forwards;
+  animation: donut 2s ease-out forwards;
+}
+
+@-webkit-keyframes donut {
+  from {
+    stroke-dashoffset: 628;
+  }
+}
+
+@keyframes donut {
+  from {
+    stroke-dashoffset: 628;
+  }
+}
+
+.percent{
+    display: flex;
+    align-items: center;
+    text-align: start;
+    font-size: 65px;
+    color: #9191E4;
+    animation: fadeIn 2s;
+    position: absolute;
+    top: 33.5%;
+    left: 37%;
+    font-family: 'Exo 2', sans-serif;
+}
+
+@keyframes fadeIn {
+
+    0%{
+        opacity: 0%;
+    }
+    100%{opacity: 100%;}
+}
+
+.modulus{
+
+    font-size: 25px;
+    margin-top: 4vh;
+}

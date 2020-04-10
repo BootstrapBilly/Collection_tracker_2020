@@ -1,0 +1,23 @@
+.container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.card_container{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    bottom: 23%;
+}
+
+/* long portrait phone */
+
+@media (min-device-height: 600px) and (max-device-width:500px) {
+
+    
+}

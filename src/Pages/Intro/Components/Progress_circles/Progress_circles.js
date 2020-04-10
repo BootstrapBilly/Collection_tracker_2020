@@ -8,7 +8,7 @@ const Progress_circles = props => {
 
         <div className={classes.container}>
 
-            {[1,2].map(circle_number => <div className={classes.circle} style={{backgroundColor: props.active_page === circle_number ? "#acacff" : null}}></div>)}
+            {[1,2].map(circle_number => <div key={circle_number} className={classes.circle} style={{backgroundColor: props.active_page === circle_number ? "#acacff" : null}}></div>)}
 
         </div>
 

@@ -1,8 +1,10 @@
 body{
   height: 100%;
+  background-color: #F8F8FF;
 }
 html{
   height: 100%;
+  background-color: #F8F8FF;
 }
 #root{
   height: 100%;

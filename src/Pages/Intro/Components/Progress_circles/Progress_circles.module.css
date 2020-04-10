@@ -1,7 +1,7 @@
 .container {
     display: flex;
     justify-content: space-around;
-    width: 15%;
+    width: 50px;
 }
 
 .circle {
@@ -9,4 +9,25 @@
     height: 15px;
     border-radius: 50px;
     border: 1px solid #7575c9;
+}
+
+/* landscape phone*/
+@media (orientation: landscape) {
+
+    .container{
+        width: 5%;
+    }
+
+    .circle{
+        width: 10px;
+        height: 10px;
+    }
+
+}
+
+
+/* long landscape phone*/
+@media only screen and (min-device-width: 600px) and (max-device-height: 500px) and (orientation: landscape) {
+
+
 }

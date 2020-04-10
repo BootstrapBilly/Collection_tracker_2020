@@ -14,3 +14,20 @@
     text-align: center;
     box-shadow: 1px 1px 2px 1px #7575c9;
 }
+
+/* landscape phone*/
+@media (orientation: landscape) {
+
+    .container{
+        width: 15%;
+        height: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .text{
+        font-size: 1rem;
+    }
+    
+}
