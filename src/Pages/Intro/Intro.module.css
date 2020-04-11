@@ -24,7 +24,6 @@
 }
 
 .paragraph {
-    color: #7575c9;
     font-size: 3.2vh;
     font-weight: bold;
 }
@@ -46,6 +45,14 @@
 }
 
 /* long portrait phone */
+
+@media (min-device-height: 800px) and (max-device-width:500px) {
+    .container{
+        background-color: red;
+    }
+}
+
+/* very long portrait phone */
 
 @media (min-device-height: 800px) and (max-device-width:500px) {
     .paragraph {

@@ -6,13 +6,9 @@
 }
 
 .container {
-    background-color: red;
     width: 35%;
-    border: 2px solid #acacff;
-    background-color: #acacff;
     padding: 1vw 0;
     text-align: center;
-    box-shadow: 1px 1px 2px 1px #7575c9;
 }
 
 /* landscape phone*/

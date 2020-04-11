@@ -10,6 +10,10 @@ import Button from "./Components/Button/Button"
 import devices from "../../Assets/Icons/devices.svg"
 import features from "../../Assets/Icons/features.svg"
 
+
+//util
+import colours from "../../Util/Colours"
+
 const Intro = props => {
 
     return (
@@ -24,7 +28,7 @@ const Intro = props => {
 
             <div className={classes.paragraph_container}>
 
-                    <span className={classes.paragraph}>
+                    <span className={classes.paragraph} style={{color:colours.blue}}>
 
                         {props.page === 1 ? "Manage your collection from your mobile, tablet or computer." 
                         : "Keep your collection organised with minimal effort."}

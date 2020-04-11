@@ -14,6 +14,8 @@ const Dashboard = props => {
 
     const { innerWidth: width, innerHeight: height } = window;
 
+    console.log(height)
+
     const circumference = { mobile: "628", long_mobile: "816" }
 
     const total_books = 40;
@@ -25,6 +27,7 @@ const Dashboard = props => {
     const fair_percent = (fair_books/total_books) * 100
     const mint_percent = (mint_books/total_books) * 100
 
+    const total_percent = (poor_percent + fair_percent + mint_percent)
 
     const poor_offset = 100 - poor_percent
     const fair_offset = 100 - (poor_percent + fair_percent)
@@ -55,6 +58,7 @@ const Dashboard = props => {
                 size={height > 650 ? "300" : "250"}
                 cx={height > 650 ? "150" : "127"}
                 cy={height > 650 ? "150" : "127"}
+                total_percent={total_percent}
 
             />
 

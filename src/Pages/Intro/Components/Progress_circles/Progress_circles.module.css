@@ -1,14 +1,13 @@
 .container {
     display: flex;
     justify-content: space-around;
-    width: 50px;
+    width: 30px;
 }
 
 .circle {
-    width: 15px;
-    height: 15px;
+    width: 10px;
+    height: 10px;
     border-radius: 50px;
-    border: 1px solid #7575c9;
 }
 
 /* landscape phone*/

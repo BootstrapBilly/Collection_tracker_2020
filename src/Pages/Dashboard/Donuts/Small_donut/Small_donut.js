@@ -40,7 +40,7 @@ const Small_donut = props => {
 
             <div className={classes.percent}>
 
-                <span>50</span><span className={classes.modulus}>%</span>
+                <span style={{color: colours.blue}}>{Math.round(props.total_percent)}</span><span className={classes.modulus} style={{color:colours.blue}}>%</span>
 
             </div>
 
