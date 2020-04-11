@@ -12,28 +12,35 @@ import colours from "../../Util/Colours"
 
 const Dashboard = props => {
 
-    const { innerWidth: width, innerHeight: height } = window;
+    //-Config
 
-    console.log(height)
+    const { innerWidth: width, innerHeight: height } = window;//get the dimensions of the window
 
-    const circumference = { mobile: "628", long_mobile: "816" }
+    const circumference = { mobile: "628", long_mobile: "816" }//set the circumference of the circle based on screen height
+    const num_books = {total:40, poor:5, fair: 17, mint:3}//set the amount of books
 
-    const total_books = 40;
-    const poor_books = 10;
-    const fair_books = 17;
-    const mint_books = 6;
+    const compute_percent = amount => (amount/num_books.total) * 100//work out the percentage of the total collection for each condition
 
-    const poor_percent = (poor_books/total_books) * 100
-    const fair_percent = (fair_books/total_books) * 100
-    const mint_percent = (mint_books/total_books) * 100
+    const poor_percent = compute_percent(num_books.poor)
+    const fair_percent = compute_percent(num_books.fair)
+    const mint_percent = compute_percent(num_books.mint)
 
-    const total_percent = (poor_percent + fair_percent + mint_percent)
+    const total_percent = (poor_percent + fair_percent + mint_percent)//get the percent of all owned books against total books
 
+    //get the offset from the end of the circle, for example 100-30 = 70
+    //Which means the circle should end 70% from the end of the circle (anti clockwise)
+
+    //each circle displays on top of the next Poor > Fair > Mint
     const poor_offset = 100 - poor_percent
-    const fair_offset = 100 - (poor_percent + fair_percent)
+    const fair_offset = 100 - (poor_percent + fair_percent)//the offset of the next circle, in addition to the old one
     const mint_offset = 100 - (poor_percent + fair_percent + mint_percent)
 
-  
+    //_Functions
+    //work out how much the circle should be offset e.g. circumference = 628
+    //628/100 - 6.28
+    //6.28 * 70 = 439.6
+    //The circle will start from 0 and end at 439.6 out of 628
+    const compute_offset = offset => height > 650 ? (circumference.long_mobile / 100) * offset : (circumference.mobile / 100) * offset
 
     return (
 
@@ -43,16 +50,7 @@ const Dashboard = props => {
 
             <BooksOwned
 
-                offsets={[
-                    "0",
-
-                    height > 650 ? (circumference.long_mobile / 100) * mint_offset : (circumference.mobile / 100) * mint_offset,
-                    height > 650 ? (circumference.long_mobile / 100) * fair_offset : (circumference.mobile / 100) * fair_offset,
-                    height > 650 ? (circumference.long_mobile / 100) * poor_offset : (circumference.mobile / 100) * poor_offset
-                    
-                    
-                ]}
-
+                offsets={["0", compute_offset(mint_offset), compute_offset(fair_offset), compute_offset(poor_offset)]}
                 circumference={height > 650 ? circumference.long_mobile : circumference.mobile}
                 r={height > 650 ? "130" : "100"}
                 size={height > 650 ? "300" : "250"}
