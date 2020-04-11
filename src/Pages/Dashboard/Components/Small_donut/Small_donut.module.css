@@ -14,7 +14,6 @@
     z-index: 999;
     margin-top: 16vh;
     font-size: 1.2rem;
-    color: #9191E4;
 }
 
 svg {
@@ -44,12 +43,12 @@ svg {
     align-items: center;
     text-align: start;
     font-size: 65px;
-    color: #9191E4;
     animation: fadeIn 2s;
     position: absolute;
-    top: 33.5%;
-    left: 37%;
     font-family: 'Exo 2', sans-serif;
+    border-radius: 500px;
+    display: flex;
+    justify-content: center;
 }
 
 @keyframes fadeIn {

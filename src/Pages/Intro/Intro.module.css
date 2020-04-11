@@ -46,10 +46,10 @@
 
 /* long portrait phone */
 
-@media (min-device-height: 800px) and (max-device-width:500px) {
-    .container{
-        background-color: red;
-    }
+@media (min-device-height: 700px) and (max-device-width:500px) {
+
+
+
 }
 
 /* very long portrait phone */

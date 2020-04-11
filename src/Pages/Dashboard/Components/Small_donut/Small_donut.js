@@ -23,12 +23,12 @@ const Small_donut = props => {
 
                 .map((circle) => 
                 
-                <circle id="circle" 
+                <circle id="circle" key={circle[0]}
 
                 style={{ strokeDashoffset: circle[1], strokeDasharray:props.circumference}} 
                 className={classes.donut} 
                 r={props.r} cy={props.cy} cx={props.cx} 
-                stroke-width="10" 
+                strokeWidth="10" 
                 stroke={circle[0]} 
                 fill="none" 
 
@@ -38,7 +38,7 @@ const Small_donut = props => {
                 </g>
             </svg>
 
-            <div className={classes.percent}>
+            <div className={classes.percent} style={{height:`${props.size}px`, width:`${props.size}px`}}>
 
                 <span style={{color: colours.blue}}>{Math.round(props.total_percent)}</span><span className={classes.modulus} style={{color:colours.blue}}>%</span>
 

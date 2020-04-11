@@ -4,8 +4,8 @@ import classes from "./Dashboard.module.css"
 
 //components
 import OptionsBar from "../../Shared Components/Options_bar/Options_bar"
-import BooksOwned from "./Donuts/Small_donut/Small_donut"
-import ConditionCard from "./Condition_card/Condition_card"
+import BooksOwned from "./Components/Small_donut/Small_donut"
+import ConditionCard from "./Components/Condition_card/Condition_card"
 
 //util
 import colours from "../../Util/Colours"
@@ -15,6 +15,8 @@ const Dashboard = props => {
     //-Config
 
     const { innerWidth: width, innerHeight: height } = window;//get the dimensions of the window
+
+    console.log(height)
 
     const circumference = { mobile: "628", long_mobile: "816" }//set the circumference of the circle based on screen height
     const num_books = {total:40, poor:5, fair: 17, mint:3}//set the amount of books
