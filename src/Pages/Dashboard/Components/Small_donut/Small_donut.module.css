@@ -49,6 +49,7 @@ svg {
     border-radius: 500px;
     display: flex;
     justify-content: center;
+    margin-left: 5px;
 }
 
 @keyframes fadeIn {

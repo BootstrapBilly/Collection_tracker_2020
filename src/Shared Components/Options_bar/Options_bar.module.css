@@ -5,6 +5,14 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    position: absolute;
+    position: fixed;
     bottom: 2vh;
+}
+
+@media (orientation:landscape){
+
+    .container{
+
+        margin-bottom: 3vh;
+    }
 }

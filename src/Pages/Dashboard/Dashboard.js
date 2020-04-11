@@ -17,11 +17,12 @@ const Dashboard = props => {
     const { innerWidth: width, innerHeight: height } = window;//get the dimensions of the window
 
     console.log(height)
+    console.log(width)
 
     const circumference = { mobile: "628", long_mobile: "816" }//set the circumference of the circle based on screen height
-    const num_books = {total:40, poor:5, fair: 17, mint:3}//set the amount of books
+    const num_books = {total:40, poor:15, fair: 10, mint:13}//set the amount of books
 
-    const compute_percent = amount => (amount/num_books.total) * 100//work out the percentage of the total collection for each condition
+    const compute_percent = amount => (amount/num_books.total) * 100//work out the percentage weighting of the total collection for each condition
 
     const poor_percent = compute_percent(num_books.poor)
     const fair_percent = compute_percent(num_books.fair)
