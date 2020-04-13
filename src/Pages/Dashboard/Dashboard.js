@@ -9,15 +9,13 @@ import ConditionCard from "./Components/Condition_card/Condition_card"
 
 //util
 import colours from "../../Util/Colours"
+import compute_dimensions from "./functions/compute_dimensions"
 
 const Dashboard = props => {
 
     //-Config
 
     const { innerWidth: width, innerHeight: height } = window;//get the dimensions of the window
-
-    console.log(height)
-    console.log(width)
 
     const circumference = { mobile: "628", long_mobile: "735", small_tablet: "954", large: "1241" }//set the circumference of the circle based on screen height
     const num_books = { total: 40, poor: 15, fair: 10, mint: 13 }//set the amount of books
@@ -49,91 +47,6 @@ const Dashboard = props => {
             height > 650 ? (circumference.long_mobile / 100) * offset :
                 (circumference.mobile / 100) * offset
 
-    const compute_dimensions = () => {
-
-        let dimensions = { circumference: null, r: null, size: null, c: null };
-
-        const orientation = (window.screen.orientation || {}).type || window.screen.mozOrientation || window.screen.msOrientation;
-
-        if (orientation === "portrait-secondary" || orientation === "portrait-primary") {
-
-        if (height > 0) {
-            dimensions.circumference = circumference.mobile;
-            dimensions.r = "100";
-            dimensions.size = "250";
-            dimensions.c = "127"
-
-        }
-
-        if (height > 650) {
-            dimensions.circumference = circumference.long_mobile;
-            dimensions.r = "117";
-            dimensions.size = "270";
-            dimensions.c = "135"
-        }
-
-        if (height > 780) {
-            dimensions.circumference = circumference.small_tablet;
-            dimensions.r = "152";
-            dimensions.size = "351";
-            dimensions.c = "176"
-        }
-
-    } else if (orientation === "landscape-primary" || orientation === "landscape-secondary") {
-
-        if (width > 0) {
-            dimensions.circumference = circumference.mobile;
-            dimensions.r = "100";
-            dimensions.size = "250";
-            dimensions.c = "127"
-        }
-
-        if (width > 700) {
-            dimensions.circumference = circumference.long_mobile;
-            dimensions.r = "117";
-            dimensions.size = "270";
-            dimensions.c = "135"
-        }
-
-        if (width > 900) {
-            dimensions.circumference = circumference.small_tablet;
-            dimensions.r = "152";
-            dimensions.size = "351";
-            dimensions.c = "176"
-        }
-
-        //ios
-    } else {
-
-        if (height > 0) {
-            dimensions.circumference = circumference.mobile;
-            dimensions.r = "100";
-            dimensions.size = "250";
-            dimensions.c = "127"
-        }
-
-        if (width || height > 950) {
-            dimensions.circumference = circumference.small_tablet;
-            dimensions.r = "152";
-            dimensions.size = "351";
-            dimensions.c = "176"
-        }
-
-        if ((width > 1200 && height > 950) || (width > 1000 && height > 1200)) {
-            dimensions.circumference = circumference.large;
-            dimensions.r = "197.6";
-            dimensions.size = "456.3";
-            dimensions.c = "228.8"
-        }
-
-        console.log("inside the place")
-
-    }
-
-        return dimensions
-
-    }
-    console.log(compute_dimensions())
     return (
 
         <div className={classes.container}>
@@ -143,10 +56,12 @@ const Dashboard = props => {
             <BooksOwned
 
                 offsets={["0", compute_offset(mint_offset), compute_offset(fair_offset), compute_offset(poor_offset)]}
-                circumference={compute_dimensions().circumference}
-                r={compute_dimensions().r}
-                size={compute_dimensions().size}
-                c={compute_dimensions().c}
+
+                circumference={compute_dimensions(height,width).circumference}
+                r={compute_dimensions(height,width).r}
+                size={compute_dimensions(height,width).size}
+                c={compute_dimensions(height,width).c}
+
                 total_percent={total_percent}
 
             />
