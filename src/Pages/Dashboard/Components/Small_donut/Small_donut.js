@@ -27,7 +27,7 @@ const Small_donut = props => {
 
                 style={{ strokeDashoffset: circle[1], strokeDasharray:props.circumference}} 
                 className={classes.donut} 
-                r={props.r} cy={props.cy} cx={props.cx} 
+                r={props.r} cy={props.c} cx={props.c} 
                 strokeWidth="10" 
                 stroke={circle[0]} 
                 fill="none" 

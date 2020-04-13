@@ -65,3 +65,95 @@ svg {
     font-size: 25px;
     margin-top: 4vh;
 }
+
+/*large iphones */
+
+@media (min-height:720px) and (orientation:portrait){
+
+  @supports (-webkit-touch-callout: none) {
+    .donutContainer{
+      margin-top: 8%;
+    }
+  }
+
+    
+}
+/* Small portrait tablet */
+
+@media (min-height:750px) and (min-width: 500px) and (max-height: 950px) and (max-width: 700px) {
+
+  .modulus{
+    margin-top: 2.5vh;
+  }
+}
+/* medium portrait tablet */
+
+@media (min-height:800px) and (min-width: 701px){
+
+.donutContainer{
+  margin-top: 5vh;
+}
+.modulus{
+  margin-top: 2.5vh;
+}
+
+  @supports (-webkit-touch-callout: none) {
+      .container{
+          background-color: purple;
+      }
+    }
+
+}
+
+/* medium landscape tablet */
+
+@media (min-height:500px) and (min-width: 1000px){
+
+
+
+
+  @supports (-webkit-touch-callout: none) {
+
+      .donutContainer{
+         margin-top: -5vh;
+      }
+
+    }
+
+}
+
+/* large portrait tablet */
+
+@media (min-height:1200px) and (min-width: 1000px) {
+
+.donutContainer{
+  margin-top: 5%;
+}
+
+.modulus{
+  margin-top: 2vh;
+}
+
+
+}
+
+/* large landscape tablet */
+
+@media (min-width:1366px) and (max-width:1366px) and (min-height:954px) and (max-height:954px) {
+  @supports (-webkit-touch-callout: none) {
+    .modulus{
+      margin-top: 4vh;
+    }
+
+    .percent{
+      font-size: 6rem;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+
+ .donutContainer{
+   margin-top: -2%;
+ }
+}

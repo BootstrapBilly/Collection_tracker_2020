@@ -16,3 +16,21 @@
         margin-bottom: 3vh;
     }
 }
+
+/*Standard desktop */
+
+@media (min-width: 1200px) {
+
+.container{
+    width: 85%;
+}
+}
+
+/*large desktop */
+
+@media (min-width: 1500px) {
+
+    .container{
+        width: 70%;
+    }
+}
