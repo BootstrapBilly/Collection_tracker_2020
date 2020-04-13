@@ -144,7 +144,7 @@
 
     .card_container{
         flex-direction: row;
-        width:85%;
+        width:75%;
         left: 0%;
         position: relative;
         margin-bottom: 12%;
@@ -156,6 +156,6 @@
 @media (min-width: 1500px) {
 
     .card_container{
-        width: 70%;
+        width: 60%;
     }
 }

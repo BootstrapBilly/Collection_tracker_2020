@@ -47,6 +47,10 @@ const Dashboard = props => {
             height > 650 ? (circumference.long_mobile / 100) * offset :
                 (circumference.mobile / 100) * offset
 
+                console.log(width)
+                console.log(height)
+                console.log(compute_dimensions())
+
     return (
 
         <div className={classes.container}>
@@ -57,10 +61,10 @@ const Dashboard = props => {
 
                 offsets={["0", compute_offset(mint_offset), compute_offset(fair_offset), compute_offset(poor_offset)]}
 
-                circumference={compute_dimensions(height,width).circumference}
-                r={compute_dimensions(height,width).r}
-                size={compute_dimensions(height,width).size}
-                c={compute_dimensions(height,width).c}
+                circumference={compute_dimensions().circumference}
+                r={compute_dimensions().r}
+                size={compute_dimensions().size}
+                c={compute_dimensions().c}
 
                 total_percent={total_percent}
 

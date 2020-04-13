@@ -5,6 +5,7 @@ import './App.css';
 //pages
 import Intro from "./Pages/Intro/Intro"
 import Dashboard from "./Pages/Dashboard/Dashboard"
+import Add_book from "./Pages/Add_book/Add_book"
 
 //external
 import { BrowserRouter, Switch, Route } from "react-router-dom"
@@ -26,6 +27,8 @@ const App = () => {
 
   };
 
+  
+
 
   return (
 
@@ -38,7 +41,7 @@ const App = () => {
           <Switch>
 
             <Route path="/" exact component={Dashboard} />
-            <Route path="/add_book" exact component={Dashboard} />
+            <Route path="/add_book" exact component={Add_book} />
             <Route path="/search" exact component={Dashboard} />
             <Route path="/worth_it" exact component={Dashboard} />
 
