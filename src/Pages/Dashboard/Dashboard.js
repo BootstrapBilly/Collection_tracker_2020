@@ -51,7 +51,7 @@ const Dashboard = props => {
 
         <div className={classes.container}>
 
-            <OptionsBar />
+            <OptionsBar path={props.location.pathname} />
 
             <BooksOwned
 
