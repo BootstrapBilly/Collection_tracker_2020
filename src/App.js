@@ -1,10 +1,13 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 import './App.css';
 
 //pages
 import Intro from "./Pages/Intro/Intro"
 import Dashboard from "./Pages/Dashboard/Dashboard"
+
+//external
+import { BrowserRouter, Switch, Route } from "react-router-dom"
 
 
 const App = () => {
@@ -28,7 +31,24 @@ const App = () => {
 
     <div className="App">
 
-      {intro_completed ? <Dashboard /> : <Intro page={intro_page} handle_button_click={(page)=> page === 1 ? set_intro_page(2) : mark_intro_completed()}/>}
+      {intro_completed ?
+
+        <BrowserRouter>
+
+          <Switch>
+
+            <Route path="/" exact component={Dashboard} />
+            <Route path="/add_book" exact component={Dashboard} />
+            <Route path="/search" exact component={Dashboard} />
+            <Route path="/worth_it" exact component={Dashboard} />
+
+          </Switch>
+
+        </BrowserRouter>
+
+        :
+
+        <Intro page={intro_page} handle_button_click={(page) => page === 1 ? set_intro_page(2) : mark_intro_completed()} />}
 
     </div>
 
