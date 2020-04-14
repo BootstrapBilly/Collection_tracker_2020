@@ -18,5 +18,12 @@
     border-radius: 3px;
 }
 
-input[type='text'],input[type='number'],textarea {font-size:16px;}
-body{ -webkit-text-size-adjust:none;}
+/* Small portrait tablet */
+
+@media (min-height:750px) and (min-width: 500px) and (max-height: 950px) and (max-width: 700px){
+
+    .title_container{
+        font-size: 18px;
+    }
+   
+   }

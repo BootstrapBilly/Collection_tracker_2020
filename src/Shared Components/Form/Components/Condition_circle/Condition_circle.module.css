@@ -29,7 +29,7 @@
     justify-content: center;
     align-items: center;
     font-weight: 900;
-    animation: explode 1s;
+    animation: explode 0.4s;
     position: absolute;
 
 }
@@ -41,6 +41,23 @@
     }
     100%{
         transform: scale(1);
+    }
+
+}
+
+/* Small portrait tablet */
+
+@media (min-height:750px) and (min-width: 500px) and (max-height: 950px) and (max-width: 700px){
+
+    .container{
+        width: 15vw;
+        height: 15vw;
+    }
+
+    .inner_container,.animation_container{
+
+        width: 12vw;
+        height: 12vw;
     }
 
 }

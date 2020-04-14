@@ -17,6 +17,8 @@ const Dashboard = props => {
 
     const { innerHeight: height } = window;//get the dimensions of the window
 
+    console.log(height)
+
     const circumference = { mobile: "628", long_mobile: "735", small_tablet: "954", large: "1241" }//set the circumference of the circle based on screen height
     const num_books = { total: 40, poor: 15, fair: 10, mint: 13 }//set the amount of books
 

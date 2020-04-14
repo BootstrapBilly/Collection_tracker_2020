@@ -27,33 +27,32 @@ const App = () => {
 
   };
 
-  
-
-
   return (
 
-    <div className="App">
 
-      {intro_completed ?
+      <div className="App">
 
-        <BrowserRouter>
+        {intro_completed ?
 
-          <Switch>
+          <BrowserRouter>
 
-            <Route path="/" exact component={Dashboard} />
-            <Route path="/add_book" exact component={Add_book} />
-            <Route path="/search" exact component={Dashboard} />
-            <Route path="/worth_it" exact component={Dashboard} />
+            <Switch>
 
-          </Switch>
+              <Route path="/" exact component={Dashboard} />
+              <Route path="/add_book" exact component={Add_book} />
+              <Route path="/search" exact component={Dashboard} />
+              <Route path="/worth_it" exact component={Dashboard} />
 
-        </BrowserRouter>
+            </Switch>
 
-        :
+          </BrowserRouter>
 
-        <Intro page={intro_page} handle_button_click={(page) => page === 1 ? set_intro_page(2) : mark_intro_completed()} />}
+          :
 
-    </div>
+          <Intro page={intro_page} handle_button_click={(page) => page === 1 ? set_intro_page(2) : mark_intro_completed()} />}
+
+      </div>
+
 
   );
 }

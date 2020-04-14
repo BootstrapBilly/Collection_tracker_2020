@@ -14,7 +14,7 @@ const Input = props => {
 
             <div className={classes.title_container} style={{color:colours.blue}}>{props.title} :</div>
 
-            <input value={input} type="text" className={classes.input_box} style={{border: `2px solid ${colours.blue}`}} onFocus={props.onFocus} onChange={e => set_input(e.target.value)} onInput={props.handle_blur.bind(this, input)}/>
+            <input value={input} type="text" className={classes.input_box} style={{border: `2px solid ${colours.blue}`}} onFocus={props.onFocus} onChange={e => set_input(e.target.value)} onInput={props.handle_input.bind(this, input)} onBlur={props.onBlur}/>
 
         </div>
     )

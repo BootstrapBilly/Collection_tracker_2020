@@ -7,9 +7,6 @@ import OptionsBar from "../../Shared Components/Options_bar/Options_bar"
 import Form from "../../Shared Components/Form/Form"
 
 
-//assets
-import book from "../../Assets/Img/books.svg"
-
 const Add_book = props => {
 
     //*states
@@ -19,15 +16,9 @@ const Add_book = props => {
 
         <div className={classes.container}>
 
-            <Form title="Add Book" button_text="Add Book" onFocus={()=> set_input_focus(true)}/>
+            <Form title="Add Book" button_text="Add Book" onFocus={()=> set_input_focus(true)} onBlur={()=> set_input_focus(false)} keyboard_active={input_focus}/>
 
             <OptionsBar path={props.location.pathname} />
-
-            <div className={classes.image_container} style={{display:input_focus ? "none" : "flex"}}>
-
-                <img src={book} alt="A book" className={classes.image}/>
-
-            </div>
 
         </div>
     )
