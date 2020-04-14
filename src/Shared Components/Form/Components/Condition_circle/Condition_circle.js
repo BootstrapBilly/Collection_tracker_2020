@@ -6,9 +6,10 @@ const Condition_circle = props => {
 
     return (
 
-        <div className={classes.container} style={{ backgroundColor: props.colour }}>
+        <div className={classes.container} style={{ backgroundColor: props.background_colour }}>
 
-            <div className={classes.inner_container} style={{color:props.colour}}>{props.text}</div>
+            <div className={classes.inner_container} style={{color:props.text_colour, backgroundColor:props.inner_background_colour}} onClick={props.onClick}>{props.text}</div>
+            <div className={classes.animation_container} style={{display:props.display, backgroundColor: props.background_colour, color:props.text_colour}}>{props.text}</div>
 
         </div>
 

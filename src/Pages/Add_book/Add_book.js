@@ -6,14 +6,13 @@ import classes from "./Add_book.module.css"
 import OptionsBar from "../../Shared Components/Options_bar/Options_bar"
 import Form from "../../Shared Components/Form/Form"
 
-//util
-import colours from "../../Util/Colours"
 
 //assets
 import book from "../../Assets/Img/books.svg"
 
 const Add_book = props => {
 
+    //*states
     const [input_focus, set_input_focus] = useState(false)
 
     return (

@@ -24,6 +24,10 @@
 .container{
     width: 75%;
 }
+
+.container{
+    position: fixed;
+}
 }
 
 /*large desktop */
