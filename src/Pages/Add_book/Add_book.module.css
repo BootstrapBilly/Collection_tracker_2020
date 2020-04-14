@@ -36,6 +36,8 @@
     
     }
 
+
+
 /* Small landscape tablet */
 
 @media (min-height:400px) and (min-width: 900px) and (max-height: 600px) and (max-width: 1023px){
@@ -51,12 +53,12 @@
 @media (min-height:800px) and (min-width: 701px){
 
     .container{
-        background-color: green;
+
     }
 
     @supports (-webkit-touch-callout: none) {
         .container{
-            background-color: purple;
+         
         }
       }
 
@@ -67,12 +69,12 @@
 @media (min-height:500px) and (min-width: 1000px){
 
     .container{
-        background-color: green;
+
     }
 
     @supports (-webkit-touch-callout: none) {
         .container{
-            background-color: purple;
+
         }
       }
 
@@ -82,7 +84,7 @@
 @media (min-height:1200px) and (min-width: 1000px){
 
     .container{
-        background-color: blue;
+
     }
 
 
@@ -93,21 +95,18 @@
 
     @supports (-webkit-touch-callout: none) {
         .container{
-            background-color: blue;
+
         }
       }
-   
-
-
 
 }
 
 /*Standard desktop */
-@media (min-width: 1001px) {
+@media (min-width: 1201px) {
 
     @supports not (-webkit-touch-callout: none) {
         .container{
-            background-color: orange;
+
         }
       }
 }

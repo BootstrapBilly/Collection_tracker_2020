@@ -18,3 +18,28 @@
     }
 
 }
+
+/* large portrait tablet */
+@media (min-height:1200px) and (min-width: 1000px){
+
+    .container{
+
+        width: 20%;
+
+    }
+
+
+}
+
+/* large landscape tablet */
+@media (min-width:1366px) and (max-width:1366px) and (min-height:954px) and (max-height:954px){
+
+    @supports (-webkit-touch-callout: none) {
+        .container{
+
+            width: 20%;
+
+        }
+      }
+
+}

@@ -24,7 +24,7 @@ const Form = props => {
 
                 <div className={classes.title_container} style={{display: props.keyboard_active ? "none" : "flex", color:colours.dark_blue}}>{props.title}</div>
 
-                <div className={classes.input_container}>
+                <div className={classes.input_container} style={{marginTop: props.keyboard_active ? "4%" : "0", color:colours.dark_blue}}>
 
                     <Input title="Year of book" onFocus={props.onFocus} handle_input={input => set_input(input)} onBlur={props.onBlur}/>
 
