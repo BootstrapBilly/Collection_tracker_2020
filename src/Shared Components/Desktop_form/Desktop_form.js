@@ -20,17 +20,17 @@ const Desktop_form = props => {
 
             <div className={classes.form_container}>
 
-            <span className={classes.title} style={{ color: colours.dark_blue }}>{props.title}</span>
+            <span className={classes.title} style={{ color: props.grey ? colours.dark_grey : colours.dark_blue }}>{props.title}</span>
 
                 <div className={classes.input_container}>
 
-                    <Input title="Year of book" onFocus={props.onFocus} handle_input={input => set_input(input)} onBlur={props.onBlur} />
+                    <Input title="Year of book" onFocus={props.onFocus} handle_input={input => set_input(input)} onBlur={props.onBlur} grey={props.grey} />
 
                 </div>
 
-                <div className={classes.circle_container}>
+                <div className={classes.circle_container} style={{display:props.hidden ? "none" : "flex"}}>
 
-                    <span className={classes.condition_of_book} style={{ color: colours.blue }}>Condition of book :</span>
+                    <span className={classes.condition_of_book} style={{ color: props.grey ? colours.grey : colours.blue }}>Condition of book :</span>
 
                     <div className={classes.inner_circle_container}>
 
@@ -56,7 +56,7 @@ const Desktop_form = props => {
 
                 <div className={classes.button_container}>
 
-                    <div className={classes.button} style={{backgroundColor: colours.blue, boxShadow: `1px 1px 2px 1px ${colours.dark_blue}` }}>{props.button_text}</div>
+                    <div className={classes.button} style={{backgroundColor: props.grey ? colours.grey : colours.blue, boxShadow: `1px 1px 2px 1px ${props.grey ? colours.dark_grey : colours.dark_blue}` }}>{props.button_text}</div>
 
                 </div>
 

@@ -10,11 +10,11 @@ const Button = props => {
 
         <div className={classes.container} style={{
             
-            backgroundColor:props.ready_to_submit ? colours.blue : colours.grey,
+            backgroundColor:!props.grey ? colours.blue : colours.grey,
 
-            boxShadow: `1px 1px 2px 1px ${props.ready_to_submit ? colours.dark_blue : colours.dark_grey}`, 
+            boxShadow: `1px 1px 2px 1px ${!props.grey ? colours.dark_blue : colours.dark_grey}`, 
 
-            color: props.ready_to_submit ? "white" : colours.blue}}
+            color:  "white" }}
 
             onClick={props.ready_to_submit ? props.handle_form_submit : ()=> console.log("Form no ready")}
             

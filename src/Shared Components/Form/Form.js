@@ -24,15 +24,15 @@ const Form = props => {
 
             <div className={classes.form}>
 
-                <div className={classes.title_container} style={{display: props.keyboard_active && (width < 1200) ? "none" : "flex", color:colours.dark_blue}}>{props.title}</div>
+                <div className={classes.title_container} style={{display: props.keyboard_active && (width < 1200) ? "none" : "flex", color:props.grey ? colours.dark_grey : colours.dark_blue}}>{props.title}</div>
 
                 <div className={classes.input_container} style={{marginTop: props.keyboard_active && (width < 1200) ? "4%" : "0", color:colours.dark_blue}}>
 
-                    <Input title="Year of book" onFocus={props.onFocus} handle_input={input => set_input(input)} onBlur={props.onBlur}/>
+                    <Input title="Year of book" onFocus={props.onFocus} handle_input={input => set_input(input)} onBlur={props.onBlur} grey={props.grey}/>
 
-                    <div className={classes.circle_title} style={{ color: colours.blue }}>Condition of book :</div>
+                    <div className={classes.circle_title} style={{ color:props.grey ? colours.grey : colours.blue, display:props.hidden ? "none" : "flex" }}>Condition of book :</div>
 
-                    <div className={classes.circle_container}>
+                    <div className={classes.circle_container} style={{ display:props.hidden ? "none" : "flex" }}>
 
                         {[["Poor", colours.red], ["Fair", colours.orange], ["Mint", colours.green]].map(circle => {
 
@@ -54,7 +54,7 @@ const Form = props => {
 
                     <div className={classes.button_container} style={{marginTop: props.keyboard_active && (width < 1200) ? "5.5%" : "10%"}}>
 
-                        <Button text={props.button_text} ready_to_submit={selected_condition && (input.length) ? true : false} />
+                        <Button text={props.button_text} ready_to_submit={selected_condition && (input.length) ? true : false} grey={props.grey}/>
 
                     </div>
 

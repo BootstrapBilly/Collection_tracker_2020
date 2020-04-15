@@ -6,6 +6,8 @@ import './App.css';
 import Intro from "./Pages/Intro/Intro"
 import Dashboard from "./Pages/Dashboard/Dashboard"
 import Add_book from "./Pages/Add_book/Add_book"
+import Find_book from "./Pages/Find_book/Find_book"
+import Worth_it from "./Pages/Worth_it/Worth_it"
 
 //external
 import { BrowserRouter, Switch, Route } from "react-router-dom"
@@ -40,8 +42,8 @@ const App = () => {
 
               <Route path="/" exact component={Dashboard} />
               <Route path="/add_book" exact component={Add_book} />
-              <Route path="/search" exact component={Dashboard} />
-              <Route path="/worth_it" exact component={Dashboard} />
+              <Route path="/search" exact component={Find_book} />
+              <Route path="/worth_it" exact component={Worth_it} />
 
             </Switch>
 
