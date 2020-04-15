@@ -81,7 +81,7 @@
 }
 
 /* large portrait tablet */
-@media (min-height:1200px) and (min-width: 1000px){
+@media (orientation:portrait) and (min-height:1200px) and (min-width: 1000px){
 
     .container{
 
@@ -115,9 +115,7 @@
 @media (min-width: 1500px) {
 
     @supports not (-webkit-touch-callout: none) {
-        .container{
-            background-color: gray;
-        }
+
       }
 }
 

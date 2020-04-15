@@ -18,7 +18,7 @@ const Landscape_prompt = props => {
 
             <div className={classes.text_container}>
                 <span className={classes.ohno} style={{ color: colours.dark_blue }}>Oh No!</span>
-                <span className={classes.text}>Please rotate your device to avoid keyboard issues!</span>
+                <span className={classes.text}>Please rotate your device!</span>
             </div>
 
         </div>
