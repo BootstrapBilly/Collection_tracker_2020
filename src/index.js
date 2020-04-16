@@ -8,10 +8,12 @@ import reduxThunk from "redux-thunk"
 import {Provider} from "react-redux"
 
 import intro_reducer from "./Store/Reducers/intro_reducer"
+import add_book_reducer from "./Store/Reducers/Add_book_reducer"
 
 const rootReducer = combineReducers({ //combine all the state reducers into one root reducer
 
   intro: intro_reducer,
+  add: add_book_reducer,
 
 })
 

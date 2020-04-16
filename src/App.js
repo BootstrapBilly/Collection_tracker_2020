@@ -11,12 +11,24 @@ import Worth_it from "./Pages/Worth_it/Worth_it"
 
 //external
 import { BrowserRouter, Switch, Route } from "react-router-dom"
+import { transitions, positions, Provider as AlertProvider } from 'react-alert'
+import AlertTemplate from 'react-alert-template-basic'
 
 
 const App = () => {
 
   //-config
   const intro_completed = localStorage.getItem("intro_completed")
+
+  // optional cofiguration
+  const options = {
+    // you can also just use 'bottom center'
+    position: positions.BOTTOM_CENTER,
+    timeout: 5000,
+    offset: '30px',
+    // you can also just use 'scale'
+    transition: transitions.SCALE
+  }
 
   //*States
   const [intro_page, set_intro_page] = useState(1)
@@ -32,9 +44,11 @@ const App = () => {
   return (
 
 
-      <div className="App">
+    <div className="App">
 
-        {intro_completed ?
+      {intro_completed ?
+
+        <AlertProvider template={AlertTemplate} {...options}>
 
           <BrowserRouter>
 
@@ -49,11 +63,13 @@ const App = () => {
 
           </BrowserRouter>
 
-          :
+        </AlertProvider>
 
-          <Intro page={intro_page} handle_button_click={(page) => page === 1 ? set_intro_page(2) : mark_intro_completed()} />}
+        :
 
-      </div>
+        <Intro page={intro_page} handle_button_click={(page) => page === 1 ? set_intro_page(2) : mark_intro_completed()} />}
+
+    </div>
 
 
   );

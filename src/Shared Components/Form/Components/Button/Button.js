@@ -16,7 +16,7 @@ const Button = props => {
 
             color:  "white" }}
 
-            onClick={props.ready_to_submit ? props.handle_form_submit : ()=> console.log("Form no ready")}
+            onClick={props.handle_submit}
             
             >
 
