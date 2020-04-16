@@ -44,7 +44,7 @@ const Desktop_form = props => {
                             selected={props.selected_condition}
                             inner_background_colour={null}
                             display={props.selected_condition === condition ? "flex" : "none"}
-                            onClick={props.set_selected_condition.bind(this, condition)}/>
+                            onClick={props.hidden ? null : props.set_selected_condition.bind(this, condition)}/>
 
                         })}
 

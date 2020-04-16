@@ -60,11 +60,8 @@ const Add_book = props => {
     }, [last_book_added, error])
 
 
-    const handle_input = e => {
+    const handle_input = e => set_input(e.target.value)
 
-        set_input(e.target.value)
-
-    }
     return (
 
         <div className={classes.container}>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 
 import classes from "./Form.module.css"
 
@@ -44,7 +44,7 @@ const Form = props => {
                                 selected={props.selected_condition}
                                 inner_background_colour={null}
                                 display={props.selected_condition === condition ? "flex" : "none"}
-                                onClick={props.set_selected_condition.bind(this, condition)}/>
+                                onClick={props.hidden ? null : props.set_selected_condition.bind(this, condition)}/>
 
                         })}
 
