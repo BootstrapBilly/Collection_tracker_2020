@@ -2,7 +2,7 @@ import {SUCCESS, IN_USE, DB_ERROR, CLEAR_LAST} from "../Actions/Add_book_action"
 
 const initialState = {//set the initial state
 
-    last_book_added:null,
+    last_book_added:{year:null, condition:null},
     error:null
 
 }
