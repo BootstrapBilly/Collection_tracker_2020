@@ -5,46 +5,21 @@ import './App.css';
 //pages
 import Intro from "./Pages/Intro/Intro"
 import Dashboard from "./Pages/Dashboard/Dashboard"
-import Other from "./Pages/New_form/Other"
+import Page from "./Pages/Other_Page/Other_page"
 
 //external
 import { BrowserRouter, Switch, Route } from "react-router-dom"
-import { transitions, positions, Provider as AlertProvider } from 'react-alert'
-import AlertTemplate from 'react-alert-template-basic'
-
-//redux action creators
-import { add_book_action } from "./Store/Actions/Add_book_action"
-import { find_book_action } from './Store/Actions/Find_book_action';
-import { worth_it_inquiry_action } from './Store/Actions/Worth_it_action';
 
 //redux hooks
 import { useSelector } from "react-redux"
 
-
-
 const App = () => {
-
 
   //-config
   const intro_completed = localStorage.getItem("intro_completed")
 
-  // optional cofiguration
-  const options = {
-    // you can also just use 'bottom center'
-    position: positions.BOTTOM_CENTER,
-    timeout: 5000,
-    offset: '30px',
-    // you can also just use 'scale'
-    transition: transitions.SCALE
-  }
-
   //?selectors
-  const last_book_added = useSelector(state => state.add.last_book_added)
-  const add_error = useSelector(state => state.add.error)
-  const last_book_found = useSelector(state => state.find.search_result)
-  const find_error = useSelector(state => state.find.error)
-  const inquiry_result = useSelector(state => state.worth.inquiry_result)
-  const inquiry_error = useSelector(state => state.worth.error)
+  const submission_result = useSelector(state => state.result.submission_result)
 
   //*States
   const [intro_page, set_intro_page] = useState(1)
@@ -57,75 +32,56 @@ const App = () => {
 
   };
 
-  return (
 
+  return (
 
     <div className="App">
 
       {intro_completed ?
 
-        <AlertProvider template={AlertTemplate} {...options}>
+        <BrowserRouter>
 
-          <BrowserRouter>
+          <Switch>
 
-            <Switch>
+            <Route path="/" exact component={Dashboard} />
 
-              <Route path="/" exact component={Dashboard} />
+            <Route path="/add_book" exact component={() =>
 
-              <Route path="/add_book" exact component={() =>
+              <Page path="/add_book" title="Add Book" desktop_title="ADD A BOOK" button_text="ADD BOOK"
 
-                <Other
-                  path="/add_book"
-                  title="Add Book"
-                  desktop_title="ADD A BOOK"
-                  button_text="ADD BOOK"
-                  action_creator={add_book_action}
-                  success_selector={last_book_added}
-                  error_selector={add_error}
-                  success_message={`${last_book_added.year} ${last_book_added.condition}`}
-
-                />}
-
-              />
-
-              <Route path="/search" exact component={() =>
-
-                <Other
-                  path="/search"
-                  title="Find Book"
-                  desktop_title="FIND A BOOK"
-                  button_text="FIND BOOK"
-                  action_creator={find_book_action}
-                  success_selector={last_book_found}
-                  error_selector={find_error}
-                  success_message={"Yeah nah search"}
-                  hidden
-
-                />}
-
-              />
-
-              <Route path="/worth_it" exact component={() =>
-
-                <Other
-                  path="/worth_it"
-                  title="Buy it ?"
-                  desktop_title="SHOULD I BUY IT?"
-                  button_text="FIND OUT"
-                  action_creator={worth_it_inquiry_action}
-                  success_selector={inquiry_result}
-                  error_selector={inquiry_error}
-                  success_message={["Yeah nah buyit", "Not worth it"]}
-                  grey
-
-                />} />
+                submission_result={{feedback:submission_result, type:"Add"}}
+                submission_url={"add_book"}
 
 
-            </Switch>
+              />}
 
-          </BrowserRouter>
+            />
 
-        </AlertProvider>
+            <Route path="/search" exact component={() =>
+
+              <Page path="/search" title="Find Book" desktop_title="FIND A BOOK" button_text="FIND BOOK"
+                submission_result={{feedback:submission_result, type:"Search"}}
+                submission_url={"search_for_book"}
+                hidden
+
+
+
+              />}
+
+            />
+
+            <Route path="/worth_it" exact component={() =>
+
+              <Page path="/worth_it" title="Buy it ?" desktop_title="SHOULD I BUY IT?" button_text="FIND OUT"
+                submission_result={{feedback:submission_result, type:"Worth"}}
+                submission_url={"worth_buying"}
+                grey
+
+              />} />
+
+          </Switch>
+
+        </BrowserRouter>
 
         :
 

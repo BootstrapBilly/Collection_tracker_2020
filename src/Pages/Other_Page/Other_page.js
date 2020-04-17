@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 
-import classes from "./Other.module.css"
+//css
+import classes from "./Other_page.module.css"
 
 //components
 import OptionsBar from "../../Shared Components/Options_bar/Options_bar"
@@ -14,36 +15,35 @@ import { useDispatch } from "react-redux"
 import { useAlert } from 'react-alert'
 
 //functions
-import {handle_submit} from "./Functions/handle_submit"
+import { handle_submit } from "./Functions/handle_submit"
+import {handle_user_feedback} from "./Functions/handle_user_feedback"
 
-const Other = props => {
+//redux action creators
+import {submit_form, clear_feedback} from "../../Store/Actions/Submit_form_action"
+
+const Other_page = props => {
 
     //-config
     const dispatch = useDispatch()
     const alert = useAlert()
     const { innerWidth: width, innerHeight: height } = window;//get the dimensions of the window
+    const form_submitted = props.submission_result
 
     //*states
-    const [input_focus, set_input_focus] = useState(false)
+    const [input_focus, set_input_focus] = useState(false)//used to hide the header on mobile devices when they keyboard is active
     const [selected_condition, set_selected_condition] = useState(null)//defines which condition button is selected
     const [input, set_input] = useState("")//holds the value from the input component (used to change the colour of the button once populated)
 
-    //    //!Effects
-       useEffect(() => {
 
-           if (props.success_selector.year) {
-
-               alert.show(props.success_message, { type: "success" })
-               set_input("")
-           }
-
-           if(props.grey && props.success_selector.reason){
-            props.success_selector.result ? alert.show(props.success_message[0], { type: "success" }) : alert.show(props.success_message[1], { type: "error" })
-           }
-
-           if (props.error_selector) alert.show(props.error_selector, { type: "error" })
-           // eslint-disable-next-line
-       }, [props.success_selector, props.error_selector])
+    //!Effects
+    useEffect(() => { 
+        
+        if(form_submitted.feedback) {
+            handle_user_feedback(alert, form_submitted.feedback, form_submitted.type)
+            dispatch(clear_feedback())
+        }
+        // eslint-disable-next-line
+    },[form_submitted.feedback])
 
     return (
 
@@ -57,7 +57,7 @@ const Other = props => {
                     onFocus={() => set_input_focus(true)}
                     onBlur={() => set_input_focus(false)}
                     keyboard_active={input_focus}
-                    handle_submit={() => handle_submit(selected_condition, input, alert, dispatch, props.action_creator, props.hidden)}//imported from another file
+                    handle_submit={() => handle_submit(selected_condition, input, alert, dispatch, submit_form, props.hidden, props.submission_url)}//imported from another file
                     handle_change={e => set_input(e.target.value)}
                     value={input}
                     selected_condition={selected_condition}
@@ -69,7 +69,7 @@ const Other = props => {
                 <DesktopForm
                     title={props.desktop_title}
                     button_text={props.button_text}
-                    handle_submit={() => handle_submit(selected_condition, input, alert, dispatch, props.action_creator, props.hidden)}
+                    handle_submit={() => handle_submit(selected_condition, input, alert, dispatch, submit_form, props.hidden, props.submission_url)}
                     handle_change={e => set_input(e.target.value)}
                     value={input}
                     selected_condition={selected_condition}
@@ -85,4 +85,4 @@ const Other = props => {
 
 }
 
-export default Other
+export default Other_page
