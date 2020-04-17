@@ -3,35 +3,54 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {createStore, combineReducers, applyMiddleware} from "redux"
+
+//external
+import { createStore, combineReducers, applyMiddleware } from "redux"
 import reduxThunk from "redux-thunk"
-import {Provider} from "react-redux"
+import { Provider } from "react-redux"
+import { transitions, positions, Provider as AlertProvider } from 'react-alert'
+import AlertTemplate from 'react-alert-template-basic'
 
-import intro_reducer from "./Store/Reducers/intro_reducer"
-import add_book_reducer from "./Store/Reducers/Add_book_reducer"
-import find_book_reducer from "./Store/Reducers/Find_book_reducer"
-import worth_it_reducer from "./Store/Reducers/Worth_it_reducer"
+//Reducers
+import submit_form_reducer from "./Store/Reducers/Submit_form_reducer"
 
+
+
+//-Config
 const rootReducer = combineReducers({ //combine all the state reducers into one root reducer
 
-  intro: intro_reducer,
-  add: add_book_reducer,
-  find: find_book_reducer,
-  worth: worth_it_reducer,
+  result: submit_form_reducer
 
 })
 
+//Alert options
+const options = {
+  position: positions.BOTTOM_CENTER,
+  timeout: 5000,
+  offset: '30px',
+  transition: transitions.SCALE
+}
 
 const store = createStore(rootReducer, applyMiddleware(reduxThunk));
 
 ReactDOM.render(
+
   <React.StrictMode>
-    <Provider store={store}><App /></Provider>
+
+    <Provider store={store}>
+
+      <AlertProvider template={AlertTemplate} {...options}>
+
+        <App />
+
+      </AlertProvider>
+
+    </Provider>
+
   </React.StrictMode>,
+
   document.getElementById('root')
+
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
