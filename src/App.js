@@ -32,7 +32,6 @@ const App = () => {
 
   };
 
-
   return (
 
     <div className="App">
@@ -47,37 +46,24 @@ const App = () => {
 
             <Route path="/add_book" exact component={() =>
 
-              <Page path="/add_book" title="Add Book" desktop_title="ADD A BOOK" button_text="ADD BOOK"
-
-                submission_result={{feedback:submission_result, type:"Add"}}
-                submission_url={"add_book"}
-
-
-              />}
+              <Page path="/add_book" title="Add Book" desktop_title="ADD A BOOK" button_text="ADD BOOK" submission_url={"add_book"}
+              on_form_submit={submission_result ? {feedback:submission_result, type:"Add"} : null} />}
 
             />
 
             <Route path="/search" exact component={() =>
 
-              <Page path="/search" title="Find Book" desktop_title="FIND A BOOK" button_text="FIND BOOK"
-                submission_result={{feedback:submission_result, type:"Search"}}
-                submission_url={"search_for_book"}
-                hidden
-
-
-
-              />}
+              <Page path="/search" title="Find Book" desktop_title="FIND A BOOK" button_text="FIND BOOK" submission_url={"search_for_book"} hidden
+              on_form_submit={submission_result ? {feedback:submission_result, type:"Search"} : null} />}
 
             />
 
             <Route path="/worth_it" exact component={() =>
 
-              <Page path="/worth_it" title="Buy it ?" desktop_title="SHOULD I BUY IT?" button_text="FIND OUT"
-                submission_result={{feedback:submission_result, type:"Worth"}}
-                submission_url={"worth_buying"}
-                grey
-
-              />} />
+              <Page path="/worth_it" title="Buy it ?" desktop_title="SHOULD I BUY IT?" button_text="FIND OUT" submission_url={"worth_buying"} worth_it
+              on_form_submit={submission_result ? {feedback:submission_result, type:"Worth"} : null} />}
+                
+            />
 
           </Switch>
 

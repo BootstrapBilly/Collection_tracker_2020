@@ -3,11 +3,11 @@ import React from "react"
 import classes from "./Desktop_form.module.css"
 
 //components
-import Input from "../../Shared Components/Form/Components/Input_box/Input_box"
-import ConditionCircle from "../../Shared Components/Form/Components/Condition_circle/Condition_circle"
+import Input from "../Shared Form Components/Input_box/Input_box"
+import ConditionCircle from "../Shared Form Components/Condition_circle/Condition_circle"
 
 //util
-import colours from "../../Util/Colours"
+import colours from "../../../../Util/Colours"
 
 const Desktop_form = props => {
 
@@ -17,17 +17,17 @@ const Desktop_form = props => {
 
             <div className={classes.form_container}>
 
-                <span className={classes.title} style={{ color: props.grey ? colours.dark_grey : colours.dark_blue }}>{props.title}</span>
+                <span className={classes.title} style={{ color:colours.dark_blue }}>{props.title}</span>
 
                 <div className={classes.input_container}>
 
-                    <Input title="Year of book" onFocus={props.onFocus} onBlur={props.onBlur} grey={props.grey} handle_change={props.handle_change} value={props.value} />
+                    <Input title="Year of book" onFocus={props.onFocus} onBlur={props.onBlur} grey={props.worth_it} handle_change={props.handle_change} value={props.value} />
 
                 </div>
 
                 <div className={classes.circle_container} style={{ display: props.hidden ? "none" : "flex" }}>
 
-                    <span className={classes.condition_of_book} style={{ color: props.grey ? colours.grey : colours.blue }}>Condition of book :</span>
+                    <span className={classes.condition_of_book} style={{ color: colours.blue }}>Condition of book :</span>
 
                     <div className={classes.inner_circle_container}>
 
@@ -54,7 +54,7 @@ const Desktop_form = props => {
 
                 <div className={classes.button_container}>
 
-                    <div className={classes.button} style={{ backgroundColor: props.grey ? colours.grey : colours.blue, boxShadow: `1px 1px 2px 1px ${props.grey ? colours.dark_grey : colours.dark_blue}`}}           
+                    <div className={classes.button} style={{ backgroundColor:colours.blue, boxShadow: `1px 1px 2px 1px ${ colours.dark_blue}`}}           
                     onClick={props.handle_submit}>{props.button_text}</div>
 
                 </div>

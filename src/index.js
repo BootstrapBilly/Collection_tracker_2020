@@ -14,14 +14,8 @@ import AlertTemplate from 'react-alert-template-basic'
 //Reducers
 import submit_form_reducer from "./Store/Reducers/Submit_form_reducer"
 
-
-
 //-Config
-const rootReducer = combineReducers({ //combine all the state reducers into one root reducer
-
-  result: submit_form_reducer
-
-})
+const rootReducer = combineReducers({result: submit_form_reducer})
 
 //Alert options
 const options = {

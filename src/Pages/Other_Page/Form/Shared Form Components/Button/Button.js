@@ -2,7 +2,7 @@ import React from "react"
 
 import classes from "./Button.module.css"
 
-import colours from "../../../../Util/Colours"
+import colours from "../../../../../Util/Colours"
 
 const Button = props => {
 
@@ -10,9 +10,9 @@ const Button = props => {
 
         <div className={classes.container} style={{
             
-            backgroundColor:!props.grey ? colours.blue : colours.grey,
+            backgroundColor:colours.blue ,
 
-            boxShadow: `1px 1px 2px 1px ${!props.grey ? colours.dark_blue : colours.dark_grey}`, 
+            boxShadow: `1px 1px 2px 1px ${colours.dark_blue}`, 
 
             color:  "white" }}
 
