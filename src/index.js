@@ -9,17 +9,19 @@ import { createStore, combineReducers, applyMiddleware } from "redux"
 import reduxThunk from "redux-thunk"
 import { Provider } from "react-redux"
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
-import AlertTemplate from 'react-alert-template-basic'
 
 //Reducers
 import submit_form_reducer from "./Store/Reducers/Submit_form_reducer"
+
+//components
+import Alert from "./Shared Components/Alert/Alert"
 
 //-Config
 const rootReducer = combineReducers({result: submit_form_reducer})
 
 //Alert options
 const options = {
-  position: positions.BOTTOM_CENTER,
+  position: positions.MIDDLE_LEFT,
   timeout: 5000,
   offset: '30px',
   transition: transitions.SCALE
@@ -27,13 +29,14 @@ const options = {
 
 const store = createStore(rootReducer, applyMiddleware(reduxThunk));
 
+
 ReactDOM.render(
 
   <React.StrictMode>
 
     <Provider store={store}>
 
-      <AlertProvider template={AlertTemplate} {...options}>
+      <AlertProvider template={Alert} {...options}>
 
         <App />
 

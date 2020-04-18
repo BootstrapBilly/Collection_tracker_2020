@@ -5,7 +5,7 @@ import './App.css';
 //pages
 import Intro from "./Pages/Intro/Intro"
 import Dashboard from "./Pages/Dashboard/Dashboard"
-import Page from "./Pages/Other_Page/Other_page"
+import Page from "./Pages/Form_wrapper/Form_wrapper"
 
 //external
 import { BrowserRouter, Switch, Route } from "react-router-dom"

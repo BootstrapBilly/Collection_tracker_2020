@@ -21,7 +21,7 @@ const Options_bar = props => {
 
     return (
 
-        <div className={classes.container}>
+        <div className={classes.container} onClick={props.onClick}>
 
 
                 <Option src={active_icon === "/" ? home_active : home} alt={"b"} to={"/"} handleClick={()=> set_active_icon("/")}/>
