@@ -42,7 +42,7 @@ const App = () => {
 
           <Switch>
 
-            <Route path="/" exact component={Dashboard} />
+            <Route path="/" exact component={Dashboard}/>
 
             <Route path="/add_book" exact component={() =>
 

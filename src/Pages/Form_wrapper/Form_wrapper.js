@@ -12,9 +12,6 @@ import Alurt from "../../Shared Components/Alert/Alert"
 //redux hooks
 import { useDispatch } from "react-redux"
 
-//external
-import { useAlert } from 'react-alert'
-
 //functions
 import { handle_submit } from "./Functions/handle_submit"
 import { handle_user_feedback } from "./Functions/handle_user_feedback"
@@ -26,7 +23,6 @@ const Other_page = props => {
 
     //-config
     const dispatch = useDispatch()
-    const alert = useAlert()
     const { innerWidth: width, innerHeight: height } = window;//get the dimensions of the window
 
     const form_submitted = props.on_form_submit

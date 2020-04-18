@@ -32,7 +32,7 @@ export const handle_user_feedback = (feedback, type) => {
 
         if(feedback.error === "Db_error") return "zu10"
         //alert.show("Database error", { type: "success" })
-        else return "hidden"
+        else return [null, "hidden"]
     }
 
 }

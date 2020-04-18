@@ -12,12 +12,13 @@ import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 
 //Reducers
 import submit_form_reducer from "./Store/Reducers/Submit_form_reducer"
+import fetch_books_reducer from "./Store/Reducers/Fetch_books_reducer"
 
 //components
 import Alert from "./Shared Components/Alert/Alert"
 
 //-Config
-const rootReducer = combineReducers({result: submit_form_reducer})
+const rootReducer = combineReducers({result: submit_form_reducer, fetch: fetch_books_reducer})
 
 //Alert options
 const options = {

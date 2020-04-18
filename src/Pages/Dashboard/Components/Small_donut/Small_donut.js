@@ -31,6 +31,7 @@ const Small_donut = props => {
                 strokeWidth="10" 
                 stroke={circle[0]} 
                 fill="none" 
+                
 
                 />)}
                 
