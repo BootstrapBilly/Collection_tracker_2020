@@ -2,7 +2,7 @@
     background-color: white;
     width: 300px;
     height: 360px;
-    box-shadow: 2px 2px 4px 1px grey;
+    box-shadow: 2px 2px 4px 2px rgba(128, 128, 128, 0.623);
     position: relative;
 }
 
@@ -18,9 +18,10 @@
 .title{
     font-size: 18px;
 }
+
 .year {
     position: absolute;
-    right: 0;
+    left: 0;
     top: 0;
     width: 70px;
     height: 50px;
@@ -46,7 +47,7 @@
     position: absolute;
     bottom: 0;
     width: 100%;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .option{
@@ -66,8 +67,8 @@
 }
 
 .text{
-    margin-top: 3px;
-    font-size: 0.8rem;
+    margin-top: 5px;
+    font-size: 0.7rem;
 }
 
 .button_container{

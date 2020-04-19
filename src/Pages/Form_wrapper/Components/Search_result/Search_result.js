@@ -22,7 +22,7 @@ const Search_result = props => {
             <div className={classes.container}>
 
                 <div className={classes.title_container}>
-                    <span className={classes.title}>Select an option</span>
+                    <span className={classes.title}></span>
                 </div>
 
                 <span className={classes.year} style={{ backgroundColor: props.best_condition === "poor" ? colours.red : props.best_condition === "fair" ? colours.orange : props.best_condition === "mint" ? colours.green : colours.grey }}>{props.year}</span>
@@ -38,14 +38,14 @@ const Search_result = props => {
                     <div className={classes.option}>
 
                         <img src={delete_icon} alt={"An icon"} className={classes.icon} />
-                        <span className={classes.text}>Delete</span>
+                        <span className={classes.text}>DELETE</span>
 
                     </div>
 
                     <div className={classes.option}>
 
                         <img src={update} alt={"An icon"} className={classes.icon} />
-                        <span className={classes.text}>Update</span>
+                        <span className={classes.text}>UPDATE</span>
 
                     </div>
 

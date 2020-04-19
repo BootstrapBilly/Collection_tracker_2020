@@ -1,7 +1,7 @@
 import axios from "axios"
 
-//const production = "http://localhost:4000/"
-const production = "https://collection-tracker-app.herokuapp.com/"
+export const production = "http://localhost:4000/"
+//export const production = "https://collection-tracker-app.herokuapp.com/"
 
 const sendPost = (url, body, type) => {
 

@@ -9,6 +9,8 @@ export const CLEAR_FEEDBACK = "CLEAR_FEEDBACK"
 
 export const submit_form = (form_values, url) => {
 
+    console.log(form_values)
+
     return async dispatch => {
 
         try {
