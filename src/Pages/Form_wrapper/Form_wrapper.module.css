@@ -10,3 +10,14 @@
     overflow: hidden;
 
 }
+
+.search_result_container{
+    display: flex;
+    flex: 1;
+    margin-bottom: 13vh;
+    margin-top: 1vh;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

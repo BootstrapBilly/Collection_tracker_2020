@@ -5,9 +5,10 @@ import classes from "./Form_wrapper.module.css"
 
 //components
 import OptionsBar from "../../Shared Components/Options_bar/Options_bar"
-import Form from "./Form/Mobile_form/Form"
-import DesktopForm from "./Form/Desktop_form/Desktop_form"
-import Alurt from "../../Shared Components/Alert/Alert"
+import Form from "./Components/Mobile_form/Form"
+import DesktopForm from "./Components/Desktop_form/Desktop_form"
+import Alert from "../../Shared Components/Alert/Alert"
+import SearchResult from "./Components/Search_result/Search_result"
 
 //redux hooks
 import { useDispatch } from "react-redux"
@@ -31,12 +32,12 @@ const Other_page = props => {
     const [keyboard_open, set_keyboard_open] = useState(false)//used to hide the header on mobile devices when they keyboard is active
     const [selected_condition, set_selected_condition] = useState(null)//defines which condition button is selected
     const [entered_year, set_entered_year] = useState("")//holds the user input for the year of book box
-    const [alurt, set_alurt] = useState([null, "hidden"])
+    const [feedback_info, set_feedback_info] = useState([null, "hidden"])
 
     //!Effects
     useEffect(() => {
 
-        if (form_submitted) set_alurt(handle_user_feedback(form_submitted.feedback, form_submitted.type))
+        if (form_submitted) set_feedback_info(handle_user_feedback(form_submitted.feedback, form_submitted.type))
 
         // eslint-disable-next-line
     }, [form_submitted])
@@ -47,38 +48,50 @@ const Other_page = props => {
 
         <div className={classes.container}>
 
-            {width < 1200 || (height === 954 && width === 1366) ?
+            {feedback_info[2] === "search_success" ? 
+            
+            <div className={classes.search_result_container}>
 
-                <Form
-                    title={props.title}
-                    button_text={props.button_text}
-                    onFocus={() => set_keyboard_open(true)}
-                    onBlur={() => set_keyboard_open(false)}
-                    keyboard_active={keyboard_open}
-                    handle_submit={() => handle_submit(selected_condition, entered_year, alert, dispatch, submit_form, handle_validation_failure, props.hidden, props.submission_url)}//imported from another file
-                    handle_change={e => set_entered_year(e.target.value)}
-                    value={entered_year}
-                    selected_condition={selected_condition}
-                    set_selected_condition={condition => set_selected_condition(condition)}
-                    hidden={props.hidden}
-                    worth_it={props.worth_it}
-                /> :
+                <SearchResult year={1969} best_condition={"fair"} />
 
-                <DesktopForm
-                    title={props.desktop_title}
-                    button_text={props.button_text}
-                    handle_submit={() => handle_submit(selected_condition, entered_year, alert, dispatch, submit_form, handle_validation_failure, props.hidden, props.submission_url)}
-                    handle_change={e => set_entered_year(e.target.value)}
-                    value={entered_year}
-                    selected_condition={selected_condition}
-                    set_selected_condition={condition => set_selected_condition(condition)}
-                    hidden={props.hidden}
-                    worth_it={props.worth_it}
-                />}
+            </div> 
+            
+            :
+//* No search result
 
-            <OptionsBar path={props.path} onClick={()=> dispatch(clear_feedback())} />
+                width < 1200 || (height === 954 && width === 1366) ?
 
-            {<Alurt message={alurt[0]} type={alurt[1]} />}
+                    <Form
+                        title={props.title}
+                        button_text={props.button_text}
+                        onFocus={() => set_keyboard_open(true)}
+                        onBlur={() => set_keyboard_open(false)}
+                        keyboard_active={keyboard_open}
+                        handle_submit={() => handle_submit(selected_condition, entered_year, alert, dispatch, submit_form, handle_validation_failure, props.hidden, props.submission_url)}//imported from another file
+                        handle_change={e => set_entered_year(e.target.value)}
+                        value={entered_year}
+                        selected_condition={selected_condition}
+                        set_selected_condition={condition => set_selected_condition(condition)}
+                        hidden={props.hidden}
+                        worth_it={props.worth_it}
+                    /> :
+
+                    <DesktopForm
+                        title={props.desktop_title}
+                        button_text={props.button_text}
+                        handle_submit={() => handle_submit(selected_condition, entered_year, alert, dispatch, submit_form, handle_validation_failure, props.hidden, props.submission_url)}
+                        handle_change={e => set_entered_year(e.target.value)}
+                        value={entered_year}
+                        selected_condition={selected_condition}
+                        set_selected_condition={condition => set_selected_condition(condition)}
+                        hidden={props.hidden}
+                        worth_it={props.worth_it}
+                    />}
+
+
+            <OptionsBar path={props.path} onClick={() => dispatch(clear_feedback())} />
+
+            {<Alert message={feedback_info[0]} type={feedback_info[1]} />}
 
         </div>
     )

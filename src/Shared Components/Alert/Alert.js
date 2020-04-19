@@ -28,6 +28,8 @@ const Alert = props => {
 
                 <div className={classes.message_container}>{props.message} </div>
 
+   
+            
             </div>
 
         </div>

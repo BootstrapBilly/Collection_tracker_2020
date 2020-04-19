@@ -12,6 +12,7 @@ export const fetch_books = () => {
         try {
 
             const response = await send_request("fetch_books", {}, "get")   
+
             if (response.data.success) return dispatch({ type: BOOKS_FOUND, payload: response.data.books })
 
         }

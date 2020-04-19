@@ -3,8 +3,8 @@ import React from "react"
 import classes from "./Desktop_form.module.css"
 
 //components
-import Input from "../Shared Form Components/Input_box/Input_box"
-import ConditionCircle from "../Shared Form Components/Condition_circle/Condition_circle"
+import Input from "../Input_box/Input_box"
+import ConditionCircle from "../Condition_circle/Condition_circle"
 
 //util
 import colours from "../../../../Util/Colours"

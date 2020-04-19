@@ -2,7 +2,7 @@ import React from "react"
 
 import classes from "./Button.module.css"
 
-import colours from "../../../../../Util/Colours"
+import colours from "../../../../Util/Colours"
 
 const Button = props => {
 

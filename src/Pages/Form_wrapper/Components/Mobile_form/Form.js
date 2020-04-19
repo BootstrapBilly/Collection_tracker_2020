@@ -3,9 +3,9 @@ import React from "react"
 import classes from "./Form.module.css"
 
 //components
-import Input from "../Shared Form Components/Input_box/Input_box"
-import ConditionCircle from "../Shared Form Components/Condition_circle/Condition_circle"
-import Button from "../Shared Form Components/Button/Button"
+import Input from "../Input_box/Input_box"
+import ConditionCircle from "../Condition_circle/Condition_circle"
+import Button from "..//Button/Button"
 import Landscape from "../../../../Shared Components/Landscape_prompt/Landscape_prompt"
 
 //util

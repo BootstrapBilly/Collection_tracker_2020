@@ -81,6 +81,7 @@ const Dashboard = props => {
 
         if (books) sort_books_into_conditions()
         
+        // eslint-disable-next-line
     }, [books])
 
     return (
