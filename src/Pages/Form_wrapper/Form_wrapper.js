@@ -43,7 +43,6 @@ const Other_page = props => {
     }, [form_submitted])
 
 
-
     return (
 
         <div className={classes.container}>
@@ -52,7 +51,7 @@ const Other_page = props => {
             
             <div className={classes.search_result_container}>
 
-                <SearchResult year={1969} best_condition={"fair"} />
+                <SearchResult year={[feedback_info[0][0]]} best_condition={"fair"} />
 
             </div> 
             

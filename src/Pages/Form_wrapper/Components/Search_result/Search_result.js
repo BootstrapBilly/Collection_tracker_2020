@@ -11,7 +11,7 @@ import update from "../../../../Assets/Icons/update.svg"
 
 //components
 import Button from "../Button/Button"
-import BookImage from "./Components/Book_image/Book_image"
+import BookImage from "../../../../Shared Components/Image_upload/Image_upload"
 
 const Search_result = props => {
 
@@ -29,7 +29,7 @@ const Search_result = props => {
 
                 <div className={classes.image_container}>
                     
-                    <BookImage onClickUpload={()=> console.log("yeah bowieid")}/>
+                    <BookImage year={props.year} onClickUpload={()=> console.log("yeah bowieid")}/>
                     
                 </div>
 

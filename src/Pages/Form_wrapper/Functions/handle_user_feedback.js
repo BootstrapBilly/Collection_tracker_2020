@@ -14,7 +14,7 @@ export const handle_user_feedback = (feedback, type) => {
 
         case "Search":
 
-            if (feedback.success) return [`${feedback.details.book.year} was found. Best condition : ${feedback.details.book.condition}`, "hidden", "search_success"]
+            if (feedback.success) return [[feedback.details.book.year, feedback.details.book.condition], "hidden", "search_success"]
             if (feedback.error === "Not_found") return [`${feedback.details} was not found in your collection.`, "error"]
 
             break;
