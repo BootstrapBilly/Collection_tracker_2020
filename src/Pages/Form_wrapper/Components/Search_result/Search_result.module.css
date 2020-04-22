@@ -36,7 +36,14 @@
     display: flex;
     height: 230px;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
+}
+
+.uploaded_image {
+    max-height: 220px;
+    margin-top: 10px;
+    max-width: 280px;
+    object-fit: cover;
 }
 
 .options_container {

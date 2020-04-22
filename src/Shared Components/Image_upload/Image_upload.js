@@ -8,48 +8,28 @@ import upload from "../../Assets/Icons/upload.svg"
 
 //util
 import colours from "../../Util/Colours"
-import { production } from "../../Util/SendRequest"
 import {storage} from "../../firebase/index"
 
-//external
-import { post } from 'axios';
+//redux hooks
+import {useDispatch} from "react-redux"
+
+//redux action creators
+import {reload_search_result_action} from "../../Store/Actions/Photo_upload_handler_action"
 
 
 const File_upload = props => {
 
     //- config
+    const dispatch = useDispatch()
 
     //*states
     const [selected_photo, set_selected_photo] = useState(null)
-    const [uploaded_file, set_uploaded_file] = useState(null)
-
     const [preview_selected_image, set_preview_selected_image] = useState(upload)
 
     //_functions
-    // const handle_photo_upload = async () => {
-
-    //     const backend_url = `${production}upload_photo/${props.year}`
-        
-    //     const formData = new FormData();
-    //     formData.append('file', selected_photo)
-
-    //     const config = {
-    //         headers: {
-    //             'content-type': 'multipart/form-data'
-    //         }
-    //     }
-
-    //     const response = await post(backend_url, formData, config)
-
-    //     console.log(response)
-
-    //     response.data.success ? set_uploaded_file(response.data.path) : window.alert("No work")
-
-    //  }
-
     const handle_photo_upload = () => {
 
-        const upload_task = storage.ref(`images/${selected_photo.name}`).put(selected_photo)
+        const upload_task = storage.ref(`images/${props.year.toString()}`).put(selected_photo)
 
         upload_task.on("state_changed", 
 
@@ -65,8 +45,8 @@ const File_upload = props => {
         
         () => {
             //complete function
-            storage.ref("images").child(selected_photo.name).getDownloadURL().then(url => {
-                console.log(url)
+            storage.ref("images").child(props.year.toString()).getDownloadURL().then(url => {
+                dispatch(reload_search_result_action(url))
             })
         });
     }

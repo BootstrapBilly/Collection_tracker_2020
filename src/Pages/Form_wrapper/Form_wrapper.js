@@ -56,6 +56,7 @@ const Other_page = props => {
             </div> 
             
             :
+            
 //* No search result
 
                 width < 1200 || (height === 954 && width === 1366) ?

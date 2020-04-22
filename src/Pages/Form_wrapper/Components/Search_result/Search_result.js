@@ -1,9 +1,10 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 
 import classes from "./Search_result.module.css"
 
 //util
 import colours from "../../../../Util/Colours"
+import {storage} from "../../../../firebase/index"
 
 //assets
 import delete_icon from "../../../../Assets/Icons/delete.svg"
@@ -13,7 +14,30 @@ import update from "../../../../Assets/Icons/update.svg"
 import Button from "../Button/Button"
 import BookImage from "../../../../Shared Components/Image_upload/Image_upload"
 
+//redux hooks
+import {useSelector} from "react-redux"
+
 const Search_result = props => {
+
+    //*states
+    const [image, set_image] = useState(null)
+    const [image_exists, set_image_exists] = useState(null)
+
+    //?Selectors
+    const successful_upload = useSelector(state => state.upload.last_uploaded_photo)
+
+    useEffect(()=> {
+
+        storage.ref("images").child(props.year.toString()).getDownloadURL()
+
+        .then(url => {
+           set_image_exists(true)
+           set_image(url)
+        })
+
+        .catch(error => set_image_exists(false))
+// eslint-disable-next-line
+    },[successful_upload])
 
     return (
 
@@ -29,7 +53,7 @@ const Search_result = props => {
 
                 <div className={classes.image_container}>
                     
-                    <BookImage year={props.year} onClickUpload={()=> console.log("yeah bowieid")}/>
+                    {image_exists ? <img src={image} alt={"yeah"} className={classes.uploaded_image} /> : <BookImage year={props.year} onClickUpload={()=> console.log("yeah bowieid")} />  }
                     
                 </div>
 
@@ -53,7 +77,7 @@ const Search_result = props => {
 
             </div>
 
-            <div className={classes.button_container}><Button text="Go Back" /></div>
+            <div className={classes.button_container}><Button text="Go Back" handle_submit={()=> window.location.reload()} width="120px"  /></div>
 
         </React.Fragment>
     )
