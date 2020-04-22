@@ -14,7 +14,7 @@ import {storage} from "../../firebase/index"
 import {useDispatch} from "react-redux"
 
 //redux action creators
-import {reload_search_result_action} from "../../Store/Actions/Photo_upload_handler_action"
+import {reload_search_result_action, handle_upload_error_action} from "../../Store/Actions/Photo_upload_handler_action"
 
 
 const File_upload = props => {
@@ -40,7 +40,7 @@ const File_upload = props => {
 
         (error) => {
             //error function
-            console.log(error)
+            dispatch(handle_upload_error_action(error))
         }, 
         
         () => {

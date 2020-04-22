@@ -11,3 +11,13 @@ export const reload_search_result_action = photo_url => {
 
 }
 
+export const handle_upload_error_action = error => {
+
+    return async dispatch => {
+
+        return dispatch({ type: UPLOAD_FAILURE, payload:error})
+
+    }
+
+}
+

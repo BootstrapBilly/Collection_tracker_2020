@@ -27,8 +27,6 @@ const Alert = props => {
                 </div>
 
                 <div className={classes.message_container}>{props.message} </div>
-
-   
             
             </div>
 

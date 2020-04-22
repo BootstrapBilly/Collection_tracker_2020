@@ -47,17 +47,24 @@ const Other_page = props => {
 
         <div className={classes.container}>
 
-            {feedback_info[2] === "search_success" ? 
-            
-            <div className={classes.search_result_container}>
+            {feedback_info[2] === "search_success" ?
 
-                <SearchResult year={[feedback_info[0][0]]} best_condition={"fair"} />
+                <div className={classes.search_result_container}>
 
-            </div> 
-            
-            :
-            
-//* No search result
+                    <SearchResult
+
+                        year={[feedback_info[0][0]]}
+                        best_condition={"fair"}
+                        selected_condition={selected_condition}
+                        set_selected_condition={condition => set_selected_condition(condition)}
+
+                    />
+
+                </div>
+
+                :
+
+                //* No search result
 
                 width < 1200 || (height === 954 && width === 1366) ?
 

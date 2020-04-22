@@ -1,7 +1,7 @@
 .container{
-    height: 20vw;
-    width: 20vw;
-    border-radius: 500px;
+    height: 30px;
+    width: 60px;
+    border-radius: 0px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,25 +10,26 @@
 .inner_container{
 
     background-color: white;
-    height: 17vw;
-    width: 17vw;
-    border-radius: 500px;
+    height: 28.5px;
+    width: 58.5px;
+    border-radius: 0px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: 900;
+    font-weight: 400;
     position: absolute;
+
 
 }
 
 .animation_container {
 
-    height: 20vw;
-    width: 20vw;
-    border-radius: 500px;
+    height: 30px;
+    width: 60px;
+    border-radius: 0px;
     justify-content: center;
     align-items: center;
-    font-weight: 900;
+    font-weight: 400;
     animation: explode 0.4s;
     position: absolute;
 
@@ -67,16 +68,7 @@
 
 @media (min-height:800px) and (min-width: 701px){
 
-    .container{
-        max-width: 100px;
-        max-height: 100px;
-    }
 
-    .inner_container,.animation_container{
-
-        max-width: 80px;
-        max-height: 80px;
-    }
 
     @supports (-webkit-touch-callout: none) {
 
@@ -87,22 +79,14 @@
 @media (min-width: 1200px) {
 
     @supports  not (-webkit-touch-callout: none) {
-    .container, .animation_container{
-        max-width: 70px;
-        max-height: 70px;
-    }
 
     
-    .inner_container{
-
-        max-width: 60px;
-        max-height: 60px;
-    }
+  
 
     .container:hover, .inner_container:hover, .animation_container:hover{
 
         cursor: pointer;
-        transform: scale(1.1);
+
     }
 
 
