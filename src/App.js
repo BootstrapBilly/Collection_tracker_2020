@@ -6,6 +6,7 @@ import './App.css';
 import Intro from "./Pages/Intro/Intro"
 import Dashboard from "./Pages/Dashboard/Dashboard"
 import Page from "./Pages/Form_wrapper/Form_wrapper"
+import Desktop_add from "./Pages/Form_wrapper/Desktop_add/Desktop_add"
 
 //external
 import { BrowserRouter, Switch, Route } from "react-router-dom"
@@ -44,10 +45,15 @@ const App = () => {
 
             <Route path="/" exact component={Dashboard}/>
 
-            <Route path="/add_book" exact component={() =>
+            <Route path="/add_book" exact 
+            component={Desktop_add
+              
+              //() =>
 
-              <Page path="/add_book" title="Add Book" desktop_title="ADD A BOOK" button_text="ADD BOOK" submission_url={"add_book"}
-              on_form_submit={submission_result ? {feedback:submission_result, type:"Add"} : null} />}
+              // <Page path="/add_book" title="Add Book" desktop_title="ADD A BOOK" button_text="ADD BOOK" submission_url={"add_book"}
+              // on_form_submit={submission_result ? {feedback:submission_result, type:"Add"} : null} />
+            
+            }
 
             />
 

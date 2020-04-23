@@ -32,3 +32,12 @@
         
     }
 }
+
+/*Standard desktop */
+
+@media (min-width: 1200px) {
+
+.icon{
+    margin: 0;
+}
+    }
