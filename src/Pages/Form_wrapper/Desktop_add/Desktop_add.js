@@ -5,6 +5,9 @@ import classes from "./Desktop_add.module.css"
 //external
 import colours from "../../../Util/Colours"
 
+//components
+import Button from "./Components/Button/Button"
+
 
 
 //components
@@ -40,10 +43,11 @@ export const Desktop_add = props => {
                         borderColor: colours.dark_blue, color:colours.dark_blue,
                         width: year && "60px"
                     }} 
-                    maxLength="4" placeholder={"Enter year of book"}
+                    maxLength="4" placeholder={"Enter year"}
                     onChange={event => set_year(event.target.value)}/>}
 
-                    <button className={classes.form_button} style={{backgroundColor:year && year.length === 4 ? colours.dark_blue : colours.dark_grey}} onClick={()=> handle_button_click()}>{current_step === "year" ? "Next" : "Add Book"}</button>
+                    <Button year={year} onClick={()=> handle_button_click()} current_step={current_step}/>
+
 
                 </div>
 
