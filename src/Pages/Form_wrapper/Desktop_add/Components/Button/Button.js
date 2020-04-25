@@ -7,17 +7,41 @@ import colours from "../../../../../Util/Colours"
 
 export const Button = props => {
 
+    const handle_display = () => {
+
+        if(props.type === "back"){
+
+            if(props.step === "year") return "none"
+        }
+
+        else switch (props.step) {
+
+            case "year":
+                if (props.year && props.year.length === 4) return "block";
+                else return "none"
+
+            case "condition":
+                if (props.selected_condition) return "block";
+                else return "none"
+
+            default:
+                return "block"
+        }
+        
+
+    }
+
     return (
 
         <button
 
-            className={classes.form_button}
+            className={classes.button}
 
-            style={{ backgroundColor: props.year && props.year.length === 4 ? colours.dark_blue : colours.dark_grey }}
+            style={{display: handle_display(), backgroundColor: props.type === "back" ? "none" : colours.dark_blue, border: props.type === "back" ? `2px solid ${colours.dark_blue}`: "#f8f8ff", color: props.type === "back" ? colours.dark_blue : "white" }}
 
             onClick={props.onClick}>
 
-            {props.current_step === "year" ? "Next" : props.current_step === "Add Book"}
+            {props.type === "back" ? props.text : props.current_step === "year" || props.current_step === "condition" ? "Next" : props.text }
 
         </button>
 

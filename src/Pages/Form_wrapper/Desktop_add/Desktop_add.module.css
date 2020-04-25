@@ -1,4 +1,4 @@
-.container{
+.container {
     width: 100%;
     height: 100%;
     background-image: url("../../../Assets/Backgrounds/add_book.svg");
@@ -9,7 +9,7 @@
     right: -50vw;
 }
 
-.form_container{
+.form_container {
     display: flex;
     flex-direction: column;
     width: 400px;
@@ -17,63 +17,32 @@
     margin-left: 75px;
 }
 
-.title{
+.title {
     font-size: 40px;
     font-family: 'Roboto', sans-serif;
     margin-left: 0px;
     margin-bottom: 40px;
 }
 
-.form_message{
-
+.form_message {
     font-size: 30px;
     font-weight: 900;
     font-family: 'Roboto', sans-serif;
 }
 
-.form_input{
-    outline: none;
-    height: 30px;
-    width: 100px;
-    margin-top: 60px;
-    border: none;
-    background-color: transparent;
-    border-bottom: 1.5px solid;
-    font-size: 20px;
-    padding-bottom: 1px;
-    text-align: start;
-    padding-bottom: 5px;
-    text-align: center;
-
-}
-
-.form_input::placeholder{
-
+.form_input::placeholder {
     color: rgba(0, 0, 0, 0.384);
 }
 
-.form_button{
-
-    width: 110px;
-    height: 40px;
-    outline: none;
-    border: none;
-    margin-top: 70px;
-    font-size: 20px;
-    color: white;
-    border-radius: 5px;
-
-}
-
-.form_button:hover{
-    cursor: pointer;
+.button_container {
+    display: flex;
 }
 
 @keyframes slide-left {
-    0%{
+    0% {
         right: -50vw;
     }
-    100%{
+    100% {
         right: 0vw;
     }
 }

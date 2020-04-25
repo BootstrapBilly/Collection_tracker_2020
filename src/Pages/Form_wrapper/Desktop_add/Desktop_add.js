@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 
 import classes from "./Desktop_add.module.css"
 
@@ -7,24 +7,26 @@ import colours from "../../../Util/Colours"
 
 //components
 import Button from "./Components/Button/Button"
+import ConditionSelect from "./Components/Condition_Select/Condition_Select"
+import Input from "./Components/Input/Input"
+import ImageUpload from "../../../Shared Components/Image_upload/Image_upload"
 
 
-
-//components
-//import OptionsBar from "../../../Shared Components/Options_bar/Options_bar"
 
 export const Desktop_add = props => {
 
     //*states 
 
     const [current_step, set_current_step] = useState("year")
+    const [selected_condition, set_selected_condition] = useState(null)
     const [year, set_year] = useState(null)
 
-    const handle_button_click = () => {
+    const handle_back_click = () => current_step === "condition" ? set_current_step("year") : set_current_step("condition")
+    const handle_next_click = () => current_step === "year" ? set_current_step("condition") : current_step === "condition" ? set_current_step("photo") : console.log("Bigboi")
 
-        if(current_step === "year") return set_current_step("condition")
+    
 
-    }
+    const handle_message_assignment = () => current_step === "year" ? "What's the year of the book?" : current_step === "condition" ? "What condition is it in?" : "Would you like to add a photo ? (Optional)"
 
     return (
 
@@ -34,20 +36,30 @@ export const Desktop_add = props => {
 
                 <div className={classes.form_container}>
 
-                <h5 className={classes.title} style={{ color: colours.dark_blue}}>ADD A NEW BOOK</h5>
+                    <h5 className={classes.title} style={{ color: colours.dark_blue }}>ADD A NEW BOOK</h5>
 
-                    <span className={classes.form_message}>{current_step === "year" ? "What's the year of the book?" : "What condition is it in?"} </span>
+                    <span className={classes.form_message}>{handle_message_assignment()} </span>
 
-                    {current_step === "year" && <input type="text" name="year" className={classes.form_input} 
-                    style={{
-                        borderColor: colours.dark_blue, color:colours.dark_blue,
-                        width: year && "60px"
-                    }} 
-                    maxLength="4" placeholder={"Enter year"}
-                    onChange={event => set_year(event.target.value)}/>}
+                    {current_step === "year" ?
 
-                    <Button year={year} onClick={()=> handle_button_click()} current_step={current_step}/>
+                        <Input year={year} handle_change={event => set_year(event.target.value)} /> :
 
+                        current_step === "condition" ?
+
+                            <ConditionSelect on_select_condition={condition => set_selected_condition(condition)} selected_condition={selected_condition} /> :
+
+                            <ImageUpload style={{ backgroundColor: "#f8f8ff", marginTop: "30px"}} />
+                    }
+
+                    <div className={classes.button_container}>
+
+                        <Button year={year} current_step={current_step} step={current_step} selected_condition={selected_condition} text="Go Back"
+                            onClick={() => handle_back_click()} type="back"/>
+
+                        <Button year={year} current_step={current_step} step={current_step} selected_condition={selected_condition} text="Add Book"
+                            onClick={() => handle_next_click()} />
+
+                    </div>
 
                 </div>
 

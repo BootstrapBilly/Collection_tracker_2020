@@ -61,6 +61,20 @@
 
 }
 
+.preview_img{
+    max-height: 115px;
+    max-width: 215px;
+    margin-bottom: 73px;
+}
+
+.upload_button{
+    border-radius: 5px;
+}
+
+.upload_button:hover{
+    cursor: pointer;
+}
+
 @keyframes slide-in {
     0%{
         left: -100vw;

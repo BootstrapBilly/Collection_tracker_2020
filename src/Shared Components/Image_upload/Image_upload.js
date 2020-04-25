@@ -61,11 +61,13 @@ const File_upload = props => {
 
     return (
 
-        <div className={classes.container}>
+        <div className={classes.container} style={props.style}>
 
             <div className={classes.icon_container}>
 
-                <img src={preview_selected_image} alt={"An icon"} className={classes.icon} />
+                <img src={preview_selected_image} alt={"An icon"} className={classes.icon} style={{display: preview_selected_image === upload ? "block" : "none"}}/>
+
+                <img src={preview_selected_image} alt={"An icon"} className={classes.preview_img} style={{display: preview_selected_image === upload ? "none" : "block"}}/>
 
                 <input type="file" name="img" id="img" className={classes.input} onChange={(event) => handle_select_photo(event)} style={{ display: "none" }} />
 
@@ -85,9 +87,9 @@ const File_upload = props => {
 
                 <input type="file" name="change" id="change" className={classes.input} onChange={(event) => handle_select_photo(event)} style={{ display: "none" }} />
 
-                <label htmlFor="change" className={classes.change_button} style={{ backgroundColor: colours.grey, boxShadow: `1px 1px 2px 1px ${colours.dark_grey}`}}>Change</label>
+                <label htmlFor="change" className={classes.upload_button} style={{ backgroundColor: colours.dark_grey}}>Change</label>
 
-                <span onClick={() => handle_photo_upload()} className={classes.upload_button} style={{ backgroundColor: colours.blue, boxShadow: `1px 1px 2px 1px ${colours.dark_blue}`}}>Upload</span>
+                <span onClick={() => handle_photo_upload()} className={classes.upload_button} style={{ backgroundColor: colours.dark_blue}}>Upload</span>
 
             </div>
 

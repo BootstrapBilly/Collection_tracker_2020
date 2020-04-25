@@ -1,12 +1,26 @@
-.form_button{
+.button{
 
     width: 110px;
     height: 40px;
     outline: none;
     border: none;
-    margin-top: 70px;
+    margin-top: 40px;
     font-size: 20px;
     color: white;
     border-radius: 5px;
+    animation: fade-in 0.8s;
+    margin-right: 5px;
 
+}
+
+.button:hover{
+    cursor: pointer;
+}
+
+@keyframes fade-in {
+
+    0%{
+        opacity: 0;
+    }
+    100%{opacity: 1;}
 }
