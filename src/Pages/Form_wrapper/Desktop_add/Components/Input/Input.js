@@ -20,7 +20,12 @@ export const Input = props => {
 
             onChange={props.handle_change}
             
-            value={props.year || ""}/>
+            value={props.year || ""}
+            
+            onFocus={props.onFocus} 
+            
+            onBlur={props.onBlur}
+            />
 
     )
 

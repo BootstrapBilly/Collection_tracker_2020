@@ -15,18 +15,20 @@ import ImageUpload from "../../../Shared Components/Image_upload/Image_upload"
 
 export const Desktop_add = props => {
 
+    //-config
+    const { innerWidth: width } = window;//get the dimensions of the window
+
     //*states 
 
     const [current_step, set_current_step] = useState("year")
     const [selected_condition, set_selected_condition] = useState(null)
     const [year, set_year] = useState(null)
+    const [input_focus, set_input_focus] = useState(false)
 
     const handle_back_click = () => current_step === "condition" ? set_current_step("year") : set_current_step("condition")
     const handle_next_click = () => current_step === "year" ? set_current_step("condition") : current_step === "condition" ? set_current_step("photo") : console.log("Bigboi")
 
-    
-
-    const handle_message_assignment = () => current_step === "year" ? "What's the year of the book?" : current_step === "condition" ? "What condition is it in?" : "Would you like to add a photo ? (Optional)"
+    const handle_prompt_message = () => current_step === "year" ? "What's the year of the book?" : current_step === "condition" ? "What condition is it in?" : "Would you like to add a photo ? (Optional)"
 
     return (
 
@@ -36,13 +38,13 @@ export const Desktop_add = props => {
 
                 <div className={classes.form_container}>
 
-                    <h5 className={classes.title} style={{ color: colours.dark_blue }}>ADD A NEW BOOK</h5>
+                    <h5 className={classes.title} style={{ color: colours.dark_blue, marginTop: input_focus && (width < 1200) ? "50px" : "20px" }}>ADD A NEW BOOK</h5>
 
-                    <span className={classes.form_message}>{handle_message_assignment()} </span>
+                    <span className={classes.form_message}>{handle_prompt_message()} </span>
 
                     {current_step === "year" ?
 
-                        <Input year={year} handle_change={event => set_year(event.target.value)} /> :
+                        <Input year={year} handle_change={event => set_year(event.target.value)} onFocus={()=> set_input_focus(true)} onBlur={()=> set_input_focus(false)}/> :
 
                         current_step === "condition" ?
 

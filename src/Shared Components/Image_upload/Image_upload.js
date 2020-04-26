@@ -75,7 +75,7 @@ const File_upload = props => {
 
                     <div className={classes.chosen_photo_container}>
 
-                        {selected_photo ? <span className={classes.chosen_photo}>{selected_photo.name}</span> : <span className={classes.choose_file}>Choose a photo</span>}
+                        {selected_photo ? <span className={classes.chosen_photo_name}>{selected_photo.name}</span> : <span className={classes.choose_file}>Choose a photo</span>}
 
                     </div>
 

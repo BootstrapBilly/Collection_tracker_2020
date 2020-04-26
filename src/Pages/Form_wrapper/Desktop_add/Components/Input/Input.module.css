@@ -1,16 +1,38 @@
-.form_input{
-    outline: none;
-    height: 30px;
-    width: 105px;
-    margin-top: 60px;
-    border: none;
-    background-color: transparent;
-    border-bottom: 1.5px solid;
-    font-size: 20px;
-    padding-bottom: 1px;
-    text-align: start;
-    padding-bottom: 5px;
-    text-align: center;
-    margin-bottom: 0px;
-    font-family: 'Roboto', sans-serif;
+/* Portrait mobile*/
+@media (max-width:1200px) {
+
+    .form_input{
+        margin-top: 40px;
+        outline: none;
+        height: 30px;
+        width: 105px;
+        background-color: transparent;
+        border: none;
+        border-bottom: 1.5px solid;
+        font-size: 20px;
+        text-align: center;
+        border-radius: 0;
+    }
+
+}
+
+@media (min-width: 1200px) {
+
+    .form_input{
+        outline: none;
+        height: 30px;
+        width: 105px;
+        margin-top: 60px;
+        border: none;
+        background-color: transparent;
+        border-bottom: 1.5px solid;
+        font-size: 20px;
+        padding-bottom: 1px;
+        text-align: start;
+        padding-bottom: 5px;
+        text-align: center;
+        margin-bottom: 0px;
+        font-family: 'Roboto', sans-serif;
+    }
+
 }
