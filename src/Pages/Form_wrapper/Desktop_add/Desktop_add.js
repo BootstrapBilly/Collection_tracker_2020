@@ -32,7 +32,7 @@ export const Desktop_add = props => {
     const [year, set_year] = useState(null)
     const [input_focus, set_input_focus] = useState(false)
     const [feedback_info, set_feedback_info] = useState([null, "hidden"])
-    const [available_conditions, set_available_conditions] = useState(["Poor", "Fair", "Mint"])
+    const [available_conditions, set_available_conditions] = useState([])
 
     //_functions
 
@@ -58,8 +58,6 @@ export const Desktop_add = props => {
 
         if(current_step === "condition") {
 
-
-
             return set_current_step("photo")
         }
 
@@ -71,13 +69,15 @@ export const Desktop_add = props => {
 
     const check_condition = async() => {
 
+        let all_conditions = ["Poor", "Fair", "Mint"]
+
         const response = await post("http://localhost:4000/get_conditions", {form_values:year})
 
         const existing_conditions = response.data.conditions
 
-        if(!existing_conditions) return
+        if(!existing_conditions) return set_available_conditions(all_conditions)
 
-        set_available_conditions(available_conditions => [...available_conditions.filter(condition => condition.toString() !== existing_conditions.toString())])
+        set_available_conditions([...all_conditions.filter(condition => condition.toString() !== existing_conditions.toString())])
     }
 
     return (
