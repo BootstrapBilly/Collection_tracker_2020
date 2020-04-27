@@ -28,7 +28,6 @@ export const Button = props => {
                 return "block"
         }
         
-
     }
 
     return (

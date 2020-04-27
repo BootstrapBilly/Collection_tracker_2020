@@ -4,9 +4,11 @@
     align-items: center;
     justify-content: center;
     position: fixed;
-    bottom: 20vh;
+    bottom: 35vh;
+    left: 10vw;
     animation: explode 5s forwards;
     transform: scale(0.1);
+    z-index: 9001;
  
 }
 
@@ -78,8 +80,9 @@
 @media (min-width: 1200px) {
 
     .container{
-        left: 65vw;
-        bottom: 45vh;
+
+        bottom: 32vh;
+        left: 5vw;
     }
     
     }

@@ -32,7 +32,7 @@
     .button_container {
 
         display: flex;
-        margin-top: 0px;
+        margin-top: -5px;
     }
 
 }
@@ -107,6 +107,7 @@
         animation: slide-left 0.5s forwards;
         position: fixed;
         right: -50vw;
+ 
     }
     .form_container {
         display: flex;
@@ -137,4 +138,10 @@
 
 /*large desktop */
 
-@media (min-width: 1500px) {}
+@media (min-width: 1500px) {
+
+    .form_container{
+        margin-top: 150px;
+        margin-left: 100px;
+    }
+}

@@ -24,6 +24,7 @@ export const Image_upload = props => {
     //*states
     const [selected_photo, set_selected_photo] = useState(null)
     const [preview_selected_image, set_preview_selected_image] = useState(upload)
+    const [successful_upload, set_successful_upload] = useState(false)
 
     //_functions
     const handle_photo_upload = () => {
@@ -46,6 +47,7 @@ export const Image_upload = props => {
                 //complete function
                 storage.ref("images").child(props.year.toString()).getDownloadURL().then(url => {
                     dispatch(reload_search_result_action(url))
+                    set_successful_upload(true)
                 })
             });
     }
@@ -61,27 +63,42 @@ export const Image_upload = props => {
 
     return (
 
-        <div className={classes.container}>
+        <div className={classes.container} style={{ border: successful_upload && "none" }}>
 
-            <img src={upload} alt={"An icon"} className={classes.icon} style={{ display: preview_selected_image === upload ? "block" : "none" }} />
+            {successful_upload ?
 
-            <img src={preview_selected_image} alt={"An icon"} className={classes.preview_img} style={{ display: preview_selected_image === upload ? "none" : "block" }} />
+                <div className={classes.successful_upload_container}>
 
-            <input type="file" name="img" id="img" className={classes.input} style={{ display: "none" }} onChange={(event) => handle_select_photo(event)} />
+                    <img src={preview_selected_image} alt={"An icon"} className={classes.uploaded_image} />
 
-            <label htmlFor="img" className={classes.clickable_area}>{selected_photo ? <span className={classes.chosen_photo_name}>{selected_photo.name}</span> : <span className={classes.choose_photo}>Choose a photo</span>}</label>
+                    <span onClick={() => set_successful_upload(false)} className={classes.revert_button} style={{ border: `1px solid ${colours.grey}`, color:colours.grey }}>Change Photo</span>
 
-            <div className={classes.button_container} style={{ display: selected_photo ? "flex" : "none" }}>
+                </div>
+                :
 
-                <input type="file" name="change" id="change" className={classes.input} onChange={(event) => handle_select_photo(event)} style={{ display: "none" }} />
+                <React.Fragment>
 
-                <label htmlFor="change" className={classes.change_button} style={{ border: `1px solid ${colours.red}`, color:colours.red}}>Change</label>
+                    <img src={upload} alt={"An icon"} className={classes.icon} style={{ display: preview_selected_image === upload ? "block" : "none" }} />
 
-                <span onClick={() => handle_photo_upload()} className={classes.upload_button} style={{ backgroundColor:colours.green, border: `1px solid ${colours.green}` }}>Add</span>
+                    <img src={preview_selected_image} alt={"An icon"} className={classes.preview_img} style={{ display: preview_selected_image === upload ? "none" : "block" }} />
 
-            </div>
+                    <input type="file" name="img" id="img" className={classes.input} style={{ display: "none" }} onChange={(event) => handle_select_photo(event)} />
 
-            
+                    <label htmlFor="img" className={classes.clickable_area}>{selected_photo ? <span className={classes.chosen_photo_name}>{selected_photo.name}</span> : <span className={classes.choose_photo}>Choose a photo</span>}</label>
+
+                    <div className={classes.button_container} style={{ display: selected_photo ? "flex" : "none" }}>
+
+                        <input type="file" name="change" id="change" className={classes.input} onChange={(event) => handle_select_photo(event)} style={{ display: "none" }} />
+
+                        <label htmlFor="change" className={classes.change_button} style={{ border: `1px solid ${colours.red}`, color: colours.red }}>Change</label>
+
+                        <span onClick={() => handle_photo_upload()} className={classes.upload_button} style={{ backgroundColor: colours.green, border: `1px solid ${colours.green}` }}>Add</span>
+
+                    </div>
+
+                </React.Fragment>
+
+            }
 
         </div>
 

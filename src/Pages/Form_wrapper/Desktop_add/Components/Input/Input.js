@@ -12,7 +12,8 @@ export const Input = props => {
         <input type="text" name="year" className={classes.form_input}
 
             style={{
-                borderColor: colours.dark_blue, color: colours.dark_blue,
+                borderColor: props.error ? colours.red : colours.dark_blue, 
+                color: props.error ? colours.red : colours.dark_blue,
                 width: props.year && "60px"
             }}
 

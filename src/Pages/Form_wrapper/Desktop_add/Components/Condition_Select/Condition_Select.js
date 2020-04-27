@@ -9,7 +9,7 @@ export const Condition_Select = props => {
 
         <div className={classes.container}>
 
-            {["Poor", "Fair", "Good"].map(condition =>
+            {props.available_conditions.map(condition =>
 
                 <Condition
 

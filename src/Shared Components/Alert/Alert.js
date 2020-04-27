@@ -13,10 +13,9 @@ import success from "../../Assets/Icons/success.svg"
 
 const Alert = props => {
 
-
     return (
 
-        <div className={classes.container} style={{ display: props.type === "hidden" ? "none" : "flex" }}>
+        <div className={classes.container} style={{ display: props.type === "hidden" ? "none" : "flex" }} id="alert_container">
 
             <div className={classes.inner_container}>
 
