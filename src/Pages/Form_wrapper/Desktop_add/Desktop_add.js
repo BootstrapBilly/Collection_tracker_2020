@@ -9,7 +9,7 @@ import colours from "../../../Util/Colours"
 import Button from "./Components/Button/Button"
 import ConditionSelect from "./Components/Condition_Select/Condition_Select"
 import Input from "./Components/Input/Input"
-import ImageUpload from "../../../Shared Components/Image_upload/Image_upload"
+import ImageUpload from "../../../Shared Components/Image_upload_/Image_upload"
 
 
 
@@ -20,7 +20,7 @@ export const Desktop_add = props => {
 
     //*states 
 
-    const [current_step, set_current_step] = useState("year")
+    const [current_step, set_current_step] = useState("upload")
     const [selected_condition, set_selected_condition] = useState(null)
     const [year, set_year] = useState(null)
     const [input_focus, set_input_focus] = useState(false)
@@ -30,6 +30,8 @@ export const Desktop_add = props => {
 
     const handle_prompt_message = () => current_step === "year" ? "What's the year of the book?" : current_step === "condition" ? "What condition is it in?" : "Would you like to add a photo ? (Optional)"
 
+    console.log(window.innerHeight)
+
     return (
 
         <React.Fragment>
@@ -38,7 +40,7 @@ export const Desktop_add = props => {
 
                 <div className={classes.form_container}>
 
-                    <h5 className={classes.title} style={{ color: colours.dark_blue, marginTop: input_focus && (width < 1200) ? "50px" : "20px" }}>ADD A NEW BOOK</h5>
+                    <h5 className={classes.title} style={{ color: colours.dark_blue, marginTop: input_focus && (width < 1200) ? "40px" : "20px" }}>ADD A NEW BOOK</h5>
 
                     <span className={classes.form_message}>{handle_prompt_message()} </span>
 
@@ -50,7 +52,7 @@ export const Desktop_add = props => {
 
                             <ConditionSelect on_select_condition={condition => set_selected_condition(condition)} selected_condition={selected_condition} /> :
 
-                            <ImageUpload style={{ backgroundColor: "#f8f8ff", marginTop: "30px"}} />
+                            <ImageUpload style={{ backgroundColor: "#f8f8ff"}} year={year} />
                     }
 
                     <div className={classes.button_container}>

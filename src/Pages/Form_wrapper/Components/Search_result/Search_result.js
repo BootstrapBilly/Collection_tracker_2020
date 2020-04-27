@@ -14,7 +14,7 @@ import add from "../../../../Assets/Icons/add-book.svg"
 
 //components
 import Button from "../Button/Button"
-import BookImage from "../../../../Shared Components/Image_upload/Image_upload"
+import BookImage from "../../../../Shared Components/Image_upload_old/Image_upload"
 import Alert from "../../../../Shared Components/Alert/Alert"
 import EditPanel from "./components/Edit_panel"
 

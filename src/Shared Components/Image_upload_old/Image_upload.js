@@ -87,9 +87,9 @@ const File_upload = props => {
 
                 <input type="file" name="change" id="change" className={classes.input} onChange={(event) => handle_select_photo(event)} style={{ display: "none" }} />
 
-                <label htmlFor="change" className={classes.upload_button} style={{ backgroundColor: colours.dark_grey}}>Change</label>
+                <label htmlFor="change" className={classes.upload_button} style={{ backgroundColor: colours.red}}>Change</label>
 
-                <span onClick={() => handle_photo_upload()} className={classes.upload_button} style={{ backgroundColor: colours.dark_blue}}>Upload</span>
+                <span onClick={() => handle_photo_upload()} className={classes.upload_button} style={{ backgroundColor: colours.green}}>Add</span>
 
             </div>
 
