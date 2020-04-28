@@ -175,5 +175,3 @@ describe("Third/final step - Add photo", () => {
     })
 
 })
-
-image_upload_clickable_area

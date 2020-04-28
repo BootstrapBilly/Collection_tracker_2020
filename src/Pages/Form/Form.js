@@ -30,6 +30,9 @@ export const Desktop_add = props => {
     const { innerWidth: width } = window;//get the dimensions of the window
     const dispatch = useDispatch()
 
+    console.log(width)
+    console.log(window.innerHeight)
+
     //*states 
 
     const [current_step, set_current_step] = useState("year")//the current step of the form, year/condition/photo
@@ -39,11 +42,14 @@ export const Desktop_add = props => {
     const [feedback_info, set_feedback_info] = useState([null, "hidden"])//set feedback message text
     const [available_conditions, set_available_conditions] = useState([])//hold available conditions (all conditions - existing conditions)
 
+
+    const set_additional_class = () => current_step === "year" ? classes.year_container : current_step === "condition" ? classes.condition_container : classes.photo_container
+    
     return (
 
         <React.Fragment>
 
-            <div className={classes.container}>
+            <div className={[classes.container, set_additional_class()].join(" ")}>
 
                 <div className={classes.form_container}>
 

@@ -1,10 +1,12 @@
 import {post} from "axios"
 
+import send_request from "../../../Util/SendRequest"
+
 const set_conditions = async (year, set_available_conditions) => {
 
     let available_conditions = ["Poor", "Fair", "Mint"]//set all conditions
 
-    const response = await post("http://localhost:4000/get_conditions", {form_values:year})//send a req to get any existing conditions from backend
+    const response = await send_request("get_conditions", { form_values: year })  
 
     const existing_conditions = response.data.conditions//store any existing conditions
 

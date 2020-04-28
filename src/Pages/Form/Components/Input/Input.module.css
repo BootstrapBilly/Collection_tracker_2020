@@ -16,6 +16,33 @@
 
 }
 
+/* Small portrait tablet */
+@media (min-height:750px) and (min-width: 500px) and (max-height: 950px) and (max-width: 700px) {
+
+    .form_input{
+        font-size: 20px;
+        height: 30px;
+        width: 105px;
+
+    }
+}
+
+/* medium portrait tablet */
+
+@media (min-height:800px) and (min-width: 701px) {
+
+    .form_input{
+        font-size: 20px;
+        height: 30px;
+        width: 105px;
+
+    }
+    
+    @supports (-webkit-touch-callout: none) {
+
+    }
+}
+
 @media (min-width: 1200px) {
 
     .form_input{
