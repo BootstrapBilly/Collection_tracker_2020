@@ -8,7 +8,7 @@
         animation: slide-left 0.5s forwards;
         position: fixed;
         right: -50vw;
-        background-image: url("../../../Assets/Backgrounds/mobile_add_book.svg");
+        background-image: url("../../Assets/Backgrounds/mobile_add_book.svg");
         background-size: cover;
     }
 
@@ -50,7 +50,7 @@
 @media (min-height: 600px){
 
     .container{
-        background-image: url("../../../Assets/Backgrounds/long_mobile_add_book.svg");
+        background-image: url("../../Assets/Backgrounds/long_mobile_add_book.svg");
     }
 
 }
@@ -101,7 +101,7 @@
     .container {
         width: 100%;
         height: 100%;
-        background-image: url("../../../Assets/Backgrounds/add_book.svg");
+        background-image: url("../../Assets/Backgrounds/add_book.svg");
         background-size: cover;
         background-repeat: no-repeat;
         animation: slide-left 0.5s forwards;
