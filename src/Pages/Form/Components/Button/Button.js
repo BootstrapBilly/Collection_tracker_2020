@@ -38,9 +38,15 @@ export const Button = props => {
 
             style={{display: handle_display(), backgroundColor: props.type === "back" ? "none" : colours.dark_blue, border: props.type === "back" ? `2px solid ${colours.dark_blue}`: "#f8f8ff", color: props.type === "back" ? colours.dark_blue : "white" }}
 
-            onClick={props.onClick}>
+            onClick={props.onClick}
+            
+            test_handle={props.test_handle}
+
+            >
 
             {props.type === "back" ? props.text : props.current_step === "year" || props.current_step === "condition" ? "Next" : props.text }
+
+            
 
         </button>
 
