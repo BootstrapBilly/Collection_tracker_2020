@@ -14,9 +14,9 @@ export const Condition = props => {
         <div className={classes.container} style={{ borderColor: props.selected_condition === props.type ? handle_colour_assignment() : "transparent" }}
             onClick={props.on_select_condition.bind(this, props.type)}>
 
-                <div className={classes.circle}>
+                <div className={classes.circle} test_handle={props.circle_test_handle}>
 
-                    <div className={classes.animation_circle} style={{ backgroundColor: props.selected_condition === props.type ? handle_colour_assignment() : null, display:props.selected_condition === props.type ? "flex" : "none" }}></div>
+                    <div test_handle={props.animation_test_handle} className={classes.animation_circle} style={{ backgroundColor: props.selected_condition === props.type ? handle_colour_assignment() : null, display:props.selected_condition === props.type ? "flex" : "none" }}></div>
 
                 </div>
 

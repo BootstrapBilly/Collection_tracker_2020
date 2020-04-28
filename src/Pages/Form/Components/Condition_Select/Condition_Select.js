@@ -7,7 +7,7 @@ export const Condition_Select = props => {
 
     return (
 
-        <div className={classes.container}>
+        <div className={classes.container} test_handle={props.test_handle}>
 
             {props.available_conditions.map(condition =>
 
@@ -16,6 +16,9 @@ export const Condition_Select = props => {
                     key={condition}
                     type={condition}
                     selected_condition={props.selected_condition}
+
+                    animation_test_handle={props.animation_circle_test_handle}
+                    circle_test_handle={props.circle_test_handle}
                     
                     on_select_condition={props.on_select_condition}
 

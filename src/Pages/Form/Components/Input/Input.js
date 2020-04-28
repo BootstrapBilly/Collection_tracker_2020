@@ -26,6 +26,8 @@ export const Input = props => {
             onFocus={props.onFocus} 
             
             onBlur={props.onBlur}
+
+            test_handle={props.test_handle}
             />
 
     )

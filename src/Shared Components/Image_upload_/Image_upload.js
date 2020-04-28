@@ -63,7 +63,7 @@ export const Image_upload = props => {
 
     return (
 
-        <div className={classes.container} style={{ border: successful_upload && "none" }}>
+        <div test_handle={props.test_handle} className={classes.container} style={{ border: successful_upload && "none" }} >
 
             {successful_upload ?
 

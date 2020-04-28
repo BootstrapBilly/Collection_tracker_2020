@@ -13,7 +13,7 @@ import ImageUpload from "../../Shared Components/Image_upload_/Image_upload"
 import Alert from "../../Shared Components/Alert/Alert"
 
 //redux hooks
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 
 //redux action creators
 import { submit_form } from "../../Store/Actions/Submit_form_action"
@@ -47,14 +47,14 @@ export const Desktop_add = props => {
 
                 <div className={classes.form_container}>
 
-                    <h5 className={classes.title} style={{ color: colours.dark_blue, marginTop: input_focus && (width < 1200) ? "40px" : "20px" }}>ADD A NEW BOOK</h5>
+                    <h5 test_handle="form_prompt_message" className={classes.title} style={{ color: colours.dark_blue, marginTop: input_focus && (width < 1200) ? "40px" : "20px" }}>ADD A NEW BOOK</h5>
 
                     <span className={classes.form_message}>{set_prompt_message(current_step)}</span>
 
                     {
                         current_step === "year" ?
 
-                            <Input year={year} error={feedback_info[0]}
+                            <Input year={year} error={feedback_info[0]} test_handle="form_input"
                                 handle_change={event => {
                                     set_feedback_info([null, "hidden"])
                                     set_year(event.target.value)
@@ -66,7 +66,12 @@ export const Desktop_add = props => {
 
                             current_step === "condition" ?
 
-                                <ConditionSelect
+                                <ConditionSelect 
+
+                                    test_handle="condition_select"
+                                    animation_circle_test_handle="condition_animation_circle"
+                                    circle_test_handle="condition_circle"
+
                                     on_select_condition={condition => set_selected_condition(condition)}
                                     selected_condition={selected_condition}
                                     available_conditions={available_conditions}
@@ -74,16 +79,16 @@ export const Desktop_add = props => {
 
                                 :
 
-                                <ImageUpload style={{ backgroundColor: "#f8f8ff" }} year={year} />
+                                <ImageUpload style={{ backgroundColor: "#f8f8ff" }} year={year} test_handle="form_image_upload" />
                     }
 
 
                     <div className={classes.button_container} style={{ marginTop: current_step === "photo" && "-15px" }}>
 
-                        <Button year={year} current_step={current_step} selected_condition={selected_condition} text="Go Back"
+                        <Button year={year} current_step={current_step} selected_condition={selected_condition} text="Go Back" test_handle="form_back_button"
                             onClick={() => handle_back_click(current_step, set_current_step)} type="back" />
 
-                        <Button year={year} current_step={current_step} selected_condition={selected_condition} text="Add Book"
+                        <Button year={year} current_step={current_step} selected_condition={selected_condition} text="Add Book" test_handle="form_next_button"
                             onClick={() => handle_next_click(current_step, set_current_step, year, selected_condition, set_conditions, set_feedback_info, dispatch, submit_form, set_available_conditions)} />
 
                     </div>
