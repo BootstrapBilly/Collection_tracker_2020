@@ -74,6 +74,7 @@ export const Image_upload = props => {
                     <span onClick={() => set_successful_upload(false)} className={classes.revert_button} style={{ border: `1px solid ${colours.grey}`, color:colours.grey }}>Change Photo</span>
 
                 </div>
+
                 :
 
                 <React.Fragment>
@@ -84,7 +85,7 @@ export const Image_upload = props => {
 
                     <input type="file" name="img" id="img" className={classes.input} style={{ display: "none" }} onChange={(event) => handle_select_photo(event)} />
 
-                    <label htmlFor="img" className={classes.clickable_area}>{selected_photo ? <span className={classes.chosen_photo_name}>{selected_photo.name}</span> : <span className={classes.choose_photo}>Choose a photo</span>}</label>
+                    <label test_handle="image_upload_clickable_area" htmlFor="img" className={classes.clickable_area}>{selected_photo ? <span className={classes.chosen_photo_name}>{selected_photo.name}</span> : <span className={classes.choose_photo}>Choose a photo</span>}</label>
 
                     <div className={classes.button_container} style={{ display: selected_photo ? "flex" : "none" }}>
 

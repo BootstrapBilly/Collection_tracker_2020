@@ -15,6 +15,65 @@
     
     }
 }
+@media (min-height:750px) and (min-width: 500px) and (max-height: 950px) and (max-width: 700px) {
+
+    .button{
+        width: 150px;
+        height: 50px;
+        font-size: 24px;
+    }
+}
+
+/* Small landscape tablet */
+
+@media (min-height:400px) and (min-width: 900px) and (max-height: 600px) and (max-width: 1023px) {
+
+    .button{
+        width: 115px;
+        height: 40px;
+        font-size: 22px;
+    }
+
+}
+
+/* medium portrait tablet */
+
+@media (min-height:800px) and (min-width: 701px) {
+
+    .button{
+        width: 150px;
+        height: 55px;
+        font-size: 24px;
+    }
+    
+    @supports (-webkit-touch-callout: none) {
+        .button{
+            font-size: 23px;
+        }
+
+    }
+}
+
+/* medium landscape tablet */
+@media (min-height:500px) and (min-width: 1000px) {
+
+    .button{
+        width: 130px;
+        height: 50px;
+        font-size: 24px;
+    }
+
+    @supports (-webkit-touch-callout: none) {
+        .button{
+            font-size: 20px;
+            width: 130px;
+            height: 45px;
+        }
+
+    }
+    
+}
+
 
 @media (min-width:1200px) {
 
@@ -25,7 +84,7 @@
     outline: none;
     border: none;
     margin-top: 40px;
-    font-size: 20px;
+    font-size: 18px;
     color: white;
     border-radius: 5px;
     animation: fade-in 0.8s;
