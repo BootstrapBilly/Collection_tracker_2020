@@ -3,7 +3,7 @@ import React from 'react'
 import classes from "./Button.module.css"
 
 //util
-import colours from "../../../../../Util/Colours"
+import colours from "../../../../Util/Colours"
 
 export const Button = props => {
 
@@ -11,10 +11,10 @@ export const Button = props => {
 
         if(props.type === "back"){
 
-            if(props.step === "year") return "none"
+            if(props.current_step === "year") return "none"
         }
 
-        else switch (props.step) {
+        else switch (props.current_step) {
 
             case "year":
                 if (props.year && props.year.length === 4) return "block";

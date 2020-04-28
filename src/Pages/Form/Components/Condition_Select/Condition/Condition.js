@@ -3,7 +3,7 @@ import React from 'react'
 import classes from "./Condition.module.css"
 
 //util
-import colours from "../../../../../../Util/Colours"
+import colours from "../../../../../Util/Colours"
 
 export const Condition = props => {
 

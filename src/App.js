@@ -6,7 +6,7 @@ import './App.css';
 import Intro from "./Pages/Intro/Intro"
 import Dashboard from "./Pages/Dashboard/Dashboard"
 import Page from "./Pages/Form_wrapper/Form_wrapper"
-import Desktop_add from "./Pages/Form_wrapper/Desktop_add/Desktop_add"
+import Form from "./Pages/Form/Form"
 
 //external
 import { BrowserRouter, Switch, Route } from "react-router-dom"
@@ -46,7 +46,7 @@ const App = () => {
             <Route path="/" exact component={Dashboard}/>
 
             <Route path="/add_book" exact 
-            component={Desktop_add
+            component={Form
               
               //() =>
 
