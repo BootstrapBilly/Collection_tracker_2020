@@ -10,6 +10,12 @@
         background-image: url("../../Assets/Backgrounds/mobile_search.svg"); 
         background-size: cover;
     }
+
+    .worth {
+        background-image: url("../../Assets/Backgrounds/mobile_worth.svg"); 
+        background-size: cover;
+    }
+
 }
 
 
@@ -45,6 +51,12 @@
        background-image: url("../../Assets/Backgrounds/long_mobile_search.svg");
    } 
 
+   .worth {
+    background-image: url("../../Assets/Backgrounds/long_mobile_worth.svg"); 
+    background-size: cover;
+}
+
+
 }
 
 /* Portrait tab*/
@@ -58,10 +70,18 @@
        background-image: url("../../Assets/Backgrounds/portrait_tablet_search.svg");
    } 
 
+   .worth{
+       background-image: url("../../Assets/Backgrounds/portrait_tablet_worth.svg");
+   } 
+
    @supports (-webkit-touch-callout: none) {
 
        .add{
            background-image: url("../../Assets/Backgrounds/portrait_ipad_add_book.svg");
+       } 
+
+       .worth{
+           background-image: url("../../Assets/Backgrounds/portrait_ipad_worth.svg");
        } 
 
    }
@@ -77,6 +97,9 @@
    .search{
        background-image: url("../../Assets/Backgrounds/landscape_tablet_search.svg");
    } 
+   .worth{
+       background-image: url("../../Assets/Backgrounds/landscape_tablet_worth.svg");
+   } 
 
    @supports (-webkit-touch-callout: none) {
 
@@ -87,6 +110,9 @@
       .search{
         background-image: url("../../Assets/Backgrounds/landscape_ipad_search.svg");
     } 
+    .worth{
+        background-image: url("../../Assets/Backgrounds/landscape_ipad_worth.svg");
+    } 
   }
 
 }
@@ -96,6 +122,9 @@
 
    .add{
        background-image: url("../../Assets/Backgrounds/portrait_ipad_large_add_book.svg");
+   } 
+   .worth{
+       background-image: url("../../Assets/Backgrounds/portrait_ipad_large_worth.svg");
    } 
 
 }
@@ -115,6 +144,12 @@
         background-size: cover;
         background-repeat: no-repeat;
     }
+
+    .worth{
+        background-image: url("../../Assets/Backgrounds/worth.svg");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
     
 }
 
@@ -123,6 +158,12 @@
 
     .add{
         background-image: url("../../Assets/Backgrounds/landscape_ipad_large_add_book.svg");
+    }
+    .search{
+        background-image: url("../../Assets/Backgrounds/landscape_ipad_large_search.svg");
+    }
+    .worth{
+        background-image: url("../../Assets/Backgrounds/landscape_ipad_large_worth.svg");
     }
  
  }

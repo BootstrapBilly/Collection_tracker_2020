@@ -99,7 +99,7 @@ export const Desktop_add = props => {
 
                     {<Alert message={feedback_info[0]} type={feedback_info[1]} />}
 
-                    <NavBar path={props.path} />
+                    {/* <NavBar path={props.path} /> */}
 
                 </div>
 

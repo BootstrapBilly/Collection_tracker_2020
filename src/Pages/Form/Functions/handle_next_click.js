@@ -20,6 +20,7 @@ const handle_next_click = async (current_step, set_current_step, year, selected_
 
                     //call set_conditions function which gets any existing conditions from the backend and removes them from the next step
                     set_conditions(year, set_selected_condition)//located in the functions folder
+                    
                     return set_current_step("condition")//set the step to condition
                 }
 
