@@ -13,28 +13,50 @@ import search from "../../Assets/Icons/search.svg"
 import search_active from "../../Assets/Icons/search-active.svg"
 import worth_it from "../../Assets/Icons/worth-it.svg"
 import worth_it_active from "../../Assets/Icons/worth-it-active.svg"
+import menu from "../../Assets/Icons/menu.svg"
 
 const Options_bar = props => {
 
     //?states
     const [active_icon, set_active_icon] = useState(props.path)
+    const [overlay_open, set_overlay_open] = useState(false)
 
     return (
 
-        <div className={classes.container} onClick={props.onClick}>
+        <React.Fragment>
+
+            <img src={menu} alt={"A menu icon"} className={classes.open_icon} onClick={() => set_overlay_open(!overlay_open)}/>
+
+            {overlay_open &&
+
+                <React.Fragment>
+
+                    <div className={classes.overlay} onClick={()=> set_overlay_open(false)}>
+
+                        <div className={classes.container}>
+
+                            <span className={classes.prompt_message}>Where would you like to go?</span>
+
+                            <div className={classes.icon_container}>
+
+                                <Option src={active_icon === "/" ? home_active : home} alt={"b"} to={"/"} handleClick={() => set_active_icon("/")} text="Home" />
+                                <Option src={active_icon === "/add_book" ? add_book_active : add_book} alt={"b"} to={"/add_book"} handleClick={() => set_active_icon("/add_book")} text="Add Book" />
+                                <Option src={active_icon === "/search" ? search_active : search} alt={"b"} to={"/search"} handleClick={() => set_active_icon("/search")} text="Search" />
+                                <Option src={active_icon === "/worth_it" ? worth_it_active : worth_it} alt={"b"} to={"/worth_it"} handleClick={() => set_active_icon("/worth_it")} text="Worth It" />
+
+                            </div>
+
+                        </div>
+
+                    </div>
 
 
-            <div className={classes.inner_container}>
 
-                <Option src={active_icon === "/" ? home_active : home} alt={"b"} to={"/"} handleClick={() => set_active_icon("/")} />
-                <Option src={active_icon === "/add_book" ? add_book_active : add_book} alt={"b"} to={"/add_book"} handleClick={() => set_active_icon("/add_book")} />
-                <Option src={active_icon === "/search" ? search_active : search} alt={"b"} to={"/search"} handleClick={() => set_active_icon("/search")} />
-                <Option src={active_icon === "/worth_it" ? worth_it_active : worth_it} alt={"b"} to={"/worth_it"} handleClick={() => set_active_icon("/worth_it")} />
+                </React.Fragment>
 
-            </div>
+            }
 
-
-        </div>
+        </React.Fragment>
 
     )
 

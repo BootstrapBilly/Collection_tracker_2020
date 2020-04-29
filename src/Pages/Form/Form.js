@@ -37,7 +37,6 @@ export const Desktop_add = props => {
     const [current_step, set_current_step] = useState("year")//the current step of the form, year/condition/photo
     const [year, set_year] = useState(null)//the entered year
     const [selected_condition, set_selected_condition] = useState(null)//the selected condition
-    const [input_focus, set_input_focus] = useState(false)//detect input focus for mobile
     const [feedback_info, set_feedback_info] = useState([null, "hidden"])//set feedback message text
     const [available_conditions, set_available_conditions] = useState(["Poor", "Fair", "Mint"])//hold available conditions (all conditions - existing conditions)
 
@@ -49,7 +48,7 @@ export const Desktop_add = props => {
 
                     <div className={classes.form_container}>
 
-                        <h5 test_handle="form_prompt_message" className={classes.title} style={{ color: colours.dark_blue, marginTop: input_focus && (width < 1200) ? "40px" : "20px" }}>{props.title}</h5>
+                        <h5 test_handle="form_prompt_message" className={classes.title} style={{ color: colours.dark_blue, marginTop:"20px" }}>{props.title}</h5>
 
                         <span className={classes.form_message}>{set_prompt_message(current_step)}</span>
 
@@ -61,7 +60,6 @@ export const Desktop_add = props => {
                                         set_feedback_info([null, "hidden"])
                                         set_year(event.target.value)
                                     }}
-                                    onFocus={() => set_input_focus(true)} onBlur={() => set_input_focus(false)}
                                 />
 
                                 :
@@ -99,7 +97,7 @@ export const Desktop_add = props => {
 
                     {<Alert message={feedback_info[0]} type={feedback_info[1]} />}
 
-                    {/* <NavBar path={props.path} /> */}
+                    <NavBar path={props.path}/>
 
                 </div>
 

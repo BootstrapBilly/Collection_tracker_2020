@@ -62,6 +62,7 @@ const handle_next_click = async (current_step, set_current_step, year, selected_
 
          return dispatch(submit_form({ year: year, condition: selected_condition }, "worth_buying"))
 
+         default:return
     }
 
 
