@@ -1,5 +1,3 @@
-import {post} from "axios"
-
 import send_request from "../../../Util/SendRequest"
 
 const set_conditions = async (year, set_available_conditions) => {

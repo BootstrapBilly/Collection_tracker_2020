@@ -105,3 +105,12 @@
     }
     100%{opacity: 1;}
 }
+
+/* large landscape tablet */
+
+@media (width:1366px) and (height:954px){
+
+    .button{
+        font-size: 17px;
+    }
+}

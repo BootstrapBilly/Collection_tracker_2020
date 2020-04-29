@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
 import classes from "./Form.module.css"
+import backgrounds from "./Background_image.module.css"
 
 //external
 import colours from "../../Util/Colours"
@@ -28,13 +29,12 @@ export const Desktop_add = props => {
 
     //-config
     const { innerWidth: width } = window;//get the dimensions of the window
+
     const dispatch = useDispatch()
 
-    console.log(width)
     console.log(window.innerHeight)
 
     //*states 
-
     const [current_step, set_current_step] = useState("year")//the current step of the form, year/condition/photo
     const [year, set_year] = useState(null)//the entered year
     const [selected_condition, set_selected_condition] = useState(null)//the selected condition
@@ -42,68 +42,73 @@ export const Desktop_add = props => {
     const [feedback_info, set_feedback_info] = useState([null, "hidden"])//set feedback message text
     const [available_conditions, set_available_conditions] = useState([])//hold available conditions (all conditions - existing conditions)
 
-
-    const set_additional_class = () => current_step === "year" ? classes.year_container : current_step === "condition" ? classes.condition_container : classes.photo_container
-    
     return (
 
         <React.Fragment>
+            
+                <div className={[classes.container, props.bg_add ? backgrounds.add : props.bg_search ? backgrounds.search : null].join(" ")}>
 
-            <div className={[classes.container, set_additional_class()].join(" ")}>
+                    <div className={classes.dimensions}>
 
-                <div className={classes.form_container}>
+                        {window.innerHeight}
+                        <br />
+                        {window.innerWidth}
 
-                    <h5 test_handle="form_prompt_message" className={classes.title} style={{ color: colours.dark_blue, marginTop: input_focus && (width < 1200) ? "40px" : "20px" }}>ADD A NEW BOOK</h5>
+                    </div>
 
-                    <span className={classes.form_message}>{set_prompt_message(current_step)}</span>
+                    <div className={classes.form_container}>
 
-                    {
-                        current_step === "year" ?
+                        <h5 test_handle="form_prompt_message" className={classes.title} style={{ color: colours.dark_blue, marginTop: input_focus && (width < 1200) ? "40px" : "20px" }}>{props.title}</h5>
 
-                            <Input year={year} error={feedback_info[0]} test_handle="form_input"
-                                handle_change={event => {
-                                    set_feedback_info([null, "hidden"])
-                                    set_year(event.target.value)
-                                }}
-                                onFocus={() => set_input_focus(true)} onBlur={() => set_input_focus(false)}
-                            />
+                        <span className={classes.form_message}>{set_prompt_message(current_step)}</span>
 
-                            :
+                        {
+                            current_step === "year" ?
 
-                            current_step === "condition" ?
-
-                                <ConditionSelect 
-
-                                    test_handle="condition_select"
-                                    animation_circle_test_handle="condition_animation_circle"
-                                    circle_test_handle="condition_circle"
-
-                                    on_select_condition={condition => set_selected_condition(condition)}
-                                    selected_condition={selected_condition}
-                                    available_conditions={available_conditions}
+                                <Input year={year} error={feedback_info[0]} test_handle="form_input"
+                                    handle_change={event => {
+                                        set_feedback_info([null, "hidden"])
+                                        set_year(event.target.value)
+                                    }}
+                                    onFocus={() => set_input_focus(true)} onBlur={() => set_input_focus(false)}
                                 />
 
                                 :
 
-                                <ImageUpload style={{ backgroundColor: "#f8f8ff" }} year={year} test_handle="form_image_upload" />
-                    }
+                                current_step === "condition" ?
+
+                                    <ConditionSelect
+
+                                        test_handle="condition_select"
+                                        animation_circle_test_handle="condition_animation_circle"
+                                        circle_test_handle="condition_circle"
+
+                                        on_select_condition={condition => set_selected_condition(condition)}
+                                        selected_condition={selected_condition}
+                                        available_conditions={available_conditions}
+                                    />
+
+                                    :
+
+                                    <ImageUpload style={{ backgroundColor: "#f8f8ff" }} year={year} test_handle="form_image_upload" />
+                        }
 
 
-                    <div className={classes.button_container} style={{ marginTop: current_step === "photo" && "-15px" }}>
+                        <div className={classes.button_container} style={{ marginTop: current_step === "photo" && "-15px" }}>
 
-                        <Button year={year} current_step={current_step} selected_condition={selected_condition} text="Go Back" test_handle="form_back_button"
-                            onClick={() => handle_back_click(current_step, set_current_step)} type="back" />
+                            <Button year={year} current_step={current_step} selected_condition={selected_condition} text="Go Back" test_handle="form_back_button"
+                                onClick={() => handle_back_click(current_step, set_current_step)} type="back" />
 
-                        <Button year={year} current_step={current_step} selected_condition={selected_condition} text="Add Book" test_handle="form_next_button"
-                            onClick={() => handle_next_click(current_step, set_current_step, year, selected_condition, set_conditions, set_feedback_info, dispatch, submit_form, set_available_conditions)} />
+                            <Button year={year} current_step={current_step} selected_condition={selected_condition} text="Add Book" test_handle="form_next_button"
+                                onClick={() => handle_next_click(current_step, set_current_step, year, selected_condition, set_conditions, set_feedback_info, dispatch, submit_form, set_available_conditions)} />
+
+                        </div>
 
                     </div>
 
+                    {<Alert message={feedback_info[0]} type={feedback_info[1]} />}
+
                 </div>
-
-                {<Alert message={feedback_info[0]} type={feedback_info[1]} />}
-
-            </div>
 
         </React.Fragment>
     )

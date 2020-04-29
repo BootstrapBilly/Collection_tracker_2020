@@ -9,25 +9,25 @@ export const Input = props => {
 
     return (
 
-        <input type="text" name="year" className={classes.form_input}
+            <input type="text" name="year" className={classes.form_input}
 
-            style={{
-                borderColor: props.error ? colours.red : colours.dark_blue, 
-                color: props.error ? colours.red : colours.dark_blue,
-                width: props.year && "60px"
-            }}
+                style={{
+                    borderColor: props.error ? colours.red : colours.dark_blue,
+                    color: props.error ? colours.red : colours.dark_blue,
+                    width: props.year && "60px"
+                }}
 
-            maxLength="4" placeholder={"Enter year"}
+                maxLength="4" placeholder={"Enter year"}
 
-            onChange={props.handle_change}
-            
-            value={props.year || ""}
-            
-            onFocus={props.onFocus} 
-            
-            onBlur={props.onBlur}
+                onChange={props.handle_change}
 
-            test_handle={props.test_handle}
+                value={props.year || ""}
+
+                onFocus={props.onFocus}
+
+                onBlur={props.onBlur}
+
+                test_handle={props.test_handle}
             />
 
     )

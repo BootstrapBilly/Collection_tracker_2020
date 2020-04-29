@@ -31,21 +31,23 @@ const App = () => {
             <Route path="/" exact component={Dashboard}/>
 
             <Route path="/add_book" exact 
-            component={Form
+            component={
               
-              //() =>
+              () =>
 
-              // <Page path="/add_book" title="Add Book" desktop_title="ADD A BOOK" button_text="ADD BOOK" submission_url={"add_book"}
-              // on_form_submit={submission_result ? {feedback:submission_result, type:"Add"} : null} />
+              <Form path="/add_book" title="ADD A NEW BOOK" background_name="add_book" bg_add/>
             
             }
 
             />
 
-            <Route path="/search" exact component={() =>
+            <Route path="/search" exact component={
+              
+              () =>
 
-              <Page path="/search" title="Find Book" desktop_title="FIND A BOOK" button_text="FIND BOOK" submission_url={"search_for_book"} hidden
-              on_form_submit={submission_result ? {feedback:submission_result, type:"Search"} : null} />}
+              <Form path="/search" title="SEARCH FOR A BOOK" background_name="search" bg_search/>
+            
+            }
 
             />
 

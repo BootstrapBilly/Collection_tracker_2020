@@ -10,13 +10,13 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="750"
-   height="475"
-   viewBox="0 0 198.43749 125.67709"
+   width="475"
+   height="750"
+   viewBox="0 0 125.67708 198.43751"
    version="1.1"
    id="svg8"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   sodipodi:docname="add_book.svg">
+   sodipodi:docname="small_wide_mobile_add_book.svg">
   <defs
      id="defs2">
     <inkscape:perspective
@@ -24,7 +24,7 @@
        inkscape:vp_x="0 : 99.218755 : 1"
        inkscape:vp_y="0 : 1000 : 0"
        inkscape:vp_z="125.67708 : 99.218755 : 1"
-       inkscape:persp3d-origin="62.838539 : 66.145837 : 1"
+       inkscape:persp3d-origin="62.83854 : 66.145837 : 1"
        id="perspective2011" />
     <linearGradient
        id="a">
@@ -39,10 +39,10 @@
     </linearGradient>
     <linearGradient
        gradientUnits="userSpaceOnUse"
-       y2="661.83002"
-       y1="663.15002"
-       x2="267.95999"
-       x1="270.76999"
+       y2="661.83"
+       y1="663.15"
+       x2="267.96"
+       x1="270.77"
        id="d">
       <stop
          id="stop822"
@@ -84,21 +84,21 @@
     <linearGradient
        xlink:href="#a"
        gradientUnits="userSpaceOnUse"
-       x2="447.57001"
-       x1="438.79999"
+       x2="447.57"
+       x1="438.8"
        id="c" />
     <linearGradient
        xlink:href="#b"
        gradientUnits="userSpaceOnUse"
-       y2="990.79999"
+       y2="990.8"
        y1="1026.6"
-       x2="469.20001"
+       x2="469.2"
        x1="500.62"
        id="h" />
     <linearGradient
        xlink:href="#b"
        gradientUnits="userSpaceOnUse"
-       y2="988.90997"
+       y2="988.91"
        y1="1035.6"
        x2="453.84"
        x1="480.5"
@@ -106,7 +106,7 @@
     <linearGradient
        xlink:href="#b"
        gradientUnits="userSpaceOnUse"
-       y2="994.16998"
+       y2="994.17"
        y1="1062.4"
        x2="432.16"
        x1="482.12"
@@ -115,30 +115,30 @@
        xlink:href="#a"
        gradientUnits="userSpaceOnUse"
        y2="482.97"
-       y1="492.20001"
-       x2="353.32001"
-       x1="319.23999"
+       y1="492.2"
+       x2="353.32"
+       x1="319.24"
        id="i" />
     <linearGradient
        xlink:href="#a"
        gradientUnits="userSpaceOnUse"
        gradientTransform="matrix(-1,0,0,1,918.36,-396.19)"
-       y2="876.66998"
-       y1="894.47998"
+       y2="876.67"
+       y1="894.48"
        x2="627"
-       x1="596.51001"
+       x1="596.51"
        id="j" />
     <linearGradient
        xlink:href="#a"
        gradientUnits="userSpaceOnUse"
-       y2="391.95999"
-       y1="350.95001"
+       y2="391.96"
+       y1="350.95"
        x2="316.91"
-       x1="318.67999"
+       x1="318.68"
        id="k" />
     <filter
        inkscape:label="Light Eraser"
-       style="color-interpolation-filters:sRGB"
+       style="color-interpolation-filters:sRGB;"
        id="filter1713">
       <feColorMatrix
          values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 -26.7538 -90.0689 -9.07739 125 0 "
@@ -149,10 +149,7 @@
          operator="arithmetic"
          k2="1"
          result="fbSourceGraphic"
-         id="feComposite1711"
-         k1="0"
-         k3="0"
-         k4="0" />
+         id="feComposite1711" />
       <feColorMatrix
          result="fbSourceGraphicAlpha"
          in="fbSourceGraphic"
@@ -168,10 +165,7 @@
          id="feComposite1719"
          operator="arithmetic"
          k2="1"
-         result="composite"
-         k1="0"
-         k3="0"
-         k4="0" />
+         result="composite" />
     </filter>
     <linearGradient
        x1="0"
@@ -1594,7 +1588,11 @@
     <rect
        height="1400"
        width="1700"
-       id="SVGID_7_"
+       id="SVGID_7_" />
+    <rect
+       height="1400"
+       width="1700"
+       id="rect1258"
        x="0"
        y="0" />
   </defs>
@@ -1605,9 +1603,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.9899495"
-     inkscape:cx="188.98444"
-     inkscape:cy="300.23708"
+     inkscape:zoom="0.35"
+     inkscape:cx="-1453.7032"
+     inkscape:cy="67.971214"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -1625,7 +1623,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1633,44 +1631,23 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-171.3229)">
+     transform="translate(0,-98.562483)">
     <rect
-       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:0.00395805;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:0, 0.04353851;stroke-dashoffset:0.17640001;stroke-opacity:1"
+       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:0.0047625;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:0, 0.0523875;stroke-dashoffset:0.17640001;stroke-opacity:1"
        id="rect2027"
-       width="34.197487"
-       height="42.736923"
-       x="231.86461"
-       y="137.61642" />
-    <rect
-       y="168.1925"
-       x="231.86461"
-       height="42.736923"
-       width="34.197487"
-       id="rect1140"
-       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:0.00395805;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:0, 0.04353851;stroke-dashoffset:0.17640001;stroke-opacity:1" />
-    <rect
-       y="137.61642"
-       x="231.86461"
-       height="42.736923"
-       width="34.197487"
-       id="rect1252"
-       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:0.00395805;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:0, 0.04353851;stroke-dashoffset:0.17640001;stroke-opacity:1" />
-    <rect
-       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:0.00395805;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:0, 0.04353851;stroke-dashoffset:0.17640001;stroke-opacity:1"
-       id="rect1256"
-       width="34.197487"
-       height="42.736923"
-       x="231.86461"
-       y="168.1925" />
+       width="40.29356"
+       height="52.513386"
+       x="161.22414"
+       y="163.39415" />
     <g
        id="g1366"
-       transform="matrix(0.03606617,0,0,0.03462405,222.66818,212.27385)">
+       transform="matrix(0.05621384,0,0,0.05396611,157.6231,211.56074)">
       <defs
          id="defs1260">
         <rect
            height="1400"
            width="1700"
-           id="rect1258"
+           id="rect1328"
            x="0"
            y="0" />
       </defs>
@@ -1713,7 +1690,7 @@
            id="g1282">
           <polygon
              style="fill:#f7c94d"
-             points="678.2,1081.7 589.1,1055.7 555.6,1067.7 504.9,1067.7 675.5,1117.3 "
+             points="504.9,1067.7 675.5,1117.3 678.2,1081.7 589.1,1055.7 555.6,1067.7 "
              id="polygon1274" />
           <polygon
              style="fill:#f99561"
@@ -1721,7 +1698,7 @@
              id="polygon1276" />
           <polygon
              style="fill:#41233a"
-             points="1175.9,771.4 1063.5,655.6 1041,655.6 1004.9,740.5 "
+             points="1041,655.6 1004.9,740.5 1175.9,771.4 1063.5,655.6 "
              id="polygon1278" />
           <path
              style="fill:#5e3b51"
@@ -1749,19 +1726,19 @@
         </g>
         <polygon
            style="fill:#826c6b"
-           points="789.3,696.2 891.6,656.6 876.8,595.9 853.6,500.8 745.8,540.4 "
+           points="853.6,500.8 745.8,540.4 789.3,696.2 891.6,656.6 876.8,595.9 "
            id="polygon1292" />
         <polygon
            style="fill:#351d30"
-           points="774.4,696.2 729.5,540.4 745.8,540.4 789.3,696.2 "
+           points="745.8,540.4 789.3,696.2 774.4,696.2 729.5,540.4 "
            id="polygon1294" />
         <polygon
            style="fill:#5d4452"
-           points="774.4,696.2 729.5,540.4 696.9,500.8 741.3,649.9 "
+           points="696.9,500.8 741.3,649.9 774.4,696.2 729.5,540.4 "
            id="polygon1296" />
         <polygon
            style="fill:#f9f3da"
-           points="710.5,494.1 696.9,500.8 729.5,540.4 745.8,540.4 853.6,500.8 840,488.2 738.6,527.9 "
+           points="853.6,500.8 840,488.2 738.6,527.9 710.5,494.1 696.9,500.8 729.5,540.4 745.8,540.4 "
            id="polygon1298" />
         <polygon
            style="fill:#c3af8d"
@@ -1822,7 +1799,7 @@
              id="polygon1322" />
           <polygon
              style="fill:#f7c94d"
-             points="856.5,1194 767.7,1194 740.4,1209.7 696.9,1227.8 866.4,1227.8 "
+             points="696.9,1227.8 866.4,1227.8 856.5,1194 767.7,1194 740.4,1209.7 "
              id="polygon1324" />
         </g>
         <g
@@ -1869,15 +1846,15 @@
              id="g1350">
             <polygon
                style="fill:#acdeea"
-               points="420,868.2 423.4,899.9 498.2,899.9 501.7,868.2 "
+               points="498.2,899.9 501.7,868.2 420,868.2 423.4,899.9 "
                id="polygon1344" />
             <polygon
                style="fill:#bc303d"
-               points="513.5,760.5 408.2,760.5 420,868.2 501.7,868.2 "
+               points="420,868.2 501.7,868.2 513.5,760.5 408.2,760.5 "
                id="polygon1346" />
             <polygon
                style="fill:#acdeea"
-               points="513.5,760.5 516,737.4 405.6,737.4 408.2,760.5 "
+               points="405.6,737.4 408.2,760.5 513.5,760.5 516,737.4 "
                id="polygon1348" />
           </g>
         </g>
