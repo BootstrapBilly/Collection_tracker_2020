@@ -37,6 +37,10 @@
     .search{
         background-image: url("../../Assets/Backgrounds/small_wide_mobile_search.svg");
     } 
+    .worth {
+        background-image: url("../../Assets/Backgrounds/small_wide_mobile_worth.svg"); 
+        background-size: cover;
+    }
 
 }
 

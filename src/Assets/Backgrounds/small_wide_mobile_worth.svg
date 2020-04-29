@@ -16,7 +16,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   sodipodi:docname="long_mobile_worth.svg">
+   sodipodi:docname="small_wide_mobile_worth.svg">
   <defs
      id="defs2">
     <inkscape:perspective
@@ -1598,8 +1598,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.35"
-     inkscape:cx="-469.41749"
-     inkscape:cy="33.6855"
+     inkscape:cx="-1940.8461"
+     inkscape:cy="67.971214"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -1617,7 +1617,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1634,7 +1634,7 @@
        x="161.22414"
        y="163.39415" />
     <g
-       transform="matrix(1.2441955,0,0,1.2441955,-136.4,-35.909143)"
+       transform="matrix(1.2441955,0,0,1.2441955,-127.32857,-34.397238)"
        id="g5045">
       <g
          transform="matrix(0.11042069,0,0,-0.11042069,144.17835,266.94147)"
