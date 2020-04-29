@@ -14,11 +14,13 @@ export const submit_form = (form_values, url) => {
         try {
 
             const response = await send_request(url, { form_values: form_values })        
+            console.log(response)
             if (response.data.success) return dispatch({ type: SUCCESS, payload: response.data })
 
         }
 
         catch (error) {
+            
             if (error.response.status === 404) return dispatch({ type: NOT_FOUND, payload: form_values })
             if (error.response.status === 409) return dispatch({ type: IN_USE, payload: form_values })
             if (error.response.status === 500) return dispatch({ type: DB_ERROR })

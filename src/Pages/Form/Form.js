@@ -12,6 +12,7 @@ import ConditionSelect from "./Components/Condition_Select/Condition_Select"
 import Input from "./Components/Input/Input"
 import ImageUpload from "../../Shared Components/Image_upload_/Image_upload"
 import Alert from "../../Shared Components/Alert/Alert"
+import NavBar from "../../Shared Components/Options_bar/Options_bar"
 
 //redux hooks
 import { useDispatch } from "react-redux"
@@ -32,29 +33,19 @@ export const Desktop_add = props => {
 
     const dispatch = useDispatch()
 
-    console.log(window.innerHeight)
-
     //*states 
     const [current_step, set_current_step] = useState("year")//the current step of the form, year/condition/photo
     const [year, set_year] = useState(null)//the entered year
     const [selected_condition, set_selected_condition] = useState(null)//the selected condition
     const [input_focus, set_input_focus] = useState(false)//detect input focus for mobile
     const [feedback_info, set_feedback_info] = useState([null, "hidden"])//set feedback message text
-    const [available_conditions, set_available_conditions] = useState([])//hold available conditions (all conditions - existing conditions)
+    const [available_conditions, set_available_conditions] = useState(["Poor", "Fair", "Mint"])//hold available conditions (all conditions - existing conditions)
 
     return (
 
         <React.Fragment>
             
-                <div className={[classes.container, props.bg_add ? backgrounds.add : props.bg_search ? backgrounds.search : null].join(" ")}>
-
-                    <div className={classes.dimensions}>
-
-                        {window.innerHeight}
-                        <br />
-                        {window.innerWidth}
-
-                    </div>
+                <div className={[classes.container, props.type === "Add" ? backgrounds.add : props.type === "Search"  ? backgrounds.search : backgrounds.worth].join(" ")}>
 
                     <div className={classes.form_container}>
 
@@ -100,13 +91,15 @@ export const Desktop_add = props => {
                                 onClick={() => handle_back_click(current_step, set_current_step)} type="back" />
 
                             <Button year={year} current_step={current_step} selected_condition={selected_condition} text="Add Book" test_handle="form_next_button"
-                                onClick={() => handle_next_click(current_step, set_current_step, year, selected_condition, set_conditions, set_feedback_info, dispatch, submit_form, set_available_conditions)} />
+                                onClick={() => handle_next_click(current_step, set_current_step, year, selected_condition, set_conditions, set_feedback_info, dispatch, submit_form, set_available_conditions, props.type)} />
 
                         </div>
 
                     </div>
 
                     {<Alert message={feedback_info[0]} type={feedback_info[1]} />}
+
+                    <NavBar path={props.path} />
 
                 </div>
 

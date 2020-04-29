@@ -4,25 +4,16 @@ import './App.css';
 
 //pages
 import Dashboard from "./Pages/Dashboard/Dashboard"
-import Page from "./Pages/Form_wrapper/Form_wrapper"
 import Form from "./Pages/Form/Form"
 
 //external
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 
-//redux hooks
-import { useSelector } from "react-redux"
-
 const App = () => {
-
-  //?selectors
-  const submission_result = useSelector(state => state.result.submission_result)
 
   return (
 
     <div className="App">
-
-
 
         <BrowserRouter>
 
@@ -35,7 +26,7 @@ const App = () => {
               
               () =>
 
-              <Form path="/add_book" title="ADD A NEW BOOK" background_name="add_book" bg_add/>
+              <Form path="/add_book" title="ADD A NEW BOOK" background_name="add_book" type="Add"/>
             
             }
 
@@ -45,16 +36,21 @@ const App = () => {
               
               () =>
 
-              <Form path="/search" title="SEARCH FOR A BOOK" background_name="search" bg_search/>
+              <Form path="/search" title="SEARCH FOR A BOOK" background_name="search" type="Search"/>
             
             }
 
             />
 
-            <Route path="/worth_it" exact component={() =>
+            <Route path="/worth_it" exact 
+            
+            component={
+              
+              () =>
 
-              <Page path="/worth_it" title="Buy it ?" desktop_title="SHOULD I BUY IT?" button_text="FIND OUT" submission_url={"worth_buying"} worth_it
-              on_form_submit={submission_result ? {feedback:submission_result, type:"Worth"} : null} />}
+              <Form path="/worth_it" title="SHOULD I BUY IT?" background_name="worth" type="Worth"/>
+            
+            }
                 
             />
 
