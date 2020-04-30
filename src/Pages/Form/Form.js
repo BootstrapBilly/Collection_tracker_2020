@@ -56,12 +56,10 @@ export const Desktop_add = props => {
 
             <div className={[classes.container, props.type === "Add" ? backgrounds.add : props.type === "Search" ? backgrounds.search : backgrounds.worth].join(" ")}>
 
-
-<Search />
-                {/* {
+                {
 
                 submission_result_data && submission_result_data.type === "add" ? <Search />
-                    : submission_result_data && submission_result_data.type === "search" ? "Search"
+                    : submission_result_data && submission_result_data.type === "search" ? <Search year={submission_result_data.book.year} condition={submission_result_data.book.condition}/>
                         : submission_result_data && submission_result_data.type === "worth" ? "Worth" :
 
                             <div className={classes.form_container}>
@@ -112,7 +110,7 @@ export const Desktop_add = props => {
                                 </div>
 
                             </div>
-                } */}
+                } 
 
                 {<Alert message={feedback_info[0]} type={feedback_info[1]} />}
 

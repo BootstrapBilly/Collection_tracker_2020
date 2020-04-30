@@ -59,30 +59,24 @@
     width: 100%;
     position: fixed;
     top: 0;
-    left: 0;
+    left: -100vw;
     background-color: rgba(0, 0, 0, 0.452);
     z-index: 8998;
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: fadeIn .3s;
+    transition: left .3s;
+}
+
+.overlay_open{
+
+    left: 0vw;
 }
 
 .prompt_message{
     font-size: 25px;
     font-family: 'Roboto', sans-serif;
 }
-
-@keyframes fadeIn{
-    0%{
-       left: -100vw;
-    }
-
-    100%{
-        left:0
-    }
-}
-
 
 @media (orientation:landscape){
 

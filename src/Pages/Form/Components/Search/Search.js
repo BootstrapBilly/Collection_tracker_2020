@@ -7,7 +7,7 @@ import ImageUpload from "../../../../Shared Components/Image_upload_/Image_uploa
 import Button from "./components/Button"
 
 //assets
-import book from "../../../../Assets/Img/book_2020.jpg"
+import image from "../../../../Assets/Img/default_search_image.png"
 import del from "../../../../Assets/Icons/delete.svg"
 import update from "../../../../Assets/Icons/update.svg"
 import photo from "../../../../Assets/Icons/camera.svg"
@@ -22,8 +22,10 @@ export const Search = props => {
 
     const handle_colour_assignment = () => {
 
-       // if(props.condition === "poor") return
-        return colours.red
+       if(props.condition === "Poor") return colours.red
+       if(props.condition === "Fair") return colours.orange
+       if(props.condition === "Mint") return colours.green
+
     }
 
     return (
@@ -32,18 +34,18 @@ export const Search = props => {
 
             <div className={classes.card}>
 
-                <div className={classes.image_container}>
+                <div className={classes.image_container} style={{backgroundColor:handle_colour_assignment()}}>
 
                     {/* <ImageUpload no_style /> */}
 
-                    <img src={book} alt={"book"} className={classes.image} />
+                    <img src={image} alt={"book"} className={classes.image} />
 
                 </div>
 
                 <div className={classes.details_container}>
 
-                    <p className={classes.year}>2020</p>
-                    <p className={classes.condition} style={{color:handle_colour_assignment()}}>Poor condition</p>
+                    <p className={classes.year}>{props.year}</p>
+                    <p className={classes.condition} style={{color:handle_colour_assignment()}}>{props.condition} condition</p>
                     <img src={cog} alt={"cog"} className={classes.cog} onClick={()=> set_options_open(!options_open)} />
 
                 </div>
