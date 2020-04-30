@@ -7,9 +7,9 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-evenly;
-    z-index: 3;
+    z-index: 9000;
     border-radius: 5px;
-    animation: explode 0.7s;
+    animation: explode 0.6s;
     position: relative;
 }
 
@@ -49,7 +49,7 @@
     position: fixed;
     top: 22px;
     right: 15px;
-    z-index: 2;
+    z-index: 8999;
     width: 25px;
     height: 25px;
 }
@@ -61,7 +61,7 @@
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.452);
-    z-index: 1;
+    z-index: 8998;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -39,10 +39,10 @@ const Options_bar = props => {
 
                             <div className={classes.icon_container}>
 
-                                <Option test_handle="nav_home_icon" src={active_icon === "/" ? home_active : home} alt={"b"} to={"/"} handleClick={() => set_active_icon("/")} text="Home" />
-                                <Option test_handle="nav_add_book_icon" src={active_icon === "/add_book" ? add_book_active : add_book} alt={"b"} to={"/add_book"} handleClick={() => set_active_icon("/add_book")} text="Add Book" />
-                                <Option test_handle="nav_search_icon" src={active_icon === "/search" ? search_active : search} alt={"b"} to={"/search"} handleClick={() => set_active_icon("/search")} text="Search" />
-                                <Option test_handle="nav_worth_icon" src={active_icon === "/worth_it" ? worth_it_active : worth_it} alt={"b"} to={"/worth_it"} handleClick={() => set_active_icon("/worth_it")} text="Worth It" />
+                                <Option test_handle="nav_home_icon" src={active_icon === "/" ? home_active : home} alt={"b"} to={"/"} handleClick={() => set_active_icon("/")} text="Home" onClick={props.onClickIcon} />
+                                <Option test_handle="nav_add_book_icon" src={active_icon === "/add_book" ? add_book_active : add_book} alt={"b"} to={"/add_book"} handleClick={() => set_active_icon("/add_book")} text="Add Book" onClick={props.onClickIcon}/>
+                                <Option test_handle="nav_search_icon" src={active_icon === "/search" ? search_active : search} alt={"b"} to={"/search"} handleClick={() => set_active_icon("/search")} text="Search" onClick={props.onClickIcon}/>
+                                <Option test_handle="nav_worth_icon" src={active_icon === "/worth_it" ? worth_it_active : worth_it} alt={"b"} to={"/worth_it"} handleClick={() => set_active_icon("/worth_it")} text="Worth It" onClick={props.onClickIcon}/>
 
                             </div>
 

@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from "react-redux"
 
 //redux action creators
 import { fetch_books } from "../../Store/Actions/Fetch_books_action"
-import {clear_feedback } from "../../Store/Actions/Submit_form_action"
+import {CLEAR_SUBMISSION_RESULT } from "../../Store/Actions/Submit_form_action"
 
 const Dashboard = props => {
 
@@ -88,7 +88,7 @@ const Dashboard = props => {
 
         <div className={classes.container}>
 
-            <OptionsBar path={props.location.pathname} onClick={()=> dispatch(clear_feedback())} />
+            <OptionsBar path={props.location.pathname} onClick={()=> dispatch(CLEAR_SUBMISSION_RESULT())} />
 
             <BooksOwned
 

@@ -63,13 +63,13 @@ export const Image_upload = props => {
 
     return (
 
-        <div test_handle={props.test_handle} className={classes.container} style={{ border: successful_upload && "none" }} >
+        <div test_handle={props.test_handle} className={classes.container} style={{ border: (successful_upload && "none") || props.no_style && "none", margin:props.no_style && "0" }} >
 
             {successful_upload ?
 
                 <div className={classes.successful_upload_container}>
 
-                    <img src={preview_selected_image} alt={"An icon"} className={classes.uploaded_image} />
+                    <img src={preview_selected_image} alt={"An icon"} className={classes.uploaded_image}/>
 
                     <span onClick={() => set_successful_upload(false)} className={classes.revert_button} style={{ border: `1px solid ${colours.grey}`, color:colours.grey }}>Change Photo</span>
 
@@ -79,7 +79,7 @@ export const Image_upload = props => {
 
                 <React.Fragment>
 
-                    <img src={upload} alt={"An icon"} className={classes.icon} style={{ display: preview_selected_image === upload ? "block" : "none" }} />
+                    <img src={upload} alt={"An icon"} className={classes.icon} style={{ display: preview_selected_image === upload ? "block" : "none"}} />
 
                     <img src={preview_selected_image} alt={"An icon"} className={classes.preview_img} style={{ display: preview_selected_image === upload ? "none" : "block" }} />
 
