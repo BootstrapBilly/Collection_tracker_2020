@@ -5,18 +5,27 @@ import classes from "./Search.module.css"
 //components
 import ImageUpload from "../../../../Shared Components/Image_upload_/Image_upload"
 import Button from "./components/Button"
+import BackButton from "../Button/Button"
 
 //assets
-import image from "../../../../Assets/Img/default_search_image.png"
+import default_image from "../../../../Assets/Img/default_search_image.png"
 import del from "../../../../Assets/Icons/delete.svg"
 import update from "../../../../Assets/Icons/update.svg"
 import photo from "../../../../Assets/Icons/camera.svg"
 import cog from "../../../../Assets/Icons/settings.svg"
+import spinner from "../../../../Assets/Spinners/Photo_spinner.svg"
 
 //util
 import colours from "../../../../Util/Colours"
+import { storage } from "../../../../firebase/index"
 
 export const Search = props => {
+
+    const [image, set_image] = useState(spinner)
+
+    storage.ref("images").child(props.year.toString()).getDownloadURL()
+    .then(response => set_image(response))
+    .catch(err => set_image(default_image))
 
     const [options_open, set_options_open] = useState(false)
 
@@ -58,6 +67,8 @@ export const Search = props => {
                 </div>
 
             </div>
+
+            <BackButton text="Go Back" onClick={props.on_back_click}/>
 
         </div>
 

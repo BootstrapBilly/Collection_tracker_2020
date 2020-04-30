@@ -50,6 +50,14 @@ export const Desktop_add = props => {
     //!effects
     useEffect(() => { submission_result && submission_result.success && set_submission_result_data(submission_result.details) }, [submission_result])
 
+    //_ functions
+    const handle_result_back_click = () => {
+
+        dispatch(clear_submission_result())
+        set_submission_result_data(null)
+        
+    }
+
     return (
 
         <React.Fragment>
@@ -59,7 +67,7 @@ export const Desktop_add = props => {
                 {
 
                 submission_result_data && submission_result_data.type === "add" ? <Search />
-                    : submission_result_data && submission_result_data.type === "search" ? <Search year={submission_result_data.book.year} condition={submission_result_data.book.condition}/>
+                    : submission_result_data && submission_result_data.type === "search" ? <Search year={submission_result_data.book.year} condition={submission_result_data.book.condition} on_back_click={() => handle_result_back_click()}/>
                         : submission_result_data && submission_result_data.type === "worth" ? "Worth" :
 
                             <div className={classes.form_container}>
