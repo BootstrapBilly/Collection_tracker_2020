@@ -8,7 +8,7 @@ const Option = props => {
 
     return (
 
-        <div className={classes.container}>
+        <div className={classes.container} test_handle={props.test_handle}>
 
             <Link to={props.to} test-handle={props.test_handle} style={{ textDecoration: 'none' }}>
 

@@ -25,13 +25,13 @@ const Options_bar = props => {
 
         <React.Fragment>
 
-            <img src={menu} alt={"A menu icon"} className={classes.open_icon} onClick={() => set_overlay_open(!overlay_open)}/>
+            <img test_handle="nav_menu_icon" src={menu} alt={"A menu icon"} className={classes.open_icon} onClick={() => set_overlay_open(!overlay_open)}/>
 
             {overlay_open &&
 
                 <React.Fragment>
 
-                    <div className={classes.overlay} onClick={()=> set_overlay_open(false)}>
+                    <div test_handle="nav_overlay" className={classes.overlay} onClick={()=> set_overlay_open(false)}>
 
                         <div className={classes.container}>
 
@@ -39,10 +39,10 @@ const Options_bar = props => {
 
                             <div className={classes.icon_container}>
 
-                                <Option src={active_icon === "/" ? home_active : home} alt={"b"} to={"/"} handleClick={() => set_active_icon("/")} text="Home" />
-                                <Option src={active_icon === "/add_book" ? add_book_active : add_book} alt={"b"} to={"/add_book"} handleClick={() => set_active_icon("/add_book")} text="Add Book" />
-                                <Option src={active_icon === "/search" ? search_active : search} alt={"b"} to={"/search"} handleClick={() => set_active_icon("/search")} text="Search" />
-                                <Option src={active_icon === "/worth_it" ? worth_it_active : worth_it} alt={"b"} to={"/worth_it"} handleClick={() => set_active_icon("/worth_it")} text="Worth It" />
+                                <Option test_handle="nav_home_icon" src={active_icon === "/" ? home_active : home} alt={"b"} to={"/"} handleClick={() => set_active_icon("/")} text="Home" />
+                                <Option test_handle="nav_add_book_icon" src={active_icon === "/add_book" ? add_book_active : add_book} alt={"b"} to={"/add_book"} handleClick={() => set_active_icon("/add_book")} text="Add Book" />
+                                <Option test_handle="nav_search_icon" src={active_icon === "/search" ? search_active : search} alt={"b"} to={"/search"} handleClick={() => set_active_icon("/search")} text="Search" />
+                                <Option test_handle="nav_worth_icon" src={active_icon === "/worth_it" ? worth_it_active : worth_it} alt={"b"} to={"/worth_it"} handleClick={() => set_active_icon("/worth_it")} text="Worth It" />
 
                             </div>
 
