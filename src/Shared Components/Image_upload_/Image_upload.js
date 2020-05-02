@@ -27,9 +27,9 @@ export const Image_upload = props => {
     const [successful_upload, set_successful_upload] = useState(false)
 
     //_functions
-    const handle_photo_upload = () => {
+    const handle_photo_upload = (event) => {
 
-        const upload_task = storage.ref(`images/${props.year.toString()}`).put(selected_photo)
+        const upload_task = storage.ref(`images/${props.year.toString()}`).put(event.target.files[0])
 
         upload_task.on("state_changed",
 
@@ -46,6 +46,7 @@ export const Image_upload = props => {
             () => {
                 //complete function
                 storage.ref("images").child(props.year.toString()).getDownloadURL().then(url => {
+                    set_preview_selected_image(url)
                     dispatch(reload_search_result_action(url))
                     set_successful_upload(true)
                 })
@@ -53,12 +54,14 @@ export const Image_upload = props => {
     }
 
 
-    const handle_select_photo = event => {
+    // const handle_select_photo = event => {
 
-        set_selected_photo(event.target.files[0])
-        set_preview_selected_image(URL.createObjectURL(event.target.files[0]))
+    //     set_selected_photo(event.target.files[0])
+    //     set_preview_selected_image(URL.createObjectURL(event.target.files[0]))
 
-    }
+    //     handle_photo_upload()
+
+    // }
 
 
     return (
@@ -83,19 +86,9 @@ export const Image_upload = props => {
 
                     <img src={preview_selected_image} alt={"An icon"} className={classes.preview_img} style={{ display: preview_selected_image === upload ? "none" : "block" }} />
 
-                    <input type="file" name="img" id="img" className={classes.input} style={{ display: "none" }} onChange={(event) => handle_select_photo(event)} />
+                    <input type="file" name="img" id="img" className={classes.input} style={{ display: "none" }} onChange={(event) => handle_photo_upload(event)} />
 
                     <label test_handle="image_upload_clickable_area" htmlFor="img" className={classes.clickable_area}>{selected_photo ? <span className={classes.chosen_photo_name}>{selected_photo.name}</span> : <span className={classes.choose_photo}>Choose a photo</span>}</label>
-
-                    <div className={classes.button_container} style={{ display: selected_photo ? "flex" : "none" }}>
-
-                        <input type="file" name="change" id="change" className={classes.input} onChange={(event) => handle_select_photo(event)} style={{ display: "none" }} />
-
-                        <label htmlFor="change" className={classes.change_button} style={{ border: `1px solid ${colours.red}`, color: colours.red }}>Change</label>
-
-                        <span onClick={() => handle_photo_upload()} className={classes.upload_button} style={{ backgroundColor: colours.green, border: `1px solid ${colours.green}` }}>Add</span>
-
-                    </div>
 
                 </React.Fragment>
 
