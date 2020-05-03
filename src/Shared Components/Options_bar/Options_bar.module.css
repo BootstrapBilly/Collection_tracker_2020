@@ -44,6 +44,11 @@
 
 }
 
+.open_icon:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
 .open_icon{
 
     position: fixed;

@@ -3,7 +3,6 @@ import React, {useState} from 'react'
 import classes from "./Search.module.css"
 
 //components
-import ImageUpload from "../../../../Shared Components/Image_upload_/Image_upload"
 import Button from "./components/Button"
 import BackButton from "../Button/Button"
 
@@ -11,7 +10,7 @@ import BackButton from "../Button/Button"
 import default_image from "../../../../Assets/Img/default_search_image.png"
 import del from "../../../../Assets/Icons/delete.svg"
 import update from "../../../../Assets/Icons/update.svg"
-import photo from "../../../../Assets/Icons/camera.svg"
+
 import cog from "../../../../Assets/Icons/settings.svg"
 import spinner from "../../../../Assets/Spinners/Photo_spinner.svg"
 
@@ -19,13 +18,25 @@ import spinner from "../../../../Assets/Spinners/Photo_spinner.svg"
 import colours from "../../../../Util/Colours"
 import { storage } from "../../../../firebase/index"
 
+//redux hooks
+import {useDispatch} from "react-redux"
+
+//redux action creators
+import { submit_form } from "../../../../Store/Actions/Submit_form_action"
+
+import inject from "../../../../Shared Components/Alert/functions/inject_message_into_dom"
+
 export const Search = props => {
 
-    const [image, set_image] = useState(spinner)
+    //-Config
+    const dispatch = useDispatch()
 
     storage.ref("images").child(props.year.toString()).getDownloadURL()
     .then(response => set_image(response))
     .catch(err => set_image(default_image))
+
+    //*states
+    const [image, set_image] = useState(spinner)
 
     const [options_open, set_options_open] = useState(false)
 
@@ -35,6 +46,12 @@ export const Search = props => {
        if(props.condition === "Fair") return colours.orange
        if(props.condition === "Mint") return colours.green
 
+    }
+
+    const handle_delete = () => {
+
+        // dispatch(submit_form({ year: props.year, condition: props.condition }, "delete_book"))
+        inject(`Please enter a year between 1955 and ${new Date().getFullYear()}`, "error", props.set_feedback_info)//set the validation error
     }
 
     return (
@@ -61,7 +78,7 @@ export const Search = props => {
 
                 <div className={[classes.button_container, options_open ? classes.nav_open : null].join(" ")}>
 
-                    <Button src={del} text="Delete"/>
+                    <Button src={del} text="Delete" handle_click={()=> handle_delete()}/>
                     <Button src={update} text="Update"/>
 
                 </div>

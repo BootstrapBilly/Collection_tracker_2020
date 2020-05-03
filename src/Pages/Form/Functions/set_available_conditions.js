@@ -20,9 +20,7 @@ const set_conditions = async (year, set_available_conditions) => {
 
     console.log(available_conditions)
 
-    if(!available_conditions.length) {
-        console.log("inside")
-        return false}
+    if(!available_conditions.length) return false //if no conditions were found, return false
 
     return set_available_conditions(available_conditions)//set the available conditions on the next step
 }

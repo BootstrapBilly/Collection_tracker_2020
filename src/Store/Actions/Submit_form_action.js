@@ -7,13 +7,17 @@ export const DB_ERROR = "DB_ERROR";
 export const VALIDATION_FAILURE = "VALIDATION_FAILURE";
 export const CLEAR_SUBMISSION_RESULT = "CLEAR_SUBMISSION_RESULT"
 
-export const submit_form = (form_values, url) => {
+export const submit_form = (form_values, url, type) => {
+
+    let request = send_request(url, { form_values: form_values }) 
+
+    if(type) {request = send_request(url, {form_values: form_values}, type)}
 
     return async dispatch => {
 
         try {
 
-            const response = await send_request(url, { form_values: form_values })        
+            const response = await request      
             if (response.data.success) return dispatch({ type: SUCCESS, payload: response.data })
 
         }

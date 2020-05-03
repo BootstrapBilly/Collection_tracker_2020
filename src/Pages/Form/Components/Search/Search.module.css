@@ -15,7 +15,7 @@
     flex-direction: column;
     align-items: center;
     border-radius: 5px;
-    box-shadow: 3px 3px 6px 3px rgba(128, 128, 128, 0.534);
+    box-shadow: 2px 2px 10px 2px rgba(128, 128, 128, 0.534);
     background-color: white;
     position: relative;
     border-top-left-radius: 10px;
@@ -88,6 +88,11 @@
     position: absolute;
     top: 21px;
     right: 15px;
+}
+
+.cog:hover{
+    cursor: pointer;
+    transform: scale(1.05);
 }
 
 @media (min-width:1200px){

@@ -6,7 +6,7 @@ export const Button = props => {
 
     return (
 
-        <div className={classes.container}>
+        <div className={classes.container} onClick={props.handle_click}>
 
             <img src={props.src} alt={"A button"} className={classes.icon}/>
             <span className={classes.text}>{props.text}</span>

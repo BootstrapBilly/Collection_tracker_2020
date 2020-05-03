@@ -27,6 +27,7 @@ import handle_next_click from "./Functions/handle_next_click"
 import set_conditions from "./Functions/set_available_conditions"
 import set_prompt_message from "./Functions/set_prompt_message"
 
+
 export const Desktop_add = props => {
 
     //-config
@@ -45,13 +46,33 @@ export const Desktop_add = props => {
     //?selectors
     const submission_result = useSelector(state => state.result.submission_result)
 
-    console.log(submission_result_data)
+    submission_result_data && submission_result_data.type==="delete" && console.log(submission_result_data)
 
     //!effects
-    useEffect(() => { submission_result && submission_result.success && set_submission_result_data(submission_result.details) }, [submission_result])
+    useEffect(() => {
+
+        if (submission_result && submission_result.success) {
+
+            set_submission_result_data(submission_result.details)
+
+
+
+        }
+
+
+    }, [submission_result])
 
     //_ functions
     const handle_result_back_click = () => {
+
+        if (props.type === "Add") window.location.reload()
+            .then(() => clear_submission_data())
+
+        else clear_submission_data()
+
+    }
+
+    const clear_submission_data = () => {
 
         dispatch(clear_submission_result())
         set_submission_result_data(null)
@@ -66,8 +87,9 @@ export const Desktop_add = props => {
 
                 {
 
-                submission_result_data && (submission_result_data.type === "add" || submission_result_data.type === "search" ) ? <Search year={submission_result_data.book.year} condition={submission_result_data.book.condition} on_back_click={() => handle_result_back_click()}/>
-                
+                    submission_result_data && (submission_result_data.type === "add" || submission_result_data.type === "search") ?
+                        <div className={classes.book_container}><Search year={submission_result_data.book.year} condition={submission_result_data.book.condition} on_back_click={() => handle_result_back_click()} set_feedback_info={set_feedback_info} /></div>
+
                         : submission_result_data && submission_result_data.type === "worth" ? "Worth" :
 
                             <div className={classes.form_container}>
@@ -118,7 +140,7 @@ export const Desktop_add = props => {
                                 </div>
 
                             </div>
-                } 
+                }
 
                 {<Alert message={feedback_info[0]} type={feedback_info[1]} />}
 
