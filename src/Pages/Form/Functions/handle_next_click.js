@@ -8,7 +8,7 @@ const handle_next_click = async (current_step, set_current_step, year, selected_
 
     switch (form_type) {
 
-       
+
         //?Add
         case "Add":
 
@@ -18,14 +18,21 @@ const handle_next_click = async (current_step, set_current_step, year, selected_
                 //*validation pass
                 if (parseInt(year) > 1954 && parseInt(year) < new Date().getFullYear() + 1) { //if the year is between 1955 and the current year
 
-                    //call set_conditions function which gets any existing conditions from the backend and removes them from the next step
+                    const available_conditions = await set_conditions(year, set_selected_condition)//check if any conditions are taken for the given year
+                
+                    if (available_conditions === false) {// if every condition is taken
+                        set_feedback_info([`You have this book in every condition`, "error"])//set the validation error
+                        return document.getElementById("root").insertBefore(document.getElementById("alert_container"), document.querySelector(".App"))//inject it into the dom
+                    }
+
+                    //Otherwise set the available conditions on the next page
                     set_conditions(year, set_selected_condition)//located in the functions folder
-                    
-                    return set_current_step("condition")//set the step to condition
+                    .then(r => set_current_step("condition"))//After they have been set, load the page
+
                 }
 
                 //!Validation failure
-                set_feedback_info([`Please enter a year between 1955 and ${new Date().getFullYear()}`, "error"])//set the validation error
+                else set_feedback_info([`Please enter a year between 1955 and ${new Date().getFullYear()}`, "error"])//set the validation error
 
                 return document.getElementById("root").insertBefore(document.getElementById("alert_container"), document.querySelector(".App"))//inject it into the dom
 
@@ -47,22 +54,22 @@ const handle_next_click = async (current_step, set_current_step, year, selected_
 
         case "Worth":
 
-         //_year
-         if (current_step === "year") {
+            //_year
+            if (current_step === "year") {
 
-            //*validation pass
-            if (parseInt(year) > 1954 && parseInt(year) < new Date().getFullYear() + 1) return set_current_step("condition")//set the step to condition
-            
-            //!Validation failure
-            set_feedback_info([`Please enter a year between 1955 and ${new Date().getFullYear()}`, "error"])//set the validation error
+                //*validation pass
+                if (parseInt(year) > 1954 && parseInt(year) < new Date().getFullYear() + 1) return set_current_step("condition")//set the step to condition
 
-            return document.getElementById("root").insertBefore(document.getElementById("alert_container"), document.querySelector(".App"))//inject it into the dom
+                //!Validation failure
+                set_feedback_info([`Please enter a year between 1955 and ${new Date().getFullYear()}`, "error"])//set the validation error
 
-         }
+                return document.getElementById("root").insertBefore(document.getElementById("alert_container"), document.querySelector(".App"))//inject it into the dom
 
-         return dispatch(submit_form({ year: year, condition: selected_condition }, "worth_buying"))
+            }
 
-         default:return
+            return dispatch(submit_form({ year: year, condition: selected_condition }, "worth_buying"))
+
+        default: return
     }
 
 

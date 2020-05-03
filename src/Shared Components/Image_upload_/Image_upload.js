@@ -6,6 +6,9 @@ import classes from "./Image_upload.module.css"
 //assets
 import upload from "../../Assets/Icons/upload.svg"
 
+//external
+import spinner from "../../Assets/Spinners/Photo_spinner.svg"
+
 //util
 import colours from "../../Util/Colours"
 import { storage } from "../../firebase/index"
@@ -22,7 +25,6 @@ export const Image_upload = props => {
     const dispatch = useDispatch()
 
     //*states
-    const [selected_photo, set_selected_photo] = useState(null)
     const [preview_selected_image, set_preview_selected_image] = useState(upload)
     const [successful_upload, set_successful_upload] = useState(false)
 
@@ -30,6 +32,8 @@ export const Image_upload = props => {
     const handle_photo_upload = (event) => {
 
         const upload_task = storage.ref(`images/${props.year.toString()}`).put(event.target.files[0])
+
+        set_preview_selected_image(spinner)
 
         upload_task.on("state_changed",
 
@@ -53,19 +57,9 @@ export const Image_upload = props => {
             });
     }
 
-
-    // const handle_select_photo = event => {
-
-    //     set_selected_photo(event.target.files[0])
-    //     set_preview_selected_image(URL.createObjectURL(event.target.files[0]))
-
-    //     handle_photo_upload()
-
-    // }
-
-
     return (
 
+// eslint-disable-next-line
         <div test_handle={props.test_handle} className={classes.container} style={{ border: (successful_upload && "none") || props.no_style && "none", margin:props.no_style && "0" }} >
 
             {successful_upload ?
@@ -88,7 +82,7 @@ export const Image_upload = props => {
 
                     <input type="file" name="img" id="img" className={classes.input} style={{ display: "none" }} onChange={(event) => handle_photo_upload(event)} />
 
-                    <label test_handle="image_upload_clickable_area" htmlFor="img" className={classes.clickable_area}>{selected_photo ? <span className={classes.chosen_photo_name}>{selected_photo.name}</span> : <span className={classes.choose_photo}>Choose a photo</span>}</label>
+                    <label test_handle="image_upload_clickable_area" htmlFor="img" className={classes.clickable_area}><span className={classes.choose_photo}>Choose a photo</span></label>
 
                 </React.Fragment>
 
