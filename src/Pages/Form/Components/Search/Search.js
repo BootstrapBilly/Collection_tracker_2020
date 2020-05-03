@@ -25,6 +25,7 @@ import {useDispatch} from "react-redux"
 import { submit_form } from "../../../../Store/Actions/Submit_form_action"
 
 import inject from "../../../../Shared Components/Alert/functions/inject_message_into_dom"
+import message from "../../../../Shared Components/New_alert/New_alert"
 
 export const Search = props => {
 
@@ -50,8 +51,8 @@ export const Search = props => {
 
     const handle_delete = () => {
 
-        // dispatch(submit_form({ year: props.year, condition: props.condition }, "delete_book"))
-        inject(`Please enter a year between 1955 and ${new Date().getFullYear()}`, "error", props.set_feedback_info)//set the validation error
+        dispatch(submit_form({ year: props.year, condition: props.condition }, "delete_book"))
+
     }
 
     return (

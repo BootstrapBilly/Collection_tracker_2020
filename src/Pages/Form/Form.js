@@ -27,11 +27,10 @@ import handle_next_click from "./Functions/handle_next_click"
 import set_conditions from "./Functions/set_available_conditions"
 import set_prompt_message from "./Functions/set_prompt_message"
 
+//util
+import Alurt from "../../Shared Components/New_alert/New_alert"
 
 export const Desktop_add = props => {
-
-    //-config
-    //const { innerWidth: width } = window;//get the dimensions of the window
 
     const dispatch = useDispatch()
 
@@ -46,8 +45,6 @@ export const Desktop_add = props => {
     //?selectors
     const submission_result = useSelector(state => state.result.submission_result)
 
-    submission_result_data && submission_result_data.type==="delete" && console.log(submission_result_data)
-
     //!effects
     useEffect(() => {
 
@@ -55,12 +52,17 @@ export const Desktop_add = props => {
 
             set_submission_result_data(submission_result.details)
 
+            if (submission_result.details.type === "delete") {
 
+               clear_submission_data()
+                return Alurt("Book deleted successfully", "success")
+            }
 
         }
 
 
     }, [submission_result])
+
 
     //_ functions
     const handle_result_back_click = () => {
@@ -88,7 +90,7 @@ export const Desktop_add = props => {
                 {
 
                     submission_result_data && (submission_result_data.type === "add" || submission_result_data.type === "search") ?
-                        <div className={classes.book_container}><Search year={submission_result_data.book.year} condition={submission_result_data.book.condition} on_back_click={() => handle_result_back_click()} set_feedback_info={set_feedback_info} /></div>
+                        <div className={classes.book_container}><Search year={submission_result_data.book.year} condition={submission_result_data.book.condition} on_back_click={() => handle_result_back_click()} /></div>
 
                         : submission_result_data && submission_result_data.type === "worth" ? "Worth" :
 
