@@ -5,13 +5,13 @@ import backgrounds from "./Background_image.module.css"
 
 //external
 import colours from "../../Util/Colours"
+import Alert from "easyalert"
 
 //components
 import Button from "./Components/Button/Button"
 import ConditionSelect from "./Components/Condition_Select/Condition_Select"
 import Input from "./Components/Input/Input"
 import ImageUpload from "../../Shared Components/Image_upload_/Image_upload"
-import Alert from "../../Shared Components/Alert/Alert"
 import NavBar from "../../Shared Components/Options_bar/Options_bar"
 import Search from "./Components/Search/Search"
 
@@ -28,7 +28,6 @@ import set_conditions from "./Functions/set_available_conditions"
 import set_prompt_message from "./Functions/set_prompt_message"
 
 //util
-import Alurt from "../../Shared Components/New_alert/New_alert"
 
 export const Desktop_add = props => {
 
@@ -55,7 +54,9 @@ export const Desktop_add = props => {
             if (submission_result.details.type === "delete") {
 
                clear_submission_data()
-                return Alurt("Book deleted successfully", "success")
+
+                return Alert("Book deleted successfully", "success")
+
             }
 
         }
@@ -143,8 +144,6 @@ export const Desktop_add = props => {
 
                             </div>
                 }
-
-                {<Alert message={feedback_info[0]} type={feedback_info[1]} />}
 
                 <NavBar path={props.path} onClickIcon={() => dispatch(clear_submission_result())} />
 

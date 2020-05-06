@@ -1,5 +1,5 @@
 /* Check the current step, then respond accordingly */
-import inject_message_into_dom from "../../../Shared Components/Alert/functions/inject_message_into_dom"
+import Alert from "easyalert"
 
 const handle_next_click = async (current_step, set_current_step, year, selected_condition, set_conditions, set_feedback_info, dispatch, submit_form, set_selected_condition, form_type) => {
 
@@ -18,18 +18,20 @@ const handle_next_click = async (current_step, set_current_step, year, selected_
                 if (parseInt(year) > 1954 && parseInt(year) < new Date().getFullYear() + 1) { //if the year is between 1955 and the current year
 
                     const available_conditions = await set_conditions(year, set_selected_condition)//check if any conditions are taken for the given year
-                
-                    if (available_conditions === false) return inject_message_into_dom(`You have this book in every condition`, "error", set_feedback_info)
+
+                    if (available_conditions === false) return Alert(`You have this book in every condition`, "error")
 
                     //Otherwise set the available conditions on the next page
                     set_conditions(year, set_selected_condition)//located in the functions folder
-                    .then(r => set_current_step("condition"))//After they have been set, load the page
+                        .then(r => set_current_step("condition"))//After they have been set, load the page
 
                 }
 
                 //!Validation failure
 
-                else return inject_message_into_dom(`Please enter a year between 1955 and ${new Date().getFullYear()}`, "error", set_feedback_info)//set the validation error
+                else {
+                    return Alert(`Please enter a year between 1955 and ${new Date().getFullYear()}`, "error", { bottom: handle_offset("bottom"), right: handle_offset("right") })//set the validation error
+                }
 
             }
 
@@ -39,7 +41,7 @@ const handle_next_click = async (current_step, set_current_step, year, selected_
 
 
             //_Add book
-            
+
             //last page submits the form with the selected year and condition
             return dispatch(submit_form({ year: year, condition: selected_condition }, "add_book"))
 
@@ -71,6 +73,34 @@ const handle_next_click = async (current_step, set_current_step, year, selected_
 
 
 
+
+}
+
+const handle_offset = direction => {
+
+    switch (direction) {
+
+        case "bottom":
+
+            if (window.innerHeight < 600) return "25vh"
+
+            if (window.innerHeight >= 600 && window.innerHeight <= 850 && window.innerWidth < 1000) return "30vh"
+
+            if (window.innerHeight > 850) return "170px"
+
+            return "60px"
+
+        case "right":
+
+            if (window.innerWidth < 1000) return "0px"
+
+            if (window.innerWidth > 1500) return "35vw"
+
+            return "28vw"
+
+        default: return ""
+
+    }
 
 }
 

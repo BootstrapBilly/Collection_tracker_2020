@@ -24,9 +24,6 @@ import {useDispatch} from "react-redux"
 //redux action creators
 import { submit_form } from "../../../../Store/Actions/Submit_form_action"
 
-import inject from "../../../../Shared Components/Alert/functions/inject_message_into_dom"
-import message from "../../../../Shared Components/New_alert/New_alert"
-
 export const Search = props => {
 
     //-Config
@@ -52,7 +49,7 @@ export const Search = props => {
     const handle_delete = () => {
 
         dispatch(submit_form({ year: props.year, condition: props.condition }, "delete_book"))
-
+    
     }
 
     return (
