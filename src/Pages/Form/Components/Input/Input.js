@@ -28,6 +28,8 @@ export const Input = props => {
                 onBlur={props.onBlur}
 
                 test_handle={props.test_handle}
+
+                onKeyDown={props.handle_keydown}
             />
 
     )

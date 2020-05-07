@@ -114,10 +114,8 @@ export const Desktop_add = props => {
                                     current_step === "year" ?
 
                                         <Input year={year} error={null} test_handle="form_input"
-                                            handle_change={event => {
-
-                                                set_year(event.target.value)
-                                            }}
+                                            handle_change={event => set_year(event.target.value)}
+                                            handle_keydown={event => year && year.length === 4 && event.key === "Enter" && handle_next_click(current_step, set_current_step, year, selected_condition, set_conditions, dispatch, submit_form, set_available_conditions, props.type) }
                                         />
 
                                         :
