@@ -1,10 +1,10 @@
 /* Check the current step, then respond accordingly */
 import Alert from "easyalert"
 
-const handle_next_click = async (current_step, set_current_step, year, selected_condition, set_conditions, set_feedback_info, dispatch, submit_form, set_selected_condition, form_type) => {
+const handle_next_click = async (current_step, set_current_step, year, selected_condition, set_conditions, dispatch, submit_form, set_selected_condition, form_type) => {
 
-    set_feedback_info([null, "hidden"])//firstly clear any user feedback, incase it needs to be showed again
-
+    const year_is_valid = parseInt(year) > 1954 && parseInt(year) < new Date().getFullYear() + 1 //if the year is between 1955 and the current year
+    
     switch (form_type) {
 
         //?Add
@@ -15,11 +15,11 @@ const handle_next_click = async (current_step, set_current_step, year, selected_
 
                 //*validation pass
 
-                if (parseInt(year) > 1954 && parseInt(year) < new Date().getFullYear() + 1) { //if the year is between 1955 and the current year
+                if (year_is_valid) { 
 
                     const available_conditions = await set_conditions(year, set_selected_condition)//check if any conditions are taken for the given year
 
-                    if (available_conditions === false) return Alert(`You have this book in every condition`, "error")
+                    if (available_conditions === false) return Alert(`You have this book in all conditions`, "error", { bottom: handle_offset("bottom"), right: handle_offset("right") })
 
                     //Otherwise set the available conditions on the next page
                     set_conditions(year, set_selected_condition)//located in the functions folder
@@ -43,13 +43,16 @@ const handle_next_click = async (current_step, set_current_step, year, selected_
             //_Add book
 
             //last page submits the form with the selected year and condition
-            return dispatch(submit_form({ year: year, condition: selected_condition }, "add_book"))
+            if (current_step === "photo") return dispatch(submit_form({ year: year, condition: selected_condition }, "add_book"))
+
+            break;
 
         //?Search
         case "Search":
 
-            //Submit the search request
-            return dispatch(submit_form(year, "search_for_book"))
+        if(year_is_valid) return dispatch(submit_form(year, "search_for_book"))
+
+        else return Alert(`Please enter a year between 1955 and ${new Date().getFullYear()}`, "error", { bottom: handle_offset("bottom"), right: handle_offset("right") })
 
         case "Worth":
 
@@ -57,12 +60,10 @@ const handle_next_click = async (current_step, set_current_step, year, selected_
             if (current_step === "year") {
 
                 //*validation pass
-                if (parseInt(year) > 1954 && parseInt(year) < new Date().getFullYear() + 1) return set_current_step("condition")//set the step to condition
+                if (year_is_valid) return set_current_step("condition")//set the step to condition
 
                 //!Validation failure
-                set_feedback_info([`Please enter a year between 1955 and ${new Date().getFullYear()}`, "error"])//set the validation error
-
-                return document.getElementById("root").insertBefore(document.getElementById("alert_container"), document.querySelector(".App"))//inject it into the dom
+                else return Alert(`Please enter a year between 1955 and ${new Date().getFullYear()}`, "error", { bottom: handle_offset("bottom"), right: handle_offset("right") })
 
             }
 
@@ -82,13 +83,13 @@ const handle_offset = direction => {
 
         case "bottom":
 
-            if (window.innerHeight < 600) return "25vh"
+            if (window.innerHeight < 600) return "25vh"//small phone
 
-            if (window.innerHeight >= 600 && window.innerHeight <= 850 && window.innerWidth < 1000) return "30vh"
+            if (window.innerHeight >= 600 && window.innerHeight <= 850 && window.innerWidth < 1000) return "30vh"//large phone
 
-            if (window.innerHeight > 850) return "170px"
+            if (window.innerHeight > 850) return "170px" //large desktop
 
-            return "60px"
+            return "60px" //laptop
 
         case "right":
 

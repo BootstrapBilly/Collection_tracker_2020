@@ -7,7 +7,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
-    "easyalert": "^2.0.0",
+    "easyalert": "^2.1.0",
     "firebase": "^7.14.2",
     "react": "^16.13.1",
     "react-animation": "^1.2.2",

@@ -20,7 +20,7 @@ export const Condition = props => {
 
                 </div>
 
-                <span className={classes.type} style={{ color: handle_colour_assignment() }}>{props.type}</span>
+                <span test_handle={props.test_handle} className={classes.type} style={{ color: handle_colour_assignment() }}>{props.type}</span>
 
             
 

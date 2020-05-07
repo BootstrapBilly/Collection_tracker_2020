@@ -37,7 +37,6 @@ export const Desktop_add = props => {
     const [current_step, set_current_step] = useState("year")//the current step of the form, year/condition/photo
     const [year, set_year] = useState(null)//the entered year
     const [selected_condition, set_selected_condition] = useState(null)//the selected condition
-    const [feedback_info, set_feedback_info] = useState([null, "hidden"])//set feedback message text
     const [available_conditions, set_available_conditions] = useState(["Poor", "Fair", "Mint"])//hold available conditions (all conditions - existing conditions)
     const [submission_result_data, set_submission_result_data] = useState(null)
 
@@ -82,6 +81,8 @@ export const Desktop_add = props => {
 
     }
 
+    console.log(submission_result)
+
     return (
 
         <React.Fragment>
@@ -104,9 +105,9 @@ export const Desktop_add = props => {
                                 {
                                     current_step === "year" ?
 
-                                        <Input year={year} error={feedback_info[0]} test_handle="form_input"
+                                        <Input year={year} error={null} test_handle="form_input"
                                             handle_change={event => {
-                                                set_feedback_info([null, "hidden"])
+                        
                                                 set_year(event.target.value)
                                             }}
                                         />
@@ -138,7 +139,7 @@ export const Desktop_add = props => {
                                         onClick={() => handle_back_click(current_step, set_current_step)} type="back" />
 
                                     <Button year={year} current_step={current_step} selected_condition={selected_condition} text="Add Book" test_handle="form_next_button"
-                                        onClick={() => handle_next_click(current_step, set_current_step, year, selected_condition, set_conditions, set_feedback_info, dispatch, submit_form, set_available_conditions, props.type)} />
+                                        onClick={() => handle_next_click(current_step, set_current_step, year, selected_condition, set_conditions, dispatch, submit_form, set_available_conditions, props.type)} />
 
                                 </div>
 

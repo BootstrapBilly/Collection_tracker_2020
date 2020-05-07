@@ -56,7 +56,7 @@ export const Search = props => {
 
         <div className={classes.container}>
 
-            <div className={classes.card}>
+            <div className={classes.card} test_handle="book_card">
 
                 <div className={classes.image_container} style={{backgroundColor:handle_colour_assignment()}}>
 
@@ -70,20 +70,20 @@ export const Search = props => {
 
                     <p className={classes.year}>{props.year}</p>
                     <p className={classes.condition} style={{color:handle_colour_assignment()}}>{props.condition} condition</p>
-                    <img src={cog} alt={"cog"} className={classes.cog} onClick={()=> set_options_open(!options_open)} />
+                    <img test_handle="book_options_cog" src={cog} alt={"cog"} className={classes.cog} onClick={()=> set_options_open(!options_open)} />
 
                 </div>
 
                 <div className={[classes.button_container, options_open ? classes.nav_open : null].join(" ")}>
 
-                    <Button src={del} text="Delete" handle_click={()=> handle_delete()}/>
+                    <Button src={del} text="Delete" handle_click={()=> handle_delete()} test_handle="delete_book"/>
                     <Button src={update} text="Update"/>
 
                 </div>
 
             </div>
 
-            <BackButton text="Go Back" onClick={props.on_back_click}/>
+            <BackButton text="Go Back" onClick={props.on_back_click} test_handle="go_back_button"/>
 
         </div>
 

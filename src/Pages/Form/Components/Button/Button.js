@@ -34,6 +34,8 @@ export const Button = props => {
 
         <button
 
+            test_handle={props.test_handle}
+
             className={classes.button}
 
             style={{display: handle_display(), backgroundColor: props.type === "back" ? "none" : colours.dark_blue, border: props.type === "back" ? `2px solid ${colours.dark_blue}`: "#f8f8ff", color: props.type === "back" ? colours.dark_blue : "white" }}

@@ -16,6 +16,7 @@ export const Condition_Select = props => {
                     key={condition}
                     type={condition}
                     selected_condition={props.selected_condition}
+                    test_handle={condition}
 
                     animation_test_handle={props.animation_circle_test_handle}
                     circle_test_handle={props.circle_test_handle}
