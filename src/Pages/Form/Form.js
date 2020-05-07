@@ -43,6 +43,8 @@ export const Desktop_add = props => {
     //?selectors
     const submission_result = useSelector(state => state.result.submission_result)
 
+    console.log(submission_result)
+
     //!effects
     useEffect(() => {
 
@@ -52,7 +54,7 @@ export const Desktop_add = props => {
 
             if (submission_result.details.type === "delete") {
 
-               clear_submission_data()
+                clear_submission_data()
 
                 return Alert("Book deleted successfully", "success")
 
@@ -60,9 +62,8 @@ export const Desktop_add = props => {
 
         }
 
-
+        // eslint-disable-next-line
     }, [submission_result])
-
 
     //_ functions
     const handle_result_back_click = () => {
@@ -90,9 +91,19 @@ export const Desktop_add = props => {
             <div className={[classes.container, props.type === "Add" ? backgrounds.add : props.type === "Search" ? backgrounds.search : backgrounds.worth].join(" ")}>
 
                 {
+                    submission_result && submission_result.error === "Not_found" ? 
+                    
+                    <Search year={submission_result.details} missing on_back_click={() => handle_result_back_click()} /> :
 
-                    submission_result_data && (submission_result_data.type === "add" || submission_result_data.type === "search") ?
-                        <div className={classes.book_container}><Search year={submission_result_data.book.year} condition={submission_result_data.book.condition} on_back_click={() => handle_result_back_click()} /></div>
+                    submission_result_data && 
+                    
+                    (submission_result_data.type === "add" || submission_result_data.type === "search") ?
+                    
+                        <div className={classes.book_container}>
+
+                            <Search year={submission_result_data.book.year} condition={submission_result_data.book.condition} on_back_click={() => handle_result_back_click()} />
+
+                        </div>
 
                         : submission_result_data && submission_result_data.type === "worth" ? "Worth" :
 
@@ -107,7 +118,7 @@ export const Desktop_add = props => {
 
                                         <Input year={year} error={null} test_handle="form_input"
                                             handle_change={event => {
-                        
+
                                                 set_year(event.target.value)
                                             }}
                                         />

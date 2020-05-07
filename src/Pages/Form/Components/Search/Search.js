@@ -43,7 +43,15 @@ export const Search = props => {
        if(props.condition === "Poor") return colours.red
        if(props.condition === "Fair") return colours.orange
        if(props.condition === "Mint") return colours.green
+       if(props.missing) return colours.grey
 
+    }
+
+    const handle_condition_assignment = () => {
+
+        if(props.missing) return "Missing"
+
+        else return `${props.condition} condition`
     }
 
     const handle_delete = () => {
@@ -69,8 +77,8 @@ export const Search = props => {
                 <div className={classes.details_container}>
 
                     <p className={classes.year}>{props.year}</p>
-                    <p className={classes.condition} style={{color:handle_colour_assignment()}}>{props.condition} condition</p>
-                    <img test_handle="book_options_cog" src={cog} alt={"cog"} className={classes.cog} onClick={()=> set_options_open(!options_open)} />
+                    <p  test_handle="book_condition" className={classes.condition} style={{color:handle_colour_assignment()}}>{handle_condition_assignment()}</p>
+                    <img test_handle="book_options_cog" src={cog} alt={"cog"} className={classes.cog} onClick={()=> set_options_open(!options_open)} style={{display:props.missing ? "none" : "block"}} />
 
                 </div>
 

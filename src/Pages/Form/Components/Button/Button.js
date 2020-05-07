@@ -42,8 +42,6 @@ export const Button = props => {
 
             onClick={props.onClick}
             
-            test_handle={props.test_handle}
-
             >
 
             {props.type === "back" ? props.text : props.current_step === "year" || props.current_step === "condition" ? "Next" : props.text }

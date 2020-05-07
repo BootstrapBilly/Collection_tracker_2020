@@ -17,6 +17,19 @@ describe("@@@@@@@@ SEARCH AND DELETE @@@@@@@@@@@@@@@", () => {
 
     it(`Visit the search page`, () => cy.visit(`http://localhost:3000/search`))
 
+    it("Search for a book which is missing", ()=> {
+
+        cy.get("[test_handle='form_input']").type("1998")
+        cy.get("[test_handle='form_input']").should("have.value", "1998")
+    
+        cy.get("[test_handle='form_next_button']").click()
+
+        cy.get("[test_handle='book_condition']").should("have.text", "Missing")
+
+    })
+
+    it(`Visit the search page`, () => cy.visit(`http://localhost:3000/search`))
+
     it("Find and delete 1999 mint condition",()=> find_and_delete_book("1999"))
     it("Find and delete 1999 fair condition",()=> find_and_delete_book("1999"))
     it("Find and delete 1999 poor condition",()=> find_and_delete_book("1999"))
