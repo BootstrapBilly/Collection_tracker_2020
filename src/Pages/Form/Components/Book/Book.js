@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
-import classes from "./Search.module.css"
+import classes from "./Book.module.css"
 
 //components
 import Button from "./components/Button"
@@ -10,9 +10,12 @@ import BackButton from "../Button/Button"
 import default_image from "../../../../Assets/Img/default_search_image.png"
 import del from "../../../../Assets/Icons/delete.svg"
 import update from "../../../../Assets/Icons/update.svg"
-
 import cog from "../../../../Assets/Icons/settings.svg"
+import plus from "../../../../Assets/Icons/plus.svg"
 import spinner from "../../../../Assets/Spinners/Photo_spinner.svg"
+
+//external
+import { Redirect } from 'react-router'
 
 //util
 import colours from "../../../../Util/Colours"
@@ -29,15 +32,12 @@ export const Search = props => {
     //-Config
     const dispatch = useDispatch()
 
-    storage.ref("images").child(props.year.toString()).getDownloadURL()
-    .then(response => set_image(response))
-    .catch(err => set_image(default_image))
-
     //*states
     const [image, set_image] = useState(spinner)
-
     const [options_open, set_options_open] = useState(false)
+    const [redirect, set_redirect] = useState(false)
 
+    //_functions
     const handle_colour_assignment = () => {
 
        if(props.condition === "Poor") return colours.red
@@ -50,15 +50,17 @@ export const Search = props => {
     const handle_condition_assignment = () => {
 
         if(props.missing) return "Missing"
-
         else return `${props.condition} condition`
+
     }
 
-    const handle_delete = () => {
 
-        dispatch(submit_form({ year: props.year, condition: props.condition }, "delete_book"))
-    
-    }
+    //!effects
+    useEffect(()=> {
+        storage.ref("images").child(props.year.toString()).getDownloadURL()
+        .then(response => set_image(response))
+        .catch(err => set_image(default_image))
+    },[])
 
     return (
 
@@ -68,8 +70,6 @@ export const Search = props => {
 
                 <div className={classes.image_container} style={{backgroundColor:handle_colour_assignment()}}>
 
-                    {/* <ImageUpload no_style /> */}
-
                     <img src={image} alt={"book"} className={classes.image} />
 
                 </div>
@@ -78,13 +78,13 @@ export const Search = props => {
 
                     <p className={classes.year}>{props.year}</p>
                     <p  test_handle="book_condition" className={classes.condition} style={{color:handle_colour_assignment()}}>{handle_condition_assignment()}</p>
-                    <img test_handle="book_options_cog" src={cog} alt={"cog"} className={classes.cog} onClick={()=> set_options_open(!options_open)} style={{display:props.missing ? "none" : "block"}} />
+                    <img test_handle="book_options_cog" src={props.missing ? plus : cog} alt={"cog"} className={classes.cog} onClick={props.missing ? ()=> set_redirect(true) : ()=> set_options_open(!options_open)}/>
 
                 </div>
 
                 <div className={[classes.button_container, options_open ? classes.nav_open : null].join(" ")}>
 
-                    <Button src={del} text="Delete" handle_click={()=> handle_delete()} test_handle="delete_book"/>
+                    <Button src={del} text="Delete" handle_click={()=> dispatch(submit_form({ year: props.year, condition: props.condition }, "delete_book"))} test_handle="delete_book"/>
                     <Button src={update} text="Update"/>
 
                 </div>
@@ -92,6 +92,8 @@ export const Search = props => {
             </div>
 
             <BackButton text="Go Back" onClick={props.on_back_click} test_handle="go_back_button"/>
+
+            {redirect && <Redirect to='/add_book'/>}
 
         </div>
 
