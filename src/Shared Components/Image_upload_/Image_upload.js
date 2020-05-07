@@ -60,7 +60,7 @@ export const Image_upload = props => {
     return (
 
 // eslint-disable-next-line
-        <div test_handle={props.test_handle} className={classes.container} style={{ border: (successful_upload && "none") || props.no_style && "none", margin:props.no_style && "0" }} >
+        <div test_handle={props.test_handle} className={classes.container} style={{ border: (successful_upload && "none") || props.no_style && "none", margin:props.no_style && "0"}} >
 
             {successful_upload ?
 
