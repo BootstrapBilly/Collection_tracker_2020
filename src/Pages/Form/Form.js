@@ -29,6 +29,7 @@ import set_prompt_message from "./Functions/set_prompt_message"
 
 //util
 
+
 export const Desktop_add = props => {
 
     const dispatch = useDispatch()
@@ -42,6 +43,8 @@ export const Desktop_add = props => {
 
     //?selectors
     const submission_result = useSelector(state => state.result.submission_result)
+
+    console.log(submission_result)
 
     //!effects
     useEffect(() => {
@@ -63,7 +66,7 @@ export const Desktop_add = props => {
         // eslint-disable-next-line
     }, [submission_result])
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(clear_submission_result())
         // eslint-disable-next-line
     }, [])
@@ -85,6 +88,21 @@ export const Desktop_add = props => {
 
     }
 
+    const sort_conditions = books => {
+
+        const weighted_books = [];
+        const weightings = [["Poor", 1], ["Fair", 2], ["Mint", 3]]
+
+        books.forEach(book => weightings.forEach(condition => {
+
+            if(book.condition === condition[0]) weighted_books.push({book:book, weighting: condition[1]})
+
+        }))
+
+        return weighted_books.sort((a, b) => a.weighting < b.weighting && -1 )
+        
+    }
+
     return (
 
         <React.Fragment>
@@ -92,64 +110,68 @@ export const Desktop_add = props => {
             <div className={[classes.container, props.type === "Add" ? backgrounds.add : props.type === "Search" ? backgrounds.search : backgrounds.worth].join(" ")}>
 
                 {
-                    submission_result && submission_result.error === "Not_found" ? 
-                    
-                    <Book year={submission_result.details} missing on_back_click={() => handle_result_back_click()} /> :
+                    submission_result && submission_result.error === "Not_found" ?
 
-                    submission_result_data && 
-                    
-                    (submission_result_data.type === "add" || submission_result_data.type === "search") ?
-                    
-                            <Book year={submission_result_data.book.year} condition={submission_result_data.book.condition} on_back_click={() => handle_result_back_click()} />
+                        <Book year={submission_result.details} missing on_back_click={() => handle_result_back_click()} /> :
 
-                        : submission_result_data && submission_result_data.type === "worth" ? "Worth" :
+                        submission_result_data &&
 
-                            <div className={classes.form_container}>
+                            (submission_result_data.type === "add" || submission_result_data.type === "search") ?
 
-                                <h5 test_handle="form_prompt_message" className={classes.title} style={{ color: colours.dark_blue, marginTop: "20px" }}>{props.title}</h5>
+                            <div className={classes.book_container}>
 
-                                <span className={classes.form_message}>{set_prompt_message(current_step)}</span>
+                                {sort_conditions(submission_result.details.books).map(book => { return <Book year={book.book.year} condition={book.book.condition} on_back_click={() => handle_result_back_click()} /> })}
 
-                                {
-                                    current_step === "year" ?
+                            </div>
 
-                                        <Input year={year} error={null} test_handle="form_input"
-                                            handle_change={event => set_year(event.target.value)}
-                                            handle_keydown={event => year && year.length === 4 && event.key === "Enter" && handle_next_click(current_step, set_current_step, year, selected_condition, set_conditions, dispatch, submit_form, set_available_conditions, props.type) }
-                                        />
+                            : submission_result_data && submission_result_data.type === "worth" ? "Worth" :
 
-                                        :
+                                <div className={classes.form_container}>
 
-                                        current_step === "condition" ?
+                                    <h5 test_handle="form_prompt_message" className={classes.title} style={{ color: colours.dark_blue, marginTop: "20px" }}>{props.title}</h5>
 
-                                            <ConditionSelect
+                                    <span className={classes.form_message}>{set_prompt_message(current_step)}</span>
 
-                                                test_handle="condition_select"
-                                                animation_circle_test_handle="condition_animation_circle"
-                                                circle_test_handle="condition_circle"
+                                    {
+                                        current_step === "year" ?
 
-                                                on_select_condition={condition => set_selected_condition(condition)}
-                                                selected_condition={selected_condition}
-                                                available_conditions={available_conditions}
+                                            <Input year={year} error={null} test_handle="form_input"
+                                                handle_change={event => set_year(event.target.value)}
+                                                handle_keydown={event => year && year.length === 4 && event.key === "Enter" && handle_next_click(current_step, set_current_step, year, selected_condition, set_conditions, dispatch, submit_form, set_available_conditions, props.type)}
                                             />
 
                                             :
 
-                                            <ImageUpload style={{ backgroundColor: "#f8f8ff" }} year={year} test_handle="form_image_upload" />
-                                }
+                                            current_step === "condition" ?
+
+                                                <ConditionSelect
+
+                                                    test_handle="condition_select"
+                                                    animation_circle_test_handle="condition_animation_circle"
+                                                    circle_test_handle="condition_circle"
+
+                                                    on_select_condition={condition => set_selected_condition(condition)}
+                                                    selected_condition={selected_condition}
+                                                    available_conditions={available_conditions}
+                                                />
+
+                                                :
+
+                                                <ImageUpload style={{ backgroundColor: "#f8f8ff" }} year={year} test_handle="form_image_upload" />
+                                    }
 
 
-                                <div className={classes.button_container} style={{ marginTop: current_step === "photo" && "-15px" }}>
+                                    <div className={classes.button_container} style={{ marginTop: current_step === "photo" && "-15px" }}>
 
-                                    <Button year={year} current_step={current_step} selected_condition={selected_condition} text="Go Back" test_handle="form_back_button"
-                                        onClick={() => handle_back_click(current_step, set_current_step)} type="back" />
+                                        <Button year={year} current_step={current_step} selected_condition={selected_condition} text="Go Back" test_handle="form_back_button"
+                                            onClick={() => handle_back_click(current_step, set_current_step)} type="back" />
 
-                                    <Button year={year} current_step={current_step} selected_condition={selected_condition} text="Add Book" test_handle="form_next_button"
-                                        onClick={() => handle_next_click(current_step, set_current_step, year, selected_condition, set_conditions, dispatch, submit_form, set_available_conditions, props.type)} />
+                                        <Button year={year} current_step={current_step} selected_condition={selected_condition} text="Add Book" test_handle="form_next_button"
+                                            onClick={() => handle_next_click(current_step, set_current_step, year, selected_condition, set_conditions, dispatch, submit_form, set_available_conditions, props.type)} />
+
+                                    </div>
 
                                 </div>
-
-                            </div>
                 }
 
                 <NavBar path={props.path} onClickIcon={() => dispatch(clear_submission_result())} />

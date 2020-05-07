@@ -68,8 +68,6 @@ export const Search = props => {
 
     }, [props.year])
 
-    console.log(photo_changed)
-
     useEffect(()=> {
 
         if(photo_changed) {
@@ -103,7 +101,7 @@ export const Search = props => {
                 <div className={[classes.button_container, options_open ? classes.nav_open : null].join(" ")}>
 
                     <Button src={del} text="Delete" handle_click={() => dispatch(submit_form({ year: props.year, condition: props.condition }, "delete_book"))} test_handle="delete_book" />
-                    <Button src={camera} text="Photo" handle_click={() => set_image_upload(true)} />
+                    <Button src={camera} text="Photo" handle_click={() => set_image_upload(!image_upload)} />
 
                 </div>
 
