@@ -17,7 +17,7 @@ describe("@@@@@@@@ SEARCH AND DELETE @@@@@@@@@@@@@@@", () => {
 
     it(`Visit the search page`, () => cy.visit(`http://localhost:3000/search`))
 
-    it("Search for a book which is missing", ()=> {
+    it("Search for a book which is missing, plus button redirects to add book", ()=> {
 
         cy.get("[test_handle='form_input']").type("1998")
         cy.get("[test_handle='form_input']").should("have.value", "1998")
@@ -25,6 +25,9 @@ describe("@@@@@@@@ SEARCH AND DELETE @@@@@@@@@@@@@@@", () => {
         cy.get("[test_handle='form_next_button']").click()
 
         cy.get("[test_handle='book_condition']").should("have.text", "Missing")
+ 
+        cy.get("[test_handle='book_options_cog']").click()
+        cy.url().should("include", `/add_book`)
 
     })
 

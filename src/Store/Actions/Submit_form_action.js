@@ -48,8 +48,6 @@ export const handle_validation_failure = (error_message) => {
 export const clear_submission_result = () => {
 
     return async dispatch => {
-
-        console.log("inside")
         
         return dispatch({ type: CLEAR_SUBMISSION_RESULT })
     }

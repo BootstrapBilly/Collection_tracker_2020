@@ -13,7 +13,7 @@ import ConditionSelect from "./Components/Condition_Select/Condition_Select"
 import Input from "./Components/Input/Input"
 import ImageUpload from "../../Shared Components/Image_upload_/Image_upload"
 import NavBar from "../../Shared Components/Options_bar/Options_bar"
-import Search from "./Components/Search/Search"
+import Book from "./Components/Book/Book"
 
 //redux hooks
 import { useDispatch, useSelector } from "react-redux"
@@ -43,8 +43,6 @@ export const Desktop_add = props => {
     //?selectors
     const submission_result = useSelector(state => state.result.submission_result)
 
-    console.log(submission_result)
-
     //!effects
     useEffect(() => {
 
@@ -65,6 +63,11 @@ export const Desktop_add = props => {
         // eslint-disable-next-line
     }, [submission_result])
 
+    useEffect(()=>{
+        dispatch(clear_submission_result())
+        // eslint-disable-next-line
+    }, [])
+
     //_ functions
     const handle_result_back_click = () => {
 
@@ -82,8 +85,6 @@ export const Desktop_add = props => {
 
     }
 
-    console.log(submission_result)
-
     return (
 
         <React.Fragment>
@@ -93,17 +94,13 @@ export const Desktop_add = props => {
                 {
                     submission_result && submission_result.error === "Not_found" ? 
                     
-                    <Search year={submission_result.details} missing on_back_click={() => handle_result_back_click()} /> :
+                    <Book year={submission_result.details} missing on_back_click={() => handle_result_back_click()} /> :
 
                     submission_result_data && 
                     
                     (submission_result_data.type === "add" || submission_result_data.type === "search") ?
                     
-                        <div className={classes.book_container}>
-
-                            <Search year={submission_result_data.book.year} condition={submission_result_data.book.condition} on_back_click={() => handle_result_back_click()} />
-
-                        </div>
+                            <Book year={submission_result_data.book.year} condition={submission_result_data.book.condition} on_back_click={() => handle_result_back_click()} />
 
                         : submission_result_data && submission_result_data.type === "worth" ? "Worth" :
 

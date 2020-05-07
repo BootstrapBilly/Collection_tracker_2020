@@ -1,7 +1,6 @@
 import firebase from "firebase/app"
 import "firebase/storage"
 
-
 var config = {
     apiKey: "AIzaSyCcHRziSsldf0WZlLV3bl-x9guopK3m8VQ",
     authDomain: "ctstorage-20743.firebaseapp.com",
