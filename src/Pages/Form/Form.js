@@ -29,9 +29,7 @@ import set_conditions from "./Functions/set_available_conditions"
 import set_prompt_message from "./Functions/set_prompt_message"
 
 //util
-
-
-
+import { storage } from "../../firebase/index"
 
 export const Form = props => {
 
@@ -57,6 +55,17 @@ export const Form = props => {
 
             if (submission_result.details.type === "delete") {
 
+                if(!submission_result.details.books.length){
+                    console.log("inside")
+
+                    clear_submission_data()
+                }
+
+                storage.ref("images")
+                .child(submission_result.details.year.toString() + "-" + submission_result.details.condition.toString()).delete()
+                .then(a => console.log(a))
+                .catch(a => console.log(a))
+
                 return Alert("Book deleted successfully", "success")
 
             }
@@ -66,14 +75,13 @@ export const Form = props => {
         // eslint-disable-next-line
     }, [submission_result])
 
-    //  console.log(submission_result)
-
     useEffect(() => {
         console.log(props.location.state)
         if(props.location.state && props.location.state.redirected_from_book){
             dispatch(clear_submission_result())
             set_current_step("year")
             set_year(props.location.state.year)
+            props.history.replace()
         }
     },[])
 
@@ -81,7 +89,9 @@ export const Form = props => {
     const handle_result_back_click = () => {
 
         if (props.type === "Add") window.location.reload()
-            .then(() => clear_submission_data())
+            .then(() => {
+                clear_submission_data()
+            })
 
         else clear_submission_data()
 
@@ -91,6 +101,7 @@ export const Form = props => {
 
         dispatch(clear_submission_result())
         set_submission_result_data(null)
+        set_current_step("year")
 
     }
 
@@ -108,10 +119,6 @@ export const Form = props => {
         return weighted_books.sort((a, b) => a.weighting < b.weighting && -1)
 
     }
-
-
-
-
 
     return (
 
@@ -184,7 +191,7 @@ export const Form = props => {
                                     </div>
                     }
 
-                    <NavBar path={props.path} onClickIcon={() => dispatch(clear_submission_result())} />
+                    <NavBar path={props.path} onClickIcon={() => clear_submission_data()} />
 
                 </div>
 

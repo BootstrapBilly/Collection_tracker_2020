@@ -4,7 +4,6 @@ import classes from "./Book.module.css"
 
 //components
 import Button from "./components/Button"
-import BackButton from "../Button/Button"
 import ImageUpload from "../../../../Shared Components/Image_upload_/Image_upload"
 
 //assets
@@ -26,7 +25,7 @@ import { storage } from "../../../../firebase/index"
 import { useDispatch, useSelector } from "react-redux"
 
 //redux action creators
-import { submit_form, clear_submission_result } from "../../../../Store/Actions/Submit_form_action"
+import { submit_form } from "../../../../Store/Actions/Submit_form_action"
 
 export const Search = props => {
 
@@ -110,8 +109,6 @@ export const Search = props => {
                 </div>
 
             </div>
-
-            <BackButton text="Go Back" onClick={props.on_back_click} test_handle="go_back_button" />
 
             {redirect && <Redirect to={{pathname:'/add_book', state:{redirected_from_book:true, year:props.year}}} />}
 
