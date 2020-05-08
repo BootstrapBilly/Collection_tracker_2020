@@ -225,6 +225,13 @@
 
 }
 
+@media (min-height: 900px) and (min-width:1500px) {
+
+    .book_container{
+        margin-left: 200px;
+    }
+}
+
 /* large landscape tablet */
 
 @media (width:1366px) and (height:954px){

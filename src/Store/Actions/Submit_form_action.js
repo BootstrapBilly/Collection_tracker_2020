@@ -23,7 +23,7 @@ export const submit_form = (form_values, url, type) => {
         }
 
         catch (error) {
-            
+
             if (error.response.status === 404) return dispatch({ type: NOT_FOUND, payload: form_values })
             if (error.response.status === 409) return dispatch({ type: IN_USE, payload: form_values })
             if (error.response.status === 500) return dispatch({ type: DB_ERROR })

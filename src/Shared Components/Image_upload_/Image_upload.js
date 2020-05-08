@@ -31,7 +31,7 @@ export const Image_upload = props => {
     //_functions
     const handle_photo_upload = (event) => {
 
-        const upload_task = storage.ref(`images/${props.year.toString()}`).put(event.target.files[0])
+        const upload_task = storage.ref(`images/${props.year.toString()}-${props.condition.toString()}`).put(event.target.files[0])
 
         set_preview_selected_image(spinner)
 
@@ -49,7 +49,7 @@ export const Image_upload = props => {
 
             () => {
                 //complete function
-                storage.ref("images").child(props.year.toString()).getDownloadURL().then(url => {
+                storage.ref("images").child(props.year.toString() + "-" + props.condition.toString()).getDownloadURL().then(url => {
                     set_preview_selected_image(url)
                     dispatch(reload_search_result_action(url))
                     set_successful_upload(true)

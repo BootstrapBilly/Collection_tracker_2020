@@ -26,7 +26,7 @@ import { storage } from "../../../../firebase/index"
 import { useDispatch, useSelector } from "react-redux"
 
 //redux action creators
-import { submit_form } from "../../../../Store/Actions/Submit_form_action"
+import { submit_form, clear_submission_result } from "../../../../Store/Actions/Submit_form_action"
 
 export const Search = props => {
 
@@ -62,11 +62,15 @@ export const Search = props => {
     //!effects
     useEffect(() => {
 
-        storage.ref("images").child(props.year.toString()).getDownloadURL()
+        if(!props.missing){
+
+        storage.ref("images").child(props.year.toString()+ "-" + props.condition.toString()).getDownloadURL()
             .then(response => set_image(response))
             .catch(err => set_image(default_image))
 
-    }, [props.year])
+        } else {set_image(default_image)}
+
+    }, [props.year, props.condition, props.missing])
 
     useEffect(()=> {
 
@@ -86,7 +90,7 @@ export const Search = props => {
 
                 <div className={classes.image_container} style={{ backgroundColor: handle_colour_assignment() }}>
 
-                    {image_upload ? <ImageUpload no_style year={props.year} /> : <img src={image} alt={"book"} className={classes.image} />}
+                    {image_upload ? <ImageUpload no_style year={props.year} condition={props.condition}/> : <img src={image} alt={"book"} className={classes.image} />}
 
                 </div>
 
@@ -100,7 +104,7 @@ export const Search = props => {
 
                 <div className={[classes.button_container, options_open ? classes.nav_open : null].join(" ")}>
 
-                    <Button src={del} text="Delete" handle_click={() => dispatch(submit_form({ year: props.year, condition: props.condition }, "delete_book"))} test_handle="delete_book" />
+                    <Button src={del} text="Delete" handle_click={() => dispatch(submit_form({ year: props.year.toString(), condition: props.condition }, "delete_book"))} test_handle="delete_book" />
                     <Button src={camera} text="Photo" handle_click={() => set_image_upload(!image_upload)} />
 
                 </div>
@@ -109,7 +113,7 @@ export const Search = props => {
 
             <BackButton text="Go Back" onClick={props.on_back_click} test_handle="go_back_button" />
 
-            {redirect && <Redirect to='/add_book' />}
+            {redirect && <Redirect to={{pathname:'/add_book', state:{redirected_from_book:true, year:props.year}}} />}
 
         </div>
 
