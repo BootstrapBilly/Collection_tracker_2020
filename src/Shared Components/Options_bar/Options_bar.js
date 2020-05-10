@@ -11,8 +11,6 @@ import add_book from "../../Assets/Icons/add-book.svg"
 import add_book_active from "../../Assets/Icons/add-book-active.svg"
 import search from "../../Assets/Icons/search.svg"
 import search_active from "../../Assets/Icons/search-active.svg"
-import worth_it from "../../Assets/Icons/worth-it.svg"
-import worth_it_active from "../../Assets/Icons/worth-it-active.svg"
 import menu from "../../Assets/Icons/menu.svg"
 
 const Options_bar = props => {
@@ -41,8 +39,7 @@ const Options_bar = props => {
 
                             <Option test_handle="nav_home_icon" src={active_icon === "/" ? home_active : home} alt={"b"} to={"/"} handleClick={() => set_active_icon("/")} text="Home" onClick={props.onClickIcon} />
                             <Option test_handle="nav_add_book_icon" src={active_icon === "/add_book" ? add_book_active : add_book} alt={"b"} to={"/add_book"} handleClick={() => set_active_icon("/add_book")} text="Add Book" onClick={props.onClickIcon}/>
-                            <Option test_handle="nav_search_icon" src={active_icon === "/search" ? search_active : search} alt={"b"} to={"/search"} handleClick={() => set_active_icon("/search")} text="Search" onClick={props.onClickIcon}/>
-                            <Option test_handle="nav_worth_icon" src={active_icon === "/worth_it" ? worth_it_active : worth_it} alt={"b"} to={"/worth_it"} handleClick={() => set_active_icon("/worth_it")} text="Worth It" onClick={props.onClickIcon}/>
+                            <Option test_handle="nav_search_icon" src={active_icon === "/search" ? search_active : search} alt={"b"} to={"/search"} handleClick={() => set_active_icon("/search")} text="Find Book" onClick={props.onClickIcon}/>
 
                         </div>
 

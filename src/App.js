@@ -43,18 +43,6 @@ const App = () => {
 
             />
 
-            <Route path="/worth_it" exact
-
-              component={
-
-                () =>
-
-                  <Form path="/worth_it" title="SHOULD I BUY IT?" background_name="worth" type="Worth" />
-
-              }
-
-            />
-
           </Switch>
 
         </BrowserRouter>
