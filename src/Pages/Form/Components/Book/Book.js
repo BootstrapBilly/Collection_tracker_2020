@@ -59,14 +59,19 @@ export const Search = props => {
 
     }
 
+    const fetch_photos = () => {
+
+        storage.ref("images").child(props.year.toString()+ "-" + props.condition.toString()).getDownloadURL()
+        .then(response => set_image(response))
+        .catch(err => set_image(default_image))
+
+    }
     //!effects
     useEffect(() => {
 
         if(!props.missing){
 
-        storage.ref("images").child(props.year.toString()+ "-" + props.condition.toString()).getDownloadURL()
-            .then(response => set_image(response))
-            .catch(err => set_image(default_image))
+        fetch_photos()
 
         } else {set_image(default_image)}
 
@@ -76,7 +81,7 @@ export const Search = props => {
 
         if(photo_changed) {
 
-            set_image(photo_changed)
+            fetch_photos()
             set_image_upload(false)
             
         }
