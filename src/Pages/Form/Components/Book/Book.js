@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import classes from "./Book.module.css"
+import animations from "../../../../Util/Animations.module.css"
 
 //components
 import Button from "./components/Button"
@@ -84,7 +85,7 @@ export const Search = props => {
 
     return (
 
-        <div className={classes.container}>
+        <div className={[classes.container, props.animation_type === 0 ? animations.slideright : props.animation_type === 1 ? animations.slideup : animations.slideleft].join(" ")} style={{animationDuration:props.anim_duration}}>
 
             <div className={classes.card} test_handle="book_card">
 

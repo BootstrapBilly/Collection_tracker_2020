@@ -133,7 +133,7 @@ export const Form = props => {
                         <div className={classes.book_container}>
 
                         <div className={classes.book_inner_container}>
-                        <Book year={submission_result.details} missing on_back_click={() => handle_result_back_click()} />
+                        <Book year={submission_result.details} missing on_back_click={() => handle_result_back_click()} animation_type={0} />
                         </div>
 
                         <BackButton text="Go Back" onClick={()=> handle_result_back_click()} test_handle="go_back_button" overwrite_class={classes.go_back_button} />
@@ -148,7 +148,9 @@ export const Form = props => {
 
                                 <div className={classes.book_container}>
 
-                                    <div className={classes.book_inner_container}>{sort_conditions(submission_result.details.books).map(book => { return <Book year={book.book.year} condition={book.book.condition} on_back_click={() => handle_result_back_click()} key={book.book._id} /> })}</div>
+                                    <div className={classes.book_inner_container}>{sort_conditions(submission_result.details.books).map((book, index) => { 
+                                        return <Book year={book.book.year} condition={book.book.condition} on_back_click={() => handle_result_back_click()} key={book.book._id} 
+                                        anim_duration={`${1 + (index === 0 ? 0 : index === 1 ? 0.5 : 0.8)}s`} animation_type={index}/> })}</div>
 
                                     <BackButton text="Go Back" onClick={()=> handle_result_back_click()} test_handle="go_back_button" overwrite_class={classes.go_back_button} />
 

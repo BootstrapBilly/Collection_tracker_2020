@@ -6,6 +6,7 @@
     align-items: center;
     flex-direction: column;
     margin-top: 20px;
+    position: relative;
 }
 
 .card {
@@ -97,7 +98,7 @@
 
 /* medium landscape tablet */
 @media (min-height:400px) and (min-width: 800px) and (max-height: 750px) and (max-width: 1199px) {
-    
+
     .container {
         background-color: transparent;
         margin-left: 40px;
