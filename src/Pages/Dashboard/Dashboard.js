@@ -49,6 +49,61 @@ const Dashboard = props => {
     //?selectors
     const books = useSelector(state => state.fetch.books)
 
+    const extract_best_conditions = () => {
+
+        const best_conditions = []
+
+        if(books){
+
+            books.forEach(current_book => {
+
+                const condition_weighting = get_condition_weighting(current_book.condition)
+
+                current_book.condition_weighting = condition_weighting
+    
+                insert_if_best_condition(best_conditions, current_book)
+            })
+    
+        }
+
+        sort_books_into_conditions(best_conditions)
+
+    }
+
+    const get_condition_weighting = condition => {
+
+        if(condition === "Poor") return 1
+        if(condition === "Fair") return 2
+        if(condition === "Mint") return 3
+
+    }
+
+    const insert_if_best_condition = (best_conditions, current_book) => {
+
+        const book_present = best_conditions.find(book => book.year === current_book.year)
+
+        if(!book_present) {best_conditions.push(current_book)}
+
+
+        else if(book_present) {
+
+            if(current_book.condition_weighting > book_present.condition_weighting){
+
+            const current_index = best_conditions.indexOf(book_present)
+
+             best_conditions.splice(current_index, 1, current_book)
+            }
+        }
+
+    }
+
+    useEffect(()=> {
+
+        if(books)
+        extract_best_conditions()
+
+    },[books])
+
     //_Functions
     //work out how much the circle should be offset e.g. circumference = 628
     //628/100 - 6.28
@@ -60,7 +115,7 @@ const Dashboard = props => {
                 height > 650 ? (circumference.long_mobile / 100) * offset :
                     (circumference.mobile / 100) * offset
 
-    const sort_books_into_conditions = () => {
+    const sort_books_into_conditions = books => {
 
         let poor = 0,  fair = 0,  mint = 0;
 
@@ -76,13 +131,6 @@ const Dashboard = props => {
 
         // eslint-disable-next-line
     }, [])
-
-    useEffect(() => {
-
-        if (books) sort_books_into_conditions()
-        
-        // eslint-disable-next-line
-    }, [books])
 
     return (
 
