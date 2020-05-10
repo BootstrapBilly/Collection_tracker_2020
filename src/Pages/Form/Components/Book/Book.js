@@ -77,6 +77,7 @@ export const Search = props => {
 
             set_image(photo_changed)
             set_image_upload(false)
+            
         }
 
     },[photo_changed])

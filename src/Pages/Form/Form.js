@@ -15,6 +15,7 @@ import Input from "./Components/Input/Input"
 import ImageUpload from "../../Shared Components/Image_upload_/Image_upload"
 import NavBar from "../../Shared Components/Options_bar/Options_bar"
 import Book from "./Components/Book/Book"
+import BackButton from "./Components/Button/Button"
 
 //redux hooks
 import { useDispatch, useSelector } from "react-redux"
@@ -129,7 +130,17 @@ export const Form = props => {
                     {
                         submission_result && submission_result.error === "Not_found" ?
 
-                            <Book year={submission_result.details} missing on_back_click={() => handle_result_back_click()} /> :
+                        <div className={classes.book_container}>
+
+                        <div className={classes.book_inner_container}>
+                        <Book year={submission_result.details} missing on_back_click={() => handle_result_back_click()} />
+                        </div>
+
+                        <BackButton text="Go Back" onClick={()=> handle_result_back_click()} test_handle="go_back_button" overwrite_class={classes.go_back_button} />
+
+                    </div>
+
+                             :
 
                             submission_result_data &&
 
@@ -137,7 +148,9 @@ export const Form = props => {
 
                                 <div className={classes.book_container}>
 
-                                    {sort_conditions(submission_result.details.books).map(book => { return <Book year={book.book.year} condition={book.book.condition} on_back_click={() => handle_result_back_click()} key={book.book._id} /> })}
+                                    <div className={classes.book_inner_container}>{sort_conditions(submission_result.details.books).map(book => { return <Book year={book.book.year} condition={book.book.condition} on_back_click={() => handle_result_back_click()} key={book.book._id} /> })}</div>
+
+                                    <BackButton text="Go Back" onClick={()=> handle_result_back_click()} test_handle="go_back_button" overwrite_class={classes.go_back_button} />
 
                                 </div>
 

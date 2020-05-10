@@ -1598,8 +1598,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.35"
-     inkscape:cx="-479.41749"
-     inkscape:cy="67.971214"
+     inkscape:cx="-1152.2746"
+     inkscape:cy="50.828357"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -1635,7 +1635,7 @@
        y="163.39415" />
     <g
        id="g2824"
-       transform="matrix(0.05258659,0,0,0.05258659,143.38847,213.0304)">
+       transform="matrix(0.05258659,0,0,0.05258659,146.18547,217.11255)">
       <defs
          id="defs2693">
         <rect
@@ -1688,7 +1688,7 @@
              id="polygon2730" />
           <polygon
              style="fill:#f99561"
-             points="730.4,946.9 659.6,917.3 629.9,1041.2 589.1,1055.7 678.2,1081.7 680.6,1050.3 "
+             points="629.9,1041.2 589.1,1055.7 678.2,1081.7 680.6,1050.3 730.4,946.9 659.6,917.3 "
              id="polygon2732" />
           <polygon
              style="fill:#41233a"
@@ -1732,11 +1732,11 @@
            id="polygon2752" />
         <polygon
            style="fill:#f9f3da"
-           points="840,488.2 738.6,527.9 710.5,494.1 696.9,500.8 729.5,540.4 745.8,540.4 853.6,500.8 "
+           points="853.6,500.8 840,488.2 738.6,527.9 710.5,494.1 696.9,500.8 729.5,540.4 745.8,540.4 "
            id="polygon2754" />
         <polygon
            style="fill:#c3af8d"
-           points="738.6,527.9 745.8,540.4 729.5,540.4 "
+           points="729.5,540.4 738.6,527.9 745.8,540.4 "
            id="polygon2756" />
         <path
            style="fill:#f28763"
@@ -1789,7 +1789,7 @@
              id="path2776" />
           <polygon
              style="fill:#f99561"
-             points="850,1171.7 850,1074.7 780.2,1074.7 800.2,1175.3 767.7,1194 856.5,1194 "
+             points="780.2,1074.7 800.2,1175.3 767.7,1194 856.5,1194 850,1171.7 850,1074.7 "
              id="polygon2778" />
           <polygon
              style="fill:#f7c94d"
