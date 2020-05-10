@@ -104,13 +104,13 @@ export const Search = props => {
 
                     <p className={classes.year}>{props.year}</p>
                     <p test_handle="book_condition" className={classes.condition} style={{ color: handle_colour_assignment() }}>{handle_condition_assignment()}</p>
-                    <img test_handle="book_options_cog" src={props.missing ? plus : cog} alt={"cog"} className={classes.cog} onClick={props.missing ? () => set_redirect(true) : () => set_options_open(!options_open)} />
+                    <img test_handle={`book_options_cog_${props.condition}`} src={props.missing ? plus : cog} alt={"cog"} className={classes.cog} onClick={props.missing ? () => set_redirect(true) : () => set_options_open(!options_open)} />
 
                 </div>
 
                 <div className={[classes.button_container, options_open ? classes.nav_open : null].join(" ")}>
 
-                    <Button src={del} text="Delete" handle_click={() => dispatch(submit_form({ year: props.year.toString(), condition: props.condition }, "delete_book"))} test_handle="delete_book" />
+                    <Button src={del} text="Delete" handle_click={() => dispatch(submit_form({ year: props.year.toString(), condition: props.condition }, "delete_book"))}  test_handle={`delete_book_${props.condition}`} />
                     <Button src={camera} text="Photo" handle_click={() => set_image_upload(!image_upload)} />
 
                 </div>
