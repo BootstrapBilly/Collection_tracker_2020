@@ -8,7 +8,7 @@ const Condition_card = props => {
 
         <div className={classes.container} style={{backgroundColor:props.colour}}>
 
-            <span className={classes.title}>{props.title}</span>
+            <span className={classes.title}>{props.title} - </span>
 
             <span className={classes.number} >{props.number}</span>
             

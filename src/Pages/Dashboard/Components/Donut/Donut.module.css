@@ -1,0 +1,53 @@
+.chart_wrapper {
+
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.left_patch, .right_patch {
+
+    position: absolute;
+    bottom: 0;
+    background-color: #F8F8FF;
+}
+
+.left_patch{
+    left: 0;
+    width: 80px;
+    height: 15px;
+}
+.right_patch{
+    right: 0px;
+    width: 80px;
+    height: 15px;
+}
+
+.key_patch{
+    position: absolute;
+    bottom: 0px;
+    height: 18px;
+    width: 250px;
+    background-color: #F8F8FF;
+}
+
+.percent{
+    position: fixed;
+    top: 165px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 40px;
+    font-weight: 900;
+}
+
+.card_container {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    top: 270px;
+}

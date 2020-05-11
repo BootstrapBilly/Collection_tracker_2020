@@ -4,14 +4,10 @@ import classes from "./Dashboard.module.css"
 
 //components
 import OptionsBar from "../../Shared Components/Options_bar/Options_bar"
-import ConditionCard from "./Components/Condition_card/Condition_card"
+import Donut from "./Components/Donut/Donut"
 
 //util
 import colours from "../../Util/Colours"
-import compute_dimensions from "./functions/compute_dimensions"
-
-//assets
-import CanvasJSReact from "../../Assets/Charts/canvasjs.react"
 
 //redux hooks
 import { useDispatch, useSelector } from "react-redux"
@@ -27,9 +23,6 @@ const Dashboard = props => {
 
     //-Config
     const dispatch = useDispatch()
-
-    const CanvasJS = CanvasJSReact.CanvasJS
-    const CanvasJSChart = CanvasJSReact.CanvasJSChart
 
     let num_books = { total: 65, poor: book_data.poor, fair: book_data.fair, mint: book_data.mint }//set the amount of books
 
@@ -117,39 +110,6 @@ const Dashboard = props => {
         // eslint-disable-next-line
     }, [])
 
-    CanvasJS.addColorSet("customColorSet1",
-    [colours.red, colours.orange, colours.green, "#d1cfc8"]);
-
-    const options = {
-        animationEnabled: true,
-        height: 300,
-        backgroundColor:null,
-        dataPointMaxWidth:20,
-        colorSet: "customColorSet1",
-        subtitles: [{
-            text: `${Math.round((total_percent + Number.EPSILON) * 100) / 100}%`,
-            verticalAlign: "center",
-            fontSize: 45,
-            dockInsidePlotArea: true,
-            fontStyle: "normal", 
-            fontColor: colours.dark_blue,
-        }],
-        data: [{
-            type: "doughnut",
-            showInLegend: true,
-            startAngle:  -90,
-            radius:  "100%", 
-            innerRadius: "80%",
-            indexLabel: null,
-            yValueFormatString: "#,###'%'",
-            dataPoints: [
-                { name: "Poor", y: poor_percent },
-                { name: "Fair", y: fair_percent },
-                { name: "Mint", y: mint_percent },
-                { name: "Missing", y: 100 - total_percent },
-            ]
-        }]
-    }
 
     return (
 
@@ -157,23 +117,8 @@ const Dashboard = props => {
 
             <OptionsBar path={props.location.pathname} onClick={()=> dispatch(CLEAR_SUBMISSION_RESULT())} />
 
-            <div className={classes.chart_wrapper}>
-            <CanvasJSChart options = {options} 
-				/* onRef={ref => this.chart = ref} */
-			/>
-            <div className={classes.left_patch}></div>
-            <div className={classes.right_patch}></div>
-            <div className={classes.key_patch}></div>
-            </div>
+            <Donut total_percent={total_percent} poor_percent={poor_percent} fair_percent={fair_percent} mint_percent={mint_percent} book_data={book_data}/>
 
-
-            <div className={classes.card_container}>
-
-                <ConditionCard title="Poor" colour={colours.red} number={book_data.poor} />
-                <ConditionCard title="Fair" colour={colours.orange} number={book_data.fair} />
-                <ConditionCard title="Mint" colour={colours.green} number={book_data.mint} />
-
-            </div>
 
         </div>
 

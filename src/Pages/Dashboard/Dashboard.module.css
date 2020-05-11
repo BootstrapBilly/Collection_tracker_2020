@@ -6,50 +6,6 @@
     position: relative;
 }
 
-.card_container {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    position: absolute;
-    top: 340px;
-}
-
-.chart_wrapper {
-
-    margin-top: 50px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-
-.left_patch, .right_patch {
-
-    position: absolute;
-    bottom: 0;
-    background-color: #F8F8FF;
-}
-
-.left_patch{
-    left: 0;
-    width: 80px;
-    height: 15px;
-}
-.right_patch{
-    right: 0px;
-    width: 80px;
-    height: 15px;
-}
-
-.key_patch{
-    position: absolute;
-    bottom: 0px;
-    height: 18px;
-    width: 250px;
-    background-color: #F8F8FF;
-}
 
 /* landscape */
 
@@ -64,25 +20,19 @@
         justify-content: space-evenly;
         margin-top: 7%;
     }
-    .container {
-        margin-top: -4vh;
-    }
+
     @supports (-webkit-touch-callout: none) {
         .card_container {
             margin-top: 3%;
         }
-        .container {
-            margin-top: 3vh;
-        }
+
     }
 }
 
 /* long landscape mobile */
 
 @media (orientation:landscape) and (min-width:700px) {
-    .container {
-        margin-top: 2%;
-    }
+
     .card_container {
         margin-top: 5%;
     }
@@ -90,9 +40,7 @@
         .card_container {
             margin-top: 4%;
         }
-        .container {
-            margin-top: 3vh;
-        }
+
     }
 }
 
@@ -103,9 +51,7 @@
 /* Small landscape tablet */
 
 @media (min-height:400px) and (min-width: 900px) and (max-height: 600px) and (max-width: 1023px) {
-    .container {
-        margin-top: 0%;
-    }
+
 }
 
 /* medium portrait tablet */
@@ -121,9 +67,7 @@
 /* medium landscape tablet */
 
 @media (min-height:500px) and (min-width: 1000px) {
-    .container {
-        margin-top: 5%;
-    }
+
     .card_container {
         margin-top: 2.5%;
     }
