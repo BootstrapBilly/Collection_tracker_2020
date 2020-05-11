@@ -77,13 +77,14 @@ export const Form = props => {
     }, [submission_result])
 
     useEffect(() => {
-        console.log(props.location.state)
+        
         if(props.location.state && props.location.state.redirected_from_book){
             dispatch(clear_submission_result())
             set_current_step("year")
             set_year(props.location.state.year)
             props.history.replace()
         }
+        // eslint-disable-next-line
     },[])
 
     //_ functions

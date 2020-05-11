@@ -17,32 +17,25 @@
 .left_patch{
     left: 0;
     width: 80px;
-    height: 15px;
+    height: 12px;
 }
 .right_patch{
     right: 0px;
     width: 80px;
-    height: 15px;
+    height: 12px;
 }
 
-.key_patch{
-    position: absolute;
-    bottom: 0px;
-    height: 18px;
-    width: 250px;
-    background-color: #F8F8FF;
-}
 
 .percent{
     position: fixed;
-    top: 185px;
+    top: 165px;
     font-family: 'Roboto', sans-serif;
     font-size: 40px;
     font-weight: 900;
 }
 
 .card_container {
-    width: 330px;
+    width: 300px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;

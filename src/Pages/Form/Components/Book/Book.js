@@ -74,7 +74,7 @@ export const Search = props => {
         fetch_photos()
 
         } else {set_image(default_image)}
-
+// eslint-disable-next-line
     }, [props.year, props.condition, props.missing])
 
     useEffect(()=> {
@@ -85,7 +85,7 @@ export const Search = props => {
             set_image_upload(false)
             
         }
-
+// eslint-disable-next-line
     },[photo_changed])
 
     return (

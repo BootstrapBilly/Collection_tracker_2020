@@ -24,8 +24,11 @@ export const Donut = props => {
     const options = {
         animationEnabled: true,
         height: 300,
+        title: {
+            text: "Conditions Breakdown",
+            fontColor:colours.dark_blue
+		},
         backgroundColor: null,
-        dataPointMaxWidth: 20,
         colorSet: "customColorSet1",
         data: [{
             type: "doughnut",
@@ -47,10 +50,11 @@ export const Donut = props => {
     return (
 
         <div className={classes.chart_wrapper}>
-            <CanvasJSChart options={options}
-            /* onRef={ref => this.chart = ref} */
-            />
+
+            <CanvasJSChart options={options} />
+
             <div className={classes.percent} style={{ color: colours.dark_blue }}>{`${Math.round((props.total_percent + Number.EPSILON) * 100) / 100}%`}</div>
+
             <div className={classes.left_patch}></div>
             <div className={classes.right_patch}></div>
             <div className={classes.key_patch}></div>
