@@ -10,6 +10,9 @@ import ConditionCard from "./Components/Condition_card/Condition_card"
 import colours from "../../Util/Colours"
 import compute_dimensions from "./functions/compute_dimensions"
 
+//assets
+import CanvasJSReact from "../../Assets/Charts/canvasjs.react"
+
 //redux hooks
 import { useDispatch, useSelector } from "react-redux"
 
@@ -24,9 +27,10 @@ const Dashboard = props => {
 
     //-Config
     const dispatch = useDispatch()
-    const { innerHeight: height } = window;//get the dimensions of the window
 
-    const circumference = { mobile: "628", long_mobile: "735", small_tablet: "954", large: "1241" }//set the circumference of the circle based on screen height
+    const CanvasJS = CanvasJSReact.CanvasJS
+    const CanvasJSChart = CanvasJSReact.CanvasJSChart
+
     let num_books = { total: 65, poor: book_data.poor, fair: book_data.fair, mint: book_data.mint }//set the amount of books
 
     const compute_percent = amount => (amount / num_books.total) * 100//work out the percentage weighting of the total collection for each condition
@@ -36,18 +40,6 @@ const Dashboard = props => {
     const mint_percent = compute_percent(num_books.mint)
 
     const total_percent = (poor_percent + fair_percent + mint_percent)//get the percent of all owned books against total books
-
-    console.log(poor_percent)
-    console.log(fair_percent)
-    console.log(total_percent)
-
-    //get the offset from the end of the circle, for example 100-30 = 70
-    //Which means the circle should end 70% from the end of the circle (anti clockwise)
-
-    //each circle displays on top of the next Poor > Fair > Mint
-    const poor_offset = 100 - poor_percent
-    const fair_offset = 100 - (poor_percent + fair_percent)//the offset of the next circle, in addition to the old one
-    const mint_offset = 100 - (poor_percent + fair_percent + mint_percent)
 
     //?selectors
     const books = useSelector(state => state.fetch.books)
@@ -108,16 +100,6 @@ const Dashboard = props => {
     },[books])
 
     //_Functions
-    //work out how much the circle should be offset e.g. circumference = 628
-    //628/100 - 6.28
-    //6.28 * 70 = 439.6
-    //The circle will start from 0 and end at 439.6 out of 628
-    const compute_offset = offset =>
-        height > 1200 ? (circumference.large / 100) * offset :
-            height > 780 ? (circumference.small_tablet / 100) * offset :
-                height > 650 ? (circumference.long_mobile / 100) * offset :
-                    (circumference.mobile / 100) * offset
-
     const sort_books_into_conditions = books => {
 
         let poor = 0,  fair = 0,  mint = 0;
@@ -135,13 +117,54 @@ const Dashboard = props => {
         // eslint-disable-next-line
     }, [])
 
-    console.log(compute_offset(mint_offset))
+    CanvasJS.addColorSet("customColorSet1",
+    [colours.red, colours.orange, colours.green, "#d1cfc8"]);
+
+    const options = {
+        animationEnabled: true,
+        height: 300,
+        backgroundColor:null,
+        dataPointMaxWidth:20,
+        colorSet: "customColorSet1",
+        subtitles: [{
+            text: `${Math.round((total_percent + Number.EPSILON) * 100) / 100}%`,
+            verticalAlign: "center",
+            fontSize: 45,
+            dockInsidePlotArea: true,
+            fontStyle: "normal", 
+            fontColor: colours.dark_blue,
+        }],
+        data: [{
+            type: "doughnut",
+            showInLegend: true,
+            startAngle:  -90,
+            radius:  "100%", 
+            innerRadius: "80%",
+            indexLabel: null,
+            yValueFormatString: "#,###'%'",
+            dataPoints: [
+                { name: "Poor", y: poor_percent },
+                { name: "Fair", y: fair_percent },
+                { name: "Mint", y: mint_percent },
+                { name: "Missing", y: 100 - total_percent },
+            ]
+        }]
+    }
 
     return (
 
         <div className={classes.container}>
 
             <OptionsBar path={props.location.pathname} onClick={()=> dispatch(CLEAR_SUBMISSION_RESULT())} />
+
+            <div className={classes.chart_wrapper}>
+            <CanvasJSChart options = {options} 
+				/* onRef={ref => this.chart = ref} */
+			/>
+            <div className={classes.left_patch}></div>
+            <div className={classes.right_patch}></div>
+            <div className={classes.key_patch}></div>
+            </div>
 
 
             <div className={classes.card_container}>

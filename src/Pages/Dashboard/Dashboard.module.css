@@ -12,9 +12,44 @@
     justify-content: space-around;
     align-items: center;
     position: absolute;
-    bottom: 23%;
+    top: 340px;
 }
 
+.chart_wrapper {
+
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.left_patch, .right_patch {
+
+    position: absolute;
+    bottom: 0;
+    background-color: #F8F8FF;
+}
+
+.left_patch{
+    left: 0;
+    width: 80px;
+    height: 15px;
+}
+.right_patch{
+    right: 0px;
+    width: 80px;
+    height: 15px;
+}
+
+.key_patch{
+    position: absolute;
+    bottom: 0px;
+    height: 18px;
+    width: 250px;
+    background-color: #F8F8FF;
+}
 
 /* landscape */
 

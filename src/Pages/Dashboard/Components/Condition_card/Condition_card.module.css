@@ -12,16 +12,16 @@
 
 .title {
     font-size: 1.2rem;
-    margin-top: 2vh;
+    margin-top: 5px;
     font-family: 'Exo 2', sans-serif;
     color: white;
 }
 
 .number {
     font-size: 50px;
-    margin-top: 1vh;
+    margin-top: 5px;
     color: white;
-    margin-bottom: 2vh;
+    margin-bottom: 5px;
 }
 
 @media (orientation:landscape) {
