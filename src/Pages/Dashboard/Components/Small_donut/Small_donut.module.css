@@ -22,8 +22,12 @@ svg {
 
 .donut {
   stroke-dasharray: 628;
-  -webkit-animation: donut 2s ease-out forwards;
-  animation: donut 2s ease-out forwards;
+  -webkit-animation: donut 2s ease-out forwards reverse;
+  animation: donut 2s ease-out forwards reverse;
+}
+
+.donut_no_anim {
+  stroke-dasharray: 628;
 }
 
 @-webkit-keyframes donut {

@@ -4,7 +4,6 @@ import classes from "./Dashboard.module.css"
 
 //components
 import OptionsBar from "../../Shared Components/Options_bar/Options_bar"
-import BooksOwned from "./Components/Small_donut/Small_donut"
 import ConditionCard from "./Components/Condition_card/Condition_card"
 
 //util
@@ -37,6 +36,10 @@ const Dashboard = props => {
     const mint_percent = compute_percent(num_books.mint)
 
     const total_percent = (poor_percent + fair_percent + mint_percent)//get the percent of all owned books against total books
+
+    console.log(poor_percent)
+    console.log(fair_percent)
+    console.log(total_percent)
 
     //get the offset from the end of the circle, for example 100-30 = 70
     //Which means the circle should end 70% from the end of the circle (anti clockwise)
@@ -132,24 +135,14 @@ const Dashboard = props => {
         // eslint-disable-next-line
     }, [])
 
+    console.log(compute_offset(mint_offset))
+
     return (
 
         <div className={classes.container}>
 
             <OptionsBar path={props.location.pathname} onClick={()=> dispatch(CLEAR_SUBMISSION_RESULT())} />
 
-            <BooksOwned
-
-                offsets={["0", compute_offset(mint_offset), compute_offset(fair_offset), compute_offset(poor_offset)]}
-
-                circumference={compute_dimensions().circumference}
-                r={compute_dimensions().r}
-                size={compute_dimensions().size}
-                c={compute_dimensions().c}
-
-                total_percent={total_percent}
-
-            />
 
             <div className={classes.card_container}>
 
