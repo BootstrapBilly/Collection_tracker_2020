@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 
 import classes from "./Bar_chart.module.css"
 
@@ -10,32 +10,32 @@ import colours from "../../../../Util/Colours"
 
 export const Bar_chart = props => {
 
-    const column_data = [{start:1955, end: 1967}, {start:1968, end: 1980}, {start:1981, end: 1993}, {start:1994, end: 2006},{start:2007, end: 2019}]
+    const column_data = [{ start: 1955, end: 1967 }, { start: 1968, end: 1980 }, { start: 1981, end: 1993 }, { start: 1994, end: 2006 }, { start: 2007, end: 2019 }]
 
-    const [books_in_each, set_books_in_each] = useState([0,0,0,0,0])
+    const [books_in_each, set_books_in_each] = useState([0, 0, 0, 0, 0])
 
     const sort_into_blocks = () => {
 
-        const state_copy = [0,0,0,0,0]
+        const state_copy = [0, 0, 0, 0, 0]
 
         props.books.forEach(book => {
 
             let column_count = 0;
-            
+
             column_data.forEach(column => {
 
-                if(book.year >= column.start && book.year <= column.end){
+                if (book.year >= column.start && book.year <= column.end) {
 
-                state_copy[column_count] ++
- 
-                 column_count = 0
-                 console.log(book.year)
+                    state_copy[column_count]++
 
-                 console.log(state_copy)
+                    column_count = 0
+                    console.log(book.year)
+
+                    console.log(state_copy)
 
                 }
 
-               else column_count ++
+                else column_count++
 
             })
         })
@@ -49,43 +49,44 @@ export const Bar_chart = props => {
     const CanvasJS = CanvasJSReact.CanvasJS
     const CanvasJSChart = CanvasJSReact.CanvasJSChart
 
+    CanvasJS.addColorSet("customColorSet2",
+    [colours.red, colours.orange, colours.green, colours.dark_blue, "#d1cfc8"]);
+
     const options = {
         animationEnabled: true,
-        height: 300,
-        width:370,
+        height: 355,
+        width: 330,
         backgroundColor: null,
-        title: {
-            text: "Era Spread Breakdown",
-            fontColor:colours.dark_blue,
-            margin:25
-		},
-        axisY:{
-            maximum:100,
-            suffix:"%"
-            },
-            axisX:{
-                labelFontSize:12,
-            },
-        data: [{				
-                  type: "column",
-                  dataPoints: [
-                      { label: "1955-1967",  y:  books_in_each[0]/13 * 100 },
-                      { label: "1968-1980", y: books_in_each[1]/13 * 100  },
-                      { label: "1981-1993", y:  books_in_each[2]/13 * 100   },
-                      { label: "1994-2006",  y:  books_in_each[3]/13 * 100   },
-                      { label: "2007-2019",  y: books_in_each[4]/13 * 100  }
-                  ]
-         }]
-     }
+        colorSet: "customColorSet2",
+        axisY: {
+            maximum: 100,
+            suffix: "%"
+        },
+        axisX: {
+            labelFontSize: 12,
+        },
+        data: [{
+            type: "column",
+            dataPoints: [
+                { label: "1955-1967", y: books_in_each[0] / 13 * 100 },
+                { label: "1968-1980", y: books_in_each[1] / 13 * 100 },
+                { label: "1981-1993", y: books_in_each[2] / 13 * 100 },
+                { label: "1994-2006", y: books_in_each[3] / 13 * 100 },
+                { label: "2007-2019", y: books_in_each[4] / 13 * 100 }
+            ]
+        }]
+    }
 
-     useEffect(()=>{if(props.books) sort_into_blocks()},[props.books])
+    useEffect(() => { if (props.books) sort_into_blocks() }, [props.books])
 
     return (
 
         <div className={classes.chart_wrapper}>
 
+            <div style={{ color: colours.dark_blue }} className={classes.title}>ERA SPREAD BREAKDOWN</div>
+
             <CanvasJSChart options={options} />
-            
+
             <div className={classes.left_patch}></div>
             <div className={classes.right_patch}></div>
 
@@ -93,7 +94,7 @@ export const Bar_chart = props => {
 
     )
 
-    
+
 
 }
 

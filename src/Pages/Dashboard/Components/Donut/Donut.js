@@ -24,10 +24,6 @@ export const Donut = props => {
     const options = {
         animationEnabled: true,
         height: 300,
-        title: {
-            text: "Conditions Breakdown",
-            fontColor:colours.dark_blue
-		},
         backgroundColor: null,
         colorSet: "customColorSet1",
         data: [{
@@ -50,6 +46,8 @@ export const Donut = props => {
     return (
 
         <div className={classes.chart_wrapper}>
+
+            <div style={{color:colours.dark_blue}} className={classes.title}>CONDITIONS BREAKDOWN</div>
 
             <CanvasJSChart options={options} />
 

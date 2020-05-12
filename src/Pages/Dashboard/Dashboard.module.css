@@ -6,71 +6,65 @@
     position: relative;
 }
 
-.chart_container{
-    width: 100%;
+.mobile_chart_container{
+    width: 330px;
     margin-top: 50px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 
-.chart_selection_container{
+.mobile_chart_selection_container{
 
     display: flex;
     width: 100%;
     justify-content: space-evenly;
     align-items: center;
-    margin-top: 85px;
+    position: absolute;
+    bottom: 30px;
 }
 
 .icon{
 
     height: 50px;
     width: 50px;
-   
     border: 5px solid rgba(128, 128, 128, 0.308);
     border-radius: 500px;
     box-shadow: 1px 1px 3px 1px grey;
 
 }
 
+.landscape_chart_container{
+    display: none;
+}
+
 
 /* landscape */
 
 @media (orientation:landscape) {
-    .card_container {
-        height: 60%;
-        width: 50%;
-        position: absolute;
-        left: 55%;
-        top: 0;
-        flex-direction: column;
-        justify-content: space-evenly;
-        margin-top: 7%;
-    }
+
+
+.mobile_chart_selection_container{
+    display: none;
+}
+
+.mobile_chart_container{
+    display: none;
+}
+.landscape_chart_container{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-evenly;
+
+}
 
     @supports (-webkit-touch-callout: none) {
-        .card_container {
-            margin-top: 3%;
-        }
+
 
     }
 }
 
-/* long landscape mobile */
-
-@media (orientation:landscape) and (min-width:700px) {
-
-    .card_container {
-        margin-top: 5%;
-    }
-    @supports (-webkit-touch-callout: none) {
-        .card_container {
-            margin-top: 4%;
-        }
-
-    }
-}
 
 /* Small portrait tablet */
 
@@ -80,12 +74,28 @@
 
 @media (min-height:400px) and (min-width: 900px) and (max-height: 600px) and (max-width: 1023px) {
 
+ 
+
 }
 
 /* medium portrait tablet */
 
-@media (min-height:800px) and (min-width: 701px) {
+@media (min-height:800px) and (min-width: 701px) and (max-width: 1100px) {
 
+    .mobile_chart_container{
+        display: none;
+    }
+
+    .landscape_chart_container{
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        margin-top: 20px;
+    }
+
+    .mobile_chart_selection_container{
+        display: none;
+    }
 
     @supports (-webkit-touch-callout: none) {
 
@@ -96,22 +106,13 @@
 
 @media (min-height:500px) and (min-width: 1000px) {
 
-    .card_container {
-        margin-top: 2.5%;
+    .landscape_chart_container{
+        margin-top: 10vh;
     }
+
+
     @supports (-webkit-touch-callout: none) {
 
-        .container{
-            position: relative;
-        }
-        .card_container{
-            flex-direction: row;
-            width: 100%;
-            bottom: 50vh;
-            position: relative;
-            left: 0;
-            margin-bottom: 14vh;
-        }
     
     }
 }
@@ -120,13 +121,7 @@
 
 @media (min-height:1200px) and (min-width: 1000px) {
 
-    .card_container{
-        top: 25vh;
-        left: 0;
-        margin: 0;
-        padding: 0;
-        position: relative;
-    }
+
 
 }
 
@@ -134,10 +129,7 @@
 
 @media (min-width:1366px) and (max-width:1366px) and (min-height:954px) and (max-height:954px) {
     @supports (-webkit-touch-callout: none) {
-      .card_container{
-          margin-bottom: 0;
-          top: 5vh;
-      }
+
     }
   }
 
@@ -145,16 +137,19 @@
 
 @media (min-width: 1200px) {
 
-    body{
-        overflow: hidden;
+    .mobile_chart_selection_container{
+        display: none;
     }
-
-    .card_container{
-        flex-direction: row;
-        width:75%;
-        left: 0%;
-        position: relative;
-        margin-bottom: 12%;
+    
+    .mobile_chart_container{
+        display: none;
+    }
+    .landscape_chart_container{
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: space-evenly;
+    
     }
 
 }
@@ -163,7 +158,5 @@
 
 @media (min-width: 1500px) {
 
-    .card_container{
-        width: 60%;
-    }
+    
 }

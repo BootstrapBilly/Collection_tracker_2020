@@ -124,7 +124,7 @@ const Dashboard = props => {
 
             <OptionsBar path={props.location.pathname} onClick={() => dispatch(CLEAR_SUBMISSION_RESULT())} />
 
-            <div className={classes.chart_container}>
+            <div className={classes.mobile_chart_container}>
 
                 {current_graph === "donut" ?
                     <Donut total_percent={total_percent} poor_percent={poor_percent} fair_percent={fair_percent} mint_percent={mint_percent} book_data={book_data} />
@@ -133,14 +133,21 @@ const Dashboard = props => {
 
             </div>
 
-            <div className={classes.chart_selection_container}>
+            <div className={classes.landscape_chart_container}>
 
-                <img src={donut} alt="Donut icon" className={classes.icon} onClick={()=> set_current_graph("donut")} style={{borderColor: current_graph === "donut" && colours.dark_blue}}/>
-                <img src={barchart} alt="Barchart icon" className={classes.icon} onClick={()=> set_current_graph("barchart")} style={{borderColor: current_graph === "barchart" && colours.dark_blue}} />
+           
+                    <Donut total_percent={total_percent} poor_percent={poor_percent} fair_percent={fair_percent} mint_percent={mint_percent} book_data={book_data} />
+                     <BarChart books={unique_years} />
+                
 
             </div>
 
+            <div className={classes.mobile_chart_selection_container}>
 
+                <img src={donut} alt="Donut icon" className={classes.icon} onClick={()=> set_current_graph("donut")} style={{borderColor: current_graph === "donut" && colours.blue}}/>
+                <img src={barchart} alt="Barchart icon" className={classes.icon} onClick={()=> set_current_graph("barchart")} style={{borderColor: current_graph === "barchart" && colours.blue}} />
+
+            </div>
 
 
         </div>
