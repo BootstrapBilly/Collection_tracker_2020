@@ -16,6 +16,7 @@ import ImageUpload from "../../Shared Components/Image_upload_/Image_upload"
 import NavBar from "../../Shared Components/Options_bar/Options_bar"
 import Book from "./Components/Book/Book"
 import BackButton from "./Components/Button/Button"
+import FTP from "../../Shared Components/First_time_prompt/First_time_prompt"
 
 //redux hooks
 import { useDispatch, useSelector } from "react-redux"
@@ -45,6 +46,7 @@ export const Form = props => {
 
     //?selectors
     const submission_result = useSelector(state => state.result.submission_result)
+    const tut_completed = useSelector(state => state.tutorial.completed)
 
 
     //!effects
@@ -153,7 +155,7 @@ export const Form = props => {
                                         return <Book year={book.book.year} condition={book.book.condition} on_back_click={() => handle_result_back_click()} key={book.book._id} 
                                         anim_duration={`${1 + (index === 0 ? 0 : index === 1 ? 0.5 : 0.8)}s`} animation_type={index}/> })}</div>
 
-                                    <BackButton text="Go Back" onClick={()=> handle_result_back_click()} test_handle="go_back_button" overwrite_class={classes.go_back_button} />
+                                    <BackButton text={props.type === "Add" ? "Add More" : "Go Back" } onClick={()=> handle_result_back_click()} test_handle="go_back_button" overwrite_class={classes.go_back_button} />
 
                                 </div>
 
@@ -207,7 +209,12 @@ export const Form = props => {
                                     </div>
                     }
 
-                    <NavBar path={props.path} onClickIcon={() => clear_submission_data()} />
+                   {tut_completed && <NavBar path={props.path} onClickIcon={() => clear_submission_data()} /> }
+
+                   {tut_completed ? null : <FTP tutorial_stage={props.type === "Add" ? 3 : 4}/>}
+                   
+                   {tut_completed ? null : <div className={classes.click_prevent_overlay} onClick={()=> console.log("clicko")}></div>}
+                    
 
                 </div>
 

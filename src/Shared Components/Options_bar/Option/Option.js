@@ -8,11 +8,11 @@ const Option = props => {
 
     return (
 
-        <div className={classes.container} test_handle={props.test_handle}>
+        <div className={[classes.container, props.additional_class].join(" ")} test_handle={props.test_handle}>
 
             <Link to={props.to} test-handle={props.test_handle} style={{ textDecoration: 'none' }}>
 
-                <img className={classes.icon} src={props.src} alt={props.alt} onClick={props.handleClick} onMouseDown={props.onClick}/>
+                <img className={classes.icon} src={props.src} alt={props.alt} onClick={props.handleClick} onMouseDown={props.onClick} onTouchStart={props.onTouchStart} onMouseUp={props.onMouseDown}/>
                 <p>{props.text}</p>
 
             </Link>

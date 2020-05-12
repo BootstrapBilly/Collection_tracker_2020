@@ -23,7 +23,7 @@ const Options_bar = props => {
 
         <React.Fragment>
 
-            <img test_handle="nav_menu_icon" src={menu} alt={"A menu icon"} className={classes.open_icon} onClick={() => set_overlay_open(!overlay_open)}/>
+            <img test_handle="nav_menu_icon" src={menu} alt={"A menu icon"} className={[classes.open_icon, props.hamburger_animated && props.delay ? classes.animated : props.hamburger_animated && classes.animated_no_delay].join(" ")} onClick={() => set_overlay_open(!overlay_open)} onMouseDown={props.handle_click} onTouchStart={props.handle_click}/>
 
                 <React.Fragment>
 
@@ -37,9 +37,13 @@ const Options_bar = props => {
 
                         <div className={classes.icon_container}>
 
-                            <Option test_handle="nav_home_icon" src={active_icon === "/" ? home_active : home} alt={"b"} to={"/"} handleClick={() => set_active_icon("/")} text="Home" onClick={props.onClickIcon} />
-                            <Option test_handle="nav_add_book_icon" src={active_icon === "/add_book" ? add_book_active : add_book} alt={"b"} to={"/add_book"} handleClick={() => set_active_icon("/add_book")} text="Add Book" onClick={props.onClickIcon}/>
-                            <Option test_handle="nav_search_icon" src={active_icon === "/search" ? search_active : search} alt={"b"} to={"/search"} handleClick={() => set_active_icon("/search")} text="Find Book" onClick={props.onClickIcon}/>
+                            <Option test_handle="nav_home_icon" src={active_icon === "/" ? home_active : home} alt={"b"} to={"/"} handleClick={() => set_active_icon("/")} text="Home" onClick={props.tutorial ? props.handle_step_1_click : props.onClickIcon} additional_class={props.home_animated && classes.animated_no_delay_small} />
+
+                            <Option test_handle="nav_add_book_icon" src={active_icon === "/add_book" ? add_book_active : add_book} alt={"b"} to={"/add_book"} handleClick={() => set_active_icon("/add_book")} text="Add Book" onClick={props.onClickIcon} onMouseDown={props.handle_step_2_click} onTouchStart={props.handle_step_2_click}
+                            additional_class={props.add_animated && classes.animated_no_delay_small}/>
+
+
+                            <Option test_handle="nav_search_icon" src={active_icon === "/search" ? search_active : search} alt={"b"} to={"/search"} handleClick={() => set_active_icon("/search")} text="Find Book" onClick={props.onClickIcon} onMouseDown={props.handle_step_3_click} onTouchStart={props.handle_step_3_click} additional_class={props.search_animated && classes.animated_no_delay_small}/>
 
                         </div>
 

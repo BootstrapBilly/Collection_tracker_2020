@@ -6,11 +6,22 @@ import './App.css';
 import Dashboard from "./Pages/Dashboard/Dashboard"
 import Form from "./Pages/Form/Form"
 
-
 //external
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 
+//redux hooks
+import {useDispatch} from "react-redux"
+
+//redux action creators
+import {mark_completed} from "./Store/Actions/Tutorial_action"
+
 const App = () => {
+
+  const dispatch = useDispatch()
+
+  const tutorial_complete = window.localStorage.getItem("tutorial_complete")
+
+  if(tutorial_complete) dispatch(mark_completed())
 
   return (
 

@@ -1,0 +1,114 @@
+.container{
+    background-color: #f8f8ff;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    padding-top: 10vh;
+    flex-direction: column;
+    z-index: 1000000;
+}
+
+.click_prevent_overlay{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.text{
+    font-size: 30px;
+    width: 80%;
+    text-align: center;
+    margin-top: 30px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+}
+
+.prompt_wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    height: 100%;
+    z-index: 2;
+}
+
+.stage_2_container{
+
+    background-color: #f8f8ff;
+    padding: 20px 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 300px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px 1px rgba(128, 128, 128, 0.466);
+    z-index: 2;
+    animation: slidein 0.2s forwards;
+    left: -50vw;
+
+}
+
+@keyframes slidein {
+
+    0%{
+        left: -50vw;
+    }
+    100%{
+        left: 0vw;
+    }
+}
+
+.stage_2_text{
+
+    font-size: 22px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+
+}
+
+.button{
+
+    height: 34px;
+    width: 80px;
+    border-radius: 5px;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    animation: pulse 0.5s infinite;
+    
+}
+
+@keyframes pulse {
+
+    0%{transform: scale(1);}
+    50%{transform: scale(1.05);}
+    100%{transform: scale(1);}
+
+}
+
+.button:hover{
+    cursor: pointer;
+}
+
+.overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.281);
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}

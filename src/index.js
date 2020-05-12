@@ -13,6 +13,7 @@ import { Provider } from "react-redux"
 import submit_form_reducer from "./Store/Reducers/Submit_form_reducer"
 import fetch_books_reducer from "./Store/Reducers/Fetch_books_reducer"
 import handle_photo_upload_reducer from "./Store/Reducers/Photo_upload_handler_reducer"
+import tutorial_reducer from "./Store/Reducers/Tutorial_reducer"
 
 
 //-Config
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
 
   result: submit_form_reducer, 
   fetch: fetch_books_reducer,
-  upload: handle_photo_upload_reducer
+  upload: handle_photo_upload_reducer,
+  tutorial: tutorial_reducer
 
 })
 

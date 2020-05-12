@@ -131,3 +131,13 @@
 }
 
 /*Standard desktop */
+
+@media (min-width: 1200px) {
+
+    .left_patch, .right_patch, .key_patch {
+
+        bottom: 22px;
+       
+    }
+
+}

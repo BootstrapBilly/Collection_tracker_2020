@@ -6,6 +6,7 @@ import classes from "./Dashboard.module.css"
 import OptionsBar from "../../Shared Components/Options_bar/Options_bar"
 import Donut from "./Components/Donut/Donut"
 import BarChart from "./Components/Bar_chart/Bar_chart"
+import FTP from "../../Shared Components/First_time_prompt/First_time_prompt"
 
 //redux hooks
 import { useDispatch, useSelector } from "react-redux"
@@ -21,10 +22,13 @@ import colours from "../../Util/Colours"
 
 const Dashboard = props => {
 
+    const tut_completed = useSelector(state => state.tutorial.completed)
+
     //*states
     const [book_data, set_book_data] = useState({ poor: 0, fair: 0, mint: 0 })
     const [unique_years, set_unique_years] = useState(null)
     const [current_graph, set_current_graph] = useState("donut")
+    const [tutorial_completed, set_tutorial_completed] = useState(false)
 
     //-Config
     const dispatch = useDispatch()
@@ -41,6 +45,7 @@ const Dashboard = props => {
 
     //?selectors
     const books = useSelector(state => state.fetch.books)
+    
 
     const extract_best_conditions = () => {
 
@@ -97,7 +102,10 @@ const Dashboard = props => {
         if (books)
             extract_best_conditions()
 
-    }, [books])
+        if (tut_completed) {
+            set_tutorial_completed(true)
+        }
+    }, [books, tut_completed])
 
     //_Functions
     const sort_books_into_conditions = books => {
@@ -117,12 +125,11 @@ const Dashboard = props => {
         // eslint-disable-next-line
     }, [])
 
-
     return (
 
         <div className={classes.container}>
 
-            <OptionsBar path={props.location.pathname} onClick={() => dispatch(CLEAR_SUBMISSION_RESULT())} />
+            {tut_completed && <OptionsBar path={props.location.pathname} onClick={() => dispatch(CLEAR_SUBMISSION_RESULT())} />}
 
             <div className={classes.mobile_chart_container}>
 
@@ -135,20 +142,23 @@ const Dashboard = props => {
 
             <div className={classes.landscape_chart_container}>
 
-           
-                    <Donut total_percent={total_percent} poor_percent={poor_percent} fair_percent={fair_percent} mint_percent={mint_percent} book_data={book_data} />
-                     <BarChart books={unique_years} />
-                
+
+                <Donut total_percent={total_percent} poor_percent={poor_percent} fair_percent={fair_percent} mint_percent={mint_percent} book_data={book_data} />
+                <BarChart books={unique_years} />
+
 
             </div>
 
             <div className={classes.mobile_chart_selection_container}>
 
-                <img src={donut} alt="Donut icon" className={classes.icon} onClick={()=> set_current_graph("donut")} style={{borderColor: current_graph === "donut" && colours.blue}}/>
-                <img src={barchart} alt="Barchart icon" className={classes.icon} onClick={()=> set_current_graph("barchart")} style={{borderColor: current_graph === "barchart" && colours.blue}} />
+                <img src={donut} alt="Donut icon" className={classes.icon} onClick={() => set_current_graph("donut")} style={{ borderColor: current_graph === "donut" && colours.blue }} />
+                <img src={barchart} alt="Barchart icon" className={classes.icon} onClick={() => set_current_graph("barchart")} style={{ borderColor: current_graph === "barchart" && colours.blue }} />
 
             </div>
 
+            {tutorial_completed ? null : <FTP />}
+
+            {tut_completed ? null : <div className={classes.click_prevent_overlay} onClick={()=> console.log("clicko")}></div>}
 
         </div>
 
