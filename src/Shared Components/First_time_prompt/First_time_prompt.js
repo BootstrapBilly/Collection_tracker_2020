@@ -127,8 +127,6 @@ export const First_time_prompt = props => {
 
                 <div className={classes.container}>
 
-                    <div className={classes.click_prevent_overlay} onClick={()=> console.log("clicko")}></div>
-
                     <Typed className={classes.text} style={{ color: colours.dark_blue }}
                         strings={['Welcome to the collection tracker!']}
                         typeSpeed={30} showCursor={false}

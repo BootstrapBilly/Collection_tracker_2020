@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "collectiontracker-57b9e"
+    "default": "collectiontracker-57b9e",
+    "private": "tracker-private-907ae"
   }
 }
