@@ -29,10 +29,6 @@ export const Bar_chart = props => {
                     state_copy[column_count]++
 
                     column_count = 0
-                    console.log(book.year)
-
-                    console.log(state_copy)
-
                 }
 
                 else column_count++

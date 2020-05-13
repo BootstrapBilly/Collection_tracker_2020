@@ -1,12 +1,14 @@
+//core react
 import React, { useEffect, useState } from "react"
 
+//css
 import classes from "./Dashboard.module.css"
 
 //components
-import OptionsBar from "../../Shared Components/Options_bar/Options_bar"
+import Navbar from "../../Shared Components/Options_bar/Options_bar"
 import Donut from "./Components/Donut/Donut"
 import BarChart from "./Components/Bar_chart/Bar_chart"
-import FTP from "../../Shared Components/First_time_prompt/First_time_prompt"
+import Tutorial from "../../Shared Components/First_time_prompt/First_time_prompt"
 
 //redux hooks
 import { useDispatch, useSelector } from "react-redux"
@@ -20,145 +22,87 @@ import donut from "../../Assets/Icons/donut.svg"
 import barchart from "../../Assets/Icons/barchart.svg"
 import colours from "../../Util/Colours"
 
+//functions
+import populate_chart_data from "../Dashboard/functions/populate_chart_data"
+
 const Dashboard = props => {
 
-    const tut_completed = useSelector(state => state.tutorial.completed)
+    //?selectors
+    const books = useSelector(state => state.fetch.books)//All books returned from the database
+    const tutorial_completed = useSelector(state => state.tutorial.completed)//Is the tutorial completed, gets set into local storage after its completed
 
     //*states
-    const [book_data, set_book_data] = useState({ poor: 0, fair: 0, mint: 0 })
-    const [unique_years, set_unique_years] = useState(null)
-    const [current_graph, set_current_graph] = useState("donut")
-    const [tutorial_completed, set_tutorial_completed] = useState(false)
+    const [condition_count, set_condition_count] = useState({ poor: 0, fair: 0, mint: 0 })//holds the best condition for each book retrieved from that database
+    const [unique_years, set_unique_years] = useState(null)//holds 1 copy of each year/book (database can have duplicates with different conditions) - Feeds the era spread breakdown graph
+    const [current_graph, set_current_graph] = useState("donut")//holds the current graph to be displayed (only on mobile) - Changed by the icons at the bottom
 
     //-Config
-    const dispatch = useDispatch()
+    const dispatch = useDispatch()//initialise the redux usedispatch hook
 
-    let num_books = { total: 65, poor: book_data.poor, fair: book_data.fair, mint: book_data.mint }//set the amount of books
+    let num_books = { total: 65, poor: condition_count.poor, fair: condition_count.fair, mint: condition_count.mint }//set the amount of books
 
     const compute_percent = amount => (amount / num_books.total) * 100//work out the percentage weighting of the total collection for each condition
 
+    //compute the percent values for each condition e.g. 20/65 books are in poor condition = 30%
+    //65 books total
     const poor_percent = compute_percent(num_books.poor)
     const fair_percent = compute_percent(num_books.fair)
     const mint_percent = compute_percent(num_books.mint)
 
     const total_percent = (poor_percent + fair_percent + mint_percent)//get the percent of all owned books against total books
 
-    //?selectors
-    const books = useSelector(state => state.fetch.books)
-    
-
-    const extract_best_conditions = () => {
-
-        const best_conditions = []
-
-        if (books) {
-
-            books.forEach(current_book => {
-
-                const condition_weighting = get_condition_weighting(current_book.condition)
-
-                current_book.condition_weighting = condition_weighting
-
-                insert_if_best_condition(best_conditions, current_book)
-
-                set_unique_years(best_conditions)
-            })
-
-        }
-
-        sort_books_into_conditions(best_conditions)
-
-    }
-
-    const get_condition_weighting = condition => {
-
-        if (condition === "Poor") return 1
-        if (condition === "Fair") return 2
-        if (condition === "Mint") return 3
-
-    }
-
-    const insert_if_best_condition = (best_conditions, current_book) => {
-
-        const book_present = best_conditions.find(book => book.year === current_book.year)
-
-        if (!book_present) { best_conditions.push(current_book) }
-
-
-        else if (book_present) {
-
-            if (current_book.condition_weighting > book_present.condition_weighting) {
-
-                const current_index = best_conditions.indexOf(book_present)
-
-                best_conditions.splice(current_index, 1, current_book)
-            }
-        }
-
-    }
-
+    //!Effects
     useEffect(() => {
 
-        if (books)
-            extract_best_conditions()
+        books && populate_chart_data(books, set_unique_years, set_condition_count) //if theres at least 1 book, populate the charts
 
-        if (tut_completed) {
-            set_tutorial_completed(true)
-        }
-    }, [books, tut_completed])
+    }, [books])
 
-    //_Functions
-    const sort_books_into_conditions = books => {
-
-        let poor = 0, fair = 0, mint = 0;
-
-        books.forEach(book => book.condition === "Poor" ? poor += 1 : book.condition === "Fair" ? fair += 1 : mint += 1)
-
-        set_book_data({ poor: poor, fair: fair, mint: mint })
-    }
-
-    //!effects
-    useEffect(() => {
-
-        dispatch(fetch_books())
-
-        // eslint-disable-next-line
-    }, [])
+// eslint-disable-next-line
+    useEffect(()=>{ dispatch(fetch_books())}, [] /*fetch the books from the database, only once*/)
 
     return (
 
         <div className={classes.container}>
 
-            {tut_completed && <OptionsBar path={props.location.pathname} onClick={() => dispatch(CLEAR_SUBMISSION_RESULT())} />}
+            {tutorial_completed && <Navbar path={props.location.pathname} onClick={() => dispatch(CLEAR_SUBMISSION_RESULT())}/> /* Show the navbar if the tut is completed*/}
 
             <div className={classes.mobile_chart_container}>
 
-                {current_graph === "donut" ?
-                    <Donut total_percent={total_percent} poor_percent={poor_percent} fair_percent={fair_percent} mint_percent={mint_percent} book_data={book_data} />
-                    : <BarChart books={unique_years} />
+                {//Mobile only
+                current_graph === "donut" ? 
+
+                    <Donut total_percent={total_percent} poor_percent={poor_percent} fair_percent={fair_percent} mint_percent={mint_percent} condition_count={condition_count} />
+
+                    : 
+
+                    <BarChart books={unique_years} />
                 }
 
             </div>
 
             <div className={classes.landscape_chart_container}>
 
-
-                <Donut total_percent={total_percent} poor_percent={poor_percent} fair_percent={fair_percent} mint_percent={mint_percent} book_data={book_data} />
+                <Donut total_percent={total_percent} poor_percent={poor_percent} fair_percent={fair_percent} mint_percent={mint_percent} condition_count={condition_count} />
                 <BarChart books={unique_years} />
 
+            </div>
+
+            <div className={classes.mobile_icon_container}>
+
+                <img src={donut} alt="Donut icon" className={classes.icon} 
+                onClick={() => set_current_graph("donut")} 
+                style={{ borderColor: current_graph === "donut" && colours.blue }} 
+                />
+
+                <img src={barchart} alt="Barchart icon" className={classes.icon} 
+                onClick={() => set_current_graph("barchart")} 
+                style={{ borderColor: current_graph === "barchart" && colours.blue }} 
+                />
 
             </div>
 
-            <div className={classes.mobile_chart_selection_container}>
-
-                <img src={donut} alt="Donut icon" className={classes.icon} onClick={() => set_current_graph("donut")} style={{ borderColor: current_graph === "donut" && colours.blue }} />
-                <img src={barchart} alt="Barchart icon" className={classes.icon} onClick={() => set_current_graph("barchart")} style={{ borderColor: current_graph === "barchart" && colours.blue }} />
-
-            </div>
-
-            {tutorial_completed ? null : <FTP />}
-
-            {tut_completed ? null : <div className={classes.click_prevent_overlay} onClick={()=> console.log("clicko")}></div>}
+            {tutorial_completed ? null : <div className={classes.click_prevent_overlay}><Tutorial /></div>}
 
         </div>
 

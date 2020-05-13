@@ -59,9 +59,9 @@ export const Donut = props => {
 
             <div className={classes.card_container}>
 
-                <ConditionCard title="Poor" colour={colours.red} number={props.book_data.poor} />
-                <ConditionCard title="Fair" colour={colours.orange} number={props.book_data.fair} />
-                <ConditionCard title="Mint" colour={colours.green} number={props.book_data.mint} />
+                <ConditionCard title="Poor" colour={colours.red} number={props.condition_count.poor} />
+                <ConditionCard title="Fair" colour={colours.orange} number={props.condition_count.fair} />
+                <ConditionCard title="Mint" colour={colours.green} number={props.condition_count.mint} />
 
             </div>
 
