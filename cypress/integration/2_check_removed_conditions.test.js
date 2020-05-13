@@ -31,6 +31,8 @@ describe("@@@@@@@@@@@@ CONDITION FILTER CHECK @@@@@@@@@@@@@@@@@@", () => {
 
     describe("Mint and Fair condition taken", () => {
 
+        it("Click Add more button", ()=> cy.get("[test_handle='go_back_button']").click())
+
         it(`Enter 1999 again`, () => enter_year("1999"))
 
         it(`Only poor is visible because mint and fair are taken`, () => {
@@ -54,6 +56,8 @@ describe("@@@@@@@@@@@@ CONDITION FILTER CHECK @@@@@@@@@@@@@@@@@@", () => {
     })
 
     describe("All conditions are taken", () => {
+
+        it("Click Add more button", ()=> cy.get("[test_handle='go_back_button']").click())
 
         it(`Enter 1999 again`, () => enter_year("1999"))
 

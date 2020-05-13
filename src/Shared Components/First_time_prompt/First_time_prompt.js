@@ -156,7 +156,7 @@ export const First_time_prompt = props => {
 
                             <p className={classes.stage_2_text} style={{ color: colours.dark_blue }}>{stage_2_text === 1 ? "This is the home screen, where you will find various charts and statistics." : "Now click the menu icon again. "}</p>
 
-                            <div className={classes.button} style={{ backgroundColor: colours.dark_blue, display: stage_2_text === 2 && "none" }} onClick={() => handle_step_2_click()}>Okay</div>
+                            <div test_handle="tutorial_next_button" className={classes.button} style={{ backgroundColor: colours.dark_blue, display: stage_2_text === 2 && "none" }} onClick={() => handle_step_2_click()}>Okay</div>
 
                         </div>
 
@@ -177,7 +177,7 @@ export const First_time_prompt = props => {
 
                                 <p className={classes.stage_2_text} style={{ color: colours.dark_blue }}>{stage_3_text === 1 ? "This is the add screen. Here you can add new books." : "Now click the menu icon again. "}</p>
 
-                                <div className={classes.button} style={{ backgroundColor: colours.dark_blue, display: stage_3_text === 2 && "none" }} onClick={() => handle_step_3_click()}>Okay</div>
+                                <div test_handle="tutorial_next_button" className={classes.button} style={{ backgroundColor: colours.dark_blue, display: stage_3_text === 2 && "none" }} onClick={() => handle_step_3_click()}>Okay</div>
 
                             </div>
 
@@ -198,7 +198,7 @@ export const First_time_prompt = props => {
                                     <p className={classes.stage_2_text} style={{ color: colours.dark_blue }}>{"This is the search screen. Here you can search for your books."}</p>
 
                                     <Link to={"/"} test-handle={props.test_handle} style={{ textDecoration: 'none' }}>
-                                        <div className={classes.button} style={{ backgroundColor: colours.dark_blue }} onClick={() => handle_finish_click()}>Finish</div>
+                                        <div test_handle="tutorial_next_button" className={classes.button} style={{ backgroundColor: colours.dark_blue }} onClick={() => handle_finish_click()}>Finish</div>
                                     </Link>
 
                                 </div>

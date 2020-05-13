@@ -29,6 +29,8 @@ describe("@@@@@@@@@@@@@@ ADD BOOK @@@@@@@@@@@@@@@@@@", () => {
                 cy.get("[test_handle='book_card']").should("exist")
             })
 
+            it("Click Add more button", ()=> cy.get("[test_handle='go_back_button']").click())
+
         })
 
     })

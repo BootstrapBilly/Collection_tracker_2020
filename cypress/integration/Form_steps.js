@@ -2,7 +2,7 @@ export const step_one_year = (end_url, year, only) => {
 
     describe("First step - Enter year", () => {
 
-        it(`Visit the ${end_url} screen`, () => cy.visit(`http://localhost:3000/${end_url}`))
+        // it(`Visit the ${end_url} screen`, () => cy.visit(`http://localhost:3000/${end_url}`))
 
         it("Buttons hidden to start", () => {
 
@@ -170,7 +170,7 @@ export const step_two_condition = (only, removed_conditions) => {
 
 export const enter_year = year => {
 
-    cy.visit(`http://localhost:3000/add_book`)
+    // cy.visit(`http://localhost:3000/add_book`)
     cy.get("[test_handle='form_input']").type(year)
     cy.get("[test_handle='form_input']").should("have.value", year)
     cy.get("[test_handle='form_next_button']").click()

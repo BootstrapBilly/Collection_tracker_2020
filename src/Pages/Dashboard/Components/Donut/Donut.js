@@ -1,9 +1,11 @@
+//core react
 import React from 'react'
 
+//css
 import classes from "./Donut.module.css"
 
 //components
-import ConditionCard from "../Condition_card/Condition_card"
+import ConditionCard from "../Bar_chart/Components/Condition_card/Condition_card"
 
 //external
 import CanvasJSReact from "../../../../Assets/Charts/canvasjs.react"
@@ -13,13 +15,12 @@ import colours from "../../../../Util/Colours"
 
 export const Donut = props => {
 
-    //`${Math.round((props.total_percent + Number.EPSILON) * 100) / 100}%`
     //-Config
     const CanvasJS = CanvasJSReact.CanvasJS
     const CanvasJSChart = CanvasJSReact.CanvasJSChart
 
-    CanvasJS.addColorSet("customColorSet1",
-        [colours.red, colours.orange, colours.green, "#d1cfc8"]);
+    CanvasJS.addColorSet("customColorSet1",//define a custom colour set
+        [colours.red, colours.orange, colours.green, "#d1cfc8"]);//with an array of colours
 
     const options = {
         animationEnabled: true,

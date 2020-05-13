@@ -14,7 +14,10 @@ const find_and_delete_book = (year) => {
 
 describe("@@@@@@@@ SEARCH AND DELETE @@@@@@@@@@@@@@@", () => {
 
-    it(`Visit the search page`, () => cy.visit(`http://localhost:3000/search`))
+    it("Navigate to the search page", ()=> {
+        cy.get("[test_handle='nav_menu_icon']").click()
+        cy.get("[test_handle='nav_search_icon']").click()
+    })
 
     it("Search for a book which is missing, plus button redirects to add book", ()=> {
 
@@ -30,7 +33,10 @@ describe("@@@@@@@@ SEARCH AND DELETE @@@@@@@@@@@@@@@", () => {
 
     })
 
-    it(`Visit the search page`, () => cy.visit(`http://localhost:3000/search`))
+    it("Navigate to the search page", ()=> {
+        cy.get("[test_handle='nav_menu_icon']").click()
+        cy.get("[test_handle='nav_search_icon']").click()
+    })
 
     it("Find and delete 1999 mint condition",()=> find_and_delete_book("1999"))
     it("Delete 1999 fair condition",()=> {
