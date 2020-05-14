@@ -5,7 +5,7 @@ export const NOT_FOUND = "NOT_FOUND";
 export const IN_USE = "IN_USE";
 export const DB_ERROR = "DB_ERROR";
 export const VALIDATION_FAILURE = "VALIDATION_FAILURE";
-export const CLEAR_SUBMISSION_RESULT = "CLEAR_SUBMISSION_RESULT"
+export const CLEAR_FORM_SUBMISSION_RESPONSE = "CLEAR_FORM_SUBMISSION_RESPONSE"
 
 export const submit_form = (form_values, url, type) => {
 
@@ -45,11 +45,11 @@ export const handle_validation_failure = (error_message) => {
 
 }
 
-export const clear_submission_result = () => {
+export const clear_form_submission_response = () => {
 
     return async dispatch => {
         
-        return dispatch({ type: CLEAR_SUBMISSION_RESULT })
+        return dispatch({ type: CLEAR_FORM_SUBMISSION_RESPONSE })
     }
 }
 

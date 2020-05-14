@@ -7,6 +7,8 @@ import colours from "../../../../Util/Colours"
 
 export const Button = props => {
 
+    console.log(props.selected_condition)
+    
     const handle_display = () => {
 
         if(props.type === "back"){

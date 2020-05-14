@@ -1,5 +1,7 @@
+//core react
 import React, { useState, useEffect } from 'react'
 
+//css
 import classes from "./Form.module.css"
 import backgrounds from "./Background_image.module.css"
 
@@ -9,214 +11,194 @@ import Alert from "easyalert"
 import { withRouter } from 'react-router-dom';
 
 //components
-import Button from "./Components/Button/Button"
 import ConditionSelect from "./Components/Condition_Select/Condition_Select"
 import Input from "./Components/Input/Input"
 import ImageUpload from "../../Shared Components/Image_upload_/Image_upload"
 import NavBar from "../../Shared Components/Options_bar/Options_bar"
 import Book from "./Components/Book/Book"
-import BackButton from "./Components/Button/Button"
-import FTP from "../../Shared Components/First_time_prompt/First_time_prompt"
+import Tutorial from "../../Shared Components/First_time_prompt/First_time_prompt"
+import NavigationButtons from "./Components/Navigation_buttons/Navigation_buttons"
 
 //redux hooks
 import { useDispatch, useSelector } from "react-redux"
 
 //redux action creators
-import { submit_form, clear_submission_result } from "../../Store/Actions/Submit_form_action"
+import { submit_form, clear_form_submission_response } from "../../Store/Actions/Submit_form_action"
 
 //functions
 import handle_back_click from "./Functions/handle_back_click"
 import handle_next_click from "./Functions/handle_next_click"
 import set_conditions from "./Functions/set_available_conditions"
 import set_prompt_message from "./Functions/set_prompt_message"
-
-//util
-import { storage } from "../../firebase/index"
+import order_books_by_condition from "./Functions/order_books_by_condition"
+import delete_image_from_firebase from "./Functions/delete_image_from_firebase"
+import reset_form from "./Functions/reset_form"
 
 export const Form = props => {
 
-    const dispatch = useDispatch()
+    //-config
+    const dispatch = useDispatch()//initialise the redux hook
 
     //*states 
-    const [current_step, set_current_step] = useState("year")//the current step of the form, year/condition/photo
+    const [current_step, set_current_step] = useState("year")//the current step of the form, => year/condition/photo <=
     const [year, set_year] = useState(null)//the entered year
     const [selected_condition, set_selected_condition] = useState(null)//the selected condition
-    const [available_conditions, set_available_conditions] = useState(["Poor", "Fair", "Mint"])//hold available conditions (all conditions - existing conditions)
-    const [submission_result_data, set_submission_result_data] = useState(null)
+    const [available_conditions, set_available_conditions] = useState(["Poor", "Fair", "Mint"])//hold available conditions (all conditions - (minus) existing conditions)
 
     //?selectors
-    const submission_result = useSelector(state => state.result.submission_result)
-    const tut_completed = useSelector(state => state.tutorial.completed)
+    const form_submission_response = useSelector(state => state.result.submission_result)//get the response data from form request
+    const tut_completed = useSelector(state => state.tutorial.completed)//The tutorial shown on first visit (Stored in local storage when finished)
+    const photo_uploaded = useSelector(state => state.upload.last_uploaded_photo)//Listens for photo uploads (changes triggered by ImageUpload component)
 
+    //_ functions
+    // const reset_form = (type) => {
+
+    //     dispatch(clear_form_submission_response())//clear the response data from the reducer
+    //     set_current_step("year")//set the step back to year
+
+    //     if (type && type.prepopulate) {
+
+    //         set_year(props.location.state.year)//Prepopulate the year input with the missing year they was redirected from
+    //         props.history.replace()//clear the navigation data (cleanup)
+
+    //     }
+
+    //     else {
+
+    //         set_year(null)//clear the year value (state)
+    //         set_selected_condition(null)//clear the condition value (state)
+
+    //     }
+
+    // }
+
+    // const display_and_prepopulate_form = () => {
+
+    //     dispatch(clear_form_submission_response())//clear all submission data
+    //     set_current_step("year")//set the form to the year step
+    //     set_year(props.location.state.year)//Prepopulate the year input with the missing year they was redirected from
+    //     props.history.replace()//clear the navigation data (cleanup)
+
+    // }
 
     //!effects
     useEffect(() => {
 
-        if (submission_result && submission_result.success) {
+        if (form_submission_response && form_submission_response.success) {//if there is a submission result, and it was successful
 
-            set_submission_result_data(submission_result.details)
+            if (form_submission_response.details.type === "delete") { //and the submission was deleting a book
 
-            if (submission_result.details.type === "delete") {
+                delete_image_from_firebase(form_submission_response.details.year, form_submission_response.details.condition)//delete the image from firebase
 
-                if(!submission_result.details.books.length){
-                    console.log("inside")
+                if (!form_submission_response.details.books.length) {//If it was the last book of that year (no remaining conditions returned)
 
-                    clear_submission_data()
+                    reset_form(dispatch, set_current_step, set_year, props, set_selected_condition)//reset the form 
+
                 }
 
-                storage.ref("images")
-                .child(submission_result.details.year.toString() + "-" + submission_result.details.condition.toString()).delete()
-                .then(a => console.log(a))
-                .catch(a => console.log(a))
+                //otherwise the page will be reloaded with the remaining books
 
-                return Alert("Book deleted successfully", "success")
+                return Alert("Book deleted successfully", "success")//show the user an alert that their book has been deleted
 
             }
 
         }
 
         // eslint-disable-next-line
-    }, [submission_result])
+    }, [form_submission_response])
 
-    useEffect(() => {
-        
-        if(props.location.state && props.location.state.redirected_from_book){
-            dispatch(clear_submission_result())
-            set_current_step("year")
-            set_year(props.location.state.year)
-            props.history.replace()
-        }
-        // eslint-disable-next-line
-    },[])
-
-    //_ functions
-    const handle_result_back_click = () => {
-
-        if (props.type === "Add") window.location.reload()
-            .then(() => {
-                clear_submission_data()
-            })
-
-        else clear_submission_data()
-
-    }
-
-    const clear_submission_data = () => {
-
-        dispatch(clear_submission_result())
-        set_submission_result_data(null)
-        set_current_step("year")
-
-    }
-
-    const sort_conditions = books => {
-
-        const weighted_books = [];
-        const weightings = [["Poor", 1], ["Fair", 2], ["Mint", 3]]
-
-        books.forEach(book => weightings.forEach(condition => {
-
-            if (book.condition === condition[0]) weighted_books.push({ book: book, weighting: condition[1] })
-
-        }))
-
-        return weighted_books.sort((a, b) => a.weighting < b.weighting && -1)
-
-    }
+    //If the user was redirected here by clicking the "plus button" after searching for a book that is missing, display and prepopulate the form 
+    useEffect(() => { 
+        if(props.location.state && props.location.state.redirected_from_book )
+        reset_form(dispatch, set_current_step, set_year, props, set_selected_condition, {prepopulate:true})//reset the form 
+    }, [])
 
     return (
 
         <React.Fragment>
 
-                <div className={[classes.container, props.type === "Add" ? backgrounds.add : props.type === "Search" ? backgrounds.search : backgrounds.worth].join(" ")}>
+            <div className={[classes.container, props.type === "Add" && backgrounds.add, props.type === "Search" && backgrounds.search].join(" ")}>
 
-                    {
-                        submission_result && submission_result.error === "Not_found" ?
+                {//If there is a submission response - display the book 
 
-                        <div className={classes.book_container}>
+                    form_submission_response ?
 
-                        <div className={classes.book_inner_container}>
-                        <Book year={submission_result.details} missing on_back_click={() => handle_result_back_click()} animation_type={0} />
+                        <Book
+
+                            year={year}
+                            photo_uploaded={photo_uploaded}
+                            books={order_books_by_condition(form_submission_response.details.books)}
+                            on_go_back_click={() => reset_form(dispatch, set_current_step, set_year, props, set_selected_condition)}//reset the form
+
+                        />
+
+                        :// No submission response -  display the form 
+
+                        /* This form displays different content based on the current step state
+                        The state is modified via the handle_next_click and handle_back_click functions */
+
+                        <div className={classes.form_container}>
+
+                            <h5 test_handle="form_prompt_message" className={classes.title} style={{ color: colours.dark_blue }}>{props.title}</h5>
+
+                            <span className={classes.form_message}>{set_prompt_message(current_step) /*Set the prompt based on the form type and step */}</span>
+
+                            {
+                                current_step === "year" ? //if the current step is year
+
+                                    <Input year={year} error={null} test_handle="form_input" //display the input component
+                                        handle_change={event => set_year(event.target.value)}
+
+                                        //allow the user to progress to the next step by pressing the enter key, as well as clicking next
+                                        handle_keydown={event => 
+                                            year && year.length === 4 && event.key === "Enter" && //if the year is at least 4 characters
+                                            handle_next_click(current_step, set_current_step, year, selected_condition, set_conditions, dispatch, submit_form, set_available_conditions, props.type)}
+                                    />
+
+                                    :
+
+                                    current_step === "condition" ? //if the current step is condition
+
+                                        <ConditionSelect //display the condition select component
+
+                                            test_handle="condition_select"
+                                            animation_circle_test_handle="condition_animation_circle"
+                                            circle_test_handle="condition_circle"
+                                            on_select_condition={condition => set_selected_condition(condition)}
+                                            selected_condition={selected_condition}
+                                            available_conditions={available_conditions}
+                                            
+                                        />
+
+                                        :
+
+                                        current_step === "photo" && //Otherwise if the step is photo, display the photo upload component
+
+                                        <ImageUpload style={{ backgroundColor: "#f8f8ff" }} year={year} condition={selected_condition} test_handle="form_image_upload" />
+                            }
+
+                            <NavigationButtons /* The go back and next buttons - Clicking them calls a function which decides what to do next */
+
+                                year={year}
+                                selected_condition={selected_condition}
+                                current_step={current_step}
+                                handle_back_click={() => handle_back_click(current_step, set_current_step)}//Handle_back_click and handle_next_click found in functions folder
+                                handle_next_click={() => handle_next_click(current_step, set_current_step, year, selected_condition, set_conditions, dispatch, submit_form, set_available_conditions, props.type, photo_uploaded)}
+
+                            />
+
                         </div>
+                }
 
-                        <BackButton text="Go Back" onClick={()=> handle_result_back_click()} test_handle="go_back_button" overwrite_class={classes.go_back_button} />
+                {tut_completed ? //if the tutorial has been completed, 
 
-                    </div>
+                    <NavBar path={props.path} onClickIcon={() => reset_form(dispatch, set_current_step, set_year, props, set_selected_condition)} /> //display the navbar
 
-                             :
+                    ://Otherwise 
 
-                            submission_result_data &&
+                    <div className={classes.click_prevent_overlay}><Tutorial tutorial_stage={props.type === "Add" ? 3 : 4} /></div> /* Display the tutorial*/}
 
-                                (submission_result_data.type === "add" || submission_result_data.type === "search" || submission_result_data.type === "delete") ?
-
-                                <div className={classes.book_container}>
-
-                                    <div className={classes.book_inner_container}>{sort_conditions(submission_result.details.books).map((book, index) => { 
-                                        return <Book year={book.book.year} condition={book.book.condition} on_back_click={() => handle_result_back_click()} key={book.book._id} 
-                                        anim_duration={`${1 + (index === 0 ? 0 : index === 1 ? 0.5 : 0.8)}s`} animation_type={index}/> })}</div>
-
-                                    <BackButton text={props.type === "Add" ? "Add More" : "Go Back" } onClick={()=> handle_result_back_click()} test_handle="go_back_button" overwrite_class={classes.go_back_button} />
-
-                                </div>
-
-                                : submission_result_data && submission_result_data.type === "worth" ? "Worth" :
-
-                                    <div className={classes.form_container}>
-
-                                        <h5 test_handle="form_prompt_message" className={classes.title} style={{ color: colours.dark_blue, marginTop: "20px" }}>{props.title}</h5>
-
-                                        <span className={classes.form_message}>{set_prompt_message(current_step)}</span>
-
-                                        {
-                                            current_step === "year" ?
-
-                                                <Input year={year} error={null} test_handle="form_input"
-                                                    handle_change={event => set_year(event.target.value)}
-                                                    handle_keydown={event => year && year.length === 4 && event.key === "Enter" && handle_next_click(current_step, set_current_step, year, selected_condition, set_conditions, dispatch, submit_form, set_available_conditions, props.type)}
-                                                />
-
-                                                :
-
-                                                current_step === "condition" ?
-
-                                                    <ConditionSelect
-
-                                                        test_handle="condition_select"
-                                                        animation_circle_test_handle="condition_animation_circle"
-                                                        circle_test_handle="condition_circle"
-
-                                                        on_select_condition={condition => set_selected_condition(condition)}
-                                                        selected_condition={selected_condition}
-                                                        available_conditions={available_conditions}
-                                                    />
-
-                                                    :
-
-                                                    <ImageUpload style={{ backgroundColor: "#f8f8ff" }} year={year} condition={selected_condition} test_handle="form_image_upload" />
-                                        }
-
-
-                                        <div className={classes.button_container} style={{ marginTop: current_step === "photo" && "-15px" }}>
-
-                                            <Button year={year} current_step={current_step} selected_condition={selected_condition} text="Go Back" test_handle="form_back_button"
-                                                onClick={() => handle_back_click(current_step, set_current_step)} type="back" />
-
-                                            <Button year={year} current_step={current_step} selected_condition={selected_condition} text="Add Book" test_handle="form_next_button"
-                                                onClick={() => handle_next_click(current_step, set_current_step, year, selected_condition, set_conditions, dispatch, submit_form, set_available_conditions, props.type)} />
-
-                                        </div>
-
-                                    </div>
-                    }
-
-                   {tut_completed && <NavBar path={props.path} onClickIcon={() => clear_submission_data()} /> }
-
-                   {tut_completed ? null : <FTP tutorial_stage={props.type === "Add" ? 3 : 4}/>}
-                   
-                   {tut_completed ? null : <div className={classes.click_prevent_overlay} onClick={()=> console.log("clicko")}></div>}
-                    
-
-                </div>
+            </div>
 
         </React.Fragment>
     )

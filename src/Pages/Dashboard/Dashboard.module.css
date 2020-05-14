@@ -6,7 +6,7 @@
     position: relative;
 }
 
-.mobile_chart_container{
+.mobile_chart_container {
     width: 330px;
     margin-top: 50px;
     display: flex;
@@ -14,8 +14,7 @@
     align-items: center;
 }
 
-.mobile_chart_selection_container{
-
+.mobile_icon_container {
     display: flex;
     width: 100%;
     justify-content: space-evenly;
@@ -24,21 +23,19 @@
     bottom: 30px;
 }
 
-.icon{
-
+.icon {
     height: 50px;
     width: 50px;
     border: 5px solid rgba(128, 128, 128, 0.308);
     border-radius: 500px;
     box-shadow: 1px 1px 3px 1px grey;
-
 }
 
-.landscape_chart_container{
+.landscape_chart_container {
     display: none;
 }
 
-.click_prevent_overlay{
+.click_prevent_overlay {
     width: 100%;
     height: 100%;
     position: fixed;
@@ -49,121 +46,60 @@
 /* landscape */
 
 @media (orientation:landscape) {
-
-
-.mobile_chart_selection_container{
-    display: none;
-}
-
-.mobile_chart_container{
-    display: none;
-}
-.landscape_chart_container{
-    display: flex;
-    width: 100%;
-    height: 100%;
-    justify-content: space-evenly;
-
-}
-
-    @supports (-webkit-touch-callout: none) {
-
-
-    }
-}
-
-
-/* Small portrait tablet */
-
-@media (min-height:750px) and (min-width: 500px) and (max-height: 950px) and (max-width: 700px) {}
-
-/* Small landscape tablet */
-
-@media (min-height:400px) and (min-width: 900px) and (max-height: 600px) and (max-width: 1023px) {
-
- 
-
-}
-
-/* medium portrait tablet */
-
-@media (min-height:800px) and (min-width: 701px) and (max-width: 1100px) {
-
-    .mobile_chart_container{
+    .mobile_icon_container {
         display: none;
     }
+    .mobile_chart_container {
+        display: none;
+    }
+    .landscape_chart_container {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: space-evenly;
+    }
+}
 
-    .landscape_chart_container{
+
+@media (min-height:800px) and (min-width: 701px) and (max-width: 1100px) {
+    .mobile_chart_container {
+        display: none;
+    }
+    .landscape_chart_container {
         display: flex;
         height: 100%;
         flex-direction: column;
         margin-top: 20px;
     }
-
-    .mobile_chart_selection_container{
+    .mobile_icon_container {
         display: none;
-    }
-
-    @supports (-webkit-touch-callout: none) {
-
     }
 }
 
 /* medium landscape tablet */
 
 @media (min-height:500px) and (min-width: 1000px) {
-
-    .landscape_chart_container{
+    .landscape_chart_container {
         margin-top: 10vh;
     }
-
-
-    @supports (-webkit-touch-callout: none) {
-
-    
-    }
 }
 
-/* large portrait tablet */
-
-@media (min-height:1200px) and (min-width: 1000px) {
-
-
-
-}
-
-/* large landscape tablet */
-
-@media (min-width:1366px) and (max-width:1366px) and (min-height:954px) and (max-height:954px) {
-    @supports (-webkit-touch-callout: none) {
-
-    }
-  }
 
 /*Standard desktop */
 
 @media (min-width: 1200px) {
 
-    .mobile_chart_selection_container{
+    .mobile_icon_container {
         display: none;
     }
-    
-    .mobile_chart_container{
+    .mobile_chart_container {
         display: none;
     }
-    .landscape_chart_container{
+    .landscape_chart_container {
         display: flex;
         width: 100%;
         height: 100%;
         justify-content: space-evenly;
-    
     }
 
-}
-
-/*large desktop */
-
-@media (min-width: 1500px) {
-
-    
 }

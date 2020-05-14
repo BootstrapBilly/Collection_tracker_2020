@@ -1,9 +1,11 @@
+//core react
 import React from 'react'
 
+//css
 import classes from "./Donut.module.css"
 
 //components
-import ConditionCard from "../Condition_card/Condition_card"
+import ConditionCard from "../Bar_chart/Components/Condition_card/Condition_card"
 
 //external
 import CanvasJSReact from "../../../../Assets/Charts/canvasjs.react"
@@ -13,13 +15,12 @@ import colours from "../../../../Util/Colours"
 
 export const Donut = props => {
 
-    //`${Math.round((props.total_percent + Number.EPSILON) * 100) / 100}%`
     //-Config
     const CanvasJS = CanvasJSReact.CanvasJS
     const CanvasJSChart = CanvasJSReact.CanvasJSChart
 
-    CanvasJS.addColorSet("customColorSet1",
-        [colours.red, colours.orange, colours.green, "#d1cfc8"]);
+    CanvasJS.addColorSet("customColorSet1",//define a custom colour set
+        [colours.red, colours.orange, colours.green, "#d1cfc8"]);//with an array of colours
 
     const options = {
         animationEnabled: true,
@@ -59,9 +60,9 @@ export const Donut = props => {
 
             <div className={classes.card_container}>
 
-                <ConditionCard title="Poor" colour={colours.red} number={props.book_data.poor} />
-                <ConditionCard title="Fair" colour={colours.orange} number={props.book_data.fair} />
-                <ConditionCard title="Mint" colour={colours.green} number={props.book_data.mint} />
+                <ConditionCard title="Poor" colour={colours.red} number={props.condition_count.poor} />
+                <ConditionCard title="Fair" colour={colours.orange} number={props.condition_count.fair} />
+                <ConditionCard title="Mint" colour={colours.green} number={props.condition_count.mint} />
 
             </div>
 

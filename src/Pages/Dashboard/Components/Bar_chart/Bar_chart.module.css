@@ -1,5 +1,4 @@
 .chart_wrapper {
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,25 +8,24 @@
 }
 
 .left_patch, .right_patch {
-
     position: absolute;
     bottom: 0;
     background-color: #F8F8FF;
 }
 
-.left_patch{
+.left_patch {
     left: 0;
     width: 80px;
     height: 12px;
 }
-.right_patch{
+
+.right_patch {
     right: 0px;
     width: 80px;
     height: 12px;
 }
 
-
-.percent{
+.percent {
     position: fixed;
     top: 165px;
     font-family: 'Roboto', sans-serif;
@@ -45,7 +43,7 @@
     top: 280px;
 }
 
-.title{
+.title {
     position: fixed;
     top: 52px;
     font-family: 'Roboto', sans-serif;
@@ -57,8 +55,7 @@
 }
 
 @media (orientation:landscape) {
-
-    .chart_wrapper{
+    .chart_wrapper {
         width: 500px;
         height: 400px;
         display: flex;
@@ -66,33 +63,25 @@
         justify-content: center;
         align-items: center;
         margin-top: 70px;
-
     }
-
-    .card_container{
+    .card_container {
         margin-top: 50px;
     }
-
-    
-.left_patch, .right_patch, .key_patch {
-
-    position: absolute;
-    bottom: 23px;
-}
-
-.title{
-    position: absolute;
-    top: -16px;
-    left: -80px;
-}
-
+    .left_patch, .right_patch, .key_patch {
+        position: absolute;
+        bottom: 23px;
+    }
+    .title {
+        position: absolute;
+        top: -16px;
+        left: -80px;
+    }
 }
 
 /* medium portrait tablet */
 
 @media (min-height:800px) and (min-width: 701px) and (max-width: 1100px) {
-
-    .chart_wrapper{
+    .chart_wrapper {
         width: 500px;
         height: 400px;
         display: flex;
@@ -101,30 +90,20 @@
         align-items: center;
         margin-left: 120px;
     }
-
-    .card_container{
+    .card_container {
         margin-top: 50px;
     }
-
-    
-.left_patch, .right_patch, .key_patch {
-
-    position: absolute;
-    bottom: 23px;
-   
-}
-
-.title{
-    position: absolute;
-    top: -15px;
-    left: -80px;
-}
-
-
+    .left_patch, .right_patch, .key_patch {
+        position: absolute;
+        bottom: 23px;
+    }
+    .title {
+        position: absolute;
+        top: -15px;
+        left: -80px;
+    }
     @supports (-webkit-touch-callout: none) {
-
-        .title{
-
+        .title {
             top: -25px;
         }
     }
@@ -133,11 +112,7 @@
 /*Standard desktop */
 
 @media (min-width: 1200px) {
-
     .left_patch, .right_patch, .key_patch {
-
         bottom: 22px;
-       
     }
-
 }
