@@ -84,11 +84,11 @@ const handle_offset = direction => {
 
         case "right":
 
-            if (window.innerWidth < 1000) return "0px"
+            if (window.innerWidth < 1000) return "0px" //smaller than desktop
 
-            if (window.innerWidth > 1500) return "35vw"
+            if (window.innerWidth > 1500) return "35vw"//large desktop
 
-            return "28vw"
+            return "28vw"//laptop
 
         default: return ""
 

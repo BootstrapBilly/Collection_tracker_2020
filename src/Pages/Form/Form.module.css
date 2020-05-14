@@ -28,6 +28,7 @@
         font-size: 28px;
         font-weight: 900;
         margin: 0;
+        margin-top: 20px;
     }
     .form_message {
         font-size: 23px;
@@ -86,6 +87,7 @@
     .title {
         font-size: 50px;
         margin: 0;
+        margin-top: 20px;
     }
     .form_message {
         font-size: 40px;
@@ -106,6 +108,7 @@
     .title {
         font-size: 40px;
         margin: 0;
+        margin-top: 20px;
     }
     .form_message {
         margin-top: 15px;
@@ -120,6 +123,7 @@
         font-size: 60px;
         margin: 0;
         padding: 0;
+        margin-top: 20px;
     }
     .form_message {
         font-size: 45px;
@@ -140,6 +144,7 @@
         font-size: 60px;
         margin: 0;
         padding: 0;
+        margin-top: 20px;
     }
     .form_message {
         font-size: 45px;
@@ -181,6 +186,7 @@
     .title {
         font-size: 50px;
         margin: 0;
+        margin-top: 20px;
     }
     .form_message {
         font-size: 40px;
@@ -216,6 +222,7 @@
         font-family: 'Roboto', sans-serif;
         margin-left: 0px;
         margin: 0;
+
     }
     .form_message {
         font-size: 30px;
@@ -272,6 +279,7 @@
 @media (width:1366px) and (height:954px) {
     .title {
         margin: 0;
+
     }
     .form_message {
         margin-top: 20px;

@@ -1,10 +1,10 @@
-import send_request from "../../../Util/SendRequest"
+import send_request from "../../../Util/SendRequest"//util method for sending API requests
 
 const set_conditions = async (year, set_available_conditions) => {
 
     let available_conditions = ["Poor", "Fair", "Mint"]//set all conditions
 
-    const response = await send_request("get_conditions", { form_values: year })  
+    const response = await send_request("get_conditions", { form_values: year })//check what conditions for the given year already exist in the database  
 
     const existing_conditions = response.data.conditions//store any existing conditions
 

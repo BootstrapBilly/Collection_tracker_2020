@@ -1,6 +1,6 @@
 const order_books_by_condition = books => {
 
-    if (!books) return null
+    if (!books) return null //if no books, return null
 
     const weighted_books = [];//define an array to hold the weighted books
     const weightings = [["Poor", 1], ["Fair", 2], ["Mint", 3]]//define the value of each condition
@@ -15,11 +15,11 @@ const order_books_by_condition = books => {
     }
     )
 
-    weighted_books.sort((a, b) => a.weighting < b.weighting && -1) //return the books, sorted by condition (poor, fair ,mint)
+    weighted_books.sort((a, b) => a.weighting < b.weighting && -1) //sort the books by condition (poor, fair ,mint)
 
-    const clean_array = []
+    const clean_array = []//define an empty array to hold the books to be returned
 
-    weighted_books.forEach(book => clean_array.push(book.book))
+    weighted_books.forEach(book => clean_array.push(book.book))//populate it with the books (and NOT their condition weightings)
 
     return clean_array
 

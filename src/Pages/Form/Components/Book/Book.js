@@ -14,7 +14,6 @@ import default_image from "../../../../Assets/Img/default_search_image.png"
 import del from "../../../../Assets/Icons/delete.svg"
 import cog from "../../../../Assets/Icons/settings.svg"
 import plus from "../../../../Assets/Icons/plus.svg"
-import spinner from "../../../../Assets/Spinners/Photo_spinner.svg"
 import camera from "../../../../Assets/Icons/camera.svg"
 
 //external
@@ -22,7 +21,6 @@ import { Redirect } from 'react-router'
 
 //util
 import colours from "../../../../Util/Colours"
-import { storage } from "../../../../firebase/index"
 
 //redux hooks
 import { useDispatch, useSelector } from "react-redux"
@@ -54,7 +52,7 @@ export const Search = props => {
     }
 
     //?Selectors
-    const photo_changed = useSelector(state => state.upload.last_uploaded_photo)
+    const photo_uploaded = useSelector(state => state.upload.last_uploaded_photo)
 
 
     const handle_condition_assignment = book => {
@@ -66,14 +64,14 @@ export const Search = props => {
 
     useEffect(() => {
 
-        if (photo_changed) {
+        if (photo_uploaded) {
 
             set_image_upload(false)
-            set_new_image_uploaded({url:photo_changed.url, condition:photo_changed.condition})
+            set_new_image_uploaded({url:photo_uploaded.url, condition:photo_uploaded.condition})
 
         }
         // eslint-disable-next-line
-    }, [photo_changed])
+    }, [photo_uploaded])
 
     return (
 

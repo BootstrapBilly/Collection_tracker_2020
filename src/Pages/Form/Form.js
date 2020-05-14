@@ -11,13 +11,13 @@ import Alert from "easyalert"
 import { withRouter } from 'react-router-dom';
 
 //components
-import Button from "./Components/Button/Button"
 import ConditionSelect from "./Components/Condition_Select/Condition_Select"
 import Input from "./Components/Input/Input"
 import ImageUpload from "../../Shared Components/Image_upload_/Image_upload"
 import NavBar from "../../Shared Components/Options_bar/Options_bar"
 import Book from "./Components/Book/Book"
-import FTP from "../../Shared Components/First_time_prompt/First_time_prompt"
+import Tutorial from "../../Shared Components/First_time_prompt/First_time_prompt"
+import NavigationButtons from "./Components/Navigation_buttons/Navigation_buttons"
 
 //redux hooks
 import { useDispatch, useSelector } from "react-redux"
@@ -31,9 +31,8 @@ import handle_next_click from "./Functions/handle_next_click"
 import set_conditions from "./Functions/set_available_conditions"
 import set_prompt_message from "./Functions/set_prompt_message"
 import order_books_by_condition from "./Functions/order_books_by_condition"
-
-//util
-import { storage } from "../../firebase/index"
+import delete_image_from_firebase from "./Functions/delete_image_from_firebase"
+import reset_form from "./Functions/reset_form"
 
 export const Form = props => {
 
@@ -49,50 +48,51 @@ export const Form = props => {
     //?selectors
     const form_submission_response = useSelector(state => state.result.submission_result)//get the response data from form request
     const tut_completed = useSelector(state => state.tutorial.completed)//The tutorial shown on first visit (Stored in local storage when finished)
-    const photo_changed = useSelector(state => state.upload.last_uploaded_photo)
+    const photo_uploaded = useSelector(state => state.upload.last_uploaded_photo)//Listens for photo uploads (changes triggered by ImageUpload component)
 
     //_ functions
-    const reset_form = () => {
+    // const reset_form = (type) => {
 
-        dispatch(clear_form_submission_response())//clear the response data from the reducer
-        set_current_step("year")//set the step back to year
-        set_year(null)//clear the year value (state)
-        set_selected_condition(null)//clear the condition value (state)
+    //     dispatch(clear_form_submission_response())//clear the response data from the reducer
+    //     set_current_step("year")//set the step back to year
 
-    }
+    //     if (type && type.prepopulate) {
 
-    const display_and_prepopulate_form = () => {
+    //         set_year(props.location.state.year)//Prepopulate the year input with the missing year they was redirected from
+    //         props.history.replace()//clear the navigation data (cleanup)
 
-        dispatch(clear_form_submission_response())//clear all submission data
-        set_current_step("year")//set the form to the year step
-        set_year(props.location.state.year)//Prepopulate the year input with the missing year they was redirected from
-        props.history.replace()//clear the navigation data (cleanup)
+    //     }
 
-    }
+    //     else {
 
-    const delete_image_from_firebase = () => {
+    //         set_year(null)//clear the year value (state)
+    //         set_selected_condition(null)//clear the condition value (state)
 
-        storage.ref("images")
-            .child(form_submission_response.details.year.toString() + "-" + form_submission_response.details.condition.toString())//find the book with the deleted year and condition
-            .delete()//and delete it
-            .then(a => { return })
-            .catch(a => { return })
+    //     }
 
-    }
+    // }
+
+    // const display_and_prepopulate_form = () => {
+
+    //     dispatch(clear_form_submission_response())//clear all submission data
+    //     set_current_step("year")//set the form to the year step
+    //     set_year(props.location.state.year)//Prepopulate the year input with the missing year they was redirected from
+    //     props.history.replace()//clear the navigation data (cleanup)
+
+    // }
 
     //!effects
-
     useEffect(() => {
 
         if (form_submission_response && form_submission_response.success) {//if there is a submission result, and it was successful
 
             if (form_submission_response.details.type === "delete") { //and the submission was deleting a book
 
-                delete_image_from_firebase()//delete the image from firebase
+                delete_image_from_firebase(form_submission_response.details.year, form_submission_response.details.condition)//delete the image from firebase
 
                 if (!form_submission_response.details.books.length) {//If it was the last book of that year (no remaining conditions returned)
 
-                    reset_form()//reset the form 
+                    reset_form(dispatch, set_current_step, set_year, props, set_selected_condition)//reset the form 
 
                 }
 
@@ -107,16 +107,11 @@ export const Form = props => {
         // eslint-disable-next-line
     }, [form_submission_response])
 
-    useEffect(() => {
-
-        //If the user was redirected here by clicking the "plus button" after searching for a book that is missing
-        if (props.location.state && props.location.state.redirected_from_book) display_and_prepopulate_form()
-
-        // eslint-disable-next-line
-// eslint-disable-next-line
+    //If the user was redirected here by clicking the "plus button" after searching for a book that is missing, display and prepopulate the form 
+    useEffect(() => { 
+        if(props.location.state && props.location.state.redirected_from_book )
+        reset_form(dispatch, set_current_step, set_year, props, set_selected_condition, {prepopulate:true})//reset the form 
     }, [])
-
-    console.log(form_submission_response)
 
     return (
 
@@ -128,8 +123,14 @@ export const Form = props => {
 
                     form_submission_response ?
 
-                        <Book year={year} on_back_click={() => reset_form()} photo_changed={photo_changed}
-                            books={order_books_by_condition(form_submission_response.details.books)} on_go_back_click={()=> reset_form()} />
+                        <Book
+
+                            year={year}
+                            photo_uploaded={photo_uploaded}
+                            books={order_books_by_condition(form_submission_response.details.books)}
+                            on_go_back_click={() => reset_form(dispatch, set_current_step, set_year, props, set_selected_condition)}//reset the form
+
+                        />
 
                         :// No submission response -  display the form 
 
@@ -138,19 +139,20 @@ export const Form = props => {
 
                         <div className={classes.form_container}>
 
-                            <h5 test_handle="form_prompt_message" className={classes.title} style={{ color: colours.dark_blue, marginTop: "20px" }}>{props.title}</h5>
+                            <h5 test_handle="form_prompt_message" className={classes.title} style={{ color: colours.dark_blue }}>{props.title}</h5>
 
                             <span className={classes.form_message}>{set_prompt_message(current_step) /*Set the prompt based on the form type and step */}</span>
 
                             {
                                 current_step === "year" ? //if the current step is year
 
-                                    //display the year input
-                                    <Input year={year} error={null} test_handle="form_input"
+                                    <Input year={year} error={null} test_handle="form_input" //display the input component
                                         handle_change={event => set_year(event.target.value)}
 
-                                        //allow the user to progress to the next step by pressing enter, as well as clicking next
-                                        handle_keydown={event => year && year.length === 4 && event.key === "Enter" && handle_next_click(current_step, set_current_step, year, selected_condition, set_conditions, dispatch, submit_form, set_available_conditions, props.type)}
+                                        //allow the user to progress to the next step by pressing the enter key, as well as clicking next
+                                        handle_keydown={event => 
+                                            year && year.length === 4 && event.key === "Enter" && //if the year is at least 4 characters
+                                            handle_next_click(current_step, set_current_step, year, selected_condition, set_conditions, dispatch, submit_form, set_available_conditions, props.type)}
                                     />
 
                                     :
@@ -162,42 +164,39 @@ export const Form = props => {
                                             test_handle="condition_select"
                                             animation_circle_test_handle="condition_animation_circle"
                                             circle_test_handle="condition_circle"
-
                                             on_select_condition={condition => set_selected_condition(condition)}
                                             selected_condition={selected_condition}
                                             available_conditions={available_conditions}
+                                            
                                         />
 
-                                        : current_step === "photo" && //Otherwise if the step is photo, display the photo upload component
+                                        :
+
+                                        current_step === "photo" && //Otherwise if the step is photo, display the photo upload component
 
                                         <ImageUpload style={{ backgroundColor: "#f8f8ff" }} year={year} condition={selected_condition} test_handle="form_image_upload" />
                             }
 
-                            {/* The back and next buttons
-                            Clicking them calls a function which decides what to do next */}
+                            <NavigationButtons /* The go back and next buttons - Clicking them calls a function which decides what to do next */
 
-                            <div className={classes.button_container} style={{ marginTop: current_step === "photo" && "-15px" }}>
+                                year={year}
+                                selected_condition={selected_condition}
+                                current_step={current_step}
+                                handle_back_click={() => handle_back_click(current_step, set_current_step)}//Handle_back_click and handle_next_click found in functions folder
+                                handle_next_click={() => handle_next_click(current_step, set_current_step, year, selected_condition, set_conditions, dispatch, submit_form, set_available_conditions, props.type, photo_uploaded)}
 
-                                <Button year={year} current_step={current_step} selected_condition={selected_condition} text="Go Back" test_handle="form_back_button"
-                                    //onclick is handled by a function (in the functions folder)
-                                    onClick={() => handle_back_click(current_step, set_current_step)} type="back" />
-
-                                <Button year={year} current_step={current_step} selected_condition={selected_condition} text="Add Book" test_handle="form_next_button"
-                                    //onclick is handled by a function (in the functions folder)
-                                    onClick={() => handle_next_click(current_step, set_current_step, year, selected_condition, set_conditions, dispatch, submit_form, set_available_conditions, props.type, photo_changed)} />
-
-                            </div>
+                            />
 
                         </div>
                 }
 
                 {tut_completed ? //if the tutorial has been completed, 
 
-                    <NavBar path={props.path} onClickIcon={() => reset_form()} /> //display the navbar
+                    <NavBar path={props.path} onClickIcon={() => reset_form(dispatch, set_current_step, set_year, props, set_selected_condition)} /> //display the navbar
 
                     ://Otherwise 
 
-                    <div className={classes.click_prevent_overlay}><FTP tutorial_stage={props.type === "Add" ? 3 : 4} /></div> /* Display the tutorial*/}
+                    <div className={classes.click_prevent_overlay}><Tutorial tutorial_stage={props.type === "Add" ? 3 : 4} /></div> /* Display the tutorial*/}
 
             </div>
 
