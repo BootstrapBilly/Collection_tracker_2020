@@ -21,7 +21,7 @@ import { mark_completed } from "../../Store/Actions/Tutorial_action"
 
 
 export const First_time_prompt = props => {
-
+// eslint-disable-next-line
     const tut_completed = useSelector(state => state.tutorial.completed)
 
     const dispatch = useDispatch()
@@ -37,7 +37,7 @@ export const First_time_prompt = props => {
     const [time_passed, set_time_passed] = useState(false)
 
     const [tutorial_stage, set_tutorial_stage] = useState(1)
-
+// eslint-disable-next-line
     const [redirect, set_redirect] = useState(false)
 
     const handle_home_click = () => {
@@ -113,7 +113,7 @@ export const First_time_prompt = props => {
                 set_time_passed(true)
             }, 3000);
         }
-
+// eslint-disable-next-line
     }, [tutorial_stage])
 
 

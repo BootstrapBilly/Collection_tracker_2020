@@ -28,7 +28,7 @@ describe("@@@@@@@@ SEARCH AND DELETE @@@@@@@@@@@@@@@", () => {
 
         cy.get("[test_handle='book_condition']").should("have.text", "Missing")
  
-        cy.get("[test_handle='book_options_cog_undefined']").click()
+        cy.get("[test_handle='book_options_cog_Missing']").click()
         cy.url().should("include", `/add_book`)
 
     })

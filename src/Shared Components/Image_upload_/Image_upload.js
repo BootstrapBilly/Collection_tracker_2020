@@ -18,6 +18,7 @@ import { useDispatch } from "react-redux"
 
 //redux action creators
 import { reload_search_result_action, handle_upload_error_action } from "../../Store/Actions/Photo_upload_handler_action"
+import { set_url_in_database } from "../../Store/Actions/Photo_upload_handler_action"
 
 export const Image_upload = props => {
 
@@ -30,6 +31,8 @@ export const Image_upload = props => {
 
     //_functions
     const handle_photo_upload = (event) => {
+
+        console.log(event.target.files[0])
 
         const upload_task = storage.ref(`images/${props.year.toString()}-${props.condition.toString()}`).put(event.target.files[0])
 
@@ -51,8 +54,9 @@ export const Image_upload = props => {
                 //complete function
                 storage.ref("images").child(props.year.toString() + "-" + props.condition.toString()).getDownloadURL().then(url => {
                     set_preview_selected_image(url)
-                    dispatch(reload_search_result_action(url))
+                    dispatch(reload_search_result_action({url:url, condition:props.condition}))
                     set_successful_upload(true)
+                    dispatch(set_url_in_database({url:url, year:props.year, condition:props.condition}))
                 })
             });
     }

@@ -23,6 +23,7 @@ export const Bar_chart = props => {
     const [books_in_each_column, set_books_in_each_column] = useState([0, 0, 0, 0, 0])//hold the amount of books in each column of the graph
 
     //!Effects
+    // eslint-disable-next-line
     useEffect(() => { if (props.books) sort_into_columns(props.books, column_cutoff, set_books_in_each_column) }, [props.books])//if theres books, sort them into era blocks
 
     //_Chart options

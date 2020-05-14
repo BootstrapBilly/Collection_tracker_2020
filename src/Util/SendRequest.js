@@ -1,8 +1,8 @@
 import axios from "axios"
 
-//export const production = "http://localhost:4000/"//dev
+export const production = "http://localhost:4000/"//dev
 
-export const production = "https://collection-tracker-app.herokuapp.com/"//production
+//export const production = "https://collection-tracker-app.herokuapp.com/"//production
 
 //export const production = "https://floating-plains-02319.herokuapp.com/"//private
 

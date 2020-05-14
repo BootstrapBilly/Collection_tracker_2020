@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from "react-redux"
 
 //redux action creators
 import { fetch_books } from "../../Store/Actions/Fetch_books_action"
-import { CLEAR_SUBMISSION_RESULT } from "../../Store/Actions/Submit_form_action"
+import { clear_form_submission_response } from "../../Store/Actions/Submit_form_action"
 
 //assets
 import donut from "../../Assets/Icons/donut.svg"
@@ -65,7 +65,7 @@ const Dashboard = props => {
 
         <div className={classes.container}>
 
-            {tutorial_completed && <Navbar path={props.location.pathname} onClick={() => dispatch(CLEAR_SUBMISSION_RESULT())}/> /* Show the navbar if the tut is completed*/}
+            {tutorial_completed && <Navbar path={props.location.pathname} onClick={() => dispatch(clear_form_submission_response())}/> /* Show the navbar if the tut is completed*/}
 
             <div className={classes.mobile_chart_container}>
 

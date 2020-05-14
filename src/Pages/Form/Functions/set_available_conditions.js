@@ -12,15 +12,16 @@ const set_conditions = async (year, set_available_conditions) => {
     if(!existing_conditions) return set_available_conditions(available_conditions)//if none exist, make all conditions available in the next step
 
     //*conditions found
-    existing_conditions.forEach(existing_condition => {//loop through the existing conditions
+    existing_conditions.forEach(existing_condition => {//if existing conditions were found, loop through the existing conditions
 
         available_conditions = available_conditions.filter(condition => existing_condition.toString() !== condition.toString())//removing them from the available conditions
             
     })
 
-    if(!available_conditions.length) return false //if no conditions were found, return false
+    if(!available_conditions.length) return false //if all conditions were taken, return false to not progress to the next step
 
     return set_available_conditions(available_conditions)//set the available conditions on the next step
+    
 }
 
 export default set_conditions
