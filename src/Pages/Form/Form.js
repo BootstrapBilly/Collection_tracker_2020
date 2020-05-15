@@ -40,10 +40,10 @@ export const Form = props => {
     //*states 
 
     const [state, set_state] = useState({
-        current_step:"year", //the current step of the form, => year/condition/photo <=
-        year:null,//the entered year
-        selected_condition:null,//the selected condition
-        available_conditions:["Poor", "Fair", "Mint"]//hold available conditions (all conditions - (minus) existing conditions)
+        current_step: "year", //the current step of the form, => year/condition/photo <=
+        year: null,//the entered year
+        selected_condition: null,//the selected condition
+        available_conditions: ["Poor", "Fair", "Mint"]//hold available conditions (all conditions - (minus) existing conditions)
     })
 
     //?selectors
@@ -63,8 +63,8 @@ export const Form = props => {
                 if (!form_submission_response.details.books.length) {//If it was the last book of that year (no remaining conditions returned)
 
                     reset_form(dispatch, props, state, set_state)
-                        
-                        // set_current_step, set_year, props, set_selected_condition)//reset the form 
+
+                    // set_current_step, set_year, props, set_selected_condition)//reset the form 
 
                 }
 
@@ -79,12 +79,12 @@ export const Form = props => {
         // eslint-disable-next-line
     }, [form_submission_response])
 
-  
-    useEffect(() => { 
 
-        if(props.location.state && props.location.state.redirected_from_book )//user was redirected here by clicking the "plus button" on a book that is missing
-        reset_form(dispatch, props, state, set_state, {prepopulate:true})//reset and prepopulate the form 
-
+    useEffect(() => {
+        //user was redirected here by clicking the "plus button" on a book that is missing (book.js line 158)
+        if (props.location.state && props.location.state.redirected_from_book)
+            reset_form(dispatch, props, state, set_state, { prepopulate: true })//reset and prepopulate the form 
+// eslint-disable-next-line
     }, [])
 
     return (
@@ -103,6 +103,7 @@ export const Form = props => {
                             photo_uploaded={photo_uploaded}
                             books={order_books_by_condition(form_submission_response.details.books)}
                             on_go_back_click={() => reset_form(dispatch, props, state, set_state)}//reset the form
+                            type={props.type}
 
                         />
 
@@ -121,12 +122,21 @@ export const Form = props => {
                                 state.current_step === "year" ? //if the current step is year
 
                                     <Input year={state.year} error={null} test_handle="form_input" //display the input component
-                                        handle_change={event => set_state({...state, year: event.target.value})}
+
+                                        handle_change={event => {
+
+                                            if (isNaN(event.target.value)) return //if the input is not a number, do not accept it
+                                            set_state({ ...state, year: event.target.value })//otherwise update the input value
+                                        }
+
+                                        }
 
                                         //allow the user to progress to the next step by pressing the enter key, as well as clicking next
-                                        handle_keydown={event => 
+                                        handle_keydown={event =>
+
                                             state.year && state.year.length === 4 && event.key === "Enter" && //if the year is at least 4 characters               
                                             handle_next_click(state, set_state, dispatch, props.type, photo_uploaded)}//navigate to the next step 
+
                                     />
 
                                     :
@@ -138,10 +148,10 @@ export const Form = props => {
                                             test_handle="condition_select"
                                             animation_circle_test_handle="condition_animation_circle"
                                             circle_test_handle="condition_circle"
-                                            on_select_condition={condition => set_state({...state, selected_condition:(condition)})}
+                                            on_select_condition={condition => set_state({ ...state, selected_condition: (condition) })}
                                             selected_condition={state.selected_condition}
                                             available_conditions={state.available_conditions}
-                                            
+
                                         />
 
                                         :

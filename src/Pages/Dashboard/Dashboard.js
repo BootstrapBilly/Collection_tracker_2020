@@ -38,9 +38,7 @@ const Dashboard = props => {
 
     //-Config
     const dispatch = useDispatch()//initialise the redux usedispatch hook
-
     let num_books = { total: 65, poor: condition_count.poor, fair: condition_count.fair, mint: condition_count.mint }//set the amount of books
-
     const compute_percent = amount => (amount / num_books.total) * 100//work out the percentage weighting of the total collection for each condition
 
     //compute the percent values for each condition e.g. 20/65 books are in poor condition = 30%
@@ -58,47 +56,49 @@ const Dashboard = props => {
 
     }, [books])
 
-// eslint-disable-next-line
-    useEffect(()=>{ dispatch(fetch_books())}, [] /*fetch the books from the database, only once*/)
+    // eslint-disable-next-line
+    useEffect(() => { dispatch(fetch_books()) }, [] /*fetch the books from the database, only once*/)
 
     return (
 
         <div className={classes.container}>
 
-            {tutorial_completed && <Navbar path={props.location.pathname} onClick={() => dispatch(clear_form_submission_response())}/> /* Show the navbar if the tut is completed*/}
+            {tutorial_completed && <Navbar path={props.location.pathname} onClick={() => dispatch(clear_form_submission_response())} /> /* Show the navbar if the tut is completed*/}
 
             <div className={classes.mobile_chart_container}>
 
-                {//Mobile only
-                current_graph === "donut" ? 
+                {//Mobile only (controlled by css) - charts displayed 1 at a time and toggled
+                    current_graph === "donut" ?
 
-                    <Donut total_percent={total_percent} poor_percent={poor_percent} fair_percent={fair_percent} mint_percent={mint_percent} condition_count={condition_count} />
+                        <Donut total_percent={total_percent} poor_percent={poor_percent} fair_percent={fair_percent} mint_percent={mint_percent} condition_count={condition_count} />
 
-                    : 
+                        :
 
-                    <BarChart books={unique_years} />
+                        <BarChart books={unique_years} />
                 }
 
             </div>
 
+            {/* Mobile only, the icon container which controls which chart to display */}
+            <div className={classes.mobile_icon_container}>
+
+                <img src={donut} alt="Donut icon" className={classes.icon}
+                    onClick={() => set_current_graph("donut")}
+                    style={{ borderColor: current_graph === "donut" && colours.blue }}
+                />
+
+                <img src={barchart} alt="Barchart icon" className={classes.icon}
+                    onClick={() => set_current_graph("barchart")}
+                    style={{ borderColor: current_graph === "barchart" && colours.blue }}
+                />
+
+            </div>
+
+            {/* Landscape / non mobile devices only (controlled by css) - all charts displayed*/}
             <div className={classes.landscape_chart_container}>
 
                 <Donut total_percent={total_percent} poor_percent={poor_percent} fair_percent={fair_percent} mint_percent={mint_percent} condition_count={condition_count} />
                 <BarChart books={unique_years} />
-
-            </div>
-
-            <div className={classes.mobile_icon_container}>
-
-                <img src={donut} alt="Donut icon" className={classes.icon} 
-                onClick={() => set_current_graph("donut")} 
-                style={{ borderColor: current_graph === "donut" && colours.blue }} 
-                />
-
-                <img src={barchart} alt="Barchart icon" className={classes.icon} 
-                onClick={() => set_current_graph("barchart")} 
-                style={{ borderColor: current_graph === "barchart" && colours.blue }} 
-                />
 
             </div>
 

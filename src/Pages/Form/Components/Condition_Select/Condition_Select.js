@@ -1,6 +1,9 @@
 import React from 'react'
 
+//classes
 import classes from "./Condition_Select.module.css"
+
+//components
 import Condition from './Condition/Condition'
 
 export const Condition_Select = props => {
@@ -9,7 +12,7 @@ export const Condition_Select = props => {
 
         <div className={classes.container} test_handle={props.test_handle}>
 
-            {props.available_conditions.map(condition =>
+            {props.available_conditions.map(condition => //map the available conditions (set during the handle_next_click function - line 27)
 
                 <Condition
 
