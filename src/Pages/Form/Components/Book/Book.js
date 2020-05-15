@@ -105,8 +105,7 @@ export const Search = props => {
                                         // eslint-disable-next-line
                                         new_image_uploaded && new_image_uploaded.condition === book.condition && new_image_uploaded.url//display the new image
                                         // eslint-disable-next-line
-                                        || book.image_url //otherwise display the image url pulled from the database
-                                
+                                        || book.image_url //otherwise display the image url pulled from the database                                      
                                         || default_image //if there is no image, display the default image
                                     }
 

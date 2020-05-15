@@ -1,10 +1,10 @@
 import React from "react"
-import classes from "./Option.module.css"
+import classes from "./Nav_link.module.css"
 
 //external
 import { Link } from "react-router-dom"
 
-const Option = props => {
+const Navlink = props => {
 
     return (
 
@@ -12,7 +12,7 @@ const Option = props => {
 
             <Link to={props.to} test-handle={props.test_handle} style={{ textDecoration: 'none' }}>
 
-                <img className={classes.icon} src={props.src} alt={props.alt} onClick={props.handleClick} onMouseDown={props.onClick} onTouchStart={props.onTouchStart} onMouseUp={props.onMouseDown}/>
+                <img className={classes.icon} src={props.src} alt={props.alt} onClick={props.handleClick} onMouseDown={props.onClick}/>
                 <p>{props.text}</p>
 
             </Link>
@@ -23,4 +23,4 @@ const Option = props => {
 
 }
 
-export default Option
+export default Navlink

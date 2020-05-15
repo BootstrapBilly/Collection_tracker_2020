@@ -26,7 +26,7 @@ export const Image_upload = props => {
 
     //*states
     const [state, set_state] = useState({
-        preview_selected_image: upload,
+        image: upload,
         successful_upload: false
     })
 
@@ -46,10 +46,9 @@ export const Image_upload = props => {
 
                 <UploadedImage state={state} on_change_photo={() => set_state({ ...state, successful_upload: false })} />
 
-
                 ://Otherwise, if a photo has not been uploaded
 
-                <Uploader image={state.preview_selected_image || spinner} handle_upload={(event) => upload_to_firebase(event, props.year, props.condition, state, set_state, dispatch)} />
+                <Uploader image={state.image || spinner} handle_upload={(event) => upload_to_firebase(event, props.year, props.condition, state, set_state, dispatch)} />
 
             }
 

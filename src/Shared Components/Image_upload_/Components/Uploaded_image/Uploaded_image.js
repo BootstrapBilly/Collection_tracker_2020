@@ -14,7 +14,7 @@ export const Uploaded_image = props => {
 
         <div className={classes.successful_upload_container}>
 
-            <img src={props.state.preview_selected_image || spinner} alt={"An icon"} className={classes.uploaded_image} />
+            <img src={props.state.image || spinner} alt={"An icon"} className={classes.uploaded_image} />
 
             {/* option to upload the photo again*/}
             <span onClick={props.on_change_photo} 

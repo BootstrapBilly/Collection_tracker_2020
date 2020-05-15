@@ -11,7 +11,7 @@ const upload_to_firebase = (event, year, condition, state, set_state, dispatch) 
 
         .put(event.target.files[0])
 
-        set_state({...state, preview_selected_image:spinner})
+        set_state({...state, image:spinner})
 
     upload_task.on("state_changed",
 
@@ -27,7 +27,7 @@ const upload_to_firebase = (event, year, condition, state, set_state, dispatch) 
 
                 .then(url => {
 
-                    set_state({...state, preview_selected_image:url, successful_upload:true})
+                    set_state({...state, image:url, successful_upload:true})
    
                     dispatch(reload_search_result_action({ url: url, condition: condition }))//reload the book with the new photo
                

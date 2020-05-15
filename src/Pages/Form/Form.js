@@ -14,7 +14,7 @@ import { withRouter } from 'react-router-dom';
 import ConditionSelect from "./Components/Condition_Select/Condition_Select"
 import Input from "./Components/Input/Input"
 import ImageUpload from "../../Shared Components/Image_upload_/Image_upload"
-import NavBar from "../../Shared Components/Options_bar/Options_bar"
+import NavBar from "../../Shared Components/Navigation/Navigation"
 import Book from "./Components/Book/Book"
 import Tutorial from "../../Shared Components/First_time_prompt/First_time_prompt"
 import NavigationButtons from "./Components/Navigation_buttons/Navigation_buttons"

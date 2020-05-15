@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react"
 import classes from "./Dashboard.module.css"
 
 //components
-import Navbar from "../../Shared Components/Options_bar/Options_bar"
+import Navbar from "../../Shared Components/Navigation/Navigation"
 import Donut from "./Components/Donut/Donut"
 import BarChart from "./Components/Bar_chart/Bar_chart"
 import Tutorial from "../../Shared Components/First_time_prompt/First_time_prompt"

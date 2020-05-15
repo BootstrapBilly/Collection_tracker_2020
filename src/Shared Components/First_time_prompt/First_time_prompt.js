@@ -6,7 +6,7 @@ import { Redirect } from 'react-router'
 import { Link } from "react-router-dom"
 
 //components
-import NavBar from "../Options_bar/Options_bar"
+import NavBar from "../Navigation/Navigation"
 
 //css
 import classes from "./First_time_prompt.module.css"
