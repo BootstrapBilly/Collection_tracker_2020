@@ -1,35 +1,48 @@
 /* Check the current step, then respond accordingly */
+import { submit_form } from "../../../Store/Actions/Submit_form_action"
+
+import filter_conditions from "./filter_conditions"
+
 import Alert from "easyalert"
 
-const handle_next_click = async (current_step, set_current_step, year, selected_condition, set_available_conditions, dispatch, submit_form, set_selected_condition, form_type, uploaded_image) => {
+const handle_next_click = async (state, set_state, dispatch, form_type, uploaded_image) => {
 
-    const year_is_valid = parseInt(year) > 1954 && parseInt(year) < new Date().getFullYear() + 1 //if the year is between 1955 and the current year
-    
+    const year_is_valid = parseInt(state.year) > 1954 && parseInt(state.year) < new Date().getFullYear() + 1 //if the year is between 1955 and the current year
+
     switch (form_type) {
 
         //?Add
-        case "Add": //if the form is the add book form @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        case "Add": //if the type is the add book form 
 
             //_year
-            if (current_step === "year") {//and the current step is year
+            if (state.current_step === "year") {//and the current step is year
 
                 //*validation pass
 
                 if (year_is_valid) { //if a valid year was given
 
-                    /*call the set available condition functions, (found in the functions folder)
+                    /*call the filter conditions function, (found in the functions folder)
                         which sends removes any conditions which are in use before they get rendered on the next screen
                     */
-                    const available_conditions = await set_available_conditions(year, set_selected_condition)
+                    await filter_conditions(state)
 
-                    if (available_conditions === false) {//if all conditions are taken, do not progress to the next step
-                        //and return an alert informing the user
-                    return Alert(`You have this book in all conditions`, "error", { bottom: handle_offset("bottom"), right: handle_offset("right") })}
+                        .then(conditions => {
 
-                    //Otherwise set the available conditions on the next page
-                    else set_available_conditions(year, set_selected_condition)//located in the functions folder
-                    .then(r => set_current_step("condition"))//After they have been set, load the page
+                            if (!conditions) {
 
+                                return Alert(`You have this book in all conditions`, "error", { bottom: handle_offset("bottom"), right: handle_offset("right") })
+
+                            }
+
+                            else {
+                                set_state({
+                                    ...state,
+                                    available_conditions: conditions,
+                                    current_step: "condition"
+                                })
+                            }
+                        })
+                        
                 }
 
                 //!Validation failure
@@ -37,36 +50,37 @@ const handle_next_click = async (current_step, set_current_step, year, selected_
                 //if they entered invalid data, do not progress and inform them
                 else {
 
-                    return Alert(`Please enter a year between 1955 and ${new Date().getFullYear()}`, "error", { bottom: handle_offset("bottom"), right: handle_offset("right") })//set the validation error
+                    return Alert(`Please enter a year between 1955 and ${new Date().getFullYear()}`, "error", { bottom: handle_offset("bottom"), right: handle_offset("right") })
+
                 }
 
             }
 
             //_condition
 
-            if (current_step === "condition") return set_current_step("photo")//if a condition is selected, progress to the final step
+            if (state.current_step === "condition") return set_state({ ...state, current_step: "photo" })
 
-
-            //_Add book
+            //_final step
 
             //last page submits the form with the selected year and condition
-            if (current_step === "photo") return dispatch(submit_form({ year: year, condition: selected_condition, url:uploaded_image || null }, "add_book"))
+            if (state.current_step === "photo") return dispatch(submit_form({ year: state.year, condition: state.selected_condition, url: uploaded_image || null }, "add_book"))
 
             break;
 
         //?Search
 
-        case "Search"://if it is a search form @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        case "Search"://if it is a search form
 
-        if(year_is_valid) return dispatch(submit_form(year, "search_for_book")) //If the input is valid, submit the form
+            if (year_is_valid) return dispatch(submit_form(state.year, "search_for_book")) //If the input is valid, submit the form
 
-        //otherwise do not submit the form and show an alert
-        else return Alert(`Please enter a year between 1955 and ${new Date().getFullYear()}`, "error", { bottom: handle_offset("bottom"), right: handle_offset("right") })
+            //otherwise do not submit the form and show an alert
+            else return Alert(`Please enter a year between 1955 and ${new Date().getFullYear()}`, "error", { bottom: handle_offset("bottom"), right: handle_offset("right") })
 
         default: return
     }
 
 }
+/* Used for positioning the easy alert package */
 
 const handle_offset = direction => {
 

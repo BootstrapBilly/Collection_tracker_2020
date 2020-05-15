@@ -1,21 +1,24 @@
 import {clear_form_submission_response} from "../../../Store/Actions/Submit_form_action"
 
-const reset_form = (dispatch, set_current_step, set_year, props, set_selected_condition, type) => {
+const reset_form = (dispatch, props, state, set_state, type) => {
 
     dispatch(clear_form_submission_response())//clear the response data from the reducer
-    set_current_step("year")//set the step back to year
+    set_state({...state, current_step:"year"}) 
 
     if (type && type.prepopulate) {
 
-        set_year(props.location.state.year)//Prepopulate the year input with the missing year they was redirected from
+        set_state({...state, current_step: "year", year:props.location.state.year})//set the current step to year and prepopulate the input with the given year
         props.history.replace()//clear the navigation data (cleanup)
 
     }
 
-    else {
+    else {//if its not a prepopulate reset
 
-        set_year(null)//clear the year value (state)
-        set_selected_condition(null)//clear the condition value (state)
+        set_state({...state, //reset the form and all inputs
+            year:null,
+            condition:null,
+            current_step:"year"
+        }) 
 
     }
 
