@@ -1,34 +1,3 @@
-.container{
-    background-color: #f8f8ff;
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    left: 0;
-    top: 0;
-    display: flex;
-    align-items: center;
-    padding-top: 10vh;
-    flex-direction: column;
-    z-index: 1000000;
-}
-
-.click_prevent_overlay{
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-}
-
-.text{
-    font-size: 30px;
-    width: 80%;
-    text-align: center;
-    margin-top: 30px;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 900;
-}
-
 .prompt_wrapper{
     width: 100%;
     display: flex;
@@ -42,7 +11,7 @@
     left: 0;
 }
 
-.stage_2_container{
+.prompt_container{
 
     background-color: #f8f8ff;
     padding: 20px 20px;
@@ -71,7 +40,7 @@
     }
 }
 
-.stage_2_text{
+.prompt_text{
 
     font-size: 22px;
     font-family: 'Roboto', sans-serif;

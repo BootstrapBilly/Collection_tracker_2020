@@ -16,7 +16,7 @@ import Input from "./Components/Input/Input"
 import ImageUpload from "../../Shared Components/Image_upload_/Image_upload"
 import NavBar from "../../Shared Components/Navigation/Navigation"
 import Book from "./Components/Book/Book"
-import Tutorial from "../../Shared Components/First_time_prompt/First_time_prompt"
+import Tutorial from "../../Shared Components/Tutorial/Tutorial"
 import NavigationButtons from "./Components/Navigation_buttons/Navigation_buttons"
 
 //redux hooks
@@ -25,12 +25,12 @@ import { useDispatch, useSelector } from "react-redux"
 //functions
 import handle_back_click from "./Functions/handle_back_click"
 import handle_next_click from "./Functions/handle_next_click"
-
-//import set_conditions from "./Functions/set_available_conditions"
 import set_prompt_message from "./Functions/set_prompt_message"
 import order_books_by_condition from "./Functions/order_books_by_condition"
 import delete_image_from_firebase from "./Functions/delete_image_from_firebase"
 import reset_form from "./Functions/reset_form"
+import handle_tutorial_completion from "../../Util/Handle_tutorial_completion"
+
 
 export const Form = props => {
 
@@ -43,12 +43,20 @@ export const Form = props => {
         current_step: "year", //the current step of the form, => year/condition/photo <=
         year: null,//the entered year
         selected_condition: null,//the selected condition
-        available_conditions: ["Poor", "Fair", "Mint"]//hold available conditions (all conditions - (minus) existing conditions)
+        available_conditions: ["Poor", "Fair", "Mint"],//hold available conditions (all conditions - (minus) existing conditions)
+        tutorial_completed: window.localStorage.getItem(`${props.type}_tutorial_completed`)
     })
+
+    //_functions
+    // const handle_tutorial_completion = () => {
+
+    //     window.localStorage.setItem(`${props.type}_tutorial_completed`, true)
+    //     set_state({ ...state, tutorial_completed: true })
+
+    // }
 
     //?selectors
     const form_submission_response = useSelector(state => state.result.submission_result)//get the response data from form request
-    const tut_completed = useSelector(state => state.tutorial.completed)//The tutorial shown on first visit (Stored in local storage when finished)
     const photo_uploaded = useSelector(state => state.upload.last_uploaded_photo)//Listens for photo uploads (changes triggered by ImageUpload component)
 
     //!effects
@@ -84,9 +92,11 @@ export const Form = props => {
         //user was redirected here by clicking the "plus button" on a book that is missing (book.js line 158)
         if (props.location.state && props.location.state.redirected_from_book)
             reset_form(dispatch, props, state, set_state, { prepopulate: true })//reset and prepopulate the form 
-// eslint-disable-next-line
+        // eslint-disable-next-line
     }, [])
 
+
+    console.log(form_submission_response)
     return (
 
         <React.Fragment>
@@ -174,13 +184,22 @@ export const Form = props => {
                         </div>
                 }
 
-                {tut_completed ? //if the tutorial has been completed, 
+                {state.tutorial_completed && <NavBar path={props.path} onClickIcon={() => reset_form(dispatch, props, state, set_state)} />}
 
-                    <NavBar path={props.path} onClickIcon={() => reset_form(dispatch, props, state, set_state)} /> //display the navbar
+                {!state.tutorial_completed &&
 
-                    ://Otherwise, if not
+                    <Tutorial
 
-                    <div className={classes.click_prevent_overlay}><Tutorial tutorial_stage={props.type === "Add" ? 3 : 4} /></div> /* Display the tutorial*/}
+                        text={
+
+                            props.type === "Add" ? "Here you can add new books to your collection."
+                                : props.type === "Search" && "This is where you can search for, delete and update books in your collection."
+
+                        }
+
+                        handle_completion={() => handle_tutorial_completion(props.type, state, set_state)}
+
+                    />}
 
             </div>
 
