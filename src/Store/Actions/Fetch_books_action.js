@@ -12,14 +12,14 @@ export const fetch_books = () => {
         try {
 
             const response = await send_request("fetch_books", {}, "get")   
-
             if (response.data.success) return dispatch({ type: BOOKS_FOUND, payload: response.data.books })
 
         }
 
         catch (error) {
-           // if (error.response.status === 404) return dispatch({ type: NOT_FOUND })
-           // if (error.response.status === 500) return dispatch({ type: DB_ERROR })
+            
+           if (error.response.status === 404) return dispatch({ type: NOT_FOUND })
+           if (error.response.status === 500) return dispatch({ type: DB_ERROR })
 
         }
 

@@ -6,9 +6,10 @@ export const step_one_year = (end_url, year, only) => {
 
         it("Buttons hidden to start", () => {
 
-                cy.get("[test_handle='form_back_button']").should("have.css", "display", "none")
-                cy.get("[test_handle='form_next_button']").should("have.css", "display", "none")
-        
+            cy.get("[test_handle='form_back_button']").should("have.css", "display", "none")
+            cy.get("[test_handle='form_next_button']").should("have.css", "display", "none")
+            dismiss_prompt()
+
         })
 
         context("Year input", () => {
@@ -70,7 +71,7 @@ export const step_one_year = (end_url, year, only) => {
 
         })
 
-         context("Moving to step 2", () => {
+        context("Moving to step 2", () => {
 
             it("Next button leads to step 2", () => {
 
@@ -174,5 +175,12 @@ export const enter_year = year => {
     cy.get("[test_handle='form_input']").type(year)
     cy.get("[test_handle='form_input']").should("have.value", year)
     cy.get("[test_handle='form_next_button']").click()
+
+}
+
+export const dismiss_prompt = () => {
+
+    cy.wait(3500)
+    cy.get("[test_handle='tutorial_next_button']").click()
 
 }
