@@ -38,7 +38,7 @@ const Dashboard = props => {
 
     //-Config
     const dispatch = useDispatch()//initialise the redux usedispatch hook
-    let num_books = { total: 65, poor: condition_count.poor, fair: condition_count.fair, mint: condition_count.mint }//set the amount of books
+    const num_books = { total: 65, poor: condition_count.poor, fair: condition_count.fair, mint: condition_count.mint }//set the amount of books
     const compute_percent = amount => (amount / num_books.total) * 100//work out the percentage weighting of the total collection for each condition
 
     //compute the percent values for each condition e.g. 20/65 books are in poor condition = 30%

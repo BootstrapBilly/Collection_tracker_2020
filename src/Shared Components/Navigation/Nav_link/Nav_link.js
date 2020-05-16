@@ -13,6 +13,7 @@ const Navlink = props => {
             <Link to={props.to} test-handle={props.test_handle} style={{ textDecoration: 'none' }}>
 
                 <img className={classes.icon} src={props.src} alt={props.alt} onClick={props.handleClick} onMouseDown={props.onClick}/>
+                
                 <p>{props.text}</p>
 
             </Link>
