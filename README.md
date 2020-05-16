@@ -1,68 +1,57 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Collection tracker
 
-## Available Scripts
 
-In the project directory, you can run:
+## Commands
 
-### `yarn start`
+##### Start the project
+```javascript 
+npm start
+```
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+##### Run test suite with cypress
+```javascript 
+npm run cypress
+```
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Backend
 
-### `yarn build`
+ [https://github.com/BootstrapBilly/Collection_tracker_2020_api](https://github.com/BootstrapBilly/Collection_tracker_2020_api)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Databases
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+User submitted images are stored directly in firebase, then the generated url is stored in MongoDb
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Everything else is processed by the API and stored in MongoDb
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Notable Algorithms
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+##### Populate chart data
 
-### Code Splitting
+Used by the dashboard component to feed data to the charts, it can be found at ``` Src/Pages/Dashboard/Functions/populate_chart_data.js ```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-### Analyzing the Bundle Size
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+##### Sort books into blocks for the bar chart
 
-### Making a Progressive Web App
+Used by the bar chart component to classify books into columns to be displayed in the chart, it can be found at ``` Src/Pages/Dashboard/Components/Bar_chart/Functions/Sort_into_blocks.js ```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
 
-### Advanced Configuration
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+##### Sort books into order of condition to be displayed
 
-### Deployment
+Used by the form component for books which have multiple conditions / duplicates present in the collection. It ensures that books are sorted in order of condition poor/fair/mint, so they are displayed consistently. It can be found at 
+``` Src/Pages/Form/Functions/order_books_by_condition ```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
 
-### `yarn build` fails to minify
+##### Handle next click (form)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Used by the form component to validate user input, progress through the form and finally send the request to the API. It can be found at ``` Src/Pages/Form/Functions/handle_next_click.js ```
+
