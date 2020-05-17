@@ -1,5 +1,17 @@
 # Collection tracker
 
+## Commands
+
+##### Start the project
+```javascript 
+npm start
+```
+
+##### Run test suite with cypress
+```javascript 
+npm run cypress
+```
+
 ## Live site
 
  [https://collectiontracker-57b9e.web.app/](https://collectiontracker-57b9e.web.app/)
@@ -28,17 +40,6 @@ This project was built to track my collection of Guiness Book Records. Currently
 
 <img src="./samples/2020.jpg" height="480" width="360">
 
-## Commands
-
-##### Start the project
-```javascript 
-npm start
-```
-
-##### Run test suite with cypress
-```javascript 
-npm run cypress
-```
 
 
 
