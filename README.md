@@ -5,25 +5,25 @@
 
 This project was built to track my collection of Guiness Book Records. Currently it has 46/65 books and has been going for over 10 years.
 
-![Optional Text](./samples/collection.jpg)
+<img src="./samples/collection.jpg" height="480" width="360">
 
 ## Some sample books
 
 #### 1968 - Poor condition
 
-![Optional Text](./samples/1968.jpg)
+<img src="./samples/1968.jpg" height="480" width="360">
 
 #### 1988 - Fair condition
 
-![Optional Text](./samples/1988.jpg)
+<img src="./samples/1988.jpg" height="480" width="360">
 
 #### 2007 - Mint condition
 
-![Optional Text](./samples/2007.jpg)
+<img src="./samples/2007.jpg" height="480" width="360">
 
 #### 2020 - Mint condition
 
-![Optional Text](./samples/2020.jpg)
+<img src="./samples/2020.jpg" height="480" width="360">
 
 ## Commands
 
