@@ -14,7 +14,7 @@ npm run cypress
 
 ## Live site
 
- [https://collectiontracker-57b9e.web.app/](https://collectiontracker-57b9e.web.app/)
+ [https://collectiontracker-57b9e.web.app/](https://collectiontracker-57b9e.web.app/) - Please note, it is hosted on a Heroku server, which may take up to 10 seconds to wake up on the first request.
 
 ## About this project
 
