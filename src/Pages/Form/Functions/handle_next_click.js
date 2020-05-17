@@ -63,7 +63,8 @@ const handle_next_click = async (state, set_state, dispatch, form_type, uploaded
             //_final step
 
             //last page submits the form with the selected year and condition
-            if (state.current_step === "photo") return dispatch(submit_form({ year: state.year, condition: state.selected_condition, url: uploaded_image || null }, "add_book"))
+            if (state.current_step === "photo") {
+            return dispatch(submit_form({ year: state.year, condition: state.selected_condition, url: uploaded_image || null }, "add_book"))}
 
             break;
 

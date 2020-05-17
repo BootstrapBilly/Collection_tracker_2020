@@ -1,4 +1,4 @@
-import {UPLOAD_SUCCESS, UPLOAD_FAILURE} from "../Actions/Photo_upload_handler_action"
+import {UPLOAD_SUCCESS, UPLOAD_FAILURE, CLEAR_PHOTO} from "../Actions/Photo_upload_handler_action"
 
 const initialState = {//set the initial state
     last_uploaded_photo:null,
@@ -11,7 +11,10 @@ const photo_upload = (state = initialState, action) => {
 
         case UPLOAD_SUCCESS:return {...state, last_uploaded_photo: action.payload}
         case UPLOAD_FAILURE:return {...state, error: action.payload}
-
+        case CLEAR_PHOTO:{
+        console.log("called")    
+            return {...state, last_uploaded_photo:null}
+    }
         default:return state;
     }
 

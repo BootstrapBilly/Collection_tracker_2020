@@ -47,14 +47,6 @@ export const Form = props => {
         tutorial_completed: window.localStorage.getItem(`${props.type}_tutorial_completed`)
     })
 
-    //_functions
-    // const handle_tutorial_completion = () => {
-
-    //     window.localStorage.setItem(`${props.type}_tutorial_completed`, true)
-    //     set_state({ ...state, tutorial_completed: true })
-
-    // }
-
     //?selectors
     const form_submission_response = useSelector(state => state.result.submission_result)//get the response data from form request
     const photo_uploaded = useSelector(state => state.upload.last_uploaded_photo)//Listens for photo uploads (changes triggered by ImageUpload component)
@@ -71,8 +63,6 @@ export const Form = props => {
                 if (!form_submission_response.details.books.length) {//If it was the last book of that year (no remaining conditions returned)
 
                     reset_form(dispatch, props, state, set_state)
-
-                    // set_current_step, set_year, props, set_selected_condition)//reset the form 
 
                 }
 
@@ -95,8 +85,6 @@ export const Form = props => {
         // eslint-disable-next-line
     }, [])
 
-
-    console.log(form_submission_response)
     return (
 
         <React.Fragment>

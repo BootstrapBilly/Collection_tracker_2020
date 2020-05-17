@@ -2,6 +2,7 @@ import send_request from "../../Util/SendRequest"
 
 export const UPLOAD_SUCCESS = "UPLOAD_SUCCESS";
 export const UPLOAD_FAILURE = "UPLOAD_FAILURE";
+export const CLEAR_PHOTO = "CLEAR_PHOTO"
 
 export const reload_search_result_action = photo_url => {
 
@@ -22,6 +23,15 @@ export const set_url_in_database = form_values => {
 
     }
 
+}
+
+export const clear_uploaded_photo = () => {
+
+    return async dispatch => {
+        
+        return dispatch({type: CLEAR_PHOTO})
+    
+    }
 }
 
 export const handle_upload_error_action = error => {
