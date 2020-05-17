@@ -2,27 +2,26 @@
 
 ## About this project
 
-##### The purpose
 
 This project was built to track my collection of Guiness Book Records. Currently it has 46/65 books and has been going for over 10 years.
 
 ![Optional Text](./samples/collection.jpg)
 
-##### Some sample books
+## Some sample books
 
-##### 1968 - Poor condition
+#### 1968 - Poor condition
 
 ![Optional Text](./samples/1968.jpg)
 
-##### 1988 - Fair condition
+#### 1988 - Fair condition
 
 ![Optional Text](./samples/1988.jpg)
 
-##### 2007 - Mint condition
+#### 2007 - Mint condition
 
 ![Optional Text](./samples/2007.jpg)
 
-##### 2020 - Mint condition
+#### 2020 - Mint condition
 
 ![Optional Text](./samples/2020.jpg)
 
