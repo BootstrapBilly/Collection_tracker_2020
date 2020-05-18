@@ -1,7 +1,7 @@
 .container{
 
     display: flex;
-    width: 335px;
+    width: 100%;
     justify-content: center;
 
 }

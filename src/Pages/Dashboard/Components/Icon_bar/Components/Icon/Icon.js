@@ -2,7 +2,7 @@ import React from 'react'
 
 import classes from "./Icon.module.css"
 
-import colours from "../../../../../Util/Colours"
+import colours from "../../../../../../Util/Colours"
 
 
 export const Icon = props => {

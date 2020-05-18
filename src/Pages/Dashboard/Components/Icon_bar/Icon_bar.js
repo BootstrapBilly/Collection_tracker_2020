@@ -3,11 +3,10 @@ import React from 'react'
 import classes from "./Icon_bar.module.css"
 
 //components
-import Icon from "./components/Icon"
+import Icon from "./Components/Icon/Icon"
 
 //assets
 import donut from "../../../../Assets/Icons/donut.svg"
-import barchart from "../../../../Assets/Icons/barchart.svg"
 import grid from "../../../../Assets/Icons/grid.svg"
 
 export const Icon_bar = props => {
@@ -21,10 +20,6 @@ export const Icon_bar = props => {
             />
 
             <Icon src={donut} alt="Donut icon"  current_graph={props.current_graph} type={"donut"}
-                onClick={props.handle_select_icon}
-            />
-
-            <Icon src={barchart} alt="Barchart icon" current_graph={props.current_graph} type={"barchart"}
                 onClick={props.handle_select_icon}
             />
 

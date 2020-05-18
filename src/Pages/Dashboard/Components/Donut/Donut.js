@@ -5,7 +5,7 @@ import React from 'react'
 import classes from "./Donut.module.css"
 
 //components
-import ConditionCard from "../Bar_chart/Components/Condition_card/Condition_card"
+import ConditionCard from "./Components/Condition_card/Condition_card"
 
 //external
 import CanvasJSReact from "../../../../Assets/Charts/canvasjs.react"

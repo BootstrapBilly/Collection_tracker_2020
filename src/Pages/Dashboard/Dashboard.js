@@ -7,9 +7,12 @@ import classes from "./Dashboard.module.css"
 //components
 import Navbar from "../../Shared Components/Navigation/Navigation"
 import Donut from "./Components/Donut/Donut"
-import BarChart from "./Components/Bar_chart/Bar_chart"
 import Grid from "./Components/Grid/Grid"
 import IconBar from "./Components/Icon_bar/Icon_bar"
+
+
+//assets
+import house from "../../Assets/Icons/house.svg"
 
 //redux hooks
 import { useDispatch, useSelector } from "react-redux"
@@ -54,13 +57,10 @@ const Dashboard = props => {
 
                         <Grid books={unique_years} />
 
-                        : current_graph === "donut" ?
+                        : 
 
                             <Donut condition_count={condition_count} />
 
-                            :
-
-                            <BarChart books={unique_years} />
                 }
 
             </div>
@@ -69,14 +69,6 @@ const Dashboard = props => {
 
             <IconBar current_graph={current_graph} handle_select_icon={icon => set_current_graph(icon)} />
 
-            {/* Landscape / non mobile devices only (controlled by css) - all charts displayed*/}
-            <div className={classes.landscape_chart_container}>
-
-                <Grid books={unique_years} />
-                <Donut condition_count={condition_count} />
-                <BarChart books={unique_years} />
-
-            </div>
 
         </div>
 

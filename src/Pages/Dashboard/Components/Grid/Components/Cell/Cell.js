@@ -6,6 +6,8 @@ import colours from "../../../../../../Util/Colours"
 
 export const Cell = props => {
 
+    const book_present = props.books.find(year => year === props.year) 
+
     return (
 
         <div className={classes.container} >
@@ -16,7 +18,7 @@ export const Cell = props => {
 
             </div>
 
-            {props.books.find(year => year === props.year) ? null : <div className={classes.missing_overlay} onClick={props.on_click.bind(this, props.year)}></div>}
+            {book_present ? null : <div className={classes.missing_overlay} onClick={props.on_click.bind(this, {year:props.year, missing:true})}></div>}
 
             <span className={classes.year} style={{color:colours.dark_blue}}>{props.year}</span>
 

@@ -5,15 +5,7 @@ import filter_conditions from "./filter_conditions"
 
 import Alert from "easyalert"
 
-const handle_next_click = async (state, set_state, dispatch, form_type, uploaded_image, redirected_from_grid) => {
-
-    if(redirected_from_grid) {
-
-        const year = redirected_from_grid;
-        
-        return dispatch(submit_form(year, "search_for_book")) //If the input is valid, submit the form 
-    
-    }
+const handle_next_click = async (state, set_state, dispatch, form_type, uploaded_image) => {
 
     const year_is_valid = parseInt(state.year) > 1954 && parseInt(state.year) < new Date().getFullYear() + 1 //if the year is between 1955 and the current year
 

@@ -9,6 +9,10 @@
     justify-content: center;
 }
 
+.container:hover{
+    cursor: pointer;
+}
+
 .icon {
     height: 40px;
     width: 40px;

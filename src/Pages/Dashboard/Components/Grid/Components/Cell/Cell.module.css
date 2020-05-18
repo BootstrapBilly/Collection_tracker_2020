@@ -6,6 +6,26 @@
     flex-direction: column;
     align-items: center;
     position: relative;
+    animation: explode 0.3s;
+}
+
+@keyframes explode {
+
+    0%{
+        transform:scale(0.0)
+    }
+
+    50%{
+        transform: scale(0.5);
+    }
+
+    100%{
+        transform: scale(1);
+    }
+}
+
+.container:hover{
+    cursor: pointer;
 }
 
 .photo_container{
@@ -30,7 +50,7 @@
 
     height: 81px;
     width: 60px;
-    background-color: rgba(128, 128, 128, 0.705);
+    background-color: rgba(128, 128, 128, 0.855);
     position: absolute;
 
 }
@@ -39,4 +59,31 @@
     font-family: 'Roboto', sans-serif;
     font-weight: 900;
     margin-top: 2px;
+}
+
+@media (min-width:500px){
+
+    .photo_container{
+        width:84px ;
+        height: 110px;
+    }
+
+    .missing_overlay, .grid_image{
+        width: 85px;
+        height: 112px;
+    }
+
+}
+
+@media (orientation: landscape){
+
+    .photo_container{
+        width:99.5px ;
+        height: 120px;
+    }
+
+    .missing_overlay, .grid_image{
+        width: 100px;
+        height: 120.5px;
+    }
 }

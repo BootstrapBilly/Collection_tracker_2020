@@ -26,12 +26,12 @@ import {submit_form} from "../../../../Store/Actions/Submit_form_action"
 export const Grid = props => {
 
     const dispatch = useDispatch()
-    
+
     const [cells, set_cells] = useState([])//holds the years of all books to be mapped into cells (set by generate cells)
     const [filter_string, set_filter_string] = useState(null)//Holds the value of the search box to filter books by the string
     const [existing_books, set_existing_books] = useState([])//holds all books which are present in the collection so they are not greyed out
     const [tutorial_completed, set_tutorial_completed] = useState(window.localStorage.getItem("grid_tutorial_completed"))
-    const [redirect, set_redirect] = useState(false)
+    const [redirect, set_redirect] = useState(null)
 
     useEffect(() => { props.books && set_existing_books(populate_and_sort_books(props.books)) }, [props.books])//Feed exisiting books with the data passed in by grid
 
@@ -39,10 +39,17 @@ export const Grid = props => {
 
     useEffect(() => { set_cells(generate_cells()) }, [])//Set the available cells, on page load, only once
 
-    const handle_click_book = year => {
+    const handle_click_book = details => {
 
-        dispatch(submit_form(year, "search_for_book")) 
-        set_redirect(year)
+        if(details.missing){
+
+            return set_redirect({year:details.year.toString(), missing:true})
+
+        }
+
+        dispatch(submit_form(details, "search_for_book")) 
+
+        set_redirect(details)
 
     }
 
@@ -54,14 +61,22 @@ export const Grid = props => {
 
             {cells.map(year => {
 
-                return <Cell key={year} year={year} books={existing_books} on_click={year => handle_click_book(year)} />
+                return <Cell key={year} year={year} books={existing_books} on_click={details => handle_click_book(details)} />
 
             })}
 
             {!tutorial_completed && <Tutorial text="This is your bookshelf. Here you will find an overview of your collection."
                 handle_completion={() => handle_tutorial_completion("grid", null, set_tutorial_completed)} />}
 
-            {redirect && <Redirect to={{ pathname: '/search', state: { redirected_from_grid: true, year: props.year } }} />}
+            {redirect &&
+
+            redirect.missing  ? <Redirect to={{ pathname: '/add_book', state: { missing:true, year: redirect.year } }} />
+
+            : redirect &&
+
+            <Redirect to={{ pathname: '/search', state: { redirected_from_grid: true, year: props.year } }} />
+            
+            }
 
         </div>
 

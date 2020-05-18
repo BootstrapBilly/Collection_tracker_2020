@@ -1,6 +1,20 @@
-.container{
+.container {
     display: flex;
     flex-wrap: wrap;
     margin: auto;
     padding-bottom: 100px;
+}
+
+@media (min-width:500px) and (orientation:portrait) {
+    .container {
+        width: 450px;
+    }
+}
+
+@media (orientation: landscape){
+
+    .container{
+        width: 850px;
+    }
+
 }
