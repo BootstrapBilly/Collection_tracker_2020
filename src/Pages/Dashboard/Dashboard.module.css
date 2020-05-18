@@ -19,8 +19,12 @@
     width: 100%;
     justify-content: space-evenly;
     align-items: center;
-    position: absolute;
-    bottom: 30px;
+    position: fixed;
+    bottom: 0px;
+    background-color: #f8f8ff;
+    padding: 15px 0;
+
+
 }
 
 .icon {
@@ -42,6 +46,8 @@
     top: 0;
     left: 0;
 }
+
+
 
 /* landscape */
 

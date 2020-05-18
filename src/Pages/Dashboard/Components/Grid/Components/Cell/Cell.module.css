@@ -1,0 +1,42 @@
+.container{
+
+    margin-top: 10px;
+    margin-left: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.photo_container{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    width: 60px;
+    height: 80px;
+
+}
+
+.grid_image {
+
+    height: 78px;
+    width: 58px;
+
+}
+
+.missing_overlay{
+
+    height: 81px;
+    width: 60px;
+    background-color: rgba(0, 0, 0, 0.849);
+    position: absolute;
+
+}
+
+.year{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    margin-top: 2px;
+}
