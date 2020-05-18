@@ -7,86 +7,22 @@ import classes from "./Grid.module.css"
 import Cell from "./Components/Cell/Cell"
 import SearchBar from "./Components/Search_bar/Search_bar"
 
+//functions
+import generate_cells from "./Functions/generate_cells"
+import populate_and_sort_books from "./Functions/populate_and_sort_books"
+import filter_cells from "./Functions/filter_cells"
+
 export const Grid = props => {
 
-    const [cells, set_cells] = useState([])
-    const [existing_books, set_existing_books] = useState([])
+    const [cells, set_cells] = useState([])//holds the years of all books to be mapped into cells (set by generate cells)
+    const [filter_string, set_filter_string] = useState(null)//Holds the value of the search box to filter books by the string
+    const [existing_books, set_existing_books] = useState([])//holds all books which are present in the collection so they are not greyed out
 
-    const generate_cells = () => {
+    useEffect(() => {props.books && set_existing_books(populate_and_sort_books(props.books))}, [props.books])//Feed exisiting books with the data passed in by grid
 
-        let count = 1955;
+    useEffect(()=> {filter_string && set_cells(filter_cells(filter_string))}, [filter_string])//If a filter string has been detected, filter the cells to show the search result
 
-        const all_years = []
-
-        while (count <= 2020) {
-
-            all_years.push(count)
-            count++
-
-        }
-
-        return all_years
-    }
-
-    const populate_and_sort_books = () => {
-
-        const books = []
-
-        props.books && props.books.forEach(book => books.push(book.year))
-
-        return books.sort((a, b) => a < b && -1) //sort the books by condition (poor, fair ,mint)
-
-    }
-
-    const filter_cells = () => {
-
-        let count = 1955;
-
-        const filtered_years = []
-
-        while (count <= 2020){
-
-            if(count.toString().includes(filter_string)){
-
-                filtered_years.push(count)
-
-            }
-
-            count ++
-        }
-
-        return filtered_years
-    }
-
-    
-
-    useEffect(() => {
-
-        if (props.books) set_existing_books(populate_and_sort_books())
-
-    }, [props.books])
-
-
-
-    const [filter_string, set_filter_string] = useState(null)
-
-    console.log(filter_string)
-
-    useEffect(()=> {
-
-        if(filter_string){
-
-            set_cells(filter_cells())
-
-        }
-
-    }, [filter_string])
-
-    useEffect(()=> {
-
-        set_cells(generate_cells())
-
-    },[])
+    useEffect(()=> {set_cells(generate_cells())},[])//Set the available cells, on page load, only once
 
     return (
 

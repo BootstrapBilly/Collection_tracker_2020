@@ -14,7 +14,7 @@
     align-items: center;
 }
 
-.mobile_icon_container {
+/* .mobile_icon_container {
     display: flex;
     width: 100%;
     justify-content: space-evenly;
@@ -33,7 +33,7 @@
     border: 5px solid rgba(128, 128, 128, 0.308);
     border-radius: 500px;
     box-shadow: 1px 1px 3px 1px grey;
-}
+} */
 
 .landscape_chart_container {
     display: none;

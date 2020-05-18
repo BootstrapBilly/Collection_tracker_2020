@@ -10,6 +10,7 @@ import Donut from "./Components/Donut/Donut"
 import BarChart from "./Components/Bar_chart/Bar_chart"
 import Tutorial from "../../Shared Components/Tutorial/Tutorial"
 import Grid from "./Components/Grid/Grid"
+import IconBar from "./Components/Icon_bar/Icon_bar"
 
 //redux hooks
 import { useDispatch, useSelector } from "react-redux"
@@ -72,24 +73,26 @@ const Dashboard = props => {
             </div>
 
             {/* Mobile only, the icon container which controls which chart to display */}
-            <div className={classes.mobile_icon_container}>
+
+            <IconBar current_graph={current_graph} handle_select_icon={icon => set_current_graph(icon)} />
+            {/* <div className={classes.mobile_icon_container}>
 
                 <img src={grid} alt="Grid icon" className={classes.icon}
                     onClick={() => set_current_graph("grid")}
-                    style={{ borderColor: current_graph === "grid" && colours.blue }}
+                    style={{ borderColor: current_graph === "grid" && colours.blue, padding:"5px" }}
                 />
 
                 <img src={donut} alt="Donut icon" className={classes.icon}
                     onClick={() => set_current_graph("donut")}
-                    style={{ borderColor: current_graph === "donut" && colours.blue }}
+                    style={{ borderColor: current_graph === "donut" && colours.blue, padding:"5px" }}
                 />
 
                 <img src={barchart} alt="Barchart icon" className={classes.icon}
                     onClick={() => set_current_graph("barchart")}
-                    style={{ borderColor: current_graph === "barchart" && colours.blue }}
+                    style={{ borderColor: current_graph === "barchart" && colours.blue, padding:"5px" }}
                 />
 
-            </div>
+            </div> */}
 
             {/* Landscape / non mobile devices only (controlled by css) - all charts displayed*/}
             <div className={classes.landscape_chart_container}>
