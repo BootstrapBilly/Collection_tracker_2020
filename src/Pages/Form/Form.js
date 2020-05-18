@@ -9,6 +9,7 @@ import backgrounds from "./Background_image.module.css"
 import colours from "../../Util/Colours"
 import Alert from "easyalert"
 import { withRouter } from 'react-router-dom';
+import { Redirect } from 'react-router'
 
 //components
 import ConditionSelect from "./Components/Condition_Select/Condition_Select"
@@ -44,7 +45,8 @@ export const Form = props => {
         year: null,//the entered year
         selected_condition: null,//the selected condition
         available_conditions: ["Poor", "Fair", "Mint"],//hold available conditions (all conditions - (minus) existing conditions)
-        tutorial_completed: window.localStorage.getItem(`${props.type}_tutorial_completed`)
+        tutorial_completed: window.localStorage.getItem(`${props.type}_tutorial_completed`),
+        redirect: false
     })
 
     //?selectors
@@ -85,6 +87,8 @@ export const Form = props => {
         // eslint-disable-next-line
     }, [])
 
+    console.log(props.type)
+
     return (
 
         <React.Fragment>
@@ -100,7 +104,7 @@ export const Form = props => {
                             year={state.year}
                             photo_uploaded={photo_uploaded}
                             books={order_books_by_condition(form_submission_response.details.books)}
-                            on_go_back_click={() => reset_form(dispatch, props, state, set_state)}//reset the form
+                            on_go_back_click={() => props.type === "Search" ? set_state({ ...state, redirect: true }) : reset_form(dispatch, props, state, set_state)}
                             type={props.type}
 
                         />
@@ -188,6 +192,8 @@ export const Form = props => {
                         handle_completion={() => handle_tutorial_completion(props.type, state, set_state)}
 
                     />}
+
+                {state.redirect && <Redirect to={{ pathname: '/' }} />}
 
             </div>
 

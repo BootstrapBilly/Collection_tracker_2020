@@ -9,7 +9,7 @@ export const Search_bar = props => {
 
         <div className={classes.container}>
             
-            <input type="text" className={classes.input} style={{color:colours.dark_blue}} maxLength="4" onChange={props.handle_filter} value={props.value}/>
+            <input type="text" className={classes.input} style={{color:colours.dark_blue}} maxLength="4" onChange={props.handle_filter} value={props.value || ""}/>
 
         </div>
 

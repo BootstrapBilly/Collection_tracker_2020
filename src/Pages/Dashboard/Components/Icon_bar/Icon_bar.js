@@ -12,8 +12,6 @@ import grid from "../../../../Assets/Icons/grid.svg"
 
 export const Icon_bar = props => {
 
-    console.log(props.current_graph)
-
     return (
 
         <div className={classes.container}>

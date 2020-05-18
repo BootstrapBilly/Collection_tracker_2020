@@ -11,8 +11,7 @@ const photo_upload = (state = initialState, action) => {
 
         case UPLOAD_SUCCESS:return {...state, last_uploaded_photo: action.payload}
         case UPLOAD_FAILURE:return {...state, error: action.payload}
-        case CLEAR_PHOTO:{
-        console.log("called")    
+        case CLEAR_PHOTO:{ 
             return {...state, last_uploaded_photo:null}
     }
         default:return state;
