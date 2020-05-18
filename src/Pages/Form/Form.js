@@ -9,6 +9,7 @@ import backgrounds from "./Background_image.module.css"
 import colours from "../../Util/Colours"
 import Alert from "easyalert"
 import { withRouter } from 'react-router-dom';
+import { Redirect } from 'react-router'
 
 //components
 import ConditionSelect from "./Components/Condition_Select/Condition_Select"
@@ -18,6 +19,7 @@ import NavBar from "../../Shared Components/Navigation/Navigation"
 import Book from "./Components/Book/Book"
 import Tutorial from "../../Shared Components/Tutorial/Tutorial"
 import NavigationButtons from "./Components/Navigation_buttons/Navigation_buttons"
+import Home from "../Dashboard/Components/Icon_bar/Components/Icon/Icon"
 
 //redux hooks
 import { useDispatch, useSelector } from "react-redux"
@@ -44,7 +46,8 @@ export const Form = props => {
         year: null,//the entered year
         selected_condition: null,//the selected condition
         available_conditions: ["Poor", "Fair", "Mint"],//hold available conditions (all conditions - (minus) existing conditions)
-        tutorial_completed: window.localStorage.getItem(`${props.type}_tutorial_completed`)
+        tutorial_completed: window.localStorage.getItem(`${props.type}_tutorial_completed`),
+        redirect: false
     })
 
     //?selectors
@@ -63,6 +66,7 @@ export const Form = props => {
                 if (!form_submission_response.details.books.length) {//If it was the last book of that year (no remaining conditions returned)
 
                     reset_form(dispatch, props, state, set_state)
+                    set_state({ ...state, redirect: true })
 
                 }
 
@@ -82,14 +86,26 @@ export const Form = props => {
         //user was redirected here by clicking the "plus button" on a book that is missing (book.js line 158)
         if (props.location.state && props.location.state.redirected_from_book)
             reset_form(dispatch, props, state, set_state, { prepopulate: true })//reset and prepopulate the form 
-        // eslint-disable-next-line
+        // // eslint-disable-next-line
+        if (props.location.state && props.location.state.missing)
+        reset_form(dispatch, props, state, set_state, { prepopulate: true })//reset and prepopulate the form 
+
     }, [])
+
+    const handle_background_assignment = () => {
+
+        if(form_submission_response || (props.location.state && props.location.state.redirected_from_grid) || (props.location.state && props.location.state.missing)) return
+        if(props.type === "Add") return backgrounds.add
+        if(props.type === "Search") return backgrounds.search
+       
+        return
+    }
 
     return (
 
         <React.Fragment>
 
-            <div className={[classes.container, props.type === "Add" && backgrounds.add, props.type === "Search" && backgrounds.search].join(" ")}>
+            <div className={[classes.container, handle_background_assignment()].join(" ")}>
 
                 {//If there is a submission response - display the book 
 
@@ -100,7 +116,9 @@ export const Form = props => {
                             year={state.year}
                             photo_uploaded={photo_uploaded}
                             books={order_books_by_condition(form_submission_response.details.books)}
-                            on_go_back_click={() => reset_form(dispatch, props, state, set_state)}//reset the form
+                            
+                            //if they are adding a book, reload the form, if they are only looking at it, redirect to grid
+                            on_go_back_click={() => props.type === "Search" ? set_state({ ...state, redirect: true }) : reset_form(dispatch, props, state, set_state)}
                             type={props.type}
 
                         />
@@ -188,6 +206,8 @@ export const Form = props => {
                         handle_completion={() => handle_tutorial_completion(props.type, state, set_state)}
 
                     />}
+
+                {state.redirect && <Redirect to={{ pathname: '/' }} />}
 
             </div>
 

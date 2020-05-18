@@ -5,6 +5,7 @@ const reset_form = (dispatch, props, state, set_state, type) => {
 
     dispatch(clear_form_submission_response())//clear the response data from the reducer
     dispatch(clear_uploaded_photo())
+
     set_state({...state, current_step:"year"}) 
 
     if (type && type.prepopulate) {
