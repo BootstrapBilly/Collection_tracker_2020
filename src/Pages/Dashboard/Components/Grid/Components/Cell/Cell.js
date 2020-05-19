@@ -14,7 +14,7 @@ export const Cell = props => {
 
             <div className={classes.photo_container} onClick={props.on_click.bind(this, props.year)}>
 
-                <img src={require(`../../../../../../Assets/Books/${props.year}.jpg`)} alt={props.year} className={classes.grid_image} />
+                <img src={require(`../../../../../../Assets/Books/${props.year}-thumb.jpg`)} alt={props.year} className={classes.grid_image} />
 
             </div>
 
