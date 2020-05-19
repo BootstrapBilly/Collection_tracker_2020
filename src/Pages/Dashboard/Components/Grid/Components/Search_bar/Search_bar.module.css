@@ -47,3 +47,17 @@
     top: 13px;
     right: 278px;
 }
+
+@supports (-webkit-touch-callout: none) {
+    
+    .icon, .active_icon {
+
+        right: 285px;
+
+    }
+    
+    .active_icon {
+        right: 288px;
+    }
+
+  }

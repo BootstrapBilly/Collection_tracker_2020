@@ -112,7 +112,7 @@
         left: 0px;
     }
     .percent {
-        margin-top: 20px;
+        margin-top: 45px;
     }
 }
 
@@ -147,14 +147,13 @@
     }
     .percent {
         position: relative;
-        top: -180px;
+        top: -185px;
     }
 }
 
 /*Standard desktop */
 
 @media (min-width: 1200px) {
-    .percent {
-        margin-top: -5px;
-    }
+
+
 }

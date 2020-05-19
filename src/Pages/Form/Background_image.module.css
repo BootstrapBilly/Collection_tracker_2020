@@ -1,5 +1,5 @@
 /* portrait phone*/
-@media (max-width:1200px) {
+/* @media (max-width:1200px) {
 
     .add {
         background-image: url("../../Assets/Backgrounds/mobile_add_book.svg"); 
@@ -16,9 +16,9 @@
         background-size: cover;
     }
 
-}
+} */
 
-
+/* 
 @keyframes slide-left {
     0% {
         right: -50vw;
@@ -27,9 +27,9 @@
         right: 0vw;
     }
 
-}
+} */
 
-@media (min-height: 570px){
+/* @media (min-height: 570px){
 
     .add{
         background-image: url("../../Assets/Backgrounds/small_wide_mobile_add_book.svg");
@@ -42,11 +42,11 @@
         background-size: cover;
     }
 
-}
+} */
 
 
 /* Long mobile */
-@media (min-height: 570px) and (min-width:380px){
+/* @media (min-height: 570px) and (min-width:380px){
 
     .add{
        background-image: url("../../Assets/Backgrounds/long_mobile_add_book.svg");
@@ -61,22 +61,17 @@
 }
 
 
-}
+} */
 
-/* Portrait tab*/
+/* small Portrait tab*/
 @media (min-height:700px) and (min-width: 500px) and (max-height: 1050px) and (max-width: 800px) {
 
    .add{
-       background-image: url("../../Assets/Backgrounds/portrait_tablet_add_book.svg");
+       background-image: url("../../Assets/Backgrounds/small_portrait_tablet_add_book.svg");
+       background-repeat: no-repeat;
    } 
 
-   .search{
-       background-image: url("../../Assets/Backgrounds/portrait_tablet_search.svg");
-   } 
 
-   .worth{
-       background-image: url("../../Assets/Backgrounds/portrait_tablet_worth.svg");
-   } 
 
    @supports (-webkit-touch-callout: none) {
 
@@ -84,29 +79,35 @@
            background-image: url("../../Assets/Backgrounds/portrait_ipad_add_book.svg");
        } 
 
-       .search{
-           background-image: url("../../Assets/Backgrounds/portrait_ipad_search.svg");
-       } 
+   }
 
-       .worth{
-           background-image: url("../../Assets/Backgrounds/portrait_ipad_worth.svg");
+}
+
+/* medium Portrait tab*/
+@media (min-height:900px) and (min-width: 500px) and (max-height: 1050px) and (max-width: 800px) {
+
+   .add{
+       background-image: url("../../Assets/Backgrounds/portrait_tablet_add_book.svg");
+       background-repeat: no-repeat;
+   } 
+
+
+
+   @supports (-webkit-touch-callout: none) {
+
+       .add{
+           background-image: url("../../Assets/Backgrounds/portrait_ipad_add_book.svg");
        } 
 
    }
 
 }
 
-/* landscape tab*/
+/* small landscape tab*/
 @media (min-height:400px) and (min-width: 800px) and (max-height: 750px) and (max-width: 1199px) {
 
    .add{
-       background-image: url("../../Assets/Backgrounds/landscape_tablet_add_book.svg");
-   } 
-   .search{
-       background-image: url("../../Assets/Backgrounds/landscape_tablet_search.svg");
-   } 
-   .worth{
-       background-image: url("../../Assets/Backgrounds/landscape_tablet_worth.svg");
+       background-image: url("../../Assets/Backgrounds/small_landscape_tablet_add_book.svg");
    } 
 
    @supports (-webkit-touch-callout: none) {
@@ -115,12 +116,24 @@
           background-image: url("../../Assets/Backgrounds/landscape_ipad_add_book.svg");
       } 
 
-      .search{
-        background-image: url("../../Assets/Backgrounds/landscape_ipad_search.svg");
-    } 
-    .worth{
-        background-image: url("../../Assets/Backgrounds/landscape_ipad_worth.svg");
-    } 
+  }
+
+}
+
+/* landscape tab*/
+@media (min-height:500px) and (min-width: 800px) and (max-height: 750px) and (max-width: 1199px) {
+
+   .add{
+       background-image: url("../../Assets/Backgrounds/landscape_tablet_add_book.svg");
+   } 
+
+
+   @supports (-webkit-touch-callout: none) {
+
+       .add{
+          background-image: url("../../Assets/Backgrounds/landscape_ipad_add_book.svg");
+      } 
+
   }
 
 }
@@ -131,9 +144,7 @@
    .add{
        background-image: url("../../Assets/Backgrounds/portrait_ipad_large_add_book.svg");
    } 
-   .worth{
-       background-image: url("../../Assets/Backgrounds/portrait_ipad_large_worth.svg");
-   } 
+
 
 }
 
@@ -147,31 +158,18 @@
         background-repeat: no-repeat;
     }
 
-    .search{
-        background-image: url("../../Assets/Backgrounds/search.svg");
-        background-size: cover;
-        background-repeat: no-repeat;
-    }
 
-    .worth{
-        background-image: url("../../Assets/Backgrounds/worth.svg");
-        background-size: cover;
-        background-repeat: no-repeat;
-    }
     
 }
 
 /* large landscape tablet */
-@media (width:1366px) and (height:954px){
+@media (width:1366px) and (min-height:900px){
 
-    .add{
-        background-image: url("../../Assets/Backgrounds/landscape_ipad_large_add_book.svg");
-    }
-    .search{
-        background-image: url("../../Assets/Backgrounds/landscape_ipad_large_search.svg");
-    }
-    .worth{
-        background-image: url("../../Assets/Backgrounds/landscape_ipad_large_worth.svg");
-    }
+
+    @supports (-webkit-touch-callout: none) {
+        .add{
+            background-image: url("../../Assets/Backgrounds/landscape_ipad_large_add_book.svg");
+        }
  
+   }
  }

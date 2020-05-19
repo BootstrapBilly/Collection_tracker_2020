@@ -5,8 +5,10 @@
     align-items: center;
     position: fixed;
     bottom: 0px;
+    left: 0px;
     background-color: #f8f8ff;
-    padding: 15px 0;
-
-
+    padding: 10px 0;
+    padding-bottom: 40px;
+    font-family: 'Roboto', sans-serif;
+    z-index: 9000000000;
 }

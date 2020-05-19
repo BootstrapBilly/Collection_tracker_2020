@@ -15,11 +15,10 @@ import { Redirect } from 'react-router'
 import ConditionSelect from "./Components/Condition_Select/Condition_Select"
 import Input from "./Components/Input/Input"
 import ImageUpload from "../../Shared Components/Image_upload_/Image_upload"
-import NavBar from "../../Shared Components/Navigation/Navigation"
 import Book from "./Components/Book/Book"
 import Tutorial from "../../Shared Components/Tutorial/Tutorial"
 import NavigationButtons from "./Components/Navigation_buttons/Navigation_buttons"
-import Home from "../Dashboard/Components/Icon_bar/Components/Icon/Icon"
+import IconBar from "../../Shared Components/Icon_bar/Icon_bar"
 
 //redux hooks
 import { useDispatch, useSelector } from "react-redux"
@@ -66,7 +65,7 @@ export const Form = props => {
                 if (!form_submission_response.details.books.length) {//If it was the last book of that year (no remaining conditions returned)
 
                     reset_form(dispatch, props, state, set_state)
-                    set_state({ ...state, redirect: true })
+                    set_state({ ...state, redirect: "/" })
 
                 }
 
@@ -88,16 +87,19 @@ export const Form = props => {
             reset_form(dispatch, props, state, set_state, { prepopulate: true })//reset and prepopulate the form 
         // // eslint-disable-next-line
         if (props.location.state && props.location.state.missing)
-        reset_form(dispatch, props, state, set_state, { prepopulate: true })//reset and prepopulate the form 
+            reset_form(dispatch, props, state, set_state, { prepopulate: true })//reset and prepopulate the form 
+
+        if (props.location.state && props.location.state.redirected_from_nav)
+            reset_form(dispatch, props, state, set_state, { prepopulate: true })//reset and prepopulate the form 
 
     }, [])
 
     const handle_background_assignment = () => {
 
-        if(form_submission_response || (props.location.state && props.location.state.redirected_from_grid) || (props.location.state && props.location.state.missing)) return
-        if(props.type === "Add") return backgrounds.add
-        if(props.type === "Search") return backgrounds.search
-       
+        if (form_submission_response || (props.location.state && props.location.state.redirected_from_grid) || (props.location.state && props.location.state.missing)) return
+        if (props.type === "Add") return backgrounds.add
+        if (props.type === "Search") return backgrounds.search
+
         return
     }
 
@@ -116,9 +118,9 @@ export const Form = props => {
                             year={state.year}
                             photo_uploaded={photo_uploaded}
                             books={order_books_by_condition(form_submission_response.details.books)}
-                            
+
                             //if they are adding a book, reload the form, if they are only looking at it, redirect to grid
-                            on_go_back_click={() => props.type === "Search" ? set_state({ ...state, redirect: true }) : reset_form(dispatch, props, state, set_state)}
+                            on_go_back_click={() => props.type === "Search" ? set_state({ ...state, redirect: "/" }) : reset_form(dispatch, props, state, set_state)}
                             type={props.type}
 
                         />
@@ -190,7 +192,18 @@ export const Form = props => {
                         </div>
                 }
 
-                {state.tutorial_completed && <NavBar path={props.path} onClickIcon={() => reset_form(dispatch, props, state, set_state)} />}
+                <IconBar active_icon="add"
+
+                    handle_select_icon={type => {
+
+                        reset_form(dispatch, props, state, set_state)
+                        set_state({ ...state, redirect: type })
+
+                    }}
+                    
+                />
+
+                {/* {state.tutorial_completed && <NavBar path={props.path} onClickIcon={() => reset_form(dispatch, props, state, set_state)} />} */}
 
                 {!state.tutorial_completed &&
 
@@ -207,7 +220,7 @@ export const Form = props => {
 
                     />}
 
-                {state.redirect && <Redirect to={{ pathname: '/' }} />}
+                {state.redirect && <Redirect to={{ pathname: state.redirect, type: state.redirect }} />}
 
             </div>
 

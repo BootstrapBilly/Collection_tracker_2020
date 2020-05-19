@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 import './App.css';
 
@@ -21,54 +21,69 @@ const App = () => {
 
   return (
 
-        <div className="App">
+    <div className="App">
 
-          <BrowserRouter>
+      <BrowserRouter>
 
-          {tutorial_completed ? //If the tutorial is completed, display the app
+        {tutorial_completed ? //If the tutorial is completed, display the app
 
-            <Switch>
+          <Switch>
 
-              <Route path="/" exact component={Dashboard} />
+            <Route path="/" exact component={
 
-              <Route path="/add_book" exact
-                component={
+              () =>
 
-                  () =>
+                <Dashboard path="/chart" active={"grid"} />
 
-                    <Form path="/add_book" title="ADD A NEW BOOK" background_name="add_book" type="Add" />
+            } />
 
-                }
+            <Route path="/donut" component={
 
-              />
+              () =>
 
-              <Route path="/search" exact component={
+                <Dashboard path="/chart" active={"donut"} />
+
+            } />
+
+            <Route path="/add_book" exact
+
+              component={
 
                 () =>
 
-                  <Form path="/search" title="SEARCH FOR A BOOK" background_name="search" type="Search" />
+                  <Form path="/add_book" title="ADD A NEW BOOK" background_name="add_book" type="Add" />
 
               }
 
-              />
+            />
 
-            </Switch>
+            <Route path="/search" exact component={
 
-            : //Otherwise display the tutorial
-            
-            <Tutorial handle_completion={()=> handle_tutorial_completion("first", null, set_tutorial_completed)}/>
-            
+              () =>
+
+                <Form path="/search" title="SEARCH FOR A BOOK" background_name="search" type="Search" />
+
             }
 
-          </BrowserRouter>
+            />
 
-        </div>
+          </Switch>
 
-        
+          : //Otherwise display the tutorial
 
-  
+          <Tutorial handle_completion={() => handle_tutorial_completion("first", null, set_tutorial_completed)} />
 
-      
+        }
+
+      </BrowserRouter>
+
+    </div>
+
+
+
+
+
+
 
 
 

@@ -18,7 +18,7 @@ export const Search_bar = props => {
 
         <div className={classes.container}>
 
-            <input type="text" className={[classes.input, active && classes.active_input].join(" ")} style={{ color: colours.dark_blue }} maxLength="4" onChange={props.handle_filter} value={props.value || ""} onFocus={() => set_active(true)} onBlur={() => set_active(false)} placeholder="Search for a book" name="input" />
+            <input type="text" className={[classes.input, active && classes.active_input].join(" ")} style={{ color: colours.dark_blue }} maxLength="4" onChange={props.handle_filter} value={props.value || ""} onFocus={() => set_active(true)} onBlur={() => set_active(false)} placeholder="Search for a book" />
 
   
 

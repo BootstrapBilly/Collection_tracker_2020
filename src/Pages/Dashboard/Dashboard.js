@@ -4,22 +4,19 @@ import React, { useEffect, useState } from "react"
 //css
 import classes from "./Dashboard.module.css"
 
+//external
+import { Redirect } from 'react-router'
+
 //components
-import Navbar from "../../Shared Components/Navigation/Navigation"
 import Donut from "./Components/Donut/Donut"
 import Grid from "./Components/Grid/Grid"
-import IconBar from "./Components/Icon_bar/Icon_bar"
-
-
-//assets
-import house from "../../Assets/Icons/house.svg"
+import IconBar from "../../Shared Components/Icon_bar/Icon_bar"
 
 //redux hooks
 import { useDispatch, useSelector } from "react-redux"
 
 //redux action creators
 import { fetch_books } from "../../Store/Actions/Fetch_books_action"
-import { clear_form_submission_response } from "../../Store/Actions/Submit_form_action"
 
 //functions
 import populate_chart_data from "../Dashboard/functions/populate_chart_data"
@@ -33,8 +30,9 @@ const Dashboard = props => {
     //*states
     const [condition_count, set_condition_count] = useState({ poor: 0, fair: 0, mint: 0 })//holds the best condition for each book retrieved from that database
     const [unique_years, set_unique_years] = useState(null)//holds 1 copy of each year/book (database can have duplicates with different conditions) - Feeds the era spread breakdown graph
-    const [current_graph, set_current_graph] = useState("grid")//holds the current graph to be displayed (only on mobile) - Changed by the icons at the bottom
-    
+    const [current_graph, set_current_graph] = useState(props.active)//holds the current graph to be displayed (only on mobile) - Changed by the icons at the bottom
+    const [redirect, set_redirect] = useState(null)
+
 
     //-Config
     const dispatch = useDispatch()//initialise the redux usedispatch hook
@@ -48,26 +46,24 @@ const Dashboard = props => {
 
         <div className={classes.container}>
 
-            <Navbar path={props.location.pathname} handle_click={() => dispatch(clear_form_submission_response())} />
-
             <div className={classes.mobile_chart_container}>
 
-                {//Mobile only (controlled by css) - charts displayed 1 at a time and toggled
+                {
                     current_graph === "grid" ?
 
                         <Grid books={unique_years} />
 
-                        : 
+                        :
 
-                            <Donut condition_count={condition_count} />
+                        <Donut condition_count={condition_count} />
 
                 }
 
             </div>
 
-            {/* Mobile only, the icon container which controls which chart to display */}
+            <IconBar active_icon={props.active} handle_select_icon={type => set_redirect(type)} />
 
-            <IconBar current_graph={current_graph} handle_select_icon={icon => set_current_graph(icon)} />
+            {redirect && <Redirect to={{ pathname: redirect, type: redirect }} />}
 
 
         </div>
