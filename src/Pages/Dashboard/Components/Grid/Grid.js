@@ -35,7 +35,12 @@ export const Grid = props => {
 
     useEffect(() => { props.books && set_existing_books(populate_and_sort_books(props.books)) }, [props.books])//Feed exisiting books with the data passed in by grid
 
-    useEffect(() => { filter_string && set_cells(filter_cells(filter_string)) }, [filter_string])//If a filter string has been detected, filter the cells to show the search result
+    useEffect(() => { 
+        filter_string && 
+        
+        !filter_string.length ? set_cells(generate_cells) :
+        set_cells(filter_cells(filter_string)) 
+    }, [filter_string])//If a filter string has been detected, filter the cells to show the search result
 
     useEffect(() => { set_cells(generate_cells()) }, [])//Set the available cells, on page load, only once
 

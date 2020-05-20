@@ -19,6 +19,7 @@ import Book from "./Components/Book/Book"
 import Tutorial from "../../Shared Components/Tutorial/Tutorial"
 import NavigationButtons from "./Components/Navigation_buttons/Navigation_buttons"
 import IconBar from "../../Shared Components/Icon_bar/Icon_bar"
+import PageTransition from "../../Shared Components/Page_transition/Page_transition"
 
 //redux hooks
 import { useDispatch, useSelector } from "react-redux"
@@ -223,6 +224,8 @@ export const Form = props => {
                 {state.redirect && <Redirect to={{ pathname: state.redirect, type: state.redirect }} />}
 
             </div>
+            
+            <PageTransition />
 
         </React.Fragment>
     )

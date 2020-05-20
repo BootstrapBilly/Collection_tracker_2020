@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react"
 
 //css
 import classes from "./Dashboard.module.css"
+import animations from "../../Util/Animations.module.css"
 
 //external
 import { Redirect } from 'react-router'
@@ -11,6 +12,7 @@ import { Redirect } from 'react-router'
 import Donut from "./Components/Donut/Donut"
 import Grid from "./Components/Grid/Grid"
 import IconBar from "../../Shared Components/Icon_bar/Icon_bar"
+import PageTransition from "../../Shared Components/Page_transition/Page_transition"
 
 //redux hooks
 import { useDispatch, useSelector } from "react-redux"
@@ -20,6 +22,8 @@ import { fetch_books } from "../../Store/Actions/Fetch_books_action"
 
 //functions
 import populate_chart_data from "../Dashboard/functions/populate_chart_data"
+
+
 
 
 const Dashboard = props => {
@@ -44,29 +48,38 @@ const Dashboard = props => {
 
     return (
 
-        <div className={classes.container}>
+        <React.Fragment>
 
-            <div className={classes.mobile_chart_container}>
+            <div className={classes.container}>
 
-                {
-                    current_graph === "grid" ?
+                <div className={classes.mobile_chart_container}>
 
-                        <Grid books={unique_years} />
+                    {
+                        current_graph === "grid" ?
 
-                        :
+                            <Grid books={unique_years} />
 
-                        <Donut condition_count={condition_count} />
+                            :
 
-                }
+                            <Donut condition_count={condition_count} />
+
+                    }
+
+                </div>
+
+
+
+                {redirect && <Redirect to={{ pathname: redirect, type: redirect }} />}
+
 
             </div>
 
             <IconBar active_icon={props.active} handle_select_icon={type => set_redirect(type)} />
 
-            {redirect && <Redirect to={{ pathname: redirect, type: redirect }} />}
+            <PageTransition />
 
+        </React.Fragment>
 
-        </div>
 
     )
 
