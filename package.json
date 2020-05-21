@@ -10,6 +10,7 @@
     "blueimp-load-image": "^5.10.0",
     "easyalert": "^2.1.0",
     "firebase": "^7.14.2",
+    "framer-motion": "^1.11.0",
     "react": "^16.13.1",
     "react-animation": "^1.2.2",
     "react-dom": "^16.13.1",

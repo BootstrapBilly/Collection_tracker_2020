@@ -7,6 +7,7 @@ import animations from "../../Util/Animations.module.css"
 
 //external
 import { Redirect } from 'react-router'
+import { AnimatePresence, motion } from "framer-motion"
 
 //components
 import Donut from "./Components/Donut/Donut"
@@ -23,6 +24,8 @@ import { fetch_books } from "../../Store/Actions/Fetch_books_action"
 //functions
 import populate_chart_data from "../Dashboard/functions/populate_chart_data"
 
+//util
+import {transition, duration} from "../../Util/Page_transitions"
 
 
 
@@ -50,7 +53,7 @@ const Dashboard = props => {
 
         <React.Fragment>
 
-            <div className={classes.container}>
+            <motion.div className={classes.container} initial="initial" animate="in" exit="out" variants={transition} transition={duration}>
 
                 <div className={classes.mobile_chart_container}>
 
@@ -67,16 +70,14 @@ const Dashboard = props => {
 
                 </div>
 
-
-
                 {redirect && <Redirect to={{ pathname: redirect, type: redirect }} />}
 
 
-            </div>
+            </motion.div>
 
             <IconBar active_icon={props.active} handle_select_icon={type => set_redirect(type)} />
 
-            <PageTransition />
+            {/* <PageTransition /> */}
 
         </React.Fragment>
 

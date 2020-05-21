@@ -10,6 +10,7 @@ import colours from "../../Util/Colours"
 import Alert from "easyalert"
 import { withRouter } from 'react-router-dom';
 import { Redirect } from 'react-router'
+import { motion } from "framer-motion"
 
 //components
 import ConditionSelect from "./Components/Condition_Select/Condition_Select"
@@ -32,6 +33,9 @@ import order_books_by_condition from "./Functions/order_books_by_condition"
 import delete_image_from_firebase from "./Functions/delete_image_from_firebase"
 import reset_form from "./Functions/reset_form"
 import handle_tutorial_completion from "../../Util/Handle_tutorial_completion"
+
+//util
+import {transition, duration} from "../../Util/Page_transitions"
 
 
 export const Form = props => {
@@ -108,7 +112,7 @@ export const Form = props => {
 
         <React.Fragment>
 
-            <div className={[classes.container, handle_background_assignment()].join(" ")}>
+            <motion.div className={[classes.container, handle_background_assignment()].join(" ")} initial="initial" animate="in" exit="out" variants={transition} transition={duration}>
 
                 {//If there is a submission response - display the book 
 
@@ -193,16 +197,6 @@ export const Form = props => {
                         </div>
                 }
 
-                <IconBar active_icon="add"
-
-                    handle_select_icon={type => {
-
-                        reset_form(dispatch, props, state, set_state)
-                        set_state({ ...state, redirect: type })
-
-                    }}
-                    
-                />
 
                 {/* {state.tutorial_completed && <NavBar path={props.path} onClickIcon={() => reset_form(dispatch, props, state, set_state)} />} */}
 
@@ -223,9 +217,18 @@ export const Form = props => {
 
                 {state.redirect && <Redirect to={{ pathname: state.redirect, type: state.redirect }} />}
 
-            </div>
+            </motion.div>
             
-            <PageTransition />
+            <IconBar active_icon="add"
+
+handle_select_icon={type => {
+
+    reset_form(dispatch, props, state, set_state)
+    set_state({ ...state, redirect: type })
+
+}}
+
+/>
 
         </React.Fragment>
     )

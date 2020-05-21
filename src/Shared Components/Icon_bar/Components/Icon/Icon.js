@@ -6,12 +6,13 @@ import colours from "../../../../Util/Colours"
 
 export const Icon = props => {
 
+
     return (
 
         <div className={classes.container} style={{ borderColor: props.active_icon === props.type && colours.blue}}>
 
             <img src={props.src} alt={props.alt} className={classes.icon}
-                onClick={props.handle_icon_click} onMouseDown={props.onClick} onTouchStart={props.onClick}
+                onClick={props.handle_icon_click} 
                 
             />
 
