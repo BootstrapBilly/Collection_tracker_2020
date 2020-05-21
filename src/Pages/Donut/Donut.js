@@ -1,26 +1,46 @@
 //core react
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 
 //css
 import classes from "./Donut.module.css"
 
 //components
 import ConditionCard from "./Components/Condition_card/Condition_card"
-import IconBar from "../../../../Shared Components/Icon_bar/Icon_bar"
+import IconBar from "../../Shared Components/Icon_bar/Icon_bar"
 
 //external
-import CanvasJSReact from "../../../../Assets/Charts/canvasjs.react"
+import CanvasJSReact from "../../Assets/Charts/canvasjs.react"
 import { motion } from "framer-motion"
 
 //util
-import colours from "../../../../Util/Colours"
+import colours from "../../Util/Colours"
+import { transition, duration } from "../../Util/Page_transitions"
 
+//func
+import populate_chart_data from "../Dashboard/functions/populate_chart_data"
+
+//redux hooks
+import { useDispatch, useSelector } from "react-redux"
+
+//redux action creators
+import { fetch_books } from "../../Store/Actions/Fetch_books_action"
 
 export const Donut = props => {
 
     //-Config
+    const dispatch = useDispatch()
+    
+    //?selectors
+    const books = useSelector(state => state.fetch.books)//All books returned from the database
 
-    const num_books = { total: 65, poor: props.condition_count.poor, fair: props.condition_count.fair, mint: props.condition_count.mint }//get the amount of books
+    const [unique_years, set_unique_years] = useState(null)//holds 1 copy of each year/book (database can have duplicates with different conditions) - Feeds the era spread
+    const [condition_count, set_condition_count] = useState({ poor: 0, fair: 0, mint: 0 })//holds the best condition for each book retrieved from that database 
+
+    const num_books = { total: 65, poor: condition_count.poor, fair: condition_count.fair, mint: condition_count.mint }//get the amount of books
+
+    useEffect(() => { books && populate_chart_data(books, set_unique_years, set_condition_count) }, [books] /*if theres at least 1 book, populate the charts*/)
+    useEffect(() => { dispatch(fetch_books()) }, [] /*fetch the books from the database, only once*/)
+
     const compute_percent = amount => (amount / num_books.total) * 100//work out the percentage weighting of the total collection for each condition
 
     //compute the percent values for each condition e.g. 20/65 books are in poor condition = 30%
@@ -63,7 +83,7 @@ export const Donut = props => {
 
         <React.Fragment>
 
-            <motion.div className={classes.chart_wrapper}>
+            <motion.div className={classes.chart_wrapper} initial="initial" animate="in" exit="out" variants={transition} transition={duration}>
 
                 <div style={{ color: colours.dark_blue }} className={classes.title}>CONDITIONS BREAKDOWN</div>
 
@@ -77,9 +97,9 @@ export const Donut = props => {
 
                 <div className={classes.card_container}>
 
-                    <ConditionCard title="Poor" colour={colours.red} number={props.condition_count.poor} />
-                    <ConditionCard title="Fair" colour={colours.orange} number={props.condition_count.fair} />
-                    <ConditionCard title="Mint" colour={colours.green} number={props.condition_count.mint} />
+                    <ConditionCard title="Poor" colour={colours.red} number={condition_count.poor} />
+                    <ConditionCard title="Fair" colour={colours.orange} number={condition_count.fair} />
+                    <ConditionCard title="Mint" colour={colours.green} number={condition_count.mint} />
 
                 </div>
 

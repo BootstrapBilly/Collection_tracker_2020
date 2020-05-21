@@ -5,6 +5,8 @@ import './App.css';
 //pages
 import Dashboard from "./Pages/Dashboard/Dashboard"
 import Form from "./Pages/Form/Form"
+import Grid from "./Pages/Grid/Grid"
+import Donut from "./Pages/Donut/Donut"
 
 //external
 import { Switch, Route, useLocation } from "react-router-dom"
@@ -23,7 +25,7 @@ const App = () => {
 
       () =>
 
-        <Dashboard path="/" active={"grid"} />
+        <Grid path="/" active={"grid"} />
 
     } />
 
@@ -31,7 +33,7 @@ const App = () => {
 
       () =>
 
-        <Dashboard path="/donut" active={"donut"} />
+        <Donut path="/donut" active={"donut"} />
 
     } />
 

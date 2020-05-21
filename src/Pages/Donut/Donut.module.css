@@ -1,0 +1,159 @@
+.chart_wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-top: 42px;
+}
+
+.left_patch, .right_patch {
+    position: absolute;
+    bottom: 0;
+    background-color: #F8F8FF;
+}
+
+.left_patch {
+    left: 0;
+    width: 80px;
+    height: 15px;
+}
+
+.right_patch {
+    right: 0px;
+    width: 80px;
+    height: 15px;
+}
+
+.key_patch {
+    position: absolute;
+    bottom: 0px;
+    height: 18px;
+    width: 250px;
+    background-color: #F8F8FF;
+}
+
+.percent {
+    position: fixed;
+    top: 208px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 40px;
+    font-weight: 900;
+}
+
+.card_container {
+    width: 330px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    top: 280px;
+}
+
+.title {
+    position: fixed;
+    top: 52px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    font-size: 25px;
+    text-align: center;
+    width: 100%;
+}
+
+@media (orientation:landscape) {
+    .chart_wrapper {
+        width: 100%;
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .card_container {
+        margin-top: 50px;
+    }
+    .left_patch, .right_patch, .key_patch {
+        position: absolute;
+        bottom: 57px;
+    }
+    .title {
+        position: relative;
+        top: -1px;
+        left: 0;
+    }
+    .percent {
+        position: relative;
+        top: -180px;
+    }
+}
+
+/* medium portrait tablet */
+
+@media (min-height:800px) and (min-width: 701px) and (max-width: 1100px) {
+    .chart_wrapper {
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-left: 50px;
+    }
+    .card_container {
+        margin-top: 50px;
+    }
+    .left_patch, .right_patch, .key_patch {
+        position: absolute;
+        bottom: 53px;
+    }
+    .title {
+        position: absolute;
+        top: 10px;
+        left: 0px;
+    }
+    .percent {
+        margin-top: 45px;
+    }
+}
+
+/* large portrait tablet */
+
+@media (min-height:1200px) and (min-width: 1000px) {
+    .percent {
+        margin-top: 130px;
+    }
+}
+
+@media (orientation:landscape) {
+    .chart_wrapper {
+        width: 100%;
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .card_container {
+        margin-top: 50px;
+    }
+    .left_patch, .right_patch, .key_patch {
+        position: absolute;
+        bottom: 57px;
+    }
+    .title {
+        position: relative;
+        top: -1px;
+        left: 0;
+    }
+    .percent {
+        position: relative;
+        top: -185px;
+    }
+}
+
+/*Standard desktop */
+
+@media (min-width: 1200px) {
+
+
+}

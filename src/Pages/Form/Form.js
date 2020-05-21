@@ -88,6 +88,7 @@ export const Form = props => {
 
         if (props.location.state && props.location.state.missing){ //if the user was redirected by clicking a missing book
 
+            reset_form(dispatch, props, state, set_state)//reset form 
             set_state({year:props.location.state.year, current_step:"year"})//prepopulate the form
 
         }
