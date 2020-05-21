@@ -34,10 +34,10 @@ export const Dashboard_tutorial = props => {
 
                     <div className={classes.prompt_container}>
 
-                        <p className={classes.prompt_text} style={{ color: colours.dark_blue }}>{props.text}</p>
+                        {props.text.map((text) => <p className={classes.prompt_text} style={{ color: colours.dark_blue }}>{text}</p>)}
 
                         <div test_handle="tutorial_next_button" className={classes.button} style={{ backgroundColor: colours.dark_blue }} 
-                        onClick={props.handle_completion}>Okay</div>
+                        onClick={props.handle_okay_click}>Okay</div>
 
                     </div>
 

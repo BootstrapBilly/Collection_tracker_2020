@@ -3,17 +3,15 @@ import React, { useEffect, useState } from "react"
 
 //css
 import classes from "./Dashboard.module.css"
-import animations from "../../Util/Animations.module.css"
+
 
 //external
-import { Redirect } from 'react-router'
-import { AnimatePresence, motion } from "framer-motion"
+import { motion } from "framer-motion"
 
 //components
 import Donut from "./Components/Donut/Donut"
 import Grid from "./Components/Grid/Grid"
-import IconBar from "../../Shared Components/Icon_bar/Icon_bar"
-import PageTransition from "../../Shared Components/Page_transition/Page_transition"
+
 
 //redux hooks
 import { useDispatch, useSelector } from "react-redux"
@@ -27,8 +25,6 @@ import populate_chart_data from "../Dashboard/functions/populate_chart_data"
 //util
 import {transition, duration} from "../../Util/Page_transitions"
 
-
-
 const Dashboard = props => {
 
     //?selectors
@@ -37,9 +33,7 @@ const Dashboard = props => {
     //*states
     const [condition_count, set_condition_count] = useState({ poor: 0, fair: 0, mint: 0 })//holds the best condition for each book retrieved from that database
     const [unique_years, set_unique_years] = useState(null)//holds 1 copy of each year/book (database can have duplicates with different conditions) - Feeds the era spread breakdown graph
-    const [current_graph, set_current_graph] = useState(props.active)//holds the current graph to be displayed (only on mobile) - Changed by the icons at the bottom
-    const [redirect, set_redirect] = useState(null)
-
+    const [current_graph] = useState(props.active)//holds the current graph to be displayed (only on mobile) - Changed by the icons at the bottom
 
     //-Config
     const dispatch = useDispatch()//initialise the redux usedispatch hook
@@ -70,14 +64,7 @@ const Dashboard = props => {
 
                 </div>
 
-                {redirect && <Redirect to={{ pathname: redirect, type: redirect }} />}
-
-
             </motion.div>
-
-            <IconBar active_icon={props.active} handle_select_icon={type => set_redirect(type)} />
-
-            {/* <PageTransition /> */}
 
         </React.Fragment>
 

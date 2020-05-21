@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import './App.css';
 
@@ -6,101 +6,80 @@ import './App.css';
 import Dashboard from "./Pages/Dashboard/Dashboard"
 import Form from "./Pages/Form/Form"
 
-//components
-import Tutorial from "./Shared Components/First_tutorial/First_tutorial"
-
 //external
 import { Switch, Route, useLocation } from "react-router-dom"
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence } from "framer-motion"
 
-//functions
-import handle_tutorial_completion from "./Util/Handle_tutorial_completion"
 
 const App = () => {
 
   const location = useLocation()
 
-  const [tutorial_completed, set_tutorial_completed] = useState(window.localStorage.getItem("first_tutorial_completed"))//initialise the state with the local storage variable
+  const routes = //define the routes of the application
+  
+  <Switch location={location} key={location.pathname}>
 
-  const content = <Switch location={location} key={location.pathname}>
-
-  <Route path="/" exact component={
-
-    () =>
-
-      <Dashboard path="/chart" active={"grid"} />
-
-  } />
-
-  <Route path="/donut" component={
-
-    () =>
-
-      <Dashboard path="/chart" active={"donut"} />
-
-  } />
-
-  <Route path="/add_book" exact
-
-    component={
+    <Route path="/" exact component={
 
       () =>
 
-        <Form path="/add_book" title="ADD A NEW BOOK" background_name="add_book" type="Add" />
+        <Dashboard path="/" active={"grid"} />
+
+    } />
+
+    <Route path="/donut" component={
+
+      () =>
+
+        <Dashboard path="/donut" active={"donut"} />
+
+    } />
+
+    <Route path="/add_book" exact
+
+      component={
+
+        () =>
+
+          <Form path="/add_book" title="ADD A NEW BOOK" background_name="add_book" type="Add" />
+      }
+
+    />
+
+    <Route path="/search" exact component={
+
+      () =>
+
+        <Form path="/search" title="SEARCH FOR A BOOK" background_name="search" type="Search" />
+
     }
 
-  />
+    />
 
-  <Route path="/search" exact component={
-
-    () =>
-
-      <Form path="/search" title="SEARCH FOR A BOOK" background_name="search" type="Search" />
-
-  }
-
-  />
-
-</Switch>
+  </Switch>
 
   return (
 
     <div className="App">
 
-        {tutorial_completed ? //If the tutorial is completed, display the app
+      {
+        window.innerWidth >= 1200 ? //on desktop devices
 
-          window.innerWidth >= 1200 ?
+          <AnimatePresence exitBeforeEnter> {/* Display the page transition provider */}
 
-          <AnimatePresence exitBeforeEnter>
-            
-          {[content]}
+            {[routes] /* Then the routes of the application */}
 
           </AnimatePresence>
 
-          :
+          : // Otherwise, only display the routes with standard transitions (smaller than 1200px width)
 
-          [content]
-
-          : //Otherwise display the tutorial
-
-          <Tutorial handle_completion={() => handle_tutorial_completion("first", null, set_tutorial_completed)} />
-
-        }
-
-   
+          [routes] 
+      }
 
     </div>
 
-
-
-
-
-
-
-
-
-
   );
+
 }
 
 export default App;

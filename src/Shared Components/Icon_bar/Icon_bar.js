@@ -13,13 +13,9 @@ import donut from "../../Assets/Icons/donut.svg"
 import grid from "../../Assets/Icons/grid.svg"
 import add from "../../Assets/Icons/add.svg"
 
-import { useDispatch } from 'react-redux'
-
 export const Icon_bar = props => {
 
-
     const [active_icon, set_active_icon] = useState(props.active_icon)
-
 
     return (
 

@@ -17,10 +17,9 @@ import ConditionSelect from "./Components/Condition_Select/Condition_Select"
 import Input from "./Components/Input/Input"
 import ImageUpload from "../../Shared Components/Image_upload_/Image_upload"
 import Book from "./Components/Book/Book"
-import Tutorial from "../../Shared Components/Tutorial/Tutorial"
 import NavigationButtons from "./Components/Navigation_buttons/Navigation_buttons"
 import IconBar from "../../Shared Components/Icon_bar/Icon_bar"
-import PageTransition from "../../Shared Components/Page_transition/Page_transition"
+
 
 //redux hooks
 import { useDispatch, useSelector } from "react-redux"
@@ -32,7 +31,7 @@ import set_prompt_message from "./Functions/set_prompt_message"
 import order_books_by_condition from "./Functions/order_books_by_condition"
 import delete_image_from_firebase from "./Functions/delete_image_from_firebase"
 import reset_form from "./Functions/reset_form"
-import handle_tutorial_completion from "../../Util/Handle_tutorial_completion"
+
 
 //util
 import { transition, duration } from "../../Util/Page_transitions"
@@ -50,7 +49,6 @@ export const Form = props => {
         year: null,//the entered year
         selected_condition: null,//the selected condition
         available_conditions: ["Poor", "Fair", "Mint"],//hold available conditions (all conditions - (minus) existing conditions)
-        tutorial_completed: window.localStorage.getItem(`${props.type}_tutorial_completed`),
         redirect: false
     })
 
@@ -97,7 +95,7 @@ export const Form = props => {
         if (props.location.state && props.location.state.redirected_from_nav)//if the user was redirect from the nav bar
     
             reset_form(dispatch, props, state, set_state)//reset form 
-
+// eslint-disable-next-line 
     }, [])
 
     const handle_background_assignment = () => {
@@ -197,24 +195,6 @@ export const Form = props => {
 
                         </div>
                 }
-
-
-                {/* {state.tutorial_completed && <NavBar path={props.path} onClickIcon={() => reset_form(dispatch, props, state, set_state)} />} */}
-
-                {!state.tutorial_completed &&
-
-                    <Tutorial
-
-                        text={
-
-                            props.type === "Add" ? "Here you can add new books to your collection."
-                                : props.type === "Search" && "This is where you can search for, delete and update books in your collection."
-
-                        }
-
-                        handle_completion={() => handle_tutorial_completion(props.type, state, set_state)}
-
-                    />}
 
                 {state.redirect && <Redirect to={{ pathname: state.redirect, type: state.redirect }} />}
 

@@ -6,9 +6,11 @@ import classes from "./Donut.module.css"
 
 //components
 import ConditionCard from "./Components/Condition_card/Condition_card"
+import IconBar from "../../../../Shared Components/Icon_bar/Icon_bar"
 
 //external
 import CanvasJSReact from "../../../../Assets/Charts/canvasjs.react"
+import { motion } from "framer-motion"
 
 //util
 import colours from "../../../../Util/Colours"
@@ -58,27 +60,33 @@ export const Donut = props => {
 
     return (
 
-        <div className={classes.chart_wrapper}>
+        <React.Fragment>
 
-            <div style={{color:colours.dark_blue}} className={classes.title}>CONDITIONS BREAKDOWN</div>
+            <motion.div className={classes.chart_wrapper}>
 
-            <CanvasJSChart options={options} />
+                <div style={{ color: colours.dark_blue }} className={classes.title}>CONDITIONS BREAKDOWN</div>
 
-            <div className={classes.percent} style={{ color: colours.dark_blue }}>{`${Math.round((total_percent + Number.EPSILON) * 100) / 100}%`}</div>
+                <CanvasJSChart options={options} />
 
-            <div className={classes.left_patch}></div>
-            <div className={classes.right_patch}></div>
-            <div className={classes.key_patch}></div>
+                <div className={classes.percent} style={{ color: colours.dark_blue }}>{`${Math.round((total_percent + Number.EPSILON) * 100) / 100}%`}</div>
 
-            <div className={classes.card_container}>
+                <div className={classes.left_patch}></div>
+                <div className={classes.right_patch}></div>
+                <div className={classes.key_patch}></div>
 
-                <ConditionCard title="Poor" colour={colours.red} number={props.condition_count.poor} />
-                <ConditionCard title="Fair" colour={colours.orange} number={props.condition_count.fair} />
-                <ConditionCard title="Mint" colour={colours.green} number={props.condition_count.mint} />
+                <div className={classes.card_container}>
 
-            </div>
+                    <ConditionCard title="Poor" colour={colours.red} number={props.condition_count.poor} />
+                    <ConditionCard title="Fair" colour={colours.orange} number={props.condition_count.fair} />
+                    <ConditionCard title="Mint" colour={colours.green} number={props.condition_count.mint} />
 
-        </div>
+                </div>
+
+            </motion.div>
+
+            <IconBar active_icon={props.active} />
+
+        </React.Fragment>
 
 
     )

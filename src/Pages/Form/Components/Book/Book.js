@@ -14,7 +14,6 @@ import ImageUpload from "../../../../Shared Components/Image_upload_/Image_uploa
 import BackButton from "../Button/Button"
 
 //assets
-import default_image from "../../../../Assets/Img/default_search_image.png"
 import del from "../../../../Assets/Icons/delete.svg"
 import cog from "../../../../Assets/Icons/settings.svg"
 import plus from "../../../../Assets/Icons/plus.svg"
