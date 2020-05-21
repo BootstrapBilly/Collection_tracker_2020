@@ -53,7 +53,6 @@ export const Grid = props => {
         }
 
         dispatch(submit_form(details, "search_for_book")) 
-
         set_redirect(details)
 
     }
@@ -79,7 +78,7 @@ export const Grid = props => {
 
             : redirect &&
 
-            <Redirect to={{ pathname: '/search', state: { redirected_from_grid: true, year: props.year } }} />
+            <Redirect to={{ pathname: '/search', state: { redirected_from_grid: true, year: redirect.year } }} />
             
             }
 

@@ -1,27 +1,28 @@
 export const transition = {
 
     initial:{
-        left:"-100vw",
-        scale:0,
-        y:"0vh"
+        // scale:0,
+        left:"-100vw"
     },
 
     in:{
-        left:"0vw",
+
+
         scale:1,
-        y:0
+        y:0,
+        opacity:1,
+        left:0
       
     },
 
-    out:{
-        left:"100vw",
-        scale:0,
-        y:"-100vh"
+    out:{     
+        opacity:0,
+        scale:0.5,
+        skew:90
     }
 }
 
 export const duration = {
-    type:"tween",
-    ease:"easeIn",
+
     duration:0.7
 }

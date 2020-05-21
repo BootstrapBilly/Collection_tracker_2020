@@ -13,16 +13,13 @@ import { BrowserRouter } from "react-router-dom"
 import submit_form_reducer from "./Store/Reducers/Submit_form_reducer"
 import fetch_books_reducer from "./Store/Reducers/Fetch_books_reducer"
 import handle_photo_upload_reducer from "./Store/Reducers/Photo_upload_handler_reducer"
-import set_route_reducer from "./Store/Reducers/Active_route"
-
 
 //-Config
 const rootReducer = combineReducers({
 
   result: submit_form_reducer,
   fetch: fetch_books_reducer,
-  upload: handle_photo_upload_reducer,
-  active_route: set_route_reducer
+  upload: handle_photo_upload_reducer
 
 })
 

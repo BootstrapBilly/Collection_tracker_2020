@@ -10,8 +10,10 @@ const reset_form = (dispatch, props, state, set_state, type) => {
 
     if (type && type.prepopulate) {
 
-        set_state({...state, current_step: "year", year:props.location.state.year})//set the current step to year and prepopulate the input with the given year
-        props.history.replace()//clear the navigation data (cleanup)
+        console.log(props.location.state.year)
+
+        set_state({...state, current_step: "condition", year:props.location.state.year})//set the current step to year and prepopulate the input with the given year
+        return props.history.replace()//clear the navigation data (cleanup)
 
     }
 

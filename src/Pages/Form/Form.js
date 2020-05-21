@@ -35,7 +35,7 @@ import reset_form from "./Functions/reset_form"
 import handle_tutorial_completion from "../../Util/Handle_tutorial_completion"
 
 //util
-import {transition, duration} from "../../Util/Page_transitions"
+import { transition, duration } from "../../Util/Page_transitions"
 
 
 export const Form = props => {
@@ -87,15 +87,16 @@ export const Form = props => {
 
 
     useEffect(() => {
-        //user was redirected here by clicking the "plus button" on a book that is missing (book.js line 158)
-        if (props.location.state && props.location.state.redirected_from_book)
-            reset_form(dispatch, props, state, set_state, { prepopulate: true })//reset and prepopulate the form 
-        // // eslint-disable-next-line
-        if (props.location.state && props.location.state.missing)
-            reset_form(dispatch, props, state, set_state, { prepopulate: true })//reset and prepopulate the form 
 
-        if (props.location.state && props.location.state.redirected_from_nav)
-            reset_form(dispatch, props, state, set_state, { prepopulate: true })//reset and prepopulate the form 
+        if (props.location.state && props.location.state.missing){ //if the user was redirected by clicking a missing book
+
+            set_state({year:props.location.state.year, current_step:"year"})//prepopulate the form
+
+        }
+
+        if (props.location.state && props.location.state.redirected_from_nav)//if the user was redirect from the nav bar
+    
+            reset_form(dispatch, props, state, set_state)//reset form 
 
     }, [])
 
@@ -218,17 +219,17 @@ export const Form = props => {
                 {state.redirect && <Redirect to={{ pathname: state.redirect, type: state.redirect }} />}
 
             </motion.div>
-            
+
             <IconBar active_icon="add"
 
-handle_select_icon={type => {
+                handle_select_icon={type => {
 
-    reset_form(dispatch, props, state, set_state)
-    set_state({ ...state, redirect: type })
+                    reset_form(dispatch, props, state, set_state)
+                    set_state({ ...state, redirect: type })
 
-}}
+                }}
 
-/>
+            />
 
         </React.Fragment>
     )

@@ -60,7 +60,7 @@ const Dashboard = props => {
                     {
                         current_graph === "grid" ?
 
-                            <Grid books={unique_years} />
+                            <Grid books={unique_years}/>
 
                             :
 
