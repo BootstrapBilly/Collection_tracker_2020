@@ -13,7 +13,12 @@ html{
   height: 100%;
   background-color: #F8F8FF;
   font-family: 'Exo 2', sans-serif;
-  overflow-y: hidden;
+  overflow-y: scroll;
+  -ms-overflow-style: none
+}
+
+.App::-webkit-scrollbar {
+  display: none;
 }
 
 .page{

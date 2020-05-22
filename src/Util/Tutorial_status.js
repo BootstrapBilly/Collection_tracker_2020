@@ -1,1 +1,0 @@
-export const grid_tutorial = window.localStorage.getItem("grid_tutorial")

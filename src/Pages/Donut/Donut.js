@@ -7,6 +7,7 @@ import classes from "./Donut.module.css"
 //components
 import ConditionCard from "./Components/Condition_card/Condition_card"
 import IconBar from "../../Shared Components/Icon_bar/Icon_bar"
+import Tutorial from "../../Shared Components/Tutorial/Tutorial"
 
 //external
 import CanvasJSReact from "../../Assets/Charts/canvasjs.react"
@@ -15,15 +16,17 @@ import { motion } from "framer-motion"
 //util
 import colours from "../../Util/Colours"
 import { transition, duration } from "../../Util/Page_transitions"
+import reset_tutorial from "../../Util/reset_tutorial"
 
 //func
-import populate_chart_data from "../Dashboard/functions/populate_chart_data"
+import populate_chart_data from "./functions/populate_chart_data"
 
 //redux hooks
 import { useDispatch, useSelector } from "react-redux"
 
 //redux action creators
 import { fetch_books } from "../../Store/Actions/Fetch_books_action"
+import { mark_completed } from "../../Store/Actions/Tutorial_action"
 
 export const Donut = props => {
 
@@ -32,6 +35,7 @@ export const Donut = props => {
     
     //?selectors
     const books = useSelector(state => state.fetch.books)//All books returned from the database
+    const tutorial_completed = useSelector(state => state.tutorial.donut)
 
     const [unique_years, set_unique_years] = useState(null)//holds 1 copy of each year/book (database can have duplicates with different conditions) - Feeds the era spread
     const [condition_count, set_condition_count] = useState({ poor: 0, fair: 0, mint: 0 })//holds the best condition for each book retrieved from that database 
@@ -40,6 +44,7 @@ export const Donut = props => {
 
     useEffect(() => { books && populate_chart_data(books, set_unique_years, set_condition_count) }, [books] /*if theres at least 1 book, populate the charts*/)
     useEffect(() => { dispatch(fetch_books()) }, [] /*fetch the books from the database, only once*/)
+
 
     const compute_percent = amount => (amount / num_books.total) * 100//work out the percentage weighting of the total collection for each condition
 
@@ -79,6 +84,12 @@ export const Donut = props => {
         }]
     }
 
+    const handle_okay_click = () => {
+
+        window.localStorage.setItem(`donut_tutorial`, true)
+        dispatch(mark_completed("donut"))
+    }
+    
     return (
 
         <React.Fragment>
@@ -105,7 +116,9 @@ export const Donut = props => {
 
             </motion.div>
 
-            <IconBar active_icon={props.active} />
+            {!tutorial_completed && <Tutorial text={["Here you will find a breakdown of the conditions in your collection."]} handle_okay_click={() => handle_okay_click("donut")} /> }
+
+            {tutorial_completed && <IconBar active_icon={props.active} on_help_click={()=> reset_tutorial(["donut"])}  />}
 
         </React.Fragment>
 

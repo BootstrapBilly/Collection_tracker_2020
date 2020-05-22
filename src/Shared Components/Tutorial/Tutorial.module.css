@@ -9,6 +9,7 @@
     position: fixed;
     top: 0;
     left: 0;
+    z-index:900000000;
 }
 
 .prompt_container{
@@ -59,8 +60,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 10px;
-    animation: pulse 0.5s infinite;
+    margin-top: 20px;
+    animation: pulse 0.9s infinite;
+
     
 }
 

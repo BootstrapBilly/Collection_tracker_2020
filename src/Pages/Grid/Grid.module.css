@@ -2,7 +2,16 @@
     display: flex;
     flex-wrap: wrap;
     margin: auto;
-    padding-bottom: 100px;
+    padding-bottom: 150px;
+    margin-top: 50px;
+}
+
+@media (max-width:500px) and (orientation:portrait) {
+    .container {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 @media (min-width:500px) and (orientation:portrait) {
@@ -17,4 +26,12 @@
         width: 850px;
     }
 
+}
+
+@media (orientation:portrait) and (min-width:1000px){
+
+    .container{
+        width: 80%;
+        padding: 0 10%;
+    }
 }

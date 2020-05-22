@@ -8,6 +8,16 @@
     align-items: center;
     justify-content: center;
     position: relative;
+
+}
+
+.tutorial_overlay{
+    position: absolute;
+    width: 72px;
+    height: 72px;
+    border-radius: 500px;
+    border: 2px solid;
+    
 }
 
 .container:hover{

@@ -3,7 +3,6 @@ import React from 'react';
 import './App.css';
 
 //pages
-import Dashboard from "./Pages/Dashboard/Dashboard"
 import Form from "./Pages/Form/Form"
 import Grid from "./Pages/Grid/Grid"
 import Donut from "./Pages/Donut/Donut"

@@ -18,7 +18,7 @@ export const Dashboard_tutorial = props => {
 
             !timer_finished && set_timer_finished(true)
 
-        }, 3000);
+        }, 2000);
 
     }, [timer_finished])
 
