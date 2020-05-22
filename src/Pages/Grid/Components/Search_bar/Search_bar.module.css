@@ -2,6 +2,17 @@
     display: flex;
     width: 100%;
     justify-content: center;
+    position: relative;
+}
+
+.tutorial_overlay{
+
+    width: 305px;
+    height: 60px;
+    position: absolute;
+    border-radius: 15px;
+    bottom: 13px;
+    border: 2px solid;
 }
 
 .input {

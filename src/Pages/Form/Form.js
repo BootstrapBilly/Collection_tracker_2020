@@ -19,10 +19,13 @@ import ImageUpload from "../../Shared Components/Image_upload_/Image_upload"
 import Book from "./Components/Book/Book"
 import NavigationButtons from "./Components/Navigation_buttons/Navigation_buttons"
 import IconBar from "../../Shared Components/Icon_bar/Icon_bar"
-
+import Tutorial from "../../Shared Components/Tutorial/Tutorial"
 
 //redux hooks
 import { useDispatch, useSelector } from "react-redux"
+
+//redux action creators
+import { mark_completed } from "../../Store/Actions/Tutorial_action"
 
 //functions
 import handle_back_click from "./Functions/handle_back_click"
@@ -32,12 +35,13 @@ import order_books_by_condition from "./Functions/order_books_by_condition"
 import delete_image_from_firebase from "./Functions/delete_image_from_firebase"
 import reset_form from "./Functions/reset_form"
 
-
 //util
 import { transition, duration } from "../../Util/Page_transitions"
+import reset_tutorial from "../../Util/reset_tutorial"
 
 
 export const Form = props => {
+
 
     //-config
     const dispatch = useDispatch()//initialise the redux hook
@@ -55,6 +59,7 @@ export const Form = props => {
     //?selectors
     const form_submission_response = useSelector(state => state.result.submission_result)//get the response data from form request
     const photo_uploaded = useSelector(state => state.upload.last_uploaded_photo)//Listens for photo uploads (changes triggered by ImageUpload component)
+    const tutorial_completed = useSelector(state => state.tutorial.form)
 
     //!effects
     useEffect(() => {
@@ -86,17 +91,17 @@ export const Form = props => {
 
     useEffect(() => {
 
-        if (props.location.state && props.location.state.missing){ //if the user was redirected by clicking a missing book
+        if (props.location.state && props.location.state.missing) { //if the user was redirected by clicking a missing book
 
             reset_form(dispatch, props, state, set_state)//reset form 
-            set_state({year:props.location.state.year, current_step:"year"})//prepopulate the form
+            set_state({ year: props.location.state.year, current_step: "year" })//prepopulate the form
 
         }
 
         if (props.location.state && props.location.state.redirected_from_nav)//if the user was redirect from the nav bar
-    
+
             reset_form(dispatch, props, state, set_state)//reset form 
-// eslint-disable-next-line 
+        // eslint-disable-next-line 
     }, [])
 
     const handle_background_assignment = () => {
@@ -107,6 +112,15 @@ export const Form = props => {
 
         return
     }
+
+    const handle_okay_click = () => {
+
+        window.localStorage.setItem(`form_tutorial`, true)
+        dispatch(mark_completed("form"))
+
+    }
+
+
 
     return (
 
@@ -210,7 +224,11 @@ export const Form = props => {
 
                 }}
 
+                on_help_click={()=> reset_tutorial(["form"])}
+
             />
+
+            {!tutorial_completed && !form_submission_response && <Tutorial text={["Here you can add new books.", "A photo is provided for each book, you can add your own if you wish."]} handle_okay_click={() => handle_okay_click("donut")} />}
 
         </React.Fragment>
     )

@@ -9,10 +9,12 @@ export const Icon = props => {
 
     return (
 
-        <div className={classes.container} style={{ borderColor: props.active_icon === props.type && colours.blue}}>
+        <div className={classes.container} style={{ borderColor: props.active_icon === props.type && colours.blue, zIndex:props.apply_tutorial ?  "90000000000" : "0"}}>
+
+            <div className={classes.tutorial_overlay} style={{display:props.apply_tutorial ? "block" : "none", color:colours.dark_blue}}></div>
 
             <img src={props.src} alt={props.alt} className={classes.icon}
-                onClick={props.handle_icon_click} 
+                onClick={props.tutorial_overlay ? null : props.handle_icon_click} 
                 
             />
 
