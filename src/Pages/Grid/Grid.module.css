@@ -2,9 +2,11 @@
     display: flex;
     flex-wrap: wrap;
     margin: auto;
-    padding-bottom: 150px;
     margin-top: 50px;
+    width: 100vw;
+
 }
+
 
 @media (max-width:500px) and (orientation:portrait) {
     .container {

@@ -25,11 +25,11 @@ export const Search_bar = props => {
 
     return (
 
-        <div className={classes.container} style={{zIndex: !search_completed ? "90000000000" : "0", visibility: initial_completed ? "visible" : "hidden" }}>
+        <div className={classes.container} style={{zIndex: !search_completed ? "90000000000" : "0", visibility: initial_completed ? "visible" : "hidden" }} test_handle="search_bar">
 
             <div className={classes.tutorial_overlay} style={{borderColor: colours.dark_blue, display: initial_completed && !search_completed ? "block" : "none"}}></div>
 
-            <input type="text" className={[classes.input, active && classes.active_input].join(" ")} style={{ color: colours.dark_blue }} maxLength="4" onChange={props.handle_filter} value={props.value || ""} onFocus={() => set_active(true)} onBlur={() => set_active(false)} placeholder="Search for a book" />
+            <input type="text" className={[classes.input, active && classes.active_input].join(" ")} style={{ color: colours.dark_blue }} maxLength="4" onChange={props.handle_filter} value={props.value || ""} onFocus={() => set_active(true)} onBlur={() => set_active(false)} placeholder="Search for a book" test_handle="search_bar_input" />
 
                 <img src={active ? blue_icon : icon} alt="A search icon" className={active ? classes.active_icon : classes.icon} />
 

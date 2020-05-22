@@ -12,7 +12,7 @@ export const Cell = props => {
 
     return (
 
-        <div className={classes.container} >
+        <div className={classes.container} test_handle={props.test_handle} >
 
             <div className={classes.photo_container} onClick={props.on_click.bind(this, props.year)}>
 

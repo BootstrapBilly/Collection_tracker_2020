@@ -228,7 +228,7 @@ export const Form = props => {
 
             />
 
-            {!tutorial_completed && !form_submission_response && <Tutorial text={["Here you can add new books.", "A photo is provided for each book, you can add your own if you wish."]} handle_okay_click={() => handle_okay_click("donut")} />}
+            {!tutorial_completed && !form_submission_response && <Tutorial text={["Here you can add new books.", "A photo is provided for each book, you can add your own if you wish."]} handle_okay_click={() => handle_okay_click("donut")} test_handle="add_book"/>}
 
         </React.Fragment>
     )

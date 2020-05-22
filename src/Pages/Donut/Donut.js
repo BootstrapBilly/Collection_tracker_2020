@@ -116,7 +116,7 @@ export const Donut = props => {
 
             </motion.div>
 
-            {!tutorial_completed && <Tutorial text={["Here you will find a breakdown of the conditions in your collection."]} handle_okay_click={() => handle_okay_click("donut")} /> }
+            {!tutorial_completed && <Tutorial text={["Here you will find a breakdown of the conditions in your collection."]} handle_okay_click={() => handle_okay_click("donut")} test_handle="donut" /> }
 
             {tutorial_completed && <IconBar active_icon={props.active} on_help_click={()=> reset_tutorial(["donut"])}  />}
 

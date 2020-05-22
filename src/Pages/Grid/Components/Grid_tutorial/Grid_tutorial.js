@@ -51,11 +51,11 @@ export const Grid_tutorial = () => {
 
             {step === "initial" ?
 
-                <Tutorial text={["This is your bookshelf", "Books you own are highlighted, while missing books are greyed out."]} handle_okay_click={() => handle_okay_click("initial", "search")} />
+                <Tutorial text={["This is your bookshelf", "Books you own are highlighted, while missing books are greyed out."]} handle_okay_click={() => handle_okay_click("initial", "search")} test_handle="initial" />
             
-                : step === "search" ? <Tutorial text={["You can use this bar to search for a book."]} handle_okay_click={() => handle_okay_click("search", "add")} />
+                : step === "search" ? <Tutorial text={["You can use this bar to search for a book."]} handle_okay_click={() => handle_okay_click("search", "add")} test_handle="search" />
 
-                : step === "add" && <Tutorial text={["Adding new books :", "You can click on a missing book. Alternatively, you can click the icon."]} handle_okay_click={() => handle_okay_click("add", "all_grid_completed")} />
+                : step === "add" && <Tutorial text={["Adding new books :", "You can click on a missing book. Alternatively, you can click the icon."]} handle_okay_click={() => handle_okay_click("add", "all_grid_completed")} test_handle="add" />
 
     }
         </div>
