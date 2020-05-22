@@ -70,7 +70,7 @@ export const Search = props => {
     
     return (
 
-        <div className={classes.container}> {/* Page wrapper/container */}
+        <div className={classes.container} test_handle="book_display_container"> {/* Page wrapper/container */}
 
             <div className={classes.cards_container}> {/* All Cards/Books container */}
 

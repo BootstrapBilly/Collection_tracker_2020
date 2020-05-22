@@ -43,7 +43,7 @@ export const Grid = props => {
     const [filter_string, set_filter_string] = useState(null)//Holds the value of the search box to filter books by the string
     const [existing_books, set_existing_books] = useState([])//holds all books which are present in the collection so they are not greyed out
     const [redirect, set_redirect] = useState(null)
-    
+
 
     useEffect(() => {
         filter_string &&
@@ -87,7 +87,7 @@ export const Grid = props => {
 
                 {cells.map(year => {
 
-                    return <Cell key={year} year={year} books={existing_books} on_click={details => handle_click_book(details)} />
+                    return <Cell key={year} year={year} books={existing_books} on_click={details => handle_click_book(details)} test_handle="grid_cell" />
 
                 })}
 
@@ -101,12 +101,12 @@ export const Grid = props => {
 
                 }
 
-      
+
 
             </motion.div>
 
             {!all_grid_completed && <GridTutorial />}
-            {search_completed && <IconBar active_icon={props.active} on_help_click={()=> reset_tutorial(["initial", "search", "add", "all_grid"])} />}
+            {search_completed && <IconBar active_icon={props.active} on_help_click={() => reset_tutorial(["initial", "search", "add", "all_grid"])} />}
 
         </React.Fragment>
     )

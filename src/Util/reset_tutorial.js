@@ -1,6 +1,6 @@
 
 //Parameter should be an array of localstorage variables to clear
-const reset_tutorial = (types, set_reload_tutorial) => {
+const reset_tutorial = (types) => {
 
 
     types.forEach(type => {
@@ -9,8 +9,7 @@ const reset_tutorial = (types, set_reload_tutorial) => {
 
     })
 
-    // window.location.reload()
-    set_reload_tutorial(true)
+    window.location.reload()
 }
 
 export default reset_tutorial

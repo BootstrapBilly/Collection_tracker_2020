@@ -2,12 +2,11 @@ import { step_one_year } from "./Form_steps"
 import { step_two_condition } from "./Form_steps"
 import { dismiss_prompt } from "./Form_steps"
 
-describe("@@@@@@@@@@@@@@ ADD BOOK @@@@@@@@@@@@@@@@@@", () => {
+describe("@@@@@@@@@ ADD BOOK @@@@@@@@@@@@", () => {
 
-    it("Complete the tutorial", () => {
-        dismiss_prompt()
-        cy.get("[test_handle='nav_menu_icon']").click()
-        cy.get("[test_handle='nav_add_book_icon']").click()
+    it("Navigate to add book", ()=> {
+
+        cy.get("[test_handle='add_book_icon']").click()
     })
 
     step_one_year("Add_book", "1999")

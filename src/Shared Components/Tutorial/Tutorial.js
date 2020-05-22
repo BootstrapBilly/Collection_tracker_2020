@@ -30,7 +30,7 @@ export const Dashboard_tutorial = props => {
 
             {timer_finished &&
 
-                <div className={classes.prompt_wrapper}>
+                <div className={classes.prompt_wrapper} test_handle={`${props.test_handle}_tutorial`}>
 
                     <div className={classes.prompt_container}>
 

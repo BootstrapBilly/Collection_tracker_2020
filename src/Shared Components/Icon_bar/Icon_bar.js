@@ -28,12 +28,12 @@ export const Icon_bar = props => {
 
         <div className={classes.container}>
 
-            <div className={classes.tutorial_overlay} style={{display:search_completed && !all_grid_completed ? "block" : "none"}}></div>
+            <div className={classes.tutorial_overlay} style={{ display: search_completed && !all_grid_completed ? "block" : "none" }}></div>
 
             <Link to={"/"} test-handle={props.test_handle} style={{ textDecoration: 'none' }}>
 
                 <Icon src={grid} alt="Grid icon" type={"grid"} text="All Books" handle_icon_click={() => set_active_icon("grid")} active_icon={active_icon}
-
+                    test_handle={"grid_icon"}
                 />
 
             </Link>
@@ -41,28 +41,29 @@ export const Icon_bar = props => {
             <Link to={"/donut"} test-handle={props.test_handle} style={{ textDecoration: 'none' }}>
 
                 <Icon src={donut} alt="Donut icon" type={"donut"} text="Conditions" handle_icon_click={() => set_active_icon("donut")} active_icon={active_icon}
-
+                    test_handle={"donut_icon"}
                 />
             </Link>
 
-{all_grid_completed ?
-            <Link to={{ pathname: "/add_book", state: { redirected_from_nav: true } }} test-handle={props.test_handle} style={{ textDecoration: 'none', zIndex: "90000000000" }}>
+            {all_grid_completed ?
 
-                <Icon src={add} alt="add icon" type={"add"} text="Add Book" handle_icon_click={() => set_active_icon("add")} active_icon={active_icon}
-                    apply_tutorial={search_completed && !all_grid_completed ? true : false}
+                <Link to={{ pathname: "/add_book", state: { redirected_from_nav: true } }} test-handle={props.test_handle} style={{ textDecoration: 'none', zIndex: "90000000000" }}>
+
+                    <Icon src={add} alt="add icon" type={"add"} text="Add Book" handle_icon_click={() => set_active_icon("add")} active_icon={active_icon}
+                        apply_tutorial={search_completed && !all_grid_completed ? true : false} test_handle={"add_book_icon"}
+                    />
+
+                </Link>
+                : <Icon src={add} alt="add icon" type={"add"} text="Add Book" handle_icon_click={() => set_active_icon("add")} active_icon={active_icon}
+                    apply_tutorial={search_completed && !all_grid_completed ? true : false} test_handle={"add_book_icon"}
                 />
+            }
 
-            </Link>
-:               <Icon src={add} alt="add icon" type={"add"} text="Add Book" handle_icon_click={() => set_active_icon("add")} active_icon={active_icon}
-apply_tutorial={search_completed && !all_grid_completed ? true : false}
-/>
-}
+            <Icon src={question} alt="help icon" type={"help"} text="Help" handle_icon_click={props.on_help_click} active_icon={active_icon}
+                
+            />
 
-                <Icon src={question} alt="help icon" type={"help"} text="Help" handle_icon_click={props.on_help_click} active_icon={active_icon}
 
-                />
-
-      
 
         </div>
 
