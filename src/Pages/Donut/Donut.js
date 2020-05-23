@@ -1,5 +1,5 @@
 //core react
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 
 //css
 import classes from "./Donut.module.css"
@@ -30,32 +30,33 @@ import { mark_completed } from "../../Store/Actions/Tutorial_action"
 
 export const Donut = props => {
 
-    //-Config
-    const dispatch = useDispatch()
-    
-    //?selectors
-    const books = useSelector(state => state.fetch.books)//All books returned from the database
-    const tutorial_completed = useSelector(state => state.tutorial.donut)
-
-    const [unique_years, set_unique_years] = useState(null)//holds 1 copy of each year/book (database can have duplicates with different conditions) - Feeds the era spread
+    //*states
     const [condition_count, set_condition_count] = useState({ poor: 0, fair: 0, mint: 0 })//holds the best condition for each book retrieved from that database 
 
+    //-Config
+    const dispatch = useDispatch()//initialise the usedispatch hook
+
     const num_books = { total: 65, poor: condition_count.poor, fair: condition_count.fair, mint: condition_count.mint }//get the amount of books
-
-    useEffect(() => { books && populate_chart_data(books, set_unique_years, set_condition_count) }, [books] /*if theres at least 1 book, populate the charts*/)
-    useEffect(() => { dispatch(fetch_books()) }, [] /*fetch the books from the database, only once*/)
-
-
     const compute_percent = amount => (amount / num_books.total) * 100//work out the percentage weighting of the total collection for each condition
 
     //compute the percent values for each condition e.g. 20/65 books are in poor condition = 30%
     //65 books total
-    const poor_percent = compute_percent(num_books.poor)
-    const fair_percent = compute_percent(num_books.fair)
-    const mint_percent = compute_percent(num_books.mint)
+    const poor_percent = compute_percent(num_books.poor)//red portion of the chart
+    const fair_percent = compute_percent(num_books.fair)//orange portion of the chart
+    const mint_percent = compute_percent(num_books.mint)//green portion of the chart
 
     const total_percent = (poor_percent + fair_percent + mint_percent)//get the percent of all owned books against total books
 
+
+    //?selectors
+    const books = useSelector(state => state.fetch.books)//All books returned from the database
+    const tutorial_completed = useSelector(state => state.tutorial.donut)
+
+    //!Effects
+    useEffect(() => { books && populate_chart_data(books, set_condition_count) }, [books] /*if theres at least 1 book, populate the charts*/)
+    useEffect(() => { dispatch(fetch_books()) }, [] /*fetch the books from the database, only once*/)
+
+    //chart config
     const CanvasJS = CanvasJSReact.CanvasJS
     const CanvasJSChart = CanvasJSReact.CanvasJSChart
 
@@ -84,12 +85,14 @@ export const Donut = props => {
         }]
     }
 
-    const handle_okay_click = () => {
+    //_functions
+    const handle_okay_click = () => {//
 
-        window.localStorage.setItem(`donut_tutorial`, true)
-        dispatch(mark_completed("donut"))
+        window.localStorage.setItem(`donut_tutorial`, true)//mark the tutorial completed in local storage
+        dispatch(mark_completed("donut"))//Mark it complete in redux to update the page immediately
+
     }
-    
+
     return (
 
         <React.Fragment>
@@ -116,9 +119,9 @@ export const Donut = props => {
 
             </motion.div>
 
-            {!tutorial_completed && <Tutorial text={["Here you will find a breakdown of the conditions in your collection."]} handle_okay_click={() => handle_okay_click("donut")} test_handle="donut" /> }
+            {!tutorial_completed && <Tutorial text={["Here you will find a breakdown of the conditions in your collection."]} test_handle="donut" handle_okay_click={()=> handle_okay_click()}/> }
 
-            {tutorial_completed && <IconBar active_icon={props.active} on_help_click={()=> reset_tutorial(["donut"])}  />}
+            {tutorial_completed && <IconBar active_icon={props.active} on_help_click={() => reset_tutorial(["donut"])} />}
 
         </React.Fragment>
 

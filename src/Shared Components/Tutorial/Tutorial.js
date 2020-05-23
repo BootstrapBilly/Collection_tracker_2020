@@ -10,9 +10,12 @@ import colours from "../../Util/Colours"
 
 export const Dashboard_tutorial = props => {
 
+    //*states
     const [timer_finished, set_timer_finished] = useState(false)
 
-    useEffect(() => {//This is used to display the prompt after 3 seconds
+    //!effects
+
+    useEffect(() => {//This is used to display the prompt after 2 seconds
 
         setTimeout(() => {
 

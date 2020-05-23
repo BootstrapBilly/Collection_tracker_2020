@@ -6,7 +6,6 @@ import colours from "../../../../Util/Colours"
 
 export const Icon = props => {
 
-
     return (
 
         <div className={classes.container} style={{ borderColor: props.active_icon === props.type && colours.blue, zIndex:props.apply_tutorial ?  "90000000000" : "0"}} test_handle={props.test_handle}>

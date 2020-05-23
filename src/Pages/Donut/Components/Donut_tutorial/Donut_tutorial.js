@@ -11,7 +11,7 @@ export const Donut_tutorial = () => {
 
         <div className={classes.container}>
 
-            <Tutorial text={["This is your bookshelf", "Books you own are highlighted, while missing books are greyed out."]} handle_okay_click={() => handle_okay_click("initial", "search")} />
+            <Tutorial text={["This is your bookshelf", "Books you own are highlighted, while missing books are greyed out."]} handle_okay_click={() => handle_okay_click("initial", "search")} type={props.type}/>
 
         </div>
 
