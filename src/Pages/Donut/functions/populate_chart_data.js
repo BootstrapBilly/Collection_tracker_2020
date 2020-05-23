@@ -2,7 +2,7 @@
    Param 2 = The setstate hook to populate the state with unique years 
    Param 3 = The setstate hook to set the condition count, to feed the donut chart */
 
-   const extract_best_conditions = (books, set_unique_years, set_condition_count) => {
+   const extract_best_conditions = (books, set_condition_count) => {
 
     const best_conditions = []//define the array to hold the best conditions
 
@@ -20,7 +20,6 @@
 
     }
 
-    set_unique_years(best_conditions)//set the unique years state, to feed the era spread breakdown graph
     populate_condition_count(best_conditions, set_condition_count)//set the condition count state, to feed the donut chart 
 
 }

@@ -42,7 +42,6 @@ import reset_tutorial from "../../Util/reset_tutorial"
 
 export const Form = props => {
 
-
     //-config
     const dispatch = useDispatch()//initialise the redux hook
 
@@ -59,7 +58,7 @@ export const Form = props => {
     //?selectors
     const form_submission_response = useSelector(state => state.result.submission_result)//get the response data from form request
     const photo_uploaded = useSelector(state => state.upload.last_uploaded_photo)//Listens for photo uploads (changes triggered by ImageUpload component)
-    const tutorial_completed = useSelector(state => state.tutorial.form)
+    const tutorial_completed = useSelector(state => state.tutorial.form)//listen for the tutorial completion to decide whether to display it or not
 
     //!effects
     useEffect(() => {
@@ -104,23 +103,24 @@ export const Form = props => {
         // eslint-disable-next-line 
     }, [])
 
+    //_functions
+
     const handle_background_assignment = () => {
 
+        //if the book is being displayed, do not display a background
         if (form_submission_response || (props.location.state && props.location.state.redirected_from_grid) || (props.location.state && props.location.state.missing)) return
-        if (props.type === "Add") return backgrounds.add
-        if (props.type === "Search") return backgrounds.search
+
+        if (props.type === "Add") return backgrounds.add//otherwise display the background
 
         return
     }
 
     const handle_okay_click = () => {
 
-        window.localStorage.setItem(`form_tutorial`, true)
-        dispatch(mark_completed("form"))
+        window.localStorage.setItem(`form_tutorial`, true)//set the tutorial complete in local storage
+        dispatch(mark_completed("form"))//mark it completed in redux (listen to by the useeffect to update the page instantly after completion)
 
     }
-
-
 
     return (
 
@@ -224,11 +224,16 @@ export const Form = props => {
 
                 }}
 
-                on_help_click={()=> reset_tutorial(["form"])}
+                on_help_click={() => reset_tutorial(["form"])}
 
             />
 
-            {!tutorial_completed && !form_submission_response && <Tutorial text={["Here you can add new books.", "A photo is provided for each book, you can add your own if you wish."]} handle_okay_click={() => handle_okay_click("donut")} test_handle="add_book"/>}
+            {!tutorial_completed && !form_submission_response && //Tutorial not completed, and no book to display
+
+                <Tutorial text={["Here you can add new books.", "A photo is provided for each book, you can add your own if you wish."]} 
+                handle_okay_click={() => handle_okay_click("donut")} test_handle="add_book" />
+
+            }
 
         </React.Fragment>
     )
