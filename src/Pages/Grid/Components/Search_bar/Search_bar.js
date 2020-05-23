@@ -25,7 +25,7 @@ export const Search_bar = props => {
 
     return (
 
-        <div className={classes.container} style={{zIndex: !search_completed ? "90000000000" : "0", visibility: initial_completed ? "visible" : "hidden" }} test_handle="search_bar">
+        <div className={classes.container} style={{zIndex: initial_completed && !search_completed ? "90000000000" : "0"}} test_handle="search_bar">
 
             <div className={classes.tutorial_overlay} style={{borderColor: colours.dark_blue, display: initial_completed && !search_completed ? "block" : "none"}}></div>
 
