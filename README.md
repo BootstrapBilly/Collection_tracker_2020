@@ -16,6 +16,10 @@ npm run cypress
 
  [https://collectiontracker-57b9e.web.app/](https://collectiontracker-57b9e.web.app/) - Please note, it is hosted on a Heroku server, which may take up to 10 seconds to wake up on the first request.
 
+## Backend
+
+ [https://github.com/BootstrapBilly/Collection_tracker_2020_api](https://github.com/BootstrapBilly/Collection_tracker_2020_api)
+ 
 ## About this project
 
 This project was built to track my collection of Guiness Book Records. Currently it has 46/65 books.
@@ -40,12 +44,6 @@ This project was built to track my collection of Guiness Book Records. Currently
 
 <img src="./samples/2020.jpg" height="480" width="360">
 
-
-
-
-## Backend
-
- [https://github.com/BootstrapBilly/Collection_tracker_2020_api](https://github.com/BootstrapBilly/Collection_tracker_2020_api)
 
 
 
